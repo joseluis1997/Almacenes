@@ -24,9 +24,11 @@ class AdminController extends Controller
         $roles = $user->roles->implode('name', ' ,'); //obtenemos los usuarios con roles
         // dd($roles);
         
-        if($roles){
-           // dd($roles);  
+        if($roles!=null){
             return view('admin.admin.index');
+        }
+        else{
+            dd("no tienes permiso de Administrador");
         }
         // switch ($roles) {
            

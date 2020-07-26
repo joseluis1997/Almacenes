@@ -81,6 +81,7 @@ class RoleController extends Controller
         $rol = Role::findOrFail($id);
         
         $rol->delete();
-        dd($rol);
+
+        return redirect()->route('list_roles');
     }
 }

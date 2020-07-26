@@ -13,13 +13,24 @@ class RolesAndPermissions extends Seeder
      */
     public function run()
     {
-        // creando permisos usuarios para el sistema
+        // permisos usuarios para el sistema
         $permission = Permission::create(['name' => 'accesso_usuarios']);
         $permission = Permission::create(['name' => 'crear_usuarios']);
         $permission = Permission::create(['name' => 'modificar_usuarios']);
         $permission = Permission::create(['name' => 'eliminar_usuarios']);
 
-        // creando permisos para unidades de medidas
+        // permisos para Roles
+        $permission = Permission::create(['name' => 'accesso_roles']);
+        $permission = Permission::create(['name' => 'crear_roles']);
+        $permission = Permission::create(['name' => 'modificar_roles']);
+        $permission = Permission::create(['name' => 'eliminar_roles']);
+        
+        // Permisos para partidas
+        $permission = Permission::create(['name' => 'accesso_partidas']);
+        $permission = Permission::create(['name' => 'crear_partidas']);
+        $permission = Permission::create(['name' => 'modificar_partidas']);
+        $permission = Permission::create(['name' => 'eliminar_partidas']);
+        //  permisos para unidades de medidas
 
         $permission = Permission::create(['name' => 'accesso_medidas']);
         $permission = Permission::create(['name' => 'crear_medidas']);
@@ -33,10 +44,6 @@ class RolesAndPermissions extends Seeder
         $permission = Permission::create(['name' => 'modificar_articulos']);
         $permission = Permission::create(['name' => 'eliminar_articulos']);
 
-        $permission = Permission::create(['name' => 'accesso_roles']);
-        $permission = Permission::create(['name' => 'crear_roles']);
-        $permission = Permission::create(['name' => 'modificar_roles']);
-        $permission = Permission::create(['name' => 'eliminar_roles']);
 
         
         //creando roles del sistema y asignando permisos
