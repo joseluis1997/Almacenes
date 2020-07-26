@@ -25,6 +25,7 @@ Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout
 Route::get('/index', 'Admin\AdminController@index')
 	->middleware('auth');
 
+/*Rutas Usuarios*/
 Route::group(['prefix' => 'users', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	
   	Route::get('/index', 'UsuarioController@index')
@@ -50,7 +51,9 @@ Route::group(['prefix' => 'users', 'namespace' => 'Admin', 'middleware' => ['aut
 	->name('destroy_user');
 
 });
+/*fin rutas usuarios*/
 
+/*Rutas roles*/
 Route::group(['prefix' => 'roles', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index', 'RoleController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_roles"))
@@ -78,4 +81,101 @@ Route::group(['prefix' => 'roles', 'namespace' => 'Admin', 'middleware' => ['aut
 
 	Route::get('/', 'PermissionController@index')->name('permisos');
 });
+/*Fin Rutas Roles*/
 
+/* Rutas de Partidas*/
+
+Route::group(['prefix' => 'partidas', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'PartidaController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_partidas"))
+	->name('list_partidas');
+
+	Route::get('/create', 'PartidaController@create')
+	->middleware(sprintf("autorizacion:%s", "crear_partidas"))
+	->name('create_partidas');
+
+	Route::post('/store', 'PartidaController@store')
+	->middleware(sprintf("autorizacion:%s", "crear_partidas"))
+	->name('store_partidas');
+
+	Route::get('/{partida}/edit', 'PartidaController@edit')
+	->middleware(sprintf("autorizacion:%s", "modificar_partidas"))
+	->name('edit_partidas');
+
+	Route::put('/{partida}/update', 'PartidaController@update')
+	->middleware(sprintf("autorizacion:%s", "modificar_partidas"))
+	->name('update_partidas');
+
+	Route::get('/{partida}/destroy','PartidaController@destroy')
+	->middleware(sprintf("autorizacion:%s", "eliminar_partidas"))
+	->name('destroy_partidas');
+
+	Route::delete('/{partida}/destroy', 'PartidaController@changeStatus')->name('destroy_partidas');
+
+	Route::get('/', 'PermissionController@index')->name('permisos');
+});
+/*Fin rutas Partidas*/
+
+/* Rutas Articulos*/
+Route::group(['prefix' => 'articulos', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'ArticuloController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_articulos"))
+	->name('list_articulos');
+
+	Route::get('/create', 'ArticuloController@create')
+	->middleware(sprintf("autorizacion:%s", "crear_articulos"))
+	->name('create_articulos');
+
+	Route::post('/store', 'ArticuloController@store')
+	->middleware(sprintf("autorizacion:%s", "crear_articulos"))
+	->name('store_articulos');
+
+	Route::get('/{articulo}/edit', 'ArticuloController@edit')
+	->middleware(sprintf("autorizacion:%s", "modificar_articulos"))
+	->name('edit_articulos');
+
+	Route::put('/{articulo}/update', 'ArticuloController@update')
+	->middleware(sprintf("autorizacion:%s", "modificar_articulos"))
+	->name('update_articulos');
+
+	Route::get('/{articulo}/destroy','ArticuloController@destroy')
+	->middleware(sprintf("autorizacion:%s", "eliminar_articulos"))
+	->name('destroy_articulos');
+
+	Route::delete('/{articulo}/destroy', 'ArticuloController@changeStatus')->name('destroy_articulos');
+
+	Route::get('/', 'PermissionController@index')->name('permisos');
+});
+/* fin rutas Articulos*/
+
+/*Rutas Medidas*/
+Route::group(['prefix' => 'medidas', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'MedidaController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_medidas"))
+	->name('list_medidas');
+
+	Route::get('/create', 'MedidaController@create')
+	->middleware(sprintf("autorizacion:%s", "crear_medidas"))
+	->name('create_medidas');
+
+	Route::post('/store', 'MedidaController@store')
+	->middleware(sprintf("autorizacion:%s", "crear_medidas"))
+	->name('store_medidas');
+
+	Route::get('/{id}/edit', 'MedidaController@edit')
+	->middleware(sprintf("autorizacion:%s", "modificar_medidas"))
+	->name('edit_medidas');
+
+	Route::put('/{medida}/update', 'MedidaController@update')
+	->middleware(sprintf("autorizacion:%s", "modificar_medidas"))
+	->name('update_medidas');
+
+	Route::get('/{id}/destroy','MedidaController@destroy')
+	->middleware(sprintf("autorizacion:%s", "eliminar_medidas"))
+	->name('destroy_medidas');
+
+	Route::delete('/{medida}/destroy', 'MedidaController@changeStatus')->name('destroy_medida');
+
+	Route::get('/', 'PermissionController@index')->name('permisos');
+});
+/*Fin Rutas Medidas*/
