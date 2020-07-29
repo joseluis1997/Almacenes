@@ -24,7 +24,8 @@ class PartidaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-        ];
+            'NOM_PARTIDA' => 'required|string|max:255',
+            'NRO_PARTIDA' => 'required|numeric',
+            ];
     }
 }

@@ -98,7 +98,7 @@ Route::group(['prefix' => 'partidas', 'namespace' => 'Admin', 'middleware' => ['
 	->middleware(sprintf("autorizacion:%s", "crear_partidas"))
 	->name('store_partidas');
 
-	Route::get('/{partida}/edit', 'PartidaController@edit')
+	Route::get('/{id}/edit', 'PartidaController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_partidas"))
 	->name('edit_partidas');
 
@@ -110,7 +110,7 @@ Route::group(['prefix' => 'partidas', 'namespace' => 'Admin', 'middleware' => ['
 	->middleware(sprintf("autorizacion:%s", "eliminar_partidas"))
 	->name('destroy_partidas');
 
-	Route::delete('/{partida}/destroy', 'PartidaController@changeStatus')->name('destroy_partidas');
+	Route::delete('/{partida}/destroy', 'PartidaController@changeStatus')->name('destroy_partida');
 
 	Route::get('/', 'PermissionController@index')->name('permisos');
 });

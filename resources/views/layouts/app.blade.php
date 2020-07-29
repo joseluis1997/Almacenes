@@ -59,60 +59,82 @@
                         </a>
                     </li>
                     @canany(['accesso_usuarios','crear_usuarios','modificar_usuarios','eliminar_usuarios'])
-                    <li class="ITEM" id="users">
+                      <li class="ITEM">
+                        <a href="{{route ('list_users')}}" class="MENU-BTN">
+                            <i class="fas fa-users"></i><span>Gestionar Usuarios</span>
+                        </a>
+                      </li>
+                   {{--  <li class="ITEM" id="users">
                        
                         <a href="{{route('list_users')}}" class="MENU-BTN">
                             <i class="fas fa-users"></i><span>Gestionar Usuarios<i class="fas fa-chevron-down drop-down"></i></span>
                         </a>
                         
-                      <!--   <div class="SUB-MENU">
+                    {{<div class="SUB-MENU">
                             <a href="{{route('list_users')}}"><i class="fas fa-user"></i><span>Gestionar Usuarios</span></a>
                             <a href="{{route ('list_roles')}}"><i class="fas fa-user"></i><span>Roles</span></a>
                             <a href="{{route('list_users')}}"><i class="fas fa-user"></i><span>Modificar Usuario</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Eliminar Usuario</span></a> 
                             <a href="{{route('list_users')}}"><i class="fas fa-user"></i><span>Listar Usuarios</span></a>
-                        </div> -->
-                    </li>
+                        </div> }}
+                    </li> --}}
                     @endcan
-
-                     <li class="ITEM" id="roles">
+                    
+                    <li class="ITEM">
+                        <a href="{{route ('list_roles')}}" class="MENU-BTN">
+                            <i class="fas fa-users"></i><span>Gestionar Rol</span>
+                        </a>
+                    </li>
+                {{--      <li class="ITEM" id="roles">
                         <a href="{{route ('list_roles')}}" class="MENU-BTN">
                             <i class="fas fa-envelope"></i><span>Gestionar Rol<i class="fas fa-chevron-down drop-down"></i></span>
                         </a>
-                       <!--  <div class="SUB-MENU">
+                        <div class="SUB-MENU">
                             <a href="#"><i class="fas fa-user"></i><span>Registrar Articulo</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Modificar Articulo</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Eliminar Articulo</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Listar Articulo del Almacen</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Bajo Stock</span></a>
-                        </div> -->
+                        </div>
+                    </li> --}}
+
+                    <li class="ITEM">
+                        <a href="{{route ('list_articulos')}}" class="MENU-BTN">
+                            <i class="fas fa-users"></i><span>Gestionar Articulos</span>
+                        </a>
                     </li>
-                    <li class="ITEM" id="articulos">
+                    {{-- <li class="ITEM" id="articulos">
                         <a href="{{route ('list_articulos')}}" class="MENU-BTN">
                             <i class="fas fa-envelope"></i><span>Gestionar Articulos <i class="fas fa-chevron-down drop-down"></i></span>
                         </a>
-                       <!--  <div class="SUB-MENU">
+                        <div class="SUB-MENU">
                             <a href="#"><i class="fas fa-user"></i><span>Registrar Articulo</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Modificar Articulo</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Eliminar Articulo</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Listar Articulo del Almacen</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Bajo Stock</span></a>
-                        </div> -->
+                        </div>
+                    </li> --}}
+
+                    <li class="ITEM">
+                        <a href="{{route ('list_medidas')}}" class="MENU-BTN">
+                            <i class="fas fa-info-circle"></i><span>Gestionar Unidad de Medida</span>
+                        </a>
                     </li>
-                    <li class="ITEM" id="MEDIDAS">
+                   {{--  <li class="ITEM" id="MEDIDAS">
                         <a href="{{route ('list_medidas')}}" class="MENU-BTN">
                             <i class="fas fa-cog"></i><span>Gestionar Unidad de Medidas <i class="fas fa-chevron-down drop-down"></i></span>
                         </a>
-                        <!-- <div class="SUB-MENU">
+                        <div class="SUB-MENU">
                             <a href="#"><i class="fas fa-user"></i><span>Registrar Unidad Medida</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Modificar Unidad Medida</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Eliminar Unidad Medida</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Listar Unidades de Medida</span></a>
                             <a href="#"><i class="fas fa-user"></i><span>Bajo Stock</span></a>                    
-                        </div> -->
-                    </li>
+                        </div>
+                    </li> --}}
 
-                     <li class="ITEM">
+                    <li class="ITEM">
                         <a href="{{route ('list_partidas')}}" class="MENU-BTN">
                             <i class="fas fa-info-circle"></i><span>Gestionar Partidas</span>
                         </a>

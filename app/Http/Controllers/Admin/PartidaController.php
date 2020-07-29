@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PartidaRequest;
 use App\Http\Controllers\Controller;
+use App\Partida;
 use DB;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class PartidaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.partida.crear');
     }
 
     /**
@@ -37,9 +38,11 @@ class PartidaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PartidaRequest $request)
     {
-        //
+        $partida = $request->all();
+        Partida::create($partida);
+        return redirect()->route('list_partidas')->with('message', ['success', 'Partida Registrado Correctamente!']);
     }
 
     /**
@@ -61,7 +64,8 @@ class PartidaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $partida = Partida::findOrFail($id);
+        return view('admin.partida.editar',compact('partida'));
     }
 
     /**
@@ -71,9 +75,11 @@ class PartidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PartidaRequest $request,Partida $partida)
     {
-        //
+        $partida->update($request->validated());
+        
+        return redirect()->route('list_partidas')->with('message',['success','Partida Actualizado Correctamente!!']);
     }
 
     /**
@@ -84,6 +90,27 @@ class PartidaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $partida = Partida::findOrFail($id);
+        $partida->delete();
+        return redirect()->route('list_partidas')->with('message',['danger','Partida Eliminado Correctamente!!']);
+    }
+
+    public function changeStatus(Partida $partida)
+    {
+        $estado = true;
+
+        if ($partida->VALOR) {
+          $estado = false;
+        }
+
+        $partida->VALOR = $estado;
+        $partida->save();
+        
+        if ($estado) {
+          return redirect()->route('list_partidas')->with('message', ['success', 'Partida habilitado Correctamente!']);  
+        }
+        else{
+          return redirect()->route('list_partidas')->with('message', ['success', 'Partida Desabilitado Correctamente!']);
+        }
     }
 }

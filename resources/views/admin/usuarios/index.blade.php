@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="bgc-white bd bdrs-3 p-20">
                     <h4 class="c-grey-900 mB-20 d-inline">Lista de Usuarios</h4>
-                    <a href="{{route('create_users')}}" class="btn btn-outline-primary rounded-pill float-right">Crear Nuevo</a>
+                    <a href="{{route('create_users')}}" class="btn btn-outline-primary rounded-pill float-right">Registro Nuevo Usuario</a>
                     <div class="table-responsive-xl">
                         <table class="table table-hover table-sm mt-2">
                             <thead class="table-primary">

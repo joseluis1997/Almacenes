@@ -9,7 +9,7 @@
                 <a href="{{route('create_medidas')}}" class="btn btn-outline-primary rounded-pill float-left">Crear Nuevo</a>
             </div>
             <div class="col-md-6">
-                <h3 class="card-title">Unidades Medidas</h3> 
+                <h3 class="card-title">Lista de Unidades Medidas</h3> 
             </div>
             </div>
         </div>
