@@ -38,13 +38,24 @@ class UsuarioController extends Controller
 
     public function guardar(UserRequest $request)
     {
+
         $password=bcrypt($request->input('password'));// RECUPERATORIA DD ELA VARIABLE PASSWORD Y ENCRITANDO
         $request->merge(['password' => $password]);
+
+        if($request->hasFile('imagen')){
+            $file = $request->file('imagen');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/users/',$name);
+        }
+
         $datas = $request->all();
         $user=User::create($datas);
+        $user->imagen = $name;
+        $user->save();
         $user->assignRole($request->input('rol'));
-       
+        
         return redirect(route('list_users'));
+
     }
 
     
@@ -65,12 +76,17 @@ class UsuarioController extends Controller
             $password=bcrypt($request->input('password'));// RECUPERATORIA DD ELA VARIABLE PASSWORD Y ENCRITANDO
             $request->merge(['password' => $password]); 
         }
+        
+        if($request->hasFile('imagen')){
+                $file = $request->file('imagen');
+                $name = time().$file->getClientOriginalName();
+                $file->move(public_path().'/images/users/',$name);
+        }
         $input = $request->all();
-
         $user = User::findorfail($id);
-        // preguntamos si el password biene vacio
-        // $user->removeRole($user->roles->implode('name', ' ,'));
         $updateuser = $user->update($input);
+        $user->imagen = $name;
+        $user->save();
         $user->syncRoles($request->input('rol'));
 
         // $user->save();

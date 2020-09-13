@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-body">    
-            <form action="{{route('user_update',$user->id)}}" id="form-general" class="form-horizontal form--label-right" method="POST" >
+            <form action="{{route('user_update',$user->id)}}" id="form-general" class="form-horizontal form--label-right" method="POST" enctype="multipart/form-data">
              @csrf @method("put")
                 <div class="card-body">
                     @include('admin.usuarios.formularioEditarUsuario')

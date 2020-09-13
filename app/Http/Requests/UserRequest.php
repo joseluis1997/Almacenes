@@ -33,6 +33,7 @@ class UserRequest extends FormRequest
             'username' => 'required',
             'password' => 'required',
             'rol' => 'required',
+            'imagen' => 'mimes:jpeg,bmp,png'
         ];
     }
 }

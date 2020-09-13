@@ -1,32 +1,7 @@
 <div class="form-row">
 
     <div class="col-md-6 mb-3">
-        <label>Nombre</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">N</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Nombre" name="name" value="" required>
-        </div>
-    </div>
-
-
-
-    
-    <div class="col-md-6 mb-3">
-        <label>Apellido</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">A</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Apellidos" name="lastname" value="" required>
-        </div>
-    </div>
-</div>
-
-<div class="form-row">
-    <div class="col-md-6 mb-3">
-        <label>CI</label>
+        <label><b>CI</b></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">CI</span>
@@ -36,7 +11,28 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label>Telefono</label>
+        <label><b>Nombre</b></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">N</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Nombre" name="name" value="" required>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+
+    <div class="col-md-6 mb-3">
+        <label><b>Apellido</b></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">A</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Apellidos" name="lastname" value="" required>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label><b>Telefono</b></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">T</span>
@@ -44,11 +40,13 @@
             <input type="text" class="form-control" placeholder="Numero de Telefono" name="telephone" value="" required>
         </div>
     </div>
+
+
 </div>
 
 <div class="form-row">
     <div class="col-md-6 mb-3">
-        <label>Usuario</label>
+        <label><b>Usuario</b></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">U</span>
@@ -58,7 +56,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label>Password</label>
+        <label><b>Password</b></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">P</span>
@@ -68,10 +66,18 @@
     </div>
     
 </div>
-
 <div class="form-row">
     <div class="col-md-6 mb-3">
-        <label>Rol</label>
+        <label><b>Confirmed Password</b></label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">P</span>
+            </div>
+            <input type="password" class="form-control" placeholder="Confirmed Password" name="password_confirmation" required>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label><b>Rol</b></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">U</span>
@@ -87,5 +93,13 @@
             </select>
         </div>
     </div>
-    
+</div>
+
+<div class="form-row">
+    <div class="col-md-6 mb-3">
+        <label><b>Imagen</b></label>
+        <div class="input-group">
+            <input type="file" placeholder="imagen de perfil" name="imagen" required>
+        </div>
+    </div>
 </div>

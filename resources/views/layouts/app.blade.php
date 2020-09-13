@@ -49,7 +49,9 @@
             <div class="SIDEBAR">
                 <div class="SIDEBAR-MENU">
                     <center class="PROFILE">
-                        <img src="{{ asset('images/logo.jpeg') }}" alt="">
+
+                        <img src="images/users/{{  Auth::user()->imagen }}" alt="">
+
                         <p>{{ Auth::user()->name}}<br/>Bienvenido a Sigadet @role('super-admin') Bienvenido Administrador @endrole
                          @role('moderador') 'Bienvenido Moderador' @endrole </p>
                     </center>
@@ -142,7 +144,7 @@
 
                     <li class="ITEM">
                         <a href="#" class="MENU-BTN">
-                            <i class="fas fa-info-circle"></i><span>About</span>
+                            <i class="fas fa-info-circle"></i><span>Gestionar Areas</span>
                         </a>
                     </li>
 

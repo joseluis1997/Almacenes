@@ -1,6 +1,43 @@
 @extends('layouts.app')
 
 @section('contenido')
-	<h1>hola aqui va la lista de Articulos</h1>
-
+	  
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+            <div class="col-md-5">
+                <a href="{{route('create_articulos')}}" class="btn btn-outline-primary rounded-pill float-left">Crear Nuevo Articulo</a>
+            </div>
+            <div class="col-md-6">
+                <h3 class="card-title">Lista de Articulos</h3> 
+            </div>
+            </div>
+        </div>
+        <div class="card-body">    
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Item</th>
+                        <th>Nombre</th>
+                        <th>Ubicacion</th>
+                        <th>Cantidad Actual</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                       @foreach($articulos as $articulo)
+                            <td>{{ $articulo->COD_ARTICULO }}</td>
+                            <td>{{ $articulo->ITEM }}</td>
+                            <td>{{ $articulo->NOM_ARTICULO }}</td>
+                            <td>{{ $articulo->UBICACION }}</td>
+                            <td>{{ $articulo->CANT_ACTUAL }}</td>
+                       @endforeach     
+                              
+                    </tbody>
+            </table> 
+        </div>
+    </div>
+</div>
 @endsection

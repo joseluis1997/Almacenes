@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ArticuloRequest;
-use App\Articulo;
-use DB;
-class ArticuloController extends Controller
+
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,6 @@ class ArticuloController extends Controller
     public function index()
     {
         //
-        $articulo = DB::table('ARTICULO')->get();
-        return view('admin.articulos.index',[ 'articulos' => $articulo]);
     }
 
     /**
@@ -28,9 +24,7 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        $partida = DB::table('PARTIDA')->get();
-        $unidadM = DB::table('MEDIDA')->get();
-        return view ('admin.articulos.crear',[ 'partidas' => $partida],[ 'unidadMedidas' => $unidadM]);
+        //
     }
 
     /**
@@ -39,11 +33,9 @@ class ArticuloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticuloRequest $request)
+    public function store(Request $request)
     {
         //
-        $input = $request->all();
-        dd($input);
     }
 
     /**

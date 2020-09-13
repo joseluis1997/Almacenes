@@ -60,3 +60,14 @@
     </select>
     </div>
 </div>
+
+<div class="form-group row">
+    <label for="roles" class="col-lg-3 col-form-label "><b>Imagen</b></label>
+    <div class="col-lg-8">
+    <input type="file" placeholder="imagen de perfil" name="imagen" required>
+         @if($user->imagen != "")
+            <img src="{{ asset('/images/users/'.$user->imagen) }}" alt="{{ $user->imagen }}" height="50px" width="50px">
+        @endif
+    </div>
+</div>
+

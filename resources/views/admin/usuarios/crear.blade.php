@@ -8,7 +8,7 @@
 
     <div class="card mt-2">
         <div class="card-body">
-            <form  action="{{ route('store_users')}}"  id="form-general" class="form-horizontal form--label-right" method="POST">
+            <form  action="{{ route('store_users')}}"  id="form-general" class="form-horizontal form--label-right" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 @include('admin.usuarios.formularioCrearUsuario')

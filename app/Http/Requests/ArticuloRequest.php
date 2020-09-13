@@ -24,7 +24,12 @@ class ArticuloRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'COD_PARTIDA' => 'required',
+            'COD_MEDIDA' =>'required',
+            'NOM_ARTICULO' => 'required|string',
+            'DESC_ARTICULO' => 'required|string',
+            'CANT_MINIMA' => 'required',
+            'UBICACION' => 'required|string',
         ];
     }
 }

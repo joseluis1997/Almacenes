@@ -179,3 +179,35 @@ Route::group(['prefix' => 'medidas', 'namespace' => 'Admin', 'middleware' => ['a
 	Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin Rutas Medidas*/
+
+/*Rutas Gestionar Areas*/
+Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'AreaController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_areas"))
+	->name('list_areas');
+
+	Route::get('/create', 'AreaController@create')
+	->middleware(sprintf("autorizacion:%s", "crear_areas"))
+	->name('create_areas');
+
+	Route::post('/store', 'AreaController@store')
+	->middleware(sprintf("autorizacion:%s", "crear_areas"))
+	->name('store_areas');
+
+	Route::get('/{id}/edit', 'AreaController@edit')
+	->middleware(sprintf("autorizacion:%s", "modificar_areas"))
+	->name('edit_areas');
+
+	Route::put('/{medida}/update', 'AreaController@update')
+	->middleware(sprintf("autorizacion:%s", "modificar_areas"))
+	->name('update_areas');
+
+	Route::get('/{id}/destroy','AreaController@destroy')
+	->middleware(sprintf("autorizacion:%s", "eliminar_areas"))
+	->name('destroy_areas');
+
+	Route::delete('/{medida}/destroy', 'AreaController@changeStatus')->name('destroy_areas');
+
+	Route::get('/', 'PermissionController@index')->name('permisos');
+});
+/* Fin Gestionar Areas*/

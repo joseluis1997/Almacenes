@@ -23,39 +23,35 @@
                             </thead>
                             <tbody>
                             	@foreach($datas as $user)
-									<tr>
-										<td>{{ $user->ci}}</td>
-										<td>{{ $user->name}}</td>
-										<td>{{ $user->lastname}}</td>
-										<td>{{ $user->telephone}}</td>
-										<td>{{ $user->username}}</td>
-										<td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
-										<!-- con esta nuevo sacamos los array pero con implode separamos los array -->
-										 <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
-			    						<td>
-			    							@can('modificar_usuarios')
-			    							<a href="{{route ('edit_user',$user->id)}}" class="btn btn-outline-success rounded-pill">Editar</a>
-			    							@endcan
-                        
-			    							@can ('eliminar_usuarios')
-			    							<a href="{{route ('destroy_user',$user->id)}}" class="btn btn-outline-danger rounded-pill" onclick="eliminar(event);">Eliminar</a>
-			    							@endcan
-			    						</td>
+            									<tr>
+            										<td>{{ $user->ci}}</td>
+            										<td>{{ $user->name}}</td>
+            										<td>{{ $user->lastname}}</td>
+            										<td>{{ $user->telephone}}</td>
+            										<td>{{ $user->username}}</td>
+            										<td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
+            										<!-- con esta nuevo sacamos los array pero con implode separamos los array -->
+            										 <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
+            			    						<td>
+            			    							@can('modificar_usuarios')
+            			    							<a href="{{route ('edit_user',$user->id)}}" class="btn btn-outline-success rounded-pill">Editar</a>
+            			    							@endcan
+                                    
+            			    							@can ('eliminar_usuarios')
+            			    							<a href="{{route ('destroy_user',$user->id)}}" class="btn btn-outline-danger rounded-pill" onclick="eliminar(event);">Eliminar</a>
+            			    							@endcan
+            			    						</td>
 
-									</tr>
+            									</tr>
                             	@endforeach
                             </tbody>
                         </table>
                     </div>
-                
                 </div>
             </div>
     </div>
 <div>
-
 @endsection
-
-
 @section('scripts')
 <script>
 
