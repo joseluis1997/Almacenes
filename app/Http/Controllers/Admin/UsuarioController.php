@@ -71,25 +71,26 @@ class UsuarioController extends Controller
 
     public function actualizar(UserRequest $request, $id)
     {       
+        
+        $user = User::findorfail($id);
+
         if($request->password!=null){
             // $user->password = $request->password;
             $password=bcrypt($request->input('password'));// RECUPERATORIA DD ELA VARIABLE PASSWORD Y ENCRITANDO
             $request->merge(['password' => $password]); 
         }
-        
+
         if($request->hasFile('imagen')){
-                $file = $request->file('imagen');
-                $name = time().$file->getClientOriginalName();
-                $file->move(public_path().'/images/users/',$name);
+            $file = $request->file('imagen');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/users/',$name);
         }
+        
         $input = $request->all();
-        $user = User::findorfail($id);
-        $updateuser = $user->update($input);
+        $user->update($input);
         $user->imagen = $name;
         $user->save();
         $user->syncRoles($request->input('rol'));
-
-        // $user->save();
 
         return redirect()->route('list_users')->with('status', 'Profile updated!');
     }
@@ -108,6 +109,5 @@ class UsuarioController extends Controller
                 'mensaje'=> 'Error al Eliminar el Usuario'
             ]);
         }
-
     }
 }

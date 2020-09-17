@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <TITLE>Sigadet</TITLE>
 
         <!-- bootstrap datatables -->
@@ -9,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/formulario.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
@@ -50,7 +52,7 @@
                 <div class="SIDEBAR-MENU">
                     <center class="PROFILE">
 
-                        <img src="images/users/{{  Auth::user()->imagen }}" alt="">
+                        <img src="/images/users/{{  Auth::user()->imagen }}" alt="">
 
                         <p>{{ Auth::user()->name}}<br/>Bienvenido a Sigadet @role('super-admin') Bienvenido Administrador @endrole
                          @role('moderador') 'Bienvenido Moderador' @endrole </p>
@@ -102,7 +104,7 @@
 
                     <li class="ITEM">
                         <a href="{{route ('list_articulos')}}" class="MENU-BTN">
-                            <i class="fas fa-users"></i><span>Gestionar Articulos</span>
+                            <i class="fas fa-box-open"></i><span>Gestionar Articulos</span>
                         </a>
                     </li>
                     {{-- <li class="ITEM" id="articulos">
@@ -120,7 +122,7 @@
 
                     <li class="ITEM">
                         <a href="{{route ('list_medidas')}}" class="MENU-BTN">
-                            <i class="fas fa-info-circle"></i><span>Gestionar Unidad de Medida</span>
+                            <i class="fas fa-ruler-vertical"></i><span>Gestionar Unidad de Medida</span>
                         </a>
                     </li>
                    {{--  <li class="ITEM" id="MEDIDAS">
@@ -138,13 +140,13 @@
 
                     <li class="ITEM">
                         <a href="{{route ('list_partidas')}}" class="MENU-BTN">
-                            <i class="fas fa-info-circle"></i><span>Gestionar Partidas</span>
+                            <i class="fas fa-book-open"></i><span>Gestionar Partidas</span>
                         </a>
                     </li>
 
                     <li class="ITEM">
                         <a href="#" class="MENU-BTN">
-                            <i class="fas fa-info-circle"></i><span>Gestionar Areas</span>
+                            <i class="fas fa-chart-area"></i><span>Gestionar Areas</span>
                         </a>
                     </li>
 
@@ -177,7 +179,9 @@
         });
 
         </script>
-<!-- scripts datatable -->
+<script src="{{ asset('js/formulario.js') }}"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <!-- scripts datatable -->
 
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>

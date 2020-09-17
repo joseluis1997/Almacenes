@@ -36,12 +36,10 @@
             			    							@can('modificar_usuarios')
             			    							<a href="{{route ('edit_user',$user->id)}}" class="btn btn-outline-success rounded-pill">Editar</a>
             			    							@endcan
-                                    
             			    							@can ('eliminar_usuarios')
             			    							<a href="{{route ('destroy_user',$user->id)}}" class="btn btn-outline-danger rounded-pill" onclick="eliminar(event);">Eliminar</a>
             			    							@endcan
             			    						</td>
-
             									</tr>
                             	@endforeach
                             </tbody>
