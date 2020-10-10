@@ -2,7 +2,7 @@
 
 @section('contenido')
 	 <div class="title">
-        <h1>Registro Nueva Partida</h1>
+        <h3><b>Nueva Partida</b></h3>
     </div>
     <div class="card mt-2">
         <div class="card-body">
@@ -10,11 +10,12 @@
                 @csrf
                 
                 @include('admin.partida.form')
-                <div class="text-center">
+          {{--       <div class="text-center">
                      <!-- @include('includes.boton-form-crear',['name'=>'Guardar','color'=>'primary']) -->
                      <button class="btn btn-outline-success" type="submit">Guardar</button>
                     <a href="{{route('list_partidas')}}" class="btn btn-outline-danger">Cancelar</a>                 
-                </div>
+                </div> --}}
+                
             </form>
         </div>
     </div>

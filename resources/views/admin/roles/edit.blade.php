@@ -3,7 +3,7 @@
 @section('contenido')
 
   <div class="title">
-        <h1>Editar Role</h1>
+        <h3><b>Modificar Rol</b></h3>
     </div>
 
     <div class="card mt-2">
@@ -13,10 +13,9 @@
                 {{ csrf_field() }}
 
                 @include('admin.roles.form')
-                
-                <div class="text-center mb-4">
-                    <button class="btn btn-outline-success" type="submit">Actualizar</button>
-                    <a href="{{ route('list_roles') }}" class="btn btn-outline-danger">Cancelar</a>
+                <div class="formulario__grupo formulario__btn-guardar text-center">
+                    <a href="{{ route('list_roles') }}" class="btn formulario__btn2">Cancelar</a>
+                    <button type="submit" class="formulario__btn1">Modificar</button>
                 </div>
             </form>
         </div>

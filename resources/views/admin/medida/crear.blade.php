@@ -2,19 +2,17 @@
 
 @section('contenido')
 	 <div class="title">
-        <h1>Registro Nueva Unidad de Medida</h1>
+        <h3><b>Nueva Unidad de Medida</b></h3>
     </div>
 
     <div class="card mt-2">
         <div class="card-body">
             <form  action="{{ route('store_medidas')}}"  id="form-general" class="form-horizontal form--label-right" method="POST">
                 @csrf
-                
                 @include('admin.medida.form')
-                <div class="text-center">
-                     <!-- @include('includes.boton-form-crear',['name'=>'Guardar','color'=>'primary']) -->
-                     <button class="btn btn-outline-success" type="submit">Guardar</button>
-                    <a href="{{route('list_medidas')}}" class="btn btn-outline-danger">Cancelar</a>                 
+                <div class="formulario__grupo formulario__btn-guardar text-center">
+                    <a href="{{route('list_medidas')}}" class="btn formulario__btn2">Cancelar</a>
+                    <button type="submit" class="formulario__btn1">Guardar</button>
                 </div>
             </form>
         </div>

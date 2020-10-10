@@ -321,8 +321,222 @@ a{
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-  
+th{
+  text-align: center;
+ }
 
-/*****/
+td {
+    text-align: center;
+ }
+ 
+h3{
+  text-align:center;
+  font-size: 40px;
+}
+.containerre{
+  position: relative;
+  width: 800px;
+  height: 500px;
+  margin: 0px auto; 
+  /*background: #000;*/
+}
+.containerre .box1{
+  background: yellow;
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
 
-/**/
+.containerre .box2{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #5A79F8;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box3{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #3CF0CC;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box4{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #FA5F91;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+
+}
+.containerre .box5{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #C8A16C;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box6{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #337599;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box7{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #24252A;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box8{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #CBBA0A;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box9{
+  position: relative;
+  left: 30px;
+  width: calc(400px - 50px);
+  height:  calc(120px - 20px);
+  float: left;
+  margin: 10px;
+  background: #17C2D0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.containerre .box1 .icon1{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+
+}
+.containerre .box2 .icon2{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box3 .icon3{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box4 .icon4{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box5 .icon5{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box6 .icon6{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box7 .icon7{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box8 .icon8{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.containerre .box9 .icon9{
+  position: absolute;
+  text-align: center;
+  font-size: 55px;
+  top:0px;
+  width: 20%;
+  height: 100%;
+  background: rgba( 0.0, 0.0, 0.0, 0.3);
+}
+.textito{
+  position: absolute;
+  left: 100px;
+  font-size: 30px;
+  color: white;
+}
+
+

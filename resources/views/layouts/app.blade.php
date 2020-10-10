@@ -62,94 +62,86 @@
                             <i class="fas fa-desktop"></i><span>MENU</span>
                         </a>
                     </li>
+                    {{-- Gestionar Usuarios --}}
                     @canany(['accesso_usuarios','crear_usuarios','modificar_usuarios','eliminar_usuarios'])
                       <li class="ITEM">
                         <a href="{{route ('list_users')}}" class="MENU-BTN">
                             <i class="fas fa-users"></i><span>Gestionar Usuarios</span>
                         </a>
                       </li>
-                   {{--  <li class="ITEM" id="users">
-                       
-                        <a href="{{route('list_users')}}" class="MENU-BTN">
-                            <i class="fas fa-users"></i><span>Gestionar Usuarios<i class="fas fa-chevron-down drop-down"></i></span>
-                        </a>
-                        
-                    {{<div class="SUB-MENU">
-                            <a href="{{route('list_users')}}"><i class="fas fa-user"></i><span>Gestionar Usuarios</span></a>
-                            <a href="{{route ('list_roles')}}"><i class="fas fa-user"></i><span>Roles</span></a>
-                            <a href="{{route('list_users')}}"><i class="fas fa-user"></i><span>Modificar Usuario</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Eliminar Usuario</span></a> 
-                            <a href="{{route('list_users')}}"><i class="fas fa-user"></i><span>Listar Usuarios</span></a>
-                        </div> }}
-                    </li> --}}
                     @endcan
-                    
+                    {{-- Gestionar Roles --}}
                     <li class="ITEM">
                         <a href="{{route ('list_roles')}}" class="MENU-BTN">
-                            <i class="fas fa-users"></i><span>Gestionar Rol</span>
+                            <i class="fas fa-fist-raised"></i><span>Gestionar Roles</span>
                         </a>
                     </li>
-                {{--      <li class="ITEM" id="roles">
-                        <a href="{{route ('list_roles')}}" class="MENU-BTN">
-                            <i class="fas fa-envelope"></i><span>Gestionar Rol<i class="fas fa-chevron-down drop-down"></i></span>
-                        </a>
-                        <div class="SUB-MENU">
-                            <a href="#"><i class="fas fa-user"></i><span>Registrar Articulo</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Modificar Articulo</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Eliminar Articulo</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Listar Articulo del Almacen</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Bajo Stock</span></a>
-                        </div>
-                    </li> --}}
-
+                    {{-- Gestionar Articulos --}}
                     <li class="ITEM">
                         <a href="{{route ('list_articulos')}}" class="MENU-BTN">
                             <i class="fas fa-box-open"></i><span>Gestionar Articulos</span>
                         </a>
                     </li>
-                    {{-- <li class="ITEM" id="articulos">
-                        <a href="{{route ('list_articulos')}}" class="MENU-BTN">
-                            <i class="fas fa-envelope"></i><span>Gestionar Articulos <i class="fas fa-chevron-down drop-down"></i></span>
-                        </a>
-                        <div class="SUB-MENU">
-                            <a href="#"><i class="fas fa-user"></i><span>Registrar Articulo</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Modificar Articulo</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Eliminar Articulo</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Listar Articulo del Almacen</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Bajo Stock</span></a>
-                        </div>
-                    </li> --}}
-
+                    {{-- Gestionar Unidad de Medida --}}
                     <li class="ITEM">
                         <a href="{{route ('list_medidas')}}" class="MENU-BTN">
                             <i class="fas fa-ruler-vertical"></i><span>Gestionar Unidad de Medida</span>
                         </a>
                     </li>
-                   {{--  <li class="ITEM" id="MEDIDAS">
-                        <a href="{{route ('list_medidas')}}" class="MENU-BTN">
-                            <i class="fas fa-cog"></i><span>Gestionar Unidad de Medidas <i class="fas fa-chevron-down drop-down"></i></span>
-                        </a>
-                        <div class="SUB-MENU">
-                            <a href="#"><i class="fas fa-user"></i><span>Registrar Unidad Medida</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Modificar Unidad Medida</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Eliminar Unidad Medida</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Listar Unidades de Medida</span></a>
-                            <a href="#"><i class="fas fa-user"></i><span>Bajo Stock</span></a>                    
-                        </div>
-                    </li> --}}
-
+                    {{-- Gestionar Partidas --}}
                     <li class="ITEM">
                         <a href="{{route ('list_partidas')}}" class="MENU-BTN">
                             <i class="fas fa-book-open"></i><span>Gestionar Partidas</span>
                         </a>
                     </li>
-
+                    {{-- Gestionar Areas --}}
                     <li class="ITEM">
-                        <a href="#" class="MENU-BTN">
+                        <a href="{{ route ('list_areas') }}" class="MENU-BTN">
                             <i class="fas fa-chart-area"></i><span>Gestionar Areas</span>
                         </a>
                     </li>
-
+                    {{-- Gestionar Proveedores --}}
+                     <li class="ITEM">
+                        <a href="{{ route ('list_proveedores') }}" class="MENU-BTN">
+                            <i class="fas fa-users"></i><span>Gestionar Proveedores</span>
+                        </a>
+                    </li>
+                    {{-- Gestionar Cierre Sesion --}}
+                     <li class="ITEM">
+                        <a href="{{ route('list_cierregestion') }}" class="MENU-BTN">
+                            <i class="fas fa-power-off"></i><span>Gestionar Cierre Gestion</span>
+                        </a>
+                    </li>
+                    {{-- Gestionar Stock Alamacen --}}
+                     <li class="ITEM">
+                        <a href="{{ route('list_almacen') }}" class="MENU-BTN">
+                            <i class="fas fa-warehouse"></i><span>Gestionar Stock Almacen</span>
+                        </a>
+                    </li>
+                    {{-- Gestionar Consumo Directo --}}
+                     <li class="ITEM">
+                        <a href="{{ route('list_consumodirecto') }}" class="MENU-BTN">
+                            <i class="fas fa-copyright"></i><span>Gestionar Consumo Directo</span>
+                        </a>
+                    </li>
+                    {{-- Gestionar Pedidos --}}
+                     <li class="ITEM">
+                        <a href="{{ route('list_pedidos') }}" class="MENU-BTN">
+                            <i class="fas fa-biking"></i><span>Gestionar Pedidos</span>
+                        </a>
+                    </li>
+                    {{-- Gestionar Salidas --}}
+                     <li class="ITEM">
+                        <a href="{{ route('list_salidas') }}" class="MENU-BTN">
+                            <i class="fas fa-plane-departure"></i><span>Gestionar Salidas</span>
+                        </a>
+                    </li>
+                    {{-- Gestionar Reportes --}}
+                     <li class="ITEM">
+                        <a href="{{ route('list_reportes') }}" class="MENU-BTN">
+                            <i class="fas fa-file-pdf"></i><span>Gestionar Reportes</span>
+                        </a>
+                    </li>
                 </div>
             </div>
             <!--SIDEBAR end-->
@@ -162,7 +154,7 @@
                  {{ session('message')[1] }}
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                </button>
+                 </button>
                 </div>
                 @endif
                 @yield('contenido')
@@ -179,15 +171,14 @@
         });
 
         </script>
-<script src="{{ asset('js/formulario.js') }}"></script>
-    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
     <!-- scripts datatable -->
 
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#list').dataTable( {
+        $('#example').dataTable( {
              "scrollY": "350px",
              "scrollX": "350px",
              "scrollCollapse":true,
@@ -196,7 +187,7 @@
     } );
     var idioma = {
     "sProcessing":     "Procesando...",
-    "sLengthMENU":     "Mostrar _MENU_ registros",
+    "sLengthMENU":     "Mostrar _menu_ registros",
     "sZeroRecords":    "No se encontraron resultados",
     "sEmptyTable":     "Ningún dato disponible en esta tabla",
     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
@@ -223,7 +214,8 @@
     }
 }
 </script>
-
+<script src="{{ asset('js/formulario.js') }}"></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 <!--  -->
 </body>
 @yield('scripts')

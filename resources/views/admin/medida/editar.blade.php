@@ -5,13 +5,8 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-            <div class="col-md-6">
-                <h3 class="card-title">Editar Unidad de Medida: {{$medida->NOM_MEDIDA}}</h3> 
-            </div>
-            <div class="col-md-6">
-                <a  href="{{route('list_medidas')}}" class="btn btn-secondary">
-                    Volver Atras
-                </a>
+            <div class="col-md-12">
+                <h3 class="card-title"><b>Modificar Unidad de Medida:</b> {{$medida->NOM_MEDIDA}}</h3> 
             </div>
             </div>
         </div>
@@ -40,13 +35,10 @@
 				    </div>
 
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-lg-5"></div>
-                        <div class="col-lg-6">
-                            @include('includes.boton-form-editar',['name'=>'Actualiza'])
-                        </div>
-                    </div>
+
+                <div class="formulario__grupo formulario__btn-guardar text-center">
+                    <a href="{{route('list_medidas')}}" class="btn formulario__btn2">Cancelar</a>
+                    <button type="submit" class="formulario__btn1">Modificar</button>
                 </div>
             </form>
         </div>

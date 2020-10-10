@@ -41,7 +41,7 @@ class RoleController extends Controller
         $role->givePermissionTo($request->permissions);
         //}
 
-        return redirect(route('list_roles'))->with([ 'message' => 'Role creado exitosamente!', 'alert-type' => 'success' ]);
+        return redirect(route('list_roles'))->with('message', ['success', 'Rol Registrado Correctamente!']);
     }
 
     public function show($id)

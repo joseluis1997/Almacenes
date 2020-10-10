@@ -29,6 +29,16 @@ main {
     padding: 0 40px 0 10px;
     transition: 0.3s ease all;
 }
+.formulario__inputlogin{
+    width: 100%;
+    background: #FFF;
+    border: 3px solid #A8ABAB;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: 0.3s ease all;
+}
 .formulario__input:focus{
     border: 3px solid #0075FF;
     outline: none;
@@ -66,6 +76,8 @@ main {
     border-radius: 3px;
     display: none;
 }
+
+
 .formulario__mensaje-activo{
     display: block;
 }
@@ -91,6 +103,20 @@ main {
     cursor: pointer;
     transition: 0.1s ease all;
 }
+.formulario__enviarSesion{
+    font-size: 20px;
+    height: 45px;
+    margin-top: 30px;
+    line-height: 45px;
+    width: 100%;
+    background: #0075FF;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s ease all;
+}
 
 .formulario__btn2{
     height: 45px;
@@ -106,6 +132,9 @@ main {
     cursor: pointer;
     transition: 0.1s ease all;
 }
+.formulario__enviarSesion:hover {
+    box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+} 
 
 .formulario__btn1:hover,
 .formulario__btn2:hover {

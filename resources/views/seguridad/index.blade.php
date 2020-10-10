@@ -2,6 +2,7 @@
     <head>
         <title>Sigadet</title>
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/formulario.css') }}" rel="stylesheet">
     </head>
     <body>
         <div class="CONTAINER">
@@ -28,14 +29,39 @@
                 <h1>Inicio Sesion</h1>
             </div>
             
-            <div class="textbox">
+           {{--  <div class="textbox">
                 <input id="username" type="text"  name="username" value="{{ old('username') }}" required autocomplete="username" >
                 @error('username')
                     <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div> --}}
+            {{-- Grupo: Usuario --}}
+            <div class="formulario__grupo" id="grupo__usuario">
+                <label for="username" class="formulario__label"><b>Usuario</b></label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="username" id="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Usuario...">
+                    @error('username')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                </div>
             </div>
+            {{-- Grupo: Password --}}
+            <div class="formulario__grupo" id="grupo__password">
+                <label for="password" class="formulario__label"><b>Contraseña</b></label>
+                <div class="formulario__grupo-input">
+                    <input type="password" class="formulario__input" id="password" value="{{ old('username') }}" required name="password" placeholder="Contraseña...">
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                </div>
+            </div>
+            {{-- 
              <div class="textbox">
                 <input id="password" name="password" required  type="password" name=""  >
                 @error('password')
@@ -43,9 +69,11 @@
                     <strong>{{ $message }}</strong>
                   </span>
                 @enderror
+            </div> --}}
+            {{-- <input type="submit"  name="" class="button" value="Iniciar Sesion" align="center"> --}}
+            <div class="formulario__grupo formulario__btn-guardar text-center">
+                    <button type="submit" class="formulario__enviarSesion">Iniciar Sesion</button>
             </div>
-            <input type="submit"  name="" class="button" value="Iniciar Sesion" align="center">
-       
         </div>
            </form> 
     </div>

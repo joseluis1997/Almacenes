@@ -3,7 +3,7 @@
 
 @section('contenido')
     <div class="title">
-        <h1>Crear role</h1>
+        <h3><b>Nuevo Rol</b></h3>
     </div>
 
     <div class="card mt-2">
@@ -11,10 +11,9 @@
             <form class="form-validation" method="POST" action="{{ route('store_roles') }}" novalidate>
                 {{ csrf_field() }}
                 @include('admin.roles.form')
-
-                <div class="text-center mb-4">
-                    <button class="btn btn-outline-success" type="submit">Guardar</button>
-                    <a href="{{ route('list_roles') }}" class="btn btn-outline-danger">Cancelar</a>
+                <div class="formulario__grupo formulario__btn-guardar text-center">
+                    <a href="{{route('list_roles')}}" class="btn formulario__btn2">Cancelar</a>
+                    <button type="submit" class="formulario__btn1">Guardar</button>
                 </div>
             </form>
         </div>

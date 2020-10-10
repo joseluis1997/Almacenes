@@ -17,3 +17,8 @@
             <input type="text" class="form-control" placeholder="Ingrese Numero de la Partida" name="NRO_PARTIDA" value="{{old('NRO_PARTIDA')}}">
         </div>
     </div>
+
+    <div class="formulario__grupo formulario__btn-guardar text-center">
+        <a href="{{route('list_partidas')}}" class="btn formulario__btn2">Cancelar</a>
+        <button type="submit" class="formulario__btn1">Guardar</button>
+    </div>

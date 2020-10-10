@@ -5,13 +5,8 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-            <div class="col-md-5">
-                <a href="{{route('list_users')}}" class="btn btn-secondary">
-                    Volver Atras
-                </a>
-            </div>
-            <div class="col-md-6">
-                <h3 class="card-title">Editar Usuario</h3> 
+            <div class="col-md-12">
+                <h3 class="card-title"><b>Modificar Usuario</b></h3> 
             </div>
             </div>
         </div>
@@ -21,13 +16,9 @@
                 <div class="card-body">
                     @include('admin.usuarios.formularioEditarUsuario')
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-lg-5"></div>
-                        <div class="col-lg-6">
-                            @include('includes.boton-form-editar',['name'=>'Editar Usuario'])
-                        </div>
-                    </div>
+                <div class="formulario__grupo formulario__btn-guardar text-center">
+                    <a href="{{route('list_users')}}" class="btn formulario__btn2">Cancelar</a>
+                    <button type="submit" class="formulario__btn1">Modificar</button>
                 </div>
             </form>
         </div>

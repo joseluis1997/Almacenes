@@ -5,16 +5,16 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-            <div class="col-md-5">
-                <a href="{{route ('create_partidas')}}" class="btn btn-outline-primary rounded-pill float-left">Registro Nueva Partida</a>
-            </div>
-            <div class="col-md-6">
-                <h3 class="card-title">Lista de Partidas</h3> 
-            </div>
+                <div class="col-md-10">
+                    <h3 class="card-title"><b>Gestionar Partidas</b></h3> 
+                </div>
+                <div class="col-md-2">
+                <a href="{{route ('create_partidas')}}" class="btn btn-primary"><b>Nueva Partida</b></a>
+                </div>
             </div>
         </div>
         <div class="card-body">    
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="#" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -22,7 +22,8 @@
                         <th>Numero Partida</th>
                         <th>Creacion</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Modificar Partida</th>
+                        <th>Eliminar Partida</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -49,8 +50,10 @@
                                     </form>
                                 </td> 
                                 <td>
-                                   <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="btn btn-outline-success rounded-pill">Editar</a>
-                                    <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="btn btn-outline-danger rounded-pill" onclick="eliminar(event);">Eliminar</a>
+                                   <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
+                                </td>
+                                <td>
+                                    <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -65,12 +68,11 @@
 @section('scripts')
 <script type="text/javascript">
    function eliminar(event) {
-  
     var r = confirm("Acepta elminar la Partida Seleccionada?");
     if (r == true) {
 
     } 
-    else {
+    else{
          event.preventDefault();
      }
 }

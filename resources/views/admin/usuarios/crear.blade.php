@@ -3,7 +3,7 @@
 @section('contenido')
 
     <div class="title">
-        <h1 align="center">Nuevo Usuario</h1>
+        <h1 align="center"><b>Nuevo Usuario</b></h1>
     </div>
 
     <div class="card mt-2">
