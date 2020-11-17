@@ -12,16 +12,22 @@
                 @csrf
                 
                 @include('admin.usuarios.formularioCrearUsuario')
-
-                {{-- <div class="text-center">
-                     <!-- @include('includes.boton-form-crear',['name'=>'Guardar','color'=>'primary']) -->
-                     <button class="btn btn-outline-success" type="submit">Guardar</button>
-                    <a href="{{route('list_users')}}" class="btn btn-outline-danger">Cancelar</a>                 
-                </div> --}}
-
-                
+                           
             </form>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/ValidarformularioUsuario.js') }}"></script>
+    <script type="text/javascript">
+        function abrir(){
+            document.getElementById("vent").style.display="block";
+        }
+
+        function cerrar(){
+            document.getElementById("vent").style.display="none";
+        }
+    </script>
 @endsection
 

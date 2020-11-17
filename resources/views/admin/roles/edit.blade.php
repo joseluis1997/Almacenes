@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-  <div class="title">
+    <div class="title">
         <h3><b>Modificar Rol</b></h3>
     </div>
 
@@ -12,7 +12,7 @@
                 {{ method_field('PUT')}}
                 {{ csrf_field() }}
 
-                @include('admin.roles.form')
+                @include('admin.roles.formEdit')
                 <div class="formulario__grupo formulario__btn-guardar text-center">
                     <a href="{{ route('list_roles') }}" class="btn formulario__btn2">Cancelar</a>
                     <button type="submit" class="formulario__btn1">Modificar</button>

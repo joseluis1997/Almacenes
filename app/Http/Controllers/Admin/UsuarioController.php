@@ -18,11 +18,13 @@ class UsuarioController extends Controller
 
     public function index()
     {
+        
         // $datas = User::all();//alexs dice que esta bien
         // listamos todos nuetros usuarios del sistema
         // $saludo ='hola luchin';
         // $datas = DB::table('users')->get();
         $datas=\App\User::with('roles')->get();
+        // return $datas;
         return view('admin.usuarios.index',compact('datas'));
     }
 
@@ -69,6 +71,12 @@ class UsuarioController extends Controller
 
     }
 
+    public function show($id)
+    {
+        //
+        $show_usuarios = User::find($id);
+        return view('admin.usuarios.show',['usuario' => $show_usuarios]);
+    }
     public function actualizar(UserRequest $request, $id)
     {       
         
@@ -95,19 +103,38 @@ class UsuarioController extends Controller
         return redirect()->route('list_users')->with('status', 'Profile updated!');
     }
 
-    public function eliminar($id)
-    {
-        //
-        $user = User::findOrFail($id);
-        $user->removeRole($user->roles->implode('name', ', '));//eliminadomos el rol
+    // public function eliminar($id)
+    // {
+    //     //
+    //     $user = User::findOrFail($id);
+    //     $user->removeRole($user->roles->implode('name', ', '));//eliminadomos el rol
        
-        if($user->delete()){
-            return redirect()->route('list_users');
+    //     if($user->delete()){
+    //         return redirect()->route('list_users');
+    //     }
+    //     else{
+    //         return response()->json([
+    //             'mensaje'=> 'Error al Eliminar el Usuario'
+    //         ]);
+    //     }
+    // }
+
+
+    public function changeStatus(User $usuario)
+    {
+        $estado = true;
+
+        if ($usuario->ESTADO_USUARIO) {
+          $estado = false;
         }
-        else{
-            return response()->json([
-                'mensaje'=> 'Error al Eliminar el Usuario'
-            ]);
+
+        $usuario->ESTADO_USUARIO = $estado;
+        $usuario->save();
+
+        if ($estado) {
+          return redirect()->route('list_users')->with('message', ['success', 'Usuario habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_users')->with('message', ['success', 'Usuario Desabilitado Correctamente!']);
         }
     }
 }

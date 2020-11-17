@@ -22,8 +22,9 @@
                         <th>Numero Partida</th>
                         <th>Creacion</th>
                         <th>Estado</th>
+                        <th>Ver Partida</th>
                         <th>Modificar Partida</th>
-                        <th>Eliminar Partida</th>
+                        <th>Desabilitar Partida</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -33,6 +34,19 @@
                              	<td>{{$partida->NOM_PARTIDA}}</td>
                               	<td>{{$partida->NRO_PARTIDA}}</td>
                                 <td>{{$partida->created_at}}</td>
+                                <td>
+                                    @if($partida->VALOR)
+                                        <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                    @else
+                                         <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('show_partida',$partida->COD_PARTIDA)}}" class="fas fa-eye fa-2x"></a>
+                                </td>
+                                <td>
+                                   <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
+                                </td>
                                 <td>
                                     <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->VALOR}}, this)" method="POST">
                                         @method('DELETE')
@@ -49,12 +63,9 @@
                                         @endif
                                     </form>
                                 </td> 
-                                <td>
-                                   <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
-                                </td>
-                                <td>
+                                {{-- <td>
                                     <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -67,6 +78,21 @@
 
 @section('scripts')
 <script type="text/javascript">
+
+    function submitForm(event, estado,form) { 
+        event.preventDefault();
+        var r = null;
+        if(estado == 1){
+          r = confirm("Acepta Desabilitar la partida Seleccionada");
+        }else{
+          r = confirm("Acepta habilitar la partida Seleccionada");
+        }
+        if (r == true) {
+          form.submit();
+        }
+    }
+
+
    function eliminar(event) {
     var r = confirm("Acepta elminar la Partida Seleccionada?");
     if (r == true) {

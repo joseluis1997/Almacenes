@@ -1,8 +1,15 @@
 
+
             <!-- Grupo: Ci -->
             <div class="formulario__grupo" id="grupo__ci">
-                <label for="ci" class="formulario__label">Numero de Carnet</label>
+
+               <label for="ci" class="formulario__label"><b class="colorAste">*</b> Numero de Carnet&nbsp;&nbsp;<b onmouseover="alert('por favor digite su numero de carnet por ejemplo:8174701, solo puede ser numeros')" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
+
+                  {{--   <div class="ventana" id="vent">
+                        <div id="cerrar"><a href="javascript:cerrar()"><img src="{{ asset('images/close.png') }}"></a></div>
+                        por favor digite su numero de carnet por ejemplo:8174701, solo puede ser numeros
+                    </div> --}}
                     <input type="text" class="formulario__input" name="ci" id="ci" placeholder="numero de carnet de identidad">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
@@ -13,7 +20,7 @@
 
             <!-- Grupo: Nombre -->
             <div class="formulario__grupo" id="grupo__nombre">
-                <label for="nombre" class="formulario__label">Nombre</label>
+                <label for="name" class="formulario__label"><b class="colorAste">*</b>&nbsp;Nombre&nbsp;&nbsp;<b onmouseover="abrir(alert('por favor escriba su nombre por ejemplo:Jose, solo puede ser letras'))" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
                     <input type="text" class="formulario__input" name="name" id="name" placeholder="nombre de nuevo usuario">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
@@ -25,7 +32,7 @@
             
             <!-- Grupo: Apellidos -->
             <div class="formulario__grupo" id="grupo__apellidos">
-                <label for="apellidos" class="formulario__label">Apellidos</label>
+                <label for="apellidos" class="formulario__label"><b class="colorAste">*</b>&nbsp;Apellidos&nbsp;&nbsp;<b onmouseover="abrir(alert('por favor escriba su Apellidos por ejemplo:Mercado, solo puede ser letras'))" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
                     <input type="text" class="formulario__input" name="lastname" id="apellidos" placeholder="apellidos de nuevo usuario">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
@@ -37,7 +44,7 @@
 
             <!-- Grupo: Telefono -->
             <div class="formulario__grupo" id="grupo__telefono">
-                <label for="telefono" class="formulario__label">Telefono</label>
+                <label for="telefono" class="formulario__label">Telefono&nbsp;&nbsp;<b onmouseover="abrir(alert('por favor escriba su numero de Celular por ejemplo:75315092, solo puede ser numeros'))" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
                     <input type="text" class="formulario__input" name="telephone" id="telefono" placeholder="numero de telefono de nuevo usuario">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
@@ -49,7 +56,7 @@
 
             <!-- Grupo: Usuario -->
             <div class="formulario__grupo" id="grupo__usuario">
-                <label for="usuario" class="formulario__label">Usuario</label>
+                <label for="username" class="formulario__label"><b class="colorAste">*</b>&nbsp;Usuario&nbsp;&nbsp;<b onmouseover="abrir(alert('por favor escriba su nombre de usuario por ejemplo:Jose_123, solo puede ser letras y Guion bajo'))" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
                     <input type="text" class="formulario__input" name="username" id="username" placeholder="nombre de usuario">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
@@ -58,9 +65,10 @@
                     El usuario tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
                 </p>
             </div>
+            
               <!-- Grupo: Rol -->
             <div class="formulario__grupo" id="grupo__rol">
-                <label for="rol" class="formulario__label">Rol de Usuario</label>
+                <label for="rol" class="formulario__label"><b class="colorAste">*</b>&nbsp;Rol de Usuario&nbsp;&nbsp;<b onmouseover="abrir(alert('por favor seleccione un Rol por ejemplo: Editor.'))" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
                     <!-- <input type="text" class="formulario__input" name="" id="rol" > -->
                     <select class="form-control formulario__input " name="rol" id="rol" >
@@ -82,7 +90,7 @@
             </div>
             <!-- Grupo: Password -->
             <div class="formulario__grupo" id="grupo__password">
-                <label for="password" class="formulario__label">Contraseña</label>
+                <label for="password" class="formulario__label"><b class="colorAste">*</b>&nbsp;Contraseña</label>
                 <div class="formulario__grupo-input">
                     <input type="password" class="formulario__input" name="password" id="password" >
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
@@ -105,7 +113,7 @@
           
              <!-- Grupo: Imagen Usuario -->
              <div class="formulario__grupo" id="grupo__imagen">
-                <label for="imagen" class="formulario__label">Imagen</label>
+                <label for="imagen" class="formulario__label"><b class="colorAste">*</b>&nbsp;Imagen&nbsp;&nbsp;<b onmouseover="abrir(alert('por favor elija una foto para su perfil, solo con extecion jpg, jpeg, png'))" class="colorSigno">?</b></label>
                 <div class="formulario__grupo-input">
                     <input type="file"  name="imagen" id="imagen" >
                     <i class="formulario__validacion-estado far fa-times-circle"></i>

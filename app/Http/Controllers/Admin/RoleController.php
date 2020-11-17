@@ -22,9 +22,7 @@ class RoleController extends Controller
   
     public function create()
     {
-        //
        $permissions = DB::table('permissions')->get();
-        
        return view('admin.roles.create', [ 'permissions' => $permissions]);
     }
 
@@ -36,31 +34,37 @@ class RoleController extends Controller
         ]);
 
         $role->save();
-        // dd( $role);
-        //foreach ($request->permissions as $key => $permission) {
+     
         $role->givePermissionTo($request->permissions);
-        //}
-
+    
         return redirect(route('list_roles'))->with('message', ['success', 'Rol Registrado Correctamente!']);
     }
 
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+        return view('admin.roles.show',['role' => $role]);
     }
+
 
     public function edit(Role $role)
     {
-        //
+        $permission_role = [];
+
+        foreach ($role->permissions as $permission) {
+            $permission_role[] = $permission->id;
+        }
+
+        // return $permission_role;
         $permissions = DB::table('permissions')->get();
-        // dd($permissions,$role);
-        return view('admin.roles.edit', [ 'role' => $role, 'permissions' => $permissions ]);
+
+        return view('admin.roles.edit', [ 'role' => $role, 'permissions' => $permissions,'permission_rol'=>$permission_role]);
     }
 
  
     public function update(RolRequest $request, Role $role)
     {
-        $input = $request->all();
+        $input = $Request->all();
 
         // dd($input);
         $role->update([
@@ -74,14 +78,32 @@ class RoleController extends Controller
 
     }
 
-    public function destroy($id)
-    {
-        //eliminando rol
+    // public function destroy($id)
+    // {
+    //     //eliminando rol
 
-        $rol = Role::findOrFail($id);
+    //     $rol = Role::findOrFail($id);
         
-        $rol->delete();
+    //     $rol->delete();
 
-        return redirect()->route('list_roles');
+    //     return redirect()->route('list_roles');
+    // }
+
+    public function changeStatus(Role $rol)
+    {
+        $estado = true;
+
+        if ($rol->estado) {
+          $estado = false;
+        }
+
+        $rol->estado = $estado;
+        $rol->save();
+
+        if ($estado) {
+          return redirect()->route('list_roles')->with('message', ['success', 'Rol habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_roles')->with('message', ['success', 'Rol Desabilitado Correctamente!']);
+        }
     }
 }

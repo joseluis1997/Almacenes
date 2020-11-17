@@ -20,12 +20,13 @@ class LoginController extends Controller
 
     public function index()
     {
-        
+         // dd("asd");
     	return view('seguridad.index');
     }
 
     public function username()
     {
-        return 'username';
+
+        return 'NOM_USUARIO';
     }
 }

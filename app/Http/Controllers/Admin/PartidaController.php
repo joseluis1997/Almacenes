@@ -53,7 +53,8 @@ class PartidaController extends Controller
      */
     public function show($id)
     {
-        //
+        $partida = Partida::find($id);
+        return view('admin.partida.show',['partidas' => $partida]);
     }
 
     /**
@@ -88,12 +89,12 @@ class PartidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $partida = Partida::findOrFail($id);
-        $partida->delete();
-        return redirect()->route('list_partidas')->with('message',['danger','Partida Eliminado Correctamente!!']);
-    }
+    // public function destroy($id)
+    // {
+    //     $partida = Partida::findOrFail($id);
+    //     $partida->delete();
+    //     return redirect()->route('list_partidas')->with('message',['danger','Partida Eliminado Correctamente!!']);
+    // }
 
     public function changeStatus(Partida $partida)
     {

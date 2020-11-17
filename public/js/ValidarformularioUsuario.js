@@ -3,32 +3,26 @@ const inputs = document.querySelectorAll('#formulario input');
 // esto es un objeto con varias propiedas
 const expresiones = {
     ci: /^\d{1,7}$/, // 1 a 7 numeros.
-	username: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
 	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-    lastname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-	password: /^.{4,12}$/, // 4 a 12 digitos.
-	telephone: /^\d{7,14}$/ // 7 a 14 numeros.
+    lastname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+	telephone: /^\d{7,14}$/, // 7 a 14 numeros.
+	username: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    password: /^.{4,12}$/ // 4 a 12 digitos.
 }
 
 const campos ={
     ci: false,
-    name: false,
-    lastname: false,
-    telephone: false,
-    username: false,
-    password: false,
-    password2: false
-    
-
+    nombre: false,
+    apellidos: false,
+    telefono: false,
+    usuario: false,
+    password: false
 }
+
 const validarFormulario = (e) =>{
    switch (e.target.name){
-    case "username":
-        validarCampo(expresiones.username,e.target,'usuario');
-    break;
-
     case "ci":
-        validarCampo(expresiones.ci,e.target,'ci');
+        validarCampo(expresiones.ci, e.target, 'ci');
     break;
 
     case "name":
@@ -39,15 +33,17 @@ const validarFormulario = (e) =>{
         validarCampo(expresiones.lastname,e.target,'apellidos');
     break;
 
-     case "telephone":
+    case "telephone":
         validarCampo(expresiones.telephone,e.target,'telefono');
     break;
 
-    case "password":
+    case "username":
+        validarCampo(expresiones.username,e.target,'usuario');
+    break;
+    case "password":    
         validarCampo(expresiones.password,e.target,'password');
         validarPassword2();
     break;
-
     case "password2":
 			validarPassword2();
 	break;
@@ -55,7 +51,9 @@ const validarFormulario = (e) =>{
 }
 
 const validarCampo = (expresion,input,campo) => {
+
     if(expresion.test(input.value)){
+        // console.log(campos[campo]);
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
         document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
@@ -99,13 +97,15 @@ inputs.forEach((input)=>{
     input.addEventListener('blur',validarFormulario);
 });
 
-formulario.addEventListener('submit',(e) => {
-        // e.preventDefault();
-
-    if (campos.ci && campos.username && campos.name && campos.lastname && campos.telephone && campos.password && campos.password2 ){
-        // document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
-
-    }else{
+formulario.addEventListener('submit', (e) => {
+    // e.preventDefault();
+    if (campos.ci && campos.username && campos.name && campos.lastname && campos.telephone && campos.password){
+    }
+    else{
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+        setTimeout(() => {
+            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+
+        }, 5000);
     }
 });

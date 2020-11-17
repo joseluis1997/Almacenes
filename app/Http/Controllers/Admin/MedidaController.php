@@ -18,9 +18,14 @@ class MedidaController extends Controller
     public function index()
     {
         // $UnidadMedida = Medida::all();
-        $UnidadMedida = DB::table('MEDIDA')->get();//->where('ESTADO_MEDIDA','=',1)
+        $UnidadMedida = DB::table('MEDIDA')->get();//->where('ESTADO_MEDIDA','=',1);
         return view('admin.medida.index', [ 'medidas' => $UnidadMedida]);
     }
+
+    // public function index2($item ,$valor)
+    // {
+    //     return $item;
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -54,7 +59,8 @@ class MedidaController extends Controller
      */
     public function show($id)
     {
-        return "hola3";
+        $UnidadMedida = Medida::find($id);
+        return view('admin.medida.show',['medidas' => $UnidadMedida]);
     }
 
     /**
@@ -89,12 +95,12 @@ class MedidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $medida = Medida::findOrFail($id);
-        $medida->delete();
-        return redirect()->route('list_medidas')->with('message',['danger','Unidad de Medida Eliminado Correctamente!!']);
-    }
+    // public function destroy($id)
+    // {
+    //     $medida = Medida::findOrFail($id);
+    //     $medida->delete();
+    //     return redirect()->route('list_medidas')->with('message',['danger','Unidad de Medida Eliminado Correctamente!!']);
+    // }
     
 
     public function changeStatus(Medida $medida)

@@ -47,9 +47,15 @@ Route::group(['prefix' => 'users', 'namespace' => 'Admin', 'middleware' => ['aut
 	->middleware(sprintf("autorizacion:%s", "modificar_usuarios"))
 	->name('user_update');
 
+
+	Route::get('/{user}', 'UsuarioController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_usuarios"))
+	->name('show_usuario');
+
 	Route::get('/{id}/destroy','UsuarioController@eliminar')
 	->middleware(sprintf("autorizacion:%s", "eliminar_usuarios"))
 	->name('destroy_user');
+
+	Route::delete('/{usuario}/destroy', 'UsuarioController@changeStatus')->name('destroy_usuario');
 
 });
 /*fin rutas usuarios*/
@@ -75,6 +81,11 @@ Route::group(['prefix' => 'roles', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::put('/{role}/update', 'RoleController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_roles"))
 	->name('update_roles');
+
+	Route::get('/{role}', 'RoleController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_role"))
+	->name('show_role');
+
+	Route::delete('/{rol}/destroy', 'RoleController@changeStatus')->name('destroy_role');
 
 	Route::get('/{id}/destroy','RoleController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_roles"))
@@ -106,6 +117,9 @@ Route::group(['prefix' => 'partidas', 'namespace' => 'Admin', 'middleware' => ['
 	Route::put('/{partida}/update', 'PartidaController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_partidas"))
 	->name('update_partidas');
+
+	Route::get('/{partida}', 'PartidaController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_partidas"))
+	->name('show_partida');
 
 	Route::get('/{partida}/destroy','PartidaController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_partidas"))
@@ -170,6 +184,9 @@ Route::group(['prefix' => 'medidas', 'namespace' => 'Admin', 'middleware' => ['a
 	Route::put('/{medida}/update', 'MedidaController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_medidas"))
 	->name('update_medidas');
+
+	Route::get('/{medida}', 'MedidaController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_Unidad_de_Medida"))
+	->name('show_UnidadaDeMedida');
 
 	Route::get('/{id}/destroy','MedidaController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_medidas"))
@@ -436,3 +453,74 @@ Route::group(['prefix' => 'Reportes', 'namespace' => 'Admin', 'middleware' => ['
 	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Reportes*/
+
+/* Rutas: Reporte Inventario Actual*/
+Route::group(['prefix' => 'InventarioActual', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'InventarioActualController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
+	->name('list_reportesInventarioActual');
+});
+
+/* Rutas: Reporte Inventario Manual*/
+Route::group(['prefix' => 'InventarioManual', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'InventarioManualController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioManual"))
+	->name('list_reportesInventarioManual');
+});
+/*Fin:Reporte Inventario Manual*/
+
+/* Rutas: Reporte Kardex Almacen*/
+Route::group(['prefix' => 'Kardex', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'KardexController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_Kardex"))
+	->name('list_kardexAlmacen');
+});
+/*Fin:Reporte Kardex Almacen*/
+
+/* Rutas: Reporte Detallado Stock Almacen*/
+Route::group(['prefix' => 'stockAlmacen', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'ReporteDetalladoStockAlmacenController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoStockAlmacen"))
+	->name('list_ReporteDetalladoStockAlmacen');
+});
+/*Fin:Reporte Detallado Stock Almacen*/
+
+/* Rutas: Reporte Fisico Valorado Consumo Directo*/
+Route::group(['prefix' => 'fisicoValorado', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'FisicoValoradoConsumoDirectoController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoConsumoDirecto"))
+	->name('list_FisicoValoradoConsumoDirecto');
+});
+/*Fin: Fisico Valorado Consumo Directo*/
+
+/* Rutas: Inventario Detallado Almacen*/
+Route::group(['prefix' => 'InventarioDetAlmacen', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'InventarioDetalladoAlmacenController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_InventarioDetalladoAlmacen"))
+	->name('list_InventarioDetalladoAlmacen');
+});
+/*Fin: Inventario Detallado Almacen*/
+
+/* Rutas: Consolidado Fisico Valorado Total*/
+Route::group(['prefix' => 'fisicovaloradototal', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'ConsolidadoFisicoValoradoTotalController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
+	->name('list_ConsolidadoFisicoValoradoTotal');
+});
+/*Fin: Consolidado Fisico Valorado Total*/
+
+/* Rutas: Reporte Detallado de Ingresos por Consumo Directo*/
+Route::group(['prefix' => 'RdIngresosConsumoDirecto', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'ReporteDetalladoIngresosConsumoDirectoController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoIngresosConsumoDirecto"))
+	->name('list_ReporteDetalladoIngresosConsumoDirecto');
+});
+/*Fin: Reporte Detallado de Ingresos por Consumo Directo*/
+
+/* Rutas: Fisico Valorado Stock Almacen*/
+Route::group(['prefix' => 'FisicoValoradoStockAlmacen', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'FisicoValoradoStockAlmacenController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoStockAlmacen"))
+	->name('list_FisicoValoradoStockAlmacen');
+});
+/*Fin: Fisico Valorado Stock Almacen*/

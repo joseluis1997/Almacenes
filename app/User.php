@@ -12,14 +12,23 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+
+
+    protected $table = 'users';
+
+    protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'ci','name','lastname','telephone','username', 'password','imagen',
+        'CI','NOMBRE','APELLIDO','TELEFONO','NOM_USUARIO', 'password','ESTADO_USUARIO','imagen',
     ];
+
+    // protected $fillable = [
+    //     'ci','name','lastname','telephone','username', 'password','imagen','ESTADO_USUARIO',
+    // ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -29,6 +38,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // public function getAuthPassword()
+    // {
+    //     return $this->CONTRASENA;
+    // }
+
 
     /**
      * The attributes that should be cast to native types.
@@ -63,4 +78,6 @@ class User extends Authenticatable
     //         $this->attributes['password'] = bcrypt($value);
     //     }
     // }
+
+
 }

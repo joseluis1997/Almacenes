@@ -26,14 +26,25 @@ class UserRequest extends FormRequest
         // validacion que ayduda a validad por parte del backend
         // dd($this->all());
         return [
-            'ci' => 'required',
-            'name' => 'required',
-            'lastname' => 'required',
-            'telephone' => 'required',
-            'username' => 'required',
+            'CI' => 'required',
+            'NOMBRE' => 'required',
+            'APELLIDO' => 'required',
+            'TELEFONO' => 'required',
+            'NOM_USUARIO' => 'required',
             'password' => 'required',
             'rol' => 'required',
             'imagen' => 'mimes:jpeg,bmp,png'
         ];
+
+        //      return [
+        //     'ci' => 'required',
+        //     'name' => 'required',
+        //     'lastname' => 'required',
+        //     'telephone' => 'required',
+        //     'username' => 'required',
+        //     'password' => 'required',
+        //     'rol' => 'required',
+        //     'imagen' => 'mimes:jpeg,bmp,png'
+        // ];
     }
 }

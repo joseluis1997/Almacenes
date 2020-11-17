@@ -20,7 +20,10 @@
              <select 
                 class="js-example-basic-multiple form-control" name="partidas[]">
                 @foreach ($partidas as $partida)
-                <option value="{{ $partida->NRO_PARTIDA }}">{{ $partida->NRO_PARTIDA }}|{{ $partida->NOM_PARTIDA }}</option>
+                    @if($partida->VALOR)
+
+                    <option value="{{ $partida->NRO_PARTIDA }}">{{ $partida->NRO_PARTIDA }}|{{ $partida->NOM_PARTIDA }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

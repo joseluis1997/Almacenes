@@ -15,11 +15,11 @@ class UsersTableSeeder extends Seeder
     {
         
         $admin = User::create([
-            'ci' => '8174801',
-            'name' => 'Wilson',
-            'lastname' =>'mercado alarcon',
-            'telephone' =>'75315092',
-            'username' => 'Wilson2021',
+            'CI' => '8174801',
+            'NOMBRE' => 'Wilson',
+            'APELLIDO' =>'Flores Flores',
+            'TELEFONO' =>'75315092',
+            'NOM_USUARIO' => 'Wilson2021',
             // 'password' => Hash::make('pass123')
             'password' => bcrypt('Wilson2021')
         ]);
@@ -27,29 +27,29 @@ class UsersTableSeeder extends Seeder
         $admin->assignRole('super-admin');
 
         
-        $editor = User::create([
-            'ci' => '817421',
-            'name' => 'Lourdes',
-            'lastname' =>'mercado alarcon',
-            'telephone' =>'75315092',
-            'username' => 'lula1998',
-            // 'password' => Hash::make('pass123')
-            'password' => bcrypt('password2021')
-        ]);
-        // asiganando roles editor
-        $editor->assignRole('editor');
+        // $editor = User::create([
+        //     'ci' => '817421',
+        //     'name' => 'Lourdes',
+        //     'lastname' =>'mercado alarcon',
+        //     'telephone' =>'75315092',
+        //     'username' => 'lula1998',
+        //     // 'password' => Hash::make('pass123')
+        //     'password' => bcrypt('password2021')
+        // ]);
+        // // asiganando roles editor
+        // $editor->assignRole('editor');
 
-        $moderador = User::create([
-            'ci' => '817421',
-            'name' => 'jose luis',
-            'lastname' =>'mercado alarcon',
-            'telephone' =>'75315092',
-            'username' => 'jose1997',
-            // 'password' => Hash::make('pass123')
-            'password' => bcrypt('password2021')
-        ]);
-          // asiganando roles     
-        $moderador->assignRole('moderador');
+        // $moderador = User::create([
+        //     'ci' => '817421',
+        //     'name' => 'jose luis',
+        //     'lastname' =>'mercado alarcon',
+        //     'telephone' =>'75315092',
+        //     'username' => 'jose1997',
+        //     // 'password' => Hash::make('pass123')
+        //     'password' => bcrypt('password2021')
+        // ]);
+        //   // asiganando roles     
+        // $moderador->assignRole('moderador');
 
     }
 }

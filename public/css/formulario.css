@@ -141,6 +141,7 @@ main {
 	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
 } 
 
+
 /* ----- -----  Estilos para Validacion ----- ----- */
 .formulario__grupo-correcto .formulario__validacion-estado {
 	color: #1ed12d;
@@ -160,6 +161,17 @@ main {
     border: 3px solid #bb2929;
 }
 
+.formulario__mensaje-exito {
+    font-size: 14px;
+    color: #119200;
+    display: none;
+}
+
+.formulario__mensaje-exito-activo {
+    display: block;
+}
+
+
 /* -------Mediaqueries-------- */
 @media screen and (max-width:800px){
     .formulario{
@@ -171,4 +183,42 @@ main {
     }
     .formulario__btn2{width: 100%;}
     .formulario__btn1{width: 100%; }
+}
+/*border formulario permiso-roles*/
+
+.first{
+    background:#f6f6f6;
+    color: #000;    
+}
+
+.ventana{
+    background:#007bff91;
+    width: 60%;
+    /*height: 20%;*/
+    color: rgba( 255, 255, 255, 1);
+    font-size: 13px;
+    /*text-align: center;*/
+    padding: 0px 10px 19px 10px;
+   /* min-height: 250px;*/
+    border-radius: 12px;
+    position: absolute;
+    left: 35%;
+    top: -45px;
+    display: none;
+}
+#cerrar{
+    position: absolute;
+    right: 3px;
+    font-size: 10px;
+    top: 003px;
+}
+
+.colorAste{
+    color:red;
+    font-size: 20px;
+}
+
+.colorSigno{
+    color:#B5C5CB;
+    font-size: 20px;
 }
