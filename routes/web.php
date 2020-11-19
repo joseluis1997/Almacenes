@@ -212,7 +212,10 @@ Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['aut
 	->middleware(sprintf("autorizacion:%s", "crear_areas"))
 	->name('store_areas');
 
-	Route::get('/edit', 'AreaController@edit')
+	Route::get('/{area}', 'AreaController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_areas"))
+	->name('show_areas');
+
+	Route::get('/{area}/edit', 'AreaController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_areas"))
 	->name('edit_areas');
 
@@ -220,11 +223,9 @@ Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['aut
 	->middleware(sprintf("autorizacion:%s", "modificar_areas"))
 	->name('update_areas');
 
-	Route::get('/{id}/destroy','AreaController@destroy')
+	Route::delete('/{area}/destroy','AreaController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_areas"))
 	->name('destroy_areas');
-
-	Route::delete('/{medida}/destroy', 'AreaController@changeStatus')->name('destroy_areas');
 
 	Route::get('/', 'PermissionController@index')->name('permisos');
 });

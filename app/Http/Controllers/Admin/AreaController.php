@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Area;
+use App\Http\Requests\AreaRequest;
 
 class AreaController extends Controller
 {
@@ -14,8 +16,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.areas.index');
+        $datas = Area::all();
+        return view('admin.areas.index', compact('datas'));
     }
 
     /**
@@ -29,14 +31,20 @@ class AreaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+      * Store a newly created resource in storage.
+      *
+      * @param  App\Http\Requests\AreaRequest  $area_request
+      * @return \Illuminate\Http\Response
+      */
+    public function store(AreaRequest $area_request)
     {
-        //
+        try {
+          Area::create($area_request->input());
+          return redirect()->route('list_areas')->with('message', ['success', 'Nueva area creada']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            error_log($e->getMessage());
+          return redirect()->route('list_areas')->with('message', ['danger', 'Erro al crear la nueva area']);
+        }
     }
 
     /**
@@ -45,9 +53,9 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Area $area)
     {
-        //
+        return view('admin.areas.show', compact('area'));
     }
 
     /**
@@ -56,9 +64,9 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Area $area)
     {
-        return view('admin.areas.editar');
+        return view('admin.areas.editar', compact('area'));
     }
 
     /**
@@ -68,9 +76,15 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AreaRequest $area_request, Area $area)
     {
-        //
+        try {
+            $area->fill($area_request->input())->save();
+            return redirect()->route('list_areas')->with('message', ['success', 'Area modificada correctamente!']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            error_log($e->getMessage());
+            return redirect()->route('list_areas')->with('message', ['danger', 'Erro al modificar el area']);
+        }
     }
 
     /**
@@ -79,8 +93,21 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Area $area)
     {
-        //
+        $estado = true;
+
+        if ($area->ESTADO_AREA) {
+          $estado = false;
+        }
+
+        $area->ESTADO_AREA = $estado;
+        $area->save();
+
+        if ($estado) {
+          return redirect()->route('list_areas')->with('message', ['success', 'Area habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_areas')->with('message', ['success', 'Area Desabilitado Correctamente!']);
+        }
     }
 }

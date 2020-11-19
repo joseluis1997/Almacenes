@@ -2,7 +2,7 @@
             <div class="formulario__grupo" id="grupo__identificador">
                 <label for="identificador" class="formulario__label">Numero de Identificador de Area</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="identificador" placeholder="numero de Identificador de Area">
+                    <input type="text" class="formulario__input" name="NUM_AREA" id="identificador" placeholder="numero de Identificador de Area">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
@@ -14,7 +14,7 @@
             <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Nombre de Area</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="nombre" placeholder="nombre de nuevo usuario">
+                    <input type="text" class="formulario__input" name="NOM_AREA" id="nombre" placeholder="nombre de nuevo usuario">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
@@ -26,7 +26,7 @@
             <div class="formulario__grupo" id="grupo__descripcion">
                 <label for="descripcion" class="formulario__label">Descripcion de Area</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="descripcion" placeholder="Descripcion de una nueva area">
+                    <input type="text" class="formulario__input" name="DESC_AREA" id="descripcion" placeholder="Descripcion de una nueva area">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
