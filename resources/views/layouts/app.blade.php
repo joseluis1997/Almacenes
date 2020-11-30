@@ -14,8 +14,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-
-
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -48,7 +46,7 @@
             </div>
             <!--HEADER MENU end-->
             <!--SIDEBAR start SIDEBAR-->
-            <div class="SIDEBAR">
+            <div class="SIDEBAR  fondoDT">
                 <div class="SIDEBAR-MENU">
                     <center class="PROFILE">
 
@@ -57,93 +55,101 @@
                         <p>{{ Auth::user()->name}}<br/>Bienvenido a Sigadet @role('super-admin') Bienvenido Administrador @endrole
                          @role('moderador') 'Bienvenido Moderador' @endrole </p>
                     </center>
-                    <li class="ITEM">
+                  {{--   <li class="ITEM">
                         <a href="#" class="MENU-BTN">
-                            <i class="fas fa-desktop"></i><span>MENU</span>
+                            <i class="fas fa-ellipsis-h"></i><span>Menu</span>
                         </a>
-                    </li>
-                    {{-- Gestionar Usuarios --}}
-                    @canany(['accesso_usuarios','crear_usuarios','modificar_usuarios','eliminar_usuarios'])
-                      <li class="ITEM">
-                        <a href="{{route ('list_users')}}" class="MENU-BTN">
-                            <i class="fas fa-users"></i><span>Gestionar Usuarios</span>
-                        </a>
-                      </li>
-                    @endcan
-                    {{-- Gestionar Roles --}}
-                    <li class="ITEM">
-                        <a href="{{route ('list_roles')}}" class="MENU-BTN">
-                            <i class="fas fa-fist-raised"></i><span>Gestionar Roles</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Articulos --}}
-                    <li class="ITEM">
-                        <a href="{{route ('list_articulos')}}" class="MENU-BTN">
-                            <i class="fas fa-box-open"></i><span>Gestionar Articulos</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Unidad de Medida --}}
-                    <li class="ITEM">
-                        <a href="{{route ('list_medidas')}}" class="MENU-BTN">
-                            <i class="fas fa-ruler-vertical"></i><span>Gestionar Unidad de Medida</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Partidas --}}
-                    <li class="ITEM">
-                        <a href="{{route ('list_partidas')}}" class="MENU-BTN">
-                            <i class="fas fa-book-open"></i><span>Gestionar Partidas</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Areas --}}
-                    <li class="ITEM">
-                        <a href="{{ route ('list_areas') }}" class="MENU-BTN">
-                            <i class="fas fa-chart-area"></i><span>Gestionar Areas</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Proveedores --}}
-                     <li class="ITEM">
-                        <a href="{{ route ('list_proveedores') }}" class="MENU-BTN">
-                            <i class="fas fa-users"></i><span>Gestionar Proveedores</span>
-                        </a>
-                    </li>
+                    </li> --}}
+
+                    <nav class="navv MENU-BTN ">
+                        {{-- Grupo: Administracion del Sistema --}}
+                        <label for="touch" class="">
+                             <i class="fas fa-desktop spann"><span class="padre">Administracion del Sistema</span></i>
+                        </label>           
+                        <input type="checkbox" id="touch"> 
+                            <ul class="slide menusito" data-animation="center">
+                                {{-- Gestionar Usuarios --}}
+                                @canany(['accesso_usuarios','crear_usuarios','modificar_usuarios','eliminar_usuarios'])
+                                    <a href="{{route ('list_users')}}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestionar Usuarios</span> </li>
+                                    </a>
+                                @endcan
+                                {{-- Gestionar Roles --}}
+                                    <a href="{{route ('list_roles')}}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-fist-raised"></i><span class="spannn menusito">Gestionar Roles</span></li>
+                                    </a>
+                            </ul>
+                        {{-- Grupo:Articulos  --}}
+                        <label for="touch1">
+                             <i class="fas fa-box-open spann"><span >Articulos</span></i>
+                        </label>           
+                        <input type="checkbox" id="touch1"> 
+                            <ul class="slide menusito" data-animation="center">
+                                {{-- Gestionar Articulos --}}
+                                    <a href="{{route ('list_articulos')}}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-box-open"></i><span class="spannn menusito">Gestionar Articulos</span></li>
+                                    </a>
+                                {{-- Gestionar Unidad de Medida --}}
+                                    <a href="{{route ('list_medidas')}}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-ruler-vertical"></i><span class="spannn menusito">Gestionar Unidad de Medida</span></li>
+                                    </a>
+                                {{-- Gestionar Partidas --}}
+                                    <a href="{{route ('list_partidas')}}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-book-open"></i><span class="spannn menusito">Gestionar Partidas</span></li>
+                                    </a>
+                                {{-- Gestionar Proveedores --}}
+                                    <a href="{{ route ('list_proveedores') }}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestionar Proveedores</span></li>
+                                    </a>
+                            </ul>
+                             {{-- Grupo: Consumos --}}
+                        <label for="touch2">
+                            <i class="fas fa-copyright spann"><span >Consumos</span></i>
+                        </label>           
+                        <input type="checkbox" id="touch2"> 
+                            <ul class="slide menusito" data-animation="center">
+                                {{-- Gestionar Areas --}}
+                                    <a href="{{ route ('list_areas') }}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-chart-area"></i><span class="spannn menusito">Gestionar Areas</span></li>
+                                    </a>
+                                {{-- Gestionar Consumo Directo --}}
+                                    <a href="{{ route('list_consumodirecto') }}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-copyright"></i><span class="spannn menusito">Gestionar Consumo Directo</span></li>
+                                    </a>                                
+                                {{-- Gestionar Pedidos --}}
+                                    <a href="{{ route('list_pedidos') }}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-biking"></i><span class="spannn menusito">Gestionar Pedidos</span></li>
+                                    </a>
+                                {{-- Gestionar Salidas --}}
+                                    <a href="{{ route('list_salidas') }}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-plane-departure"></i><span class="spannn menusito">Gestionar Salidas</span></li>
+                                    </a>
+                                {{-- Gestionar Stock Alamacen --}}
+                                    <a href="{{ route('list_almacen') }}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestionar Stock Almacen</span></li>
+                                    </a>
+                            </ul>
+                            {{-- Grupo: Administracion del Sistema --}}
+                            <label for="touch3">
+                                <i class="fas fa-desktop spann"><span >Reportes</span></i>
+                            </label>           
+                            <input type="checkbox" id="touch3"> 
+                                <ul class="slide menusito" data-animation="center">
+                                    {{-- Gestionar Reportes --}}
+                                        <a href="{{ route('list_reportes') }}" class="MENU-BTN ahrf">
+                                            <li><i class="fas fa-file-pdf"></i><span class="spannn menusito">Gestionar Reportes</span> </li>
+                                        </a>                               
+                                </ul>
+                    </nav> 
                     {{-- Gestionar Cierre Sesion --}}
-                     <li class="ITEM">
+                   {{--   <li class="ITEM">
                         <a href="{{ route('list_cierregestion') }}" class="MENU-BTN">
                             <i class="fas fa-power-off"></i><span>Gestionar Cierre Gestion</span>
                         </a>
-                    </li>
-                    {{-- Gestionar Stock Alamacen --}}
-                     <li class="ITEM">
-                        <a href="{{ route('list_almacen') }}" class="MENU-BTN">
-                            <i class="fas fa-warehouse"></i><span>Gestionar Stock Almacen</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Consumo Directo --}}
-                     <li class="ITEM">
-                        <a href="{{ route('list_consumodirecto') }}" class="MENU-BTN">
-                            <i class="fas fa-copyright"></i><span>Gestionar Consumo Directo</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Pedidos --}}
-                     <li class="ITEM">
-                        <a href="{{ route('list_pedidos') }}" class="MENU-BTN">
-                            <i class="fas fa-biking"></i><span>Gestionar Pedidos</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Salidas --}}
-                     <li class="ITEM">
-                        <a href="{{ route('list_salidas') }}" class="MENU-BTN">
-                            <i class="fas fa-plane-departure"></i><span>Gestionar Salidas</span>
-                        </a>
-                    </li>
-                    {{-- Gestionar Reportes --}}
-                     <li class="ITEM">
-                        <a href="{{ route('list_reportes') }}" class="MENU-BTN">
-                            <i class="fas fa-file-pdf"></i><span>Gestionar Reportes</span>
-                        </a>
-                    </li>
+                    </li> --}}
                 </div>
             </div>
+        
             <!--SIDEBAR end-->
             <!--main container start-->
             <div class="MAIN-CONTAINER">
@@ -163,53 +169,49 @@
         </div>
         <!--WRAPPER end-->
 
-        <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function(){
             $(".SIDEBAR-BTN").click(function(){
                 $(".WRAPPER").toggleClass("COLLAPSE");
             });
-        });
+         });
+    </script>
 
-        </script>
+<!-- scripts datatable -->
 
-    <!-- scripts datatable -->
-
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript">
-    var idioma = {
-    "sProcessing":     "Procesando...",
-    "sLengthMENU":     "Mostrar _menu_ registros",
-    "sZeroRecords":    "No se encontraron resultados",
-    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-    "sInfoPostFix":    "",
-    "sSearch":         "Buscar:",
-    "sUrl":            "",
-    "sInfoThousands":  ",",
-    "sLoadingRecords": "Cargando...",
-    "oPaginate": {
-        "sFirst":    "Primero",
-        "sLast":     "Último",
-        "sNext":     "Siguiente",
-        "sPrevious": "Anterior"
-    },
-    "oAria": {
-        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-    },
-    "buttons": {
-        "copy": "Copiar",
-        "colvis": "Visibilidad"
-    }
-}
-</script>
-<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-<!--  -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+            var idioma = {
+            "sProcessing":     "Procesando...",
+            "sLengthMENU":     "Mostrar _menu_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
-@yield('scripts')
-
-
+    @yield('scripts')
 </html>

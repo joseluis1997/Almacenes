@@ -2,7 +2,7 @@
 
 @section('contenido')
   <div class="container">
-    <div class="card">
+    <div class="card fondoDT">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" >
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-user-activos-tab" data-toggle="tab" href="#nav-user-activos" role="tab" aria-controls="nav-user-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
@@ -51,17 +51,17 @@
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
                                  <td>
                                         @if($user->ESTADO_USUARIO)
-                                            <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            <button type="button" class="btn btn-success navbar-btn ">Activo</button>
                                         @else
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                         @endif
                                 </td>
                                <td>
-                                <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x"></a>
+                                <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x circulo"></a>
                                 </td>
                                <td>
                                     @can('modificar_usuarios')
-                                    <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x"></a>
+                                    <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x circulo"></a>
                                     @endcan
                                 </td>
                                   <td> 
@@ -202,5 +202,6 @@
                  event.preventDefault();
              }
         }
+
     </script>
 @endsection

@@ -1,6 +1,8 @@
 <!-- Grupo: Nombre -->
 <div class="formulario__grupo" id="grupo__nombre">
-    <label for="nombre" class="formulario__label">Nombre</label>
+    <label for="nombre" class="formulario__label"><b class="colorAste">*</b>Nombre
+        <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre Rol" data-content="El nombre para el nuevo rol solo puede contener leltras...">?</a>
+    </label>
     <div class="formulario__grupo-input">
         <input type="text" class="formulario__input" name="name" id="nombre" placeholder="Nombre del Nuevo Rol" value="{{ isset($role) ? $role->name : '' }}">
         <i class="formulario__validacion-estado far fa-times-circle"></i>

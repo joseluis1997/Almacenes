@@ -9,13 +9,19 @@
         <div class="card-body">
             <form  action="{{ route('store_medidas')}}"  id="form-general" class="form-horizontal form--label-right" method="POST">
                 @csrf
-                @include('admin.medida.form')
-                <div class="formulario__grupo formulario__btn-guardar text-center">
-                    <a href="{{route('list_medidas')}}" class="btn formulario__btn2">Cancelar</a>
-                    <button type="submit" class="formulario__btn1">Guardar</button>
-                </div>
+                @include('admin.medida.formCrear')
             </form>
         </div>
     </div>
 
 @endsection('contenido')
+
+@section('scripts')
+    <script type="text/javascript">
+     
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+        
+    </script>
+@endsection

@@ -2,11 +2,11 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 // esto es un objeto con varias propiedas
 const expresiones = {
-    ci: /^\d{1,7}$/, // 1 a 7 numeros.
-	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-    lastname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	telephone: /^\d{7,14}$/, // 7 a 14 numeros.
-	username: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    CI: /^\d{1,7}$/, // 1 a 7 numeros.
+	NOMBRE: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+    APELLIDO: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+	TELEFONO: /^\d{7,14}$/, // 7 a 14 numeros.
+	NOM_USUARIO: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     password: /^.{4,12}$/ // 4 a 12 digitos.
 }
 
@@ -21,24 +21,24 @@ const campos ={
 
 const validarFormulario = (e) =>{
    switch (e.target.name){
-    case "ci":
-        validarCampo(expresiones.ci, e.target, 'ci');
+    case "CI":
+        validarCampo(expresiones.CI, e.target, 'ci');
     break;
 
-    case "name":
-        validarCampo(expresiones.name,e.target,'nombre');
+    case "NOMBRE":
+        validarCampo(expresiones.NOMBRE,e.target,'nombre');
     break;
 
-    case "lastname":
-        validarCampo(expresiones.lastname,e.target,'apellidos');
+    case "APELLIDO":
+        validarCampo(expresiones.APELLIDO,e.target,'apellidos');
     break;
 
-    case "telephone":
-        validarCampo(expresiones.telephone,e.target,'telefono');
+    case "TELEFONO":
+        validarCampo(expresiones.TELEFONO,e.target,'telefono');
     break;
 
-    case "username":
-        validarCampo(expresiones.username,e.target,'usuario');
+    case "NOM_USUARIO":
+        validarCampo(expresiones.NOM_USUARIO,e.target,'usuario');
     break;
     case "password":    
         validarCampo(expresiones.password,e.target,'password');
@@ -99,7 +99,7 @@ inputs.forEach((input)=>{
 
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
-    if (campos.ci && campos.username && campos.name && campos.lastname && campos.telephone && campos.password){
+    if (campos.CI && campos.NOM_USUARIO && campos.NOMBRE && campos.APELLIDO && campos.TELEFONO && campos.password){
     }
     else{
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');

@@ -13,63 +13,137 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">    
-            <table id="#" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Numero Partida</th>
-                        <th>Creacion</th>
-                        <th>Estado</th>
-                        <th>Ver Partida</th>
-                        <th>Modificar Partida</th>
-                        <th>Desabilitar Partida</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        @foreach($partidas as $partida)
+        <div class="card-body">   
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-partida-activos-tab" data-toggle="tab" href="#nav-partida-activos" role="tab" aria-controls="nav-partida-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
+                    <a class="nav-item nav-link" id="nav-partida-bajas-tab" data-toggle="tab" href="#nav-partida-bajas" role="tab" aria-controls="nav-partida-bajas" aria-selected="false">Bajas</a>
+                </div>
+            </nav> 
+            <div class="tab-content" id="nav-tabContent">
+                {{-- data table unidades de medidas habilitados --}}
+                <div class="tab-pane fade show active" id="nav-partida-activos" role="tabpanel" aria-labelledby=" nav-partida-activos-tab" style="padding-top: 15px;">
+                    <table id="dataAltas" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
                             <tr>
-                            	<td>{{$partida->COD_PARTIDA}}</td>
-                             	<td>{{$partida->NOM_PARTIDA}}</td>
-                              	<td>{{$partida->NRO_PARTIDA}}</td>
-                                <td>{{$partida->created_at}}</td>
-                                <td>
-                                    @if($partida->VALOR)
-                                        <button type="button" class="btn btn-success navbar-btn">Activo</button>
-                                    @else
-                                         <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{route('show_partida',$partida->COD_PARTIDA)}}" class="fas fa-eye fa-2x"></a>
-                                </td>
-                                <td>
-                                   <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
-                                </td>
-                                <td>
-                                    <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->VALOR}}, this)" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        @if($partida->VALOR)
-                                          <button type="submit" class="btn-sm btn btn-outline-danger w-100">
-                                            Deshabilitar
-                                          </button>
-                                        @else
-                                          <button type="submit" class="btn-sm btn btn-outline-primary w-100">
-                                            Habilitar
-                                          </button>
-
-                                        @endif
-                                    </form>
-                                </td> 
-                                {{-- <td>
-                                    <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
-                                </td> --}}
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Numero Partida</th>
+                                <th>Creacion</th>
+                                <th>Estado</th>
+                                <th>Ver Partida</th>
+                                <th>Modificar Partida</th>
+                                <th>Desabilitar Partida</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-            </table> 
+                        </thead>
+                        <tbody>
+                            @foreach($partidas as $partida)
+                                @if($partida->VALOR == 1)
+                                    <tr>
+                                        <td>{{$partida->COD_PARTIDA}}</td>
+                                        <td>{{$partida->NOM_PARTIDA}}</td>
+                                        <td>{{$partida->NRO_PARTIDA}}</td>
+                                        <td>{{$partida->created_at}}</td>
+                                        <td>
+                                            @if($partida->VALOR)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('show_partida',$partida->COD_PARTIDA)}}" class="fas fa-eye fa-2x"></a>
+                                        </td>
+                                        <td>
+                                           <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
+                                        </td>
+                                        <td>
+                                            <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->VALOR}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($partida->VALOR)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-100">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-100">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
+                                        </td> 
+                                        {{-- <td>
+                                            <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
+                                        </td> --}}
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table> 
+                </div>
+                {{-- data table unidades de medidas desabilitado --}}
+                <div class="tab-pane fade" id="nav-partida-bajas" role="tabpanel" aria-labelledby="nav-partida-bajas-tab" style="padding-top: 15px">
+                    <table id="dataBajas" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Numero Partida</th>
+                                <th>Creacion</th>
+                                <th>Estado</th>
+                                <th>Ver Partida</th>
+                                <th>Modificar Partida</th>
+                                <th>Desabilitar Partida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($partidas as $partida)
+                                @if($partida->VALOR == 0)
+                                    <tr>
+                                        <td>{{$partida->COD_PARTIDA}}</td>
+                                        <td>{{$partida->NOM_PARTIDA}}</td>
+                                        <td>{{$partida->NRO_PARTIDA}}</td>
+                                        <td>{{$partida->created_at}}</td>
+                                        <td>
+                                            @if($partida->VALOR)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('show_partida',$partida->COD_PARTIDA)}}" class="fas fa-eye fa-2x"></a>
+                                        </td>
+                                        <td>
+                                           <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
+                                        </td>
+                                        <td>
+                                            <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->VALOR}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($partida->VALOR)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-100">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-100">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
+                                        </td> 
+                                        {{-- <td>
+                                            <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
+                                        </td> --}}
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table> 
+                </div>
+            </div> 
         </div>
     </div>
 </div>
@@ -78,6 +152,20 @@
 
 @section('scripts')
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#dataAltas').dataTable( {
+            "scrollCollapse":true,
+            "language": {
+                "url": "/jsons/Spanish.json"
+            },
+        });
+        $('#dataBajas').dataTable( {
+            "scrollCollapse":true,
+            "language": {
+                "url": "/jsons/Spanish.json"
+            },
+        });
+    } );
 
     function submitForm(event, estado,form) { 
         event.preventDefault();
@@ -94,13 +182,13 @@
 
 
    function eliminar(event) {
-    var r = confirm("Acepta elminar la Partida Seleccionada?");
-    if (r == true) {
+        var r = confirm("Acepta elminar la Partida Seleccionada?");
+        if (r == true) {
 
-    } 
-    else{
-         event.preventDefault();
-     }
-}
+        } 
+        else{
+             event.preventDefault();
+        }
+    }
     </script>
 @endsection

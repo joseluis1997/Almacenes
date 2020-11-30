@@ -11,9 +11,19 @@
             <form  action="{{ route('store_areas')}}"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
                 @csrf
                 
-                @include('admin.areas.form')
+                @include('admin.areas.formCrear')
               
             </form>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/ValidarformularioUsuario.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+        
+    </script>
 @endsection

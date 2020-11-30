@@ -222,3 +222,10 @@ main {
     color:#B5C5CB;
     font-size: 20px;
 }
+
+.colorSigno:hover{
+    color:green;
+    font-size: 20px;
+    text-decoration: none;
+}
+

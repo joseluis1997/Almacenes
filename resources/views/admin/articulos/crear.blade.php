@@ -21,3 +21,12 @@
     </div>
 
 @endsection
+@section('scripts')
+    <script type="text/javascript">
+     
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+        
+    </script>
+@endsection

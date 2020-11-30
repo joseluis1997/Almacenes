@@ -1,66 +1,67 @@
-<html>
-    <head>
-        <title>Sigadet</title>
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/formulario.css') }}" rel="stylesheet">
-    </head>
-    <body>
-        <div class="CONTAINER">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <title>Sigadet</title>
+      <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  </head>
+<body>
 
-    <div class="login-box">
-           @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <div class="alert-text">
-                        @foreach ($errors->all() as $error)
-                            <div>{{ $error }}</div>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
-        <form method="POST" action="{{ route('login_post') }}"  autocomplete="off">
-            @csrf
-        <div class="top-box">
-        
-            <div class="logo" align="center">
-                <img src="{{ asset('images/user.png') }}">
-            </div>
-            <div class="title">
-                <h1>Inicio Sesion</h1>
-            </div>
-            <div class="formulario__grupo" id="grupo__usuario">
-                <label for="NOM_USUARIO" class="formulario__label"><b>Usuario</b></label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="NOM_USUARIO" id="NOM_USUARIO" value="{{ old('NOM_USUARIO') }}" required autocomplete="NOM_USUARIO" placeholder="Usuario...">
-                    @error('NOM_USUARIO')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-                </div>
-            </div>
-            {{-- Grupo: Password --}}
-            <div class="formulario__grupo" id="grupo__password">
-                <label for="password" class="formulario__label"><b>Contraseña</b></label>
-                <div class="formulario__grupo-input">
-                    <input type="password" class="formulario__input" id="password" required name="password" placeholder="Contraseña...">
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-                </div>
-            </div>
+  <div class="overlay">
+    <form method="POST" action="{{ route('login_post') }}">
+      @csrf
+       <div class="con">
+         <header class="head-form">
+            <h2>Sigadet</h2>
+            <p>Gobierno Autonomo Departamental de Tarija</p>
+         </header>
+        <br>
+        <div class="field-set">
+            <!--   user name -->
+              <span class="input-item">
+                 <i class="fa fa-user-circle"></i>
+              </span> 
+              <!--   user name Input-->
+              <input class="form-input" id="txt-input" type="text" name="NOM_USUARIO" value="{{ old('NOM_USUARIO') }}" placeholder="@UserName" required>
+            <br>
+            <!--   Password -->
+            <span class="input-item">
+              <i class="fa fa-key"></i>
+             </span>
+            <!--   Password Input-->
+            <input class="form-input" type="password" placeholder="Password" id="pwd-input"  name="password" required>
+       {{--     <span>
+              <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
+           </span> --}}
+            <br>
+            <button class="log-in">Incio Sesion</button>
+         </div>
+      </div>
+    </form>
+  </div>
+<script type="text/javascript">
 
-            <div class="formulario__grupo formulario__btn-guardar text-center">
-                    <button type="submit" class="formulario__enviarSesion">Iniciar Sesion</button>
-            </div>
-        </div>
-           </form> 
-    </div>
- 
-</div>
- 
-    </body>
-</html>
-         
+    function show() {
+        var p = document.getElementById('pwd');
+        p.setAttribute('type', 'text');
+    }
+
+    function hide() {
+        var p = document.getElementById('pwd');
+        p.setAttribute('type', 'password');
+    }
+
+    var pwShown = 0;
+
+    document.getElementById("eye").addEventListener("click", function () {
+        if (pwShown == 0) {
+            pwShown = 1;
+            show();
+        } else {
+            pwShown = 0;
+            hide();
+        }
+    }, false);
+</script>     
+</body>

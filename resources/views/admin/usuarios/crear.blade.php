@@ -21,13 +21,18 @@
 @section('scripts')
     <script src="{{ asset('js/ValidarformularioUsuario.js') }}"></script>
     <script type="text/javascript">
-        function abrir(){
-            document.getElementById("vent").style.display="block";
-        }
+        // function abrir(){
+        //     document.getElementById("vent").style.display="block";
+        // }
 
-        function cerrar(){
-            document.getElementById("vent").style.display="none";
-        }
+        // function cerrar(){
+        //     document.getElementById("vent").style.display="none";
+        // }
+        
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+        
     </script>
 @endsection
 
