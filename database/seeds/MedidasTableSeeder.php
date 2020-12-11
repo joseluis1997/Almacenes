@@ -11,21 +11,6 @@ class MedidasTableSeeder extends Seeder
      */
     public function run()
     {
-        //  $medidas = [
-        //     [
-        //         'NOM_MEDIDA' => 'Kg',
-        //     ],
-        //     [
-        //         'DESC_MEDIDA' => 'Unidad de medida kilogramos',
-        //     ],
-        //     [
-        //         'ESTADO_MEDIDA' => 1,
-        //     ],
-        // ];
-
-        // foreach ($medidas as $medida) {
-        //     Medida::create($medida);
-        // }
         Medida::create([
             'NOM_MEDIDA' => 'Kg',
             'DESC_MEDIDA' => 'Unidad de medida kilogramos'

@@ -3,7 +3,8 @@
 @section('contenido')
 
     <div class="title">
-        <h1 align="center"><b>Nuevo Usuario</b></h1>
+        <h1 align="center"><b>Modificar Usuario</b></h1>
+        
     </div>
 
     <div class="card mt-2">
@@ -11,6 +12,7 @@
             <form  action="{{ route('user_update',$user->id)}}"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method("put")
+
                 @include('admin.usuarios.formularioEditarUsuario')
                            
             </form>
@@ -22,12 +24,22 @@
 @section('scripts')
     <script src="{{ asset('js/ValidarformularioUsuario.js') }}"></script>
     <script type="text/javascript">
-        function abrir(){
-            document.getElementById("vent").style.display="block";
-        }
 
-        function cerrar(){
-            document.getElementById("vent").style.display="none";
-        }
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+
+        $("#fileToUpload").change(function(){
+        var imagen = $(this)[0].files[0];
+          
+          var reader  = new FileReader();
+          reader.readAsDataURL(imagen);
+          
+          reader.onload = function(){
+            var dataURL = reader.result;
+            
+            $("#preview").html('<img class="img img-fluid rounded-circle" src="'+ dataURL +'" width="300" height="300">');
+          }
+        });
     </script>
 @endsection

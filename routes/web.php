@@ -212,7 +212,7 @@ Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['aut
 	->middleware(sprintf("autorizacion:%s", "crear_areas"))
 	->name('store_areas');
 
-	Route::get('/{area}', 'AreaController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_areas"))
+	Route::get('/{id}', 'AreaController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_areas"))
 	->name('show_areas');
 
 	Route::get('/{area}/edit', 'AreaController@edit')

@@ -31,6 +31,7 @@ class RoleController extends Controller
         $input = $request->all();
         $role = new Role([
             'name' => $input['name'],
+            'descripcion' => $input['descripcion'],
         ]);
 
         $role->save();
@@ -64,17 +65,18 @@ class RoleController extends Controller
  
     public function update(RolRequest $request, Role $role)
     {
-        $input = $Request->all();
+        $input = $request->all();
 
         // dd($input);
         $role->update([
             'name' => $input['name'],
+            'descripcion' => $input['descripcion'],
         ]);
 
         // dd($role);
 
         $role->syncPermissions($request->permissions);
-        return redirect()->route('list_roles')->with(['message' => 'Role actualizado exitosamente!', 'alert-type' => 'success']);
+        return redirect()->route('list_roles')->with('message', ['success', 'Rol Actualizado Correctamente!']);
 
     }
 

@@ -7,12 +7,13 @@
     <div class="card mt-2">
         <div class="card-body">
 	        <div class="panel-body">
-	        <p><strong> Nombre</strong></p>                                        
-	            <span class="badge badge-info">{{ $role->name }}</span>
-	        </div>
+		        <strong> Nombre:</strong>                                       
+		            <span class="badge badge-info">{{ $role->name }}</span><br><br>
+		        <strong>Descripcion:</strong> 
+		            <span class="badge badge-info">{{ $role->descripcion }}</span><br>
+	        </div><br>
 	        <div class="panel-body"> 
-	        	<br>
-	        	<p><strong>Permisos</strong></p>
+	        	<strong>Permisos</strong>
 			        @foreach ($role->permissions as $permission)
 		                <span class="badge badge-info">{{ $permission->name }}</span>
 		            @endforeach

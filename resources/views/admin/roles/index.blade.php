@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Gestionar Roles</b></h3> 
+                    <h3 class="card-title"><b>Gestion Roles</b></h3> 
                 </div>
                 <div class="col-md-1">
                     <a href="{{route('create_roles')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Rol</b></a>
@@ -45,7 +45,7 @@
                                     </td>
                                     <td>
                                         @if($rol->estado)
-                                            <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            <button type="button" class="btn bottA navbar-btn">Activo</button>
                                         @else
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                         @endif

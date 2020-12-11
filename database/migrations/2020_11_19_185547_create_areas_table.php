@@ -15,8 +15,9 @@ class CreateAreasTable extends Migration
     {
         Schema::create('AREA', function (Blueprint $table) {
             $table->bigIncrements('COD_AREA');
-            $table->unsignedBigInteger('NUM_AREA');
+            // $table->unsignedBigInteger('NUM_AREA');
             $table->string('NOM_AREA')->unique();
+            $table->string('UBICACION');
             $table->string('DESC_AREA')->nullable();
             $table->boolean('ESTADO_AREA')->default(true);
             $table->timestamps();

@@ -27,7 +27,7 @@
                         <tr>
                             <th>Identificador</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
+                            <th>Ubicacion</th>
                             <th>Estado</th>
                             <th>Ver</th>
                             <th>Modificar</th>
@@ -38,9 +38,9 @@
                         @foreach($datas as $area)
                             @if($area->ESTADO_AREA == 1)
                             <tr>
-                                <td>{{ $area->NUM_AREA}}</td>
+                                <td>{{ $area->COD_AREA}}</td>
                                 <td>{{ $area->NOM_AREA}}</td>
-                                <td>{{ $area->DESC_AREA}}</td>
+                                <td>{{ $area->UBICACION}}</td>
                                  <td>
                                         @if($area->ESTADO_AREA)
                                             <button type="button" class="btn btn-success navbar-btn">Activo</button>

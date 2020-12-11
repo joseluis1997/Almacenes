@@ -6,10 +6,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Gestionar Usuarios</b></h3> 
+                    <h3 class="card-title"><b>Gestion Usuarios</b></h3> 
                 </div>
                 <div class="col-md-1">
-                    <a href="{{route('create_users')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Usuario</b></a>
+                    <a href="{{route('create_users')}}" class="btn btn-primary float-right"><b>Nuevo Usuario</b></a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                             @if($user->ESTADO_USUARIO == 1)
                             <tr>
                                 <td>{{ $user->CI}}</td>
-                                <td>{{ $user->NOM_USUARIO}}</td>
+                                <td>{{ $user->NOMBRE}}</td>
                                 <td>{{ $user->APELLIDO}}</td>
                                 <td>{{ $user->TELEFONO}}</td>
                                 <td>{{ $user->NOM_USUARIO}}</td>
@@ -51,7 +51,7 @@
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
                                  <td>
                                         @if($user->ESTADO_USUARIO)
-                                            <button type="button" class="btn btn-success navbar-btn ">Activo</button>
+                                            <button type="button" class="btn bottA navbar-btn ">Activo</button>
                                         @else
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                         @endif
@@ -139,11 +139,11 @@
                                             @method('DELETE')
                                             @csrf
                                             @if($user->ESTADO_USUARIO)
-                                              <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                              <button type="submit" onclick="setUserName('{{ $user->NOMBRE }}')" class="btn-sm btn btn-outline-danger w-60">
                                                 Deshabilitar
                                               </button>
                                             @else
-                                              <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                              <button type="submit" onclick="setUserName('{{ $user->NOMBRE }}')" class="btn-sm btn btn-outline-primary w-60">
                                                 Habilitar
                                               </button>
 
@@ -165,6 +165,9 @@
 
 @section('scripts')
     <script type="text/javascript">
+
+        var USERNAME = ' ';
+
         $(document).ready(function() {
             $('#dataAltas').dataTable( {
                 "scrollCollapse":true,
@@ -179,17 +182,25 @@
                 },
             });
         } );
+
         function submitForm(event, estado,form) { 
             event.preventDefault();
             var r = null;
             if(estado == 1){
-              r = confirm("Acepta Desabilitar el Usuario Seleccionado");
+              r = confirm("Acepta Desabilitar el Usuario Seleccionado" + USERNAME);
             }else{
-              r = confirm("Acepta habilitar el Usuario Seleccionado");
+
+              r = confirm("Acepta habilitar el Usuario Seleccionado" + USERNAME);
+         
             }
             if (r == true) {
               form.submit();
             }
+        }
+
+        function setUserName(name){
+
+            USERNAME = name;
         }
 
         function eliminar(event) {

@@ -589,7 +589,8 @@ h3{
   text-decoration: none;
 }
 .navv a:hover{
-  color:#485c84;
+  color:#9a4710;
+  font-size:20px;
   background: #FFFAFA;
   text-decoration: none;
 }
@@ -689,10 +690,10 @@ h3{
 
 /*data tables a href*/
 a{
-  color: black;
+  color:#94b4c4;
 }
 a:hover{
-  color: black;
+  color: #485c84;
   text-decoration: none;
 }
 
@@ -701,9 +702,16 @@ a:hover{
   border-radius: 50%;
   transition: background .3s;
 }
-
-.circulo:hover {
-  color: #4CCEE8;
-  background:#f5f9fa;
+.buttom{
+  color: #000000;
+  background: #DAF7A6;
+}
+.buttom:hover{
+  color: #FFFFFF;
+  box-shadow: 5px 2px 15px #999;
 }
 
+.bottA{
+  color: #000000;
+  background: #DAF7A6;
+}

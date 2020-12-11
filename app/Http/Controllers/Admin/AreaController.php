@@ -38,6 +38,7 @@ class AreaController extends Controller
       */
     public function store(AreaRequest $area_request)
     {
+
         try {
           Area::create($area_request->input());
           return redirect()->route('list_areas')->with('message', ['success', 'Nueva area creada']);
@@ -53,9 +54,10 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Area $area)
+    public function show($id)
     {
-        return view('admin.areas.show', compact('area'));
+        $show_area = Area::find($id);
+        return view('admin.areas.show',['show' => $show_area]);
     }
 
     /**

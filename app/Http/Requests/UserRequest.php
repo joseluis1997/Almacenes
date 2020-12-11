@@ -23,28 +23,30 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        // validacion que ayduda a validad por parte del backend
-        // dd($this->all());
-        return [
-            'CI' => 'required',
-            'NOMBRE' => 'required',
-            'APELLIDO' => 'required',
-            'TELEFONO' => 'required',
-            'NOM_USUARIO' => 'required',
-            'password' => 'required',
-            'rol' => 'required',
-            'imagen' => 'mimes:jpeg,bmp,png'
-        ];
 
-        //      return [
-        //     'ci' => 'required',
-        //     'name' => 'required',
-        //     'lastname' => 'required',
-        //     'telephone' => 'required',
-        //     'username' => 'required',
-        //     'password' => 'required',
-        //     'rol' => 'required',
-        //     'imagen' => 'mimes:jpeg,bmp,png'
-        // ];
+        if($this->route('id')){
+            return [
+                'CI' => 'required|integer',
+                'NOMBRE' => 'required|max:50'. $this->route('id'),
+                'APELLIDO' => 'required',
+                'TELEFONO' => 'required',
+                'NOM_USUARIO' => 'required|max:50'. $this->route('id'),
+                'password' => 'nullable|min:5',
+                're_password' => 'nullable|min:5|same:password',
+                'rol' => 'required'
+            ];
+        }else{
+            return [
+                'CI' => 'required|integer',
+                'NOMBRE' => 'required|max:50',
+                'APELLIDO' => 'required',
+                'TELEFONO' => 'required',
+                'NOM_USUARIO' => 'required|max:50',
+                'password' => 'required|min:5',
+                're_password' => 'required|min:5|same:password',
+                'rol' => 'required',
+                'imagen' => 'required|mimes:jpeg,bmp,png'
+            ];
+        }
     }
 }

@@ -20,6 +20,7 @@ const campos ={
 }
 
 const validarFormulario = (e) =>{
+    // console.log(e.target.name);
    switch (e.target.name){
     case "CI":
         validarCampo(expresiones.CI, e.target, 'ci');
@@ -44,7 +45,7 @@ const validarFormulario = (e) =>{
         validarCampo(expresiones.password,e.target,'password');
         validarPassword2();
     break;
-    case "password2":
+    case "re_password":
 			validarPassword2();
 	break;
    }
@@ -73,7 +74,7 @@ const validarCampo = (expresion,input,campo) => {
 
 const validarPassword2 = () => {
     const inputpassword1 = document.getElementById('password');
-    const inputpassword2 = document.getElementById('password2');
+    const inputpassword2 = document.getElementById('re_password');
 
     if(inputpassword1.value !== inputpassword2.value){
         document.getElementById(`grupo__password2`).classList.add('formulario__grupo-incorrecto');
@@ -100,6 +101,7 @@ inputs.forEach((input)=>{
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
     if (campos.CI && campos.NOM_USUARIO && campos.NOMBRE && campos.APELLIDO && campos.TELEFONO && campos.password){
+        console.log("dq");
     }
     else{
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');

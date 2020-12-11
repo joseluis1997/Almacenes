@@ -24,8 +24,8 @@ class AreaRequest extends FormRequest
     public function rules()
     {
         return [
-            'NUM_AREA' =>'required',
             'NOM_AREA' => 'required|string',
+            'UBICACION' =>'sometimes',
             'DESC_AREA' => 'sometimes',
         ];
     }

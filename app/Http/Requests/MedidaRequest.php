@@ -23,9 +23,11 @@ class MedidaRequest extends FormRequest
      */
     public function rules()
     {
+        
+        // if($this.route('medida'))
         return [
             'NOM_MEDIDA' => 'required|string|max:255',
-            'DESC_MEDIDA' => 'required|string|max:255',
+            'DESC_MEDIDA' => 'nullable|string|max:255',
             ];
     }
 }

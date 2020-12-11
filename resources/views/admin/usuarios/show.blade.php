@@ -6,14 +6,24 @@
     <div class="card mt-2">
         <div class="card-body">
 	        <div class="panel-body"> 
-	        	<br>
-	        	Codigo:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->id }}</span><br>
-	        	Cedula:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->CI }}</span><br>
-	        	Nombre:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->NOM_USUARIO }}</span><br>
-	        	Apellidos:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->APELLIDO }}</span><br>
-	        	Telefono:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->TELEFONO }}</span><br>
-	        	Nombre de Usuario:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->NOM_USUARIO }}</span><br>
-	        	Estado de Usuario:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $usuario->ESTADO_USUARIO }}</span><br>
+                <div class="col-lg-6 order-lg-0 text-center profile-avatar" >
+                    <h2 class="text-center font-weight-light">Foto de Perfil</h2>
+                    <div id="preview">  
+                        @if($usuario->imagen != " ")
+                            <img src="{{ asset('/images/users/'.$usuario->imagen) }}" class="img img-fluid rounded-circle" alt="avatar" />
+                        @else
+                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
+                        @endif
+                    </div><br>
+        	        	<b>Codigo:</b><span class="badge badge-info">{{ $usuario->id }}</span><br>
+                        <b>Cedula:</b><span class="badge badge-info">{{ $usuario->CI }}</span><br>
+                        <b>Nombre:</b><span class="badge badge-info">{{ $usuario->NOM_USUARIO }}</span><br>
+                        <b>Apellidos:</b><span class="badge badge-info">{{ $usuario->APELLIDO }}</span><br>
+                        <b>Telefono:</b><span class="badge badge-info">{{ $usuario->TELEFONO }}</span><br>
+                        <b>Nombre de Usuario:</b><span class="badge badge-info">{{ $usuario->NOM_USUARIO }}</span><br>
+                        <b>Estado de Usuario:</b><span class="badge badge-info">{{ $usuario->ESTADO_USUARIO }}</span><br>
+                </div>
+                <br>
             </div>
         </div>
 

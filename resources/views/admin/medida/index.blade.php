@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
             <div class="col-md-9">
-                <h3 class="card-title"><b>Gestionar Unidades Medidas</b></h3> 
+                <h3 class="card-title"><b>Gestion Unidades de Medidas</b></h3> 
             </div>
             <div class="col-md-2">
                 <a href="{{route('create_medidas')}}" class="btn btn-primary rounded-pill float-left"><b>Nuevo Unidad de Medida</b></a>
@@ -44,7 +44,7 @@
                                     <td>{{ $medida->DESC_MEDIDA }}</td>
                                     <td>
                                         @if($medida->ESTADO_MEDIDA)
-                                            <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            <button type="button" class="btn bottA navbar-btn">Activo</button>
                                         @else
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                         @endif

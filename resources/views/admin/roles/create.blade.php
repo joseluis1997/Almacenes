@@ -23,8 +23,10 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/ValidarformularioRol.js') }}">
-</script>
+    <script src="{{ asset('js/ValidarformularioRol.js') }}">
+
+        
+    </script>
 <script>
     $(function () {
       $('[data-toggle="popover"]').popover()

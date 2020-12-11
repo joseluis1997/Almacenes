@@ -10,11 +10,6 @@ use \Spatie\Permission\Models\Role;
 use App\Http\Requests\UserRequest;
 class UsuarioController extends Controller
 {
-    // controlando el acceso a mis controladores segun el rol que tenga el usuario
-    // public function __construct()
-    // {
-    //      $this->middleware(['role:alex']);
-    // }
 
     public function index()
     {
@@ -31,15 +26,14 @@ class UsuarioController extends Controller
 
     public function crear()
     {
-        //obtenemos los roles
         $roles = Role::all()->pluck('name','id');
-        // dd($roles);
         $user=new User();
         return view('admin.usuarios.crear',compact('roles','user'));
     }
 
     public function guardar(UserRequest $request)
     {
+
 
         $password=bcrypt($request->input('password'));// RECUPERATORIA DD ELA VARIABLE PASSWORD Y ENCRITANDO
         $request->merge(['password' => $password]);
@@ -56,7 +50,7 @@ class UsuarioController extends Controller
         $user->save();
         $user->assignRole($request->input('rol'));
         
-        return redirect(route('list_users'));
+        return redirect()->route('list_users')->with('message', ['success', 'Usuario Agregado Correctamente!']);
 
     }
 
@@ -66,7 +60,6 @@ class UsuarioController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = Role::all()->pluck('name','id');
-        // dd($datas,$roles);
         return view('admin.usuarios.editar',compact('user','roles'));
 
     }
@@ -75,6 +68,7 @@ class UsuarioController extends Controller
     {
         //
         $show_usuarios = User::find($id);
+
         return view('admin.usuarios.show',['usuario' => $show_usuarios]);
     }
     public function actualizar(UserRequest $request, $id)
@@ -92,15 +86,20 @@ class UsuarioController extends Controller
             $file = $request->file('imagen');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/users/',$name);
+            $request->merge(['imagen' => $name]);
+            // $user->imagen = $name;
         }
-        
-        $input = $request->all();
-        $user->update($input);
-        $user->imagen = $name;
-        $user->save();
+        // $input = $request->all();
+
+       
+        // $user->save();
+        // dd($request->input());
+        $user->update(array_filter($request->input()));
+        // $user->fill($request->input())->save();
+
         $user->syncRoles($request->input('rol'));
 
-        return redirect()->route('list_users')->with('status', 'Profile updated!');
+        return redirect()->route('list_users')->with('message', ['success', 'Usuario Modificado Correctamente!']);
     }
 
     // public function eliminar($id)
@@ -134,7 +133,7 @@ class UsuarioController extends Controller
         if ($estado) {
           return redirect()->route('list_users')->with('message', ['success', 'Usuario habilitado Correctamente!']);  
         }else{
-          return redirect()->route('list_users')->with('message', ['success', 'Usuario Desabilitado Correctamente!']);
+          return redirect()->route('list_users')->with('message', ['success', 'Usuario Deshabilitado Correctamente!']);
         }
     }
 }

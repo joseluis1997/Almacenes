@@ -16,17 +16,6 @@
                     @csrf @method("put")
 
                     @include('admin.areas.formEditar')
-                    <!-- Grupo: Identificador de Area -->
-                    {{-- <div class="formulario__grupo" id="grupo__identificador">
-                        <label for="identificador" class="formulario__label">Numero de Identificador de Area</label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="formulario__input" name="NUM_AREA" id="identificador" value="{{$area->NUM_AREA}}" placeholder="numero de Identificador de Area">
-                            <i class="formulario__validacion-estado far fa-times-circle"></i>
-                        </div>
-                        <p class="formulario__input-error">
-                            El area tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                        </p>
-                    </div> --}}
                 </form>
             </div>
         </div>
