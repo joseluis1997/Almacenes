@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreasTable extends Migration
+class CreateEstructuraGsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateAreasTable extends Migration
      */
     public function up()
     {
-        Schema::create('AREA', function (Blueprint $table) {
-            $table->bigIncrements('COD_AREA');
-            // $table->unsignedBigInteger('NUM_AREA');
-            $table->string('NOM_AREA')->unique();
+        Schema::create('ESTRUCTURA_G', function (Blueprint $table) {
+            $table->bigIncrements('COD_ESTRUCTURA_G');
+            $table->string('NOM_ESTRUCTURA_G',100)->unique();
             $table->string('UBICACION');
-            $table->string('DESC_AREA')->nullable();
-            $table->boolean('ESTADO_AREA')->default(true);
+            $table->string('DESC_ESTRUCTURA_G')->nullable();
+            $table->boolean('ESTADO_ESTRUCTURA_G')->default(true);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateAreasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('AREA');
+        Schema::dropIfExists('ESTRUCTURA_G');
     }
 }

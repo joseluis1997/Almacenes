@@ -36,6 +36,6 @@ class CreateDetalleSalidaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalle_salida');
+        Schema::dropIfExists('DETALLE_SALIDA');
     }
 }

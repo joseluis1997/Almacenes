@@ -17,11 +17,13 @@ class CreateSalidasTable extends Migration
             $table->bigIncrements('COD_SALIDA');
 
             $table->unsignedBigInteger('COD_PEDIDO');
-            $table->unsignedBigInteger('COD_AREA');
+            $table->unsignedBigInteger('COD_ESTRUCTURA_G');
+
+            $table->foreign('COD_ESTRUCTURA_G')->references('COD_ESTRUCTURA_G')->on('ESTRUCTURA_G')->onDelete('cascade');
 
             $table->foreign('COD_PEDIDO')->references('COD_PEDIDO')->on('PEDIDOS')->onDelete('cascade');
 
-            $table->foreign('COD_AREA')->references('COD_AREA')->on('AREA')->onDelete('cascade');
+           
             
             $table->date('FECHA');
             $table->string('DETALLE_SALIDA');

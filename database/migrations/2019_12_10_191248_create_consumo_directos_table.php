@@ -15,8 +15,7 @@ class CreateConsumoDirectosTable extends Migration
     {
         Schema::create('CONSUMO_DIRECTOS', function (Blueprint $table) {
             $table->bigIncrements('COD_CONSUMO_DIRECTO');
-            $table->unsignedBigInteger('COD_AREA');
-            $table->string('NRO_ORD_TRABAJO');
+            $table->unsignedBigInteger('COD_ESTRUCTURA_G');
             $table->string('NRO_ORD_COMPRA');
             $table->string('NRO_PREVENTIVO');
             $table->string('NOTA_INGRESO');
@@ -25,7 +24,7 @@ class CreateConsumoDirectosTable extends Migration
             $table->string('DETALLE_CONSUMO');
             $table->boolean('ESTADO_COMPRA')->default(true);
 
-            $table->foreign('COD_AREA')->references('COD_AREA')->on('AREA')->onDelete('cascade');
+            $table->foreign('COD_ESTRUCTURA_G')->references('COD_ESTRUCTURA_G')->on('ESTRUCTURA_G')->onDelete('cascade');
 
             $table->timestamps();
         });

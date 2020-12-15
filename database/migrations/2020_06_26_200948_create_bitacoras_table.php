@@ -13,8 +13,8 @@ class CreateBitacorasTable extends Migration
      */
     public function up()
     {
-        Schema::create('bitacoras', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('BITACORAS', function (Blueprint $table) {
+            $table->bigIncrements('COD_BITACORAS');
             $table->unsignedBigInteger('usuario_id');
             $table->string('accion');
             $table->date('fecha');
@@ -34,6 +34,6 @@ class CreateBitacorasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bitacoras');
+        Schema::dropIfExists('BITACORAS');
     }
 }

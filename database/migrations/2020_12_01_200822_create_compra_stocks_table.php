@@ -16,10 +16,9 @@ class CreateCompraStocksTable extends Migration
         Schema::create('COMPRA_STOCKS', function (Blueprint $table) {
             $table->bigIncrements('COD_COMPRA_STOCK');
 
-            $table->unsignedBigInteger('COD_AREA');
+            $table->unsignedBigInteger('COD_ESTRUCTURA_G');
 
-            $table->foreign('COD_AREA')->references('COD_AREA')->on('AREA')->onDelete('cascade');
-            $table->string('NRO_ORD_TRABAJO');
+            $table->foreign('COD_ESTRUCTURA_G')->references('COD_ESTRUCTURA_G')->on('ESTRUCTURA_G')->onDelete('cascade');
             $table->string('NRO_ORD_COMPRA');
             $table->string('NRO_PREVENTIVO');
             $table->string('FACTURA');

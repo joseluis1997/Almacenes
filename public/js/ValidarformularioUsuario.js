@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 // esto es un objeto con varias propiedas
 const expresiones = {
-    CI: /^\d{1,7}$/, // 1 a 7 numeros.
+    CI: /^\d{1,9}$/, // 1 a 7 numeros.
 	NOMBRE: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
     APELLIDO: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
 	TELEFONO: /^\d{7,14}$/, // 7 a 14 numeros.
