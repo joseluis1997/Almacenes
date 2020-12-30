@@ -71,6 +71,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Funcion', 'permisos');
     }
 
+    public function suprPedidos(){
+
+        return $this->belongsToMany(\App\pedido::class,'SUPR_PEDIDO','COD_USUARIO','COD_PEDIDO');
+    }
     // funcion que me permite actulizar el password y la encripta
     // public function setPasswordAttribute($value)
     // {

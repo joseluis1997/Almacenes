@@ -1,14 +1,19 @@
- {{-- Grupo: Nombre partida --}}
-    <div class="formulario__grupo" id="grupo__nombreP">
-        <label for="nombreP" class="formulario__label"><b class="colorAste">*</b>Nombre Partida
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre Partida" data-content="Solo puede contener letras..">?</a>
+<!-- Grupo: Nombre de Partida Padre-->
+    <div class="formulario__grupo" id="grupo__PartidaPadre">
+        <label for="PartidaPadre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Selecciona Partida Padre&nbsp;&nbsp;
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area Padre" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="NOM_PARTIDA" id="nombreP" placeholder="Ingrese Nombre de la Nueva Partida...">
+              <select name="PARTIDA_PADRE" class="form-control" id="PartidaPadre" required>
+                @foreach ($partidas as $partida)
+                  <option value="{{ $partida->COD_PARTIDA }}">{{$partida->NRO_PARTIDA}} | {{$partida->NOM_PARTIDA}}</option>
+                @endforeach
+              </select>
+
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            El nombre de la nueva partida solo puede contener letras...
+            Solo puede contener letras por Ej:Direccion de Recursos Humanos...
         </p>
     </div>
 
@@ -25,6 +30,21 @@
             El numero de la nueva partida solo puede contener numero enteros positivos...
         </p>
     </div>
+
+ {{-- Grupo: Nombre partida --}}
+    <div class="formulario__grupo" id="grupo__nombreP">
+        <label for="nombreP" class="formulario__label"><b class="colorAste">*</b>Nombre Partida
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre Partida" data-content="Solo puede contener letras..">?</a>
+        </label>
+        <div class="formulario__grupo-input">
+            <input type="text" class="formulario__input" name="NOM_PARTIDA" id="nombreP" placeholder="Ingrese Nombre de la Nueva Partida...">
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
+        </div>
+        <p class="formulario__input-error">
+            El nombre de la nueva partida solo puede contener letras...
+        </p>
+    </div>
+
 {{-- Grupo: Boton Cancelar y Guardar --}}
     <div class="formulario__grupo formulario__btn-guardar text-center">
         <a href="{{route('list_partidas')}}" class="btn formulario__btn2">Cancelar</a>

@@ -4,7 +4,7 @@
   <div class="container">
     <div class="card fondoDT">
         <div class="card-header">
-            <div class="row">
+            <d1iv class="row">
                 <div class="col-md-11">
                     <h3 class="card-title"><b>Gestion Usuarios</b></h3> 
                 </div>
@@ -23,20 +23,20 @@
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-user-activos" role="tabpanel" aria-labelledby="nav-user-activos-tab" style="padding-top: 15px;">
                     <table id="dataAltas" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Cedula</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>telefono</th>
-                            <th>Usuario</th>
-                            <th>Rol</th>
-                            <th>Estado</th>
-                            <th>Ver</th>
-                            <th>Modificar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
+                        <thead>
+                            <tr>
+                                <th>Cedula</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>telefono</th>
+                                <th>Usuario</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Ver</th>
+                                <th>Modificar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
                     <tbody>
                         @foreach($datas as $user)
                             @if($user->ESTADO_USUARIO == 1)

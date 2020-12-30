@@ -17,9 +17,9 @@ class CreateSalidasTable extends Migration
             $table->bigIncrements('COD_SALIDA');
 
             $table->unsignedBigInteger('COD_PEDIDO');
-            $table->unsignedBigInteger('COD_ESTRUCTURA_G');
+            $table->unsignedBigInteger('COD_AREA');
 
-            $table->foreign('COD_ESTRUCTURA_G')->references('COD_ESTRUCTURA_G')->on('ESTRUCTURA_G')->onDelete('cascade');
+            $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
 
             $table->foreign('COD_PEDIDO')->references('COD_PEDIDO')->on('PEDIDOS')->onDelete('cascade');
 

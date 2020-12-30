@@ -13,12 +13,16 @@ class CreateEstructuraGsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ESTRUCTURA_G', function (Blueprint $table) {
-            $table->bigIncrements('COD_ESTRUCTURA_G');
-            $table->string('NOM_ESTRUCTURA_G',100)->unique();
-            $table->string('UBICACION');
-            $table->string('DESC_ESTRUCTURA_G')->nullable();
-            $table->boolean('ESTADO_ESTRUCTURA_G')->default(true);
+        Schema::create('AREAS', function (Blueprint $table) {
+            $table->bigIncrements('COD_AREA');
+
+            $table->unsignedBigInteger('AREA_PADRE')->nullable();
+            $table->foreign('AREA_PADRE')->references('COD_AREA')->on('AREAS');
+
+            $table->string('NOM_AREA');
+            $table->string('UBICACION_AREA')->nullable();
+            $table->text('DESC_AREA')->nullable();
+            $table->boolean('ESTADO_AREA')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateEstructuraGsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ESTRUCTURA_G');
+        Schema::dropIfExists('AREAS');
     }
 }

@@ -29,7 +29,8 @@ class PartidaController extends Controller
      */
     public function create()
     {
-        return view('admin.partida.crear');
+        $partidas = Partida::all()->where('ESTADO_PARTIDA', '=', 1);
+        return view('admin.partida.crear', compact('partidas'));
     }
 
     /**
@@ -63,10 +64,14 @@ class PartidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Partida $partida)
     {
-        $partida = Partida::findOrFail($id);
-        return view('admin.partida.editar',compact('partida'));
+        if ($partida->COD_PARTIDA == 1) {
+             abort(403, 'Acción no autorizada.');
+        }
+
+        $partidas = Partida::all()->where('ESTADO_PARTIDA', '=', 1)->where('COD_PARTIDA', '<>', $partida->COD_PARTIDA);
+        return view('admin.partida.editar', compact('partida', 'partidas'));
     }
 
     /**
@@ -100,11 +105,11 @@ class PartidaController extends Controller
     {
         $estado = true;
 
-        if ($partida->VALOR) {
+        if ($partida->ESTADO_PARTIDA) {
           $estado = false;
         }
 
-        $partida->VALOR = $estado;
+        $partida->ESTADO_PARTIDA = $estado;
         $partida->save();
         
         if ($estado) {

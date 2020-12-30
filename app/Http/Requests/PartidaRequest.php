@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PartidaRequest extends FormRequest
 {
@@ -23,9 +24,34 @@ class PartidaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'NOM_PARTIDA' => 'required|string|max:255',
-            'NRO_PARTIDA' => 'required|numeric',
+
+        switch ($this->method()) {
+        case 'GET':
+        case 'DELETE':
+            return [];
+
+        case 'POST': {
+            return [
+                'PARTIDA_PADRE' => [
+                    'sometimes',
+                    Rule::exists('PARTIDA', 'COD_PARTIDA')
+                ],
+                'NOM_PARTIDA' => 'required|string|max:255',
+                'NRO_PARTIDA' => 'required|numeric',
+                'PARTIDA_PADRE' => 'required',
             ];
+        }
+        case 'PUT': {
+            return [
+                'PARTIDA_PADRE' => [
+                    'sometimes',
+                    Rule::exists('PARTIDA', 'COD_PARTIDA')
+                ],
+                'PARTIDA_PADRE' => 'required',
+                // 'NRO_PARTIDA' => 'required|numeric',
+                'NOM_PARTIDA' => 'required|string|max:255',
+            ];
+            }
+        }
     }
 }

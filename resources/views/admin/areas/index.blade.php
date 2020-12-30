@@ -27,7 +27,7 @@
                         <tr>
                             <th>Identificador</th>
                             <th>Nombre</th>
-                            <th>Ubicacion</th>
+                            <th>Padre</th>
                             <th>Estado</th>
                             <th>Ver</th>
                             <th>Modificar</th>
@@ -38,15 +38,15 @@
                         @foreach($datas as $area)
                             @if($area->ESTADO_AREA == 1)
                             <tr>
-                                <td>{{ $area->COD_AREA}}</td>
-                                <td>{{ $area->NOM_AREA}}</td>
-                                <td>{{ $area->UBICACION}}</td>
-                                 <td>
-                                        @if($area->ESTADO_AREA)
-                                            <button type="button" class="btn btn-success navbar-btn">Activo</button>
-                                        @else
-                                             <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                        @endif
+                                <td>{{ $area->COD_AREA }}</td>
+                                <td>{{ $area->NOM_AREA }}</td>
+                                <td>{{ $area->AREA_PADRE }}</td>
+                                <td>
+                                    @if($area->ESTADO_AREA)
+                                        <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                    @else
+                                         <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{route('show_areas',$area->COD_AREA)}}" class="fas fa-eye fa-2x"></a>

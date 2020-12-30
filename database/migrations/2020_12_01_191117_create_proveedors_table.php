@@ -16,9 +16,9 @@ class CreateProveedorsTable extends Migration
         Schema::create('PROVEEDORES', function (Blueprint $table) {
             $table->bigIncrements('COD_PROVEEDOR');
             $table->bigInteger('NIT');
-            $table->string('NOM_PROVEEDOR',40);
-            $table->string('DIR_PROVEEDOR', 100);
-            $table->bigInteger('TELEF_PROVEEDOR');
+            $table->string('NOM_PROVEEDOR',255);
+            $table->string('DIR_PROVEEDOR', 255)->nullable();
+            $table->bigInteger('TELEF_PROVEEDOR')->nullable();
             $table->boolean('ESTADO_PROVEEDOR')->default(true);
             $table->timestamps();
         });

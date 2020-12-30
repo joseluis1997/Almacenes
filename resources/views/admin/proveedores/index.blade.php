@@ -26,33 +26,60 @@
                     <table id="dataAltas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Identificador</th>
+                                <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Modificar Area</th>
-                                <th>Eliminar Area</th>
+                                <th>Nit</th>
+                                <th>Direccion</th>
+                                <th>Telefono</th>
+                                <th>Estado</th>
+                                <th>Ver Proveedor</th>
+                                <th>Modificar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($ as $)
-                                @if($) --}}
+                            @foreach($proveedores as $proveedor)
+                                @if($proveedor->ESTADO_PROVEEDOR == 1)
                                     <tr>
-                                        <td>hola</td>
-                                        <td>hola</td>
-                                        <td>hola</td>
+                                        <td>{{ $proveedor->COD_PROVEEDOR }}</td>
+                                        <td>{{ $proveedor->NOM_PROVEEDOR }}</td>
+                                        <td>{{ $proveedor->NIT }}</td>
+                                        <td>{{ $proveedor->DIR_PROVEEDOR }}</td>
+                                        <td>{{ $proveedor->TELEF_PROVEEDOR }}</td>
+                                        <td>
+                                            @if($proveedor->ESTADO_PROVEEDOR)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                         <td>
+                                            <a href="{{route('show_proveedor',$proveedor->COD_PROVEEDOR)}}" class="fas fa-eye fa-2x"></a>
+                                         </td>
                                         <td>
                                             @can('modificar_usuarios')
-                                                <a href="{{ route ('edit_proveedor')}}" class="fas fa-edit fa-2x"></a>
-                                                    @endcan
+                                                <a href="{{ route ('edit_proveedor',$proveedor->COD_PROVEEDOR)}}" class="fas fa-edit fa-2x"></a>
+                                            @endcan
                                         </td>
-                                        <td>
-                                            @can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                                    @endcan
-                                        </td>
+                                        <td> 
+                                            <form action="{{route('destroy_proveedor', $proveedor->COD_PROVEEDOR)}}" onsubmit="submitForm(event, {{$proveedor->ESTADO_PROVEEDOR}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($proveedor->ESTADO_PROVEEDOR)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
+                                        </td> 
                                      </tr>
-                            {{--     @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                 </div>
@@ -61,29 +88,56 @@
                     <table id="dataBajas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Identificador</th>
+                                <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Modificar Area</th>
-                                <th>Eliminar Area</th>
+                                <th>Nit</th>
+                                <th>Direccion</th>
+                                <th>Telefono</th>
+                                <th>Estado</th>
+                                <th>Modificar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>hola</td>
-                                <td>hola</td>
-                                <td>hola</td>
-                                <td>
-                                    @can('modificar_usuarios')
-                                        <a href="{{ route ('edit_proveedor')}}" class="fas fa-edit fa-2x"></a>
+                            @foreach($proveedores as $proveedor)
+                                @if($proveedor->ESTADO_PROVEEDOR == 0)
+                                    <tr>
+                                        <td>{{ $proveedor->COD_PROVEEDOR }}</td>
+                                        <td>{{ $proveedor->NOM_PROVEEDOR }}</td>
+                                        <td>{{ $proveedor->NIT }}</td>
+                                        <td>{{ $proveedor->DIR_PROVEEDOR }}</td>
+                                        <td>{{ $proveedor->TELEF_PROVEEDOR }}</td>
+                                        <td>
+                                            @if($proveedor->ESTADO_PROVEEDOR)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @can('modificar_usuarios')
+                                                <a href="{{ route ('edit_proveedor',$proveedor->COD_PROVEEDOR)}}" class="fas fa-edit fa-2x"></a>
                                             @endcan
-                                </td>
-                                <td>
-                                    @can ('eliminar_usuarios')
-                                    <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
-                                </td>
-                             </tr>
+                                        </td>
+                                        <td> 
+                                            <form action="{{route('destroy_proveedor', $proveedor->COD_PROVEEDOR)}}" onsubmit="submitForm(event, {{$proveedor->ESTADO_PROVEEDOR}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($proveedor->ESTADO_PROVEEDOR)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
+                                        </td> 
+                                     </tr>
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                 </div>
@@ -116,9 +170,9 @@
         event.preventDefault();
         var r = null;
         if(estado == 1){
-          r = confirm("Acepta Desabilitar la partida Seleccionada");
+          r = confirm("Acepta Desabilitar el Proveedor Seleccionado");
         }else{
-          r = confirm("Acepta habilitar la partida Seleccionada");
+          r = confirm("Acepta habilitar el Proveedor Seleccionado");
         }
         if (r == true) {
           form.submit();

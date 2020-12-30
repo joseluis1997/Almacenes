@@ -6,14 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Partida extends Model
 {
-     protected $table = "PARTIDA";
+    protected $table = "PARTIDA";
 
-     protected $primaryKey = 'COD_PARTIDA';
+    protected $primaryKey = 'COD_PARTIDA';
 
-     protected $fillable = ['NOM_PARTIDA','PADRE','NRO_PARTIDA','VALOR'];
+    protected $fillable = ['NOM_PARTIDA','NRO_PARTIDA','ESTADO_PARTIDA','PARTIDA_PADRE'];
+	public $timestamps = false;
 
-    public function Articulos()
+	public function Articulos()
     {
-        return $this->hasMany(\App\Articulo::class);
+        return $this->hasMany(\App\Articulo::class,'FK_COD_PARTIDA','COD_PARTIDA');
     }
+
+    public function PartidaPadre() {
+
+    	return $this->belongsTo(\App\Partida::class, 'PARTIDA_PADRE', 'COD_PARTIDA');
+ 	}
 }

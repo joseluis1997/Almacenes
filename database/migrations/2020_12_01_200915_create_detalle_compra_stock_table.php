@@ -14,7 +14,7 @@ class CreateDetalleCompraStockTable extends Migration
     public function up()
     {
         Schema::create('DETALLE_COMPRA_STOCK', function (Blueprint $table) {
-            $table->bigIncrements('COD_DET_COMPRA_STOCK');
+            // $table->bigIncrements('COD_DET_COMPRA_STOCK');
 
             $table->unsignedBigInteger('COD_COMPRA_STOCK');
             $table->unsignedBigInteger('COD_ARTICULO');
@@ -23,9 +23,9 @@ class CreateDetalleCompraStockTable extends Migration
 
             $table->foreign('COD_ARTICULO')->references('COD_ARTICULO')->on('ARTICULO')->onDelete('cascade');
 
-            $table->decimal('PRECIO_UNITARIO', 8, 2);
             $table->integer('CANTIDAD');
-            $table->integer('CANT_DISPONIBLE');
+            $table->decimal('PRECIO_UNITARIO', 8, 2);
+            // $table->integer('TOTAL');
             $table->boolean('ESTADO_DETALLE')->default(true);
 
             $table->timestamps();

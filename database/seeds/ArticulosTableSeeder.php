@@ -49,14 +49,14 @@ class ArticulosTableSeeder extends Seeder
 
         Articulo::create([
             'COD_PARTIDA' => 1,
-            'COD_MEDIDA' => 1,
-            'ITEM'=>3110,
+            'FK_COD_MEDIDA' => 1,
+            // 'ITEM'=>3110,
             'NOM_ARTICULO' =>'Te en bolsitas',
             'DESC_ARTICULO' =>'te en bolsitas de canela de sopar',
             'CANT_ACTUAL' => 20,
-            'CANT_MINIMA' => 10,
-            'UBICACION' => 'Recuros Humanos',
-            'TIPO' => 'Productos de Urgencias',
+            // 'CANT_MINIMA' => 10,
+            // 'UBICACION' => 'Recuros Humanos',
+            // 'TIPO' => 'Productos de Urgencias',
         ]);
     }
 }

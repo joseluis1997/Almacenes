@@ -31,8 +31,8 @@ class PartidasTableSeeder extends Seeder
         // }
 
         Partida::create([
-            'NOM_PARTIDA' => 'Desayuno escolar',
-            'NRO_PARTIDA' => 31110,
+            'NOM_PARTIDA' => 'MATERIALES Y SUMINISTROS',
+            'NRO_PARTIDA' => 30000,
         ]);
     }
 }

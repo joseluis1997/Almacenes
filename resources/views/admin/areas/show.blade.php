@@ -7,19 +7,21 @@
     <div class="card mt-2">
         <div class="card-body">
             <div class="panel-body">
-                <strong> Nombre:</strong>                                       
-                    <span class="badge badge-info">{{ $show->COD_AREA }}</span><br><br>
-                <strong>Descripcion:</strong> 
+                <strong>codigo Area:</strong>                                       
+                    <span class="badge badge-info">{{ $show->COD_AREA }}</span><br>
+                <strong>Nombre area:</strong> 
                     <span class="badge badge-info">{{ $show->NOM_AREA }}</span><br>
-                    <strong>Descripcion:</strong> 
-                <span class="badge badge-info">{{ $show->UBICACION }}</span><br>
+                <strong>Area Padre:</strong> 
+                    <span class="badge badge-info">{{ $show->NOM_AREA }}</span><br>
+                <strong>Ubicacion area:</strong> 
+                    <span class="badge badge-info">{{ $show->UBICACION_AREA }}</span><br>
                 <strong>Descripcion:</strong> 
                     <span class="badge badge-info">{{ $show->DESC_AREA }}</span><br>
-                    <strong>Descripcion:</strong> 
+                <strong>Estado Area:</strong>
                     <span class="badge badge-info">{{ $show->ESTADO_AREA }}</span><br>
-                    <strong>hora y fecha de creacion:</strong> 
+                <strong>hora y fecha de creacion:</strong> 
                     <span class="badge badge-info">{{ $show->created_at }}</span><br>
-                    <strong>hora y fecha de Modifacion:</strong> 
+                <strong>hora y fecha de Modifacion:</strong> 
                     <span class="badge badge-info">{{ $show->updated_at }}</span><br>
             </div><br>
         </div>

@@ -20,6 +20,6 @@ class Medida extends Model
 
     public function Articulos()
     {
-        return $this->hasMany(\App\Articulo::class);
+        return $this->hasMany(\App\Articulo::class,'FK_COD_MEDIDA','COD_MEDIDA');
     }
 }

@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\compra_stock;
+use App\Articulo;
+use DB;
+use App\Http\Requests\CompraStockAlmacenRequest;
+use Illuminate\Support\Collection;
 
 class StockAlmacenController extends Controller
 {
@@ -14,8 +19,16 @@ class StockAlmacenController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.StockAlmacen.index');
+        // $compras= compra_stock::all();
+
+        $compras = compra_stock::leftJoin(DB::raw('(SELECT COD_COMPRA_STOCK, SUM(CANTIDAD*PRECIO_UNITARIO) as total FROM DETALLE_COMPRA_STOCK GROUP BY COD_COMPRA_STOCK) AS detalle'), function ($join) {
+            $join->on('detalle.COD_COMPRA_STOCK', '=', 'COMPRA_STOCKS.COD_COMPRA_STOCK');
+        })
+    // ->select('COD_COMPRA_STOCK','COD_AREA','total')
+    ->get();
+    // dd($total);
+
+        return view('admin.StockAlmacen.index',compact('compras'));
     }
 
     /**
@@ -25,7 +38,10 @@ class StockAlmacenController extends Controller
      */
     public function create()
     {
-        return view('admin.StockAlmacen.crear');
+        $proveedores = DB::table('PROVEEDORES')->where('ESTADO_PROVEEDOR','=','1')->get();
+        $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
+        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        return view('admin.StockAlmacen.crear',compact('proveedores','areas','Articulos'));
     }
 
     /**
@@ -34,9 +50,45 @@ class StockAlmacenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompraStockAlmacenRequest $compra_request)
     {
-        //
+        try{
+            DB::beginTransaction();
+
+            $compra = new compra_stock;
+            $compra->COD_COMPRA_STOCK = $compra_request->get('COD_COMPRA_STOCK');
+            $compra->COD_AREA = $compra_request->get('COD_AREA');
+            $compra->NRO_ORD_COMPRA = $compra_request->get('NRO_ORD_COMPRA');
+            $compra->NRO_PREVENTIVO = $compra_request->get('NRO_PREVENTIVO');
+            $compra->FACTURA = $compra_request->get('FACTURA');
+            $compra->FECHA = $compra_request->get('FECHA');
+            $compra->DETALLE_COMPRA = $compra_request->get('DETALLE_COMPRA');
+            $compra->save();
+
+            $articulos_sync = array();
+            $articulos = $compra_request->input("articulos");
+
+            if($articulos == null){
+              $articulos = array();
+            }
+            foreach ($articulos as $key => $value) {
+                error_log($value);
+              $articulos_sync[$value] = array(
+                            'CANTIDAD' => $compra_request->input('cantidad_'.$value)
+                            ,'PRECIO_UNITARIO' => ($compra_request->input('precio_'.$value))
+                        );
+            }
+       
+            $compra->Articulos()->sync($articulos_sync);
+            DB::commit();
+
+            return redirect()->route('list_almacen')->with('message', ['success', 'Compra Stock Agregado Correctamente']);
+        }catch(\Exception $e){
+            error_log($e->getMessage());
+            DB::rollback();
+            return redirect()->route('list_almacen')->with('message', ['danger', 'Error al  Agregar Compra Stock']);
+        }
+        // return $compra->COD_COMPRA_STOCK;
     }
 
     /**

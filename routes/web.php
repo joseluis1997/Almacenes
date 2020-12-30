@@ -10,11 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// pruebas
+
+// Route::get('/', function(){
+
+// 	$Articulo = App\Articulo::findOrFail(5);
+// 	dd($Articulo->Medida);
+//     return $partida->Articulos;
+	
+// });
+
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
 Route::get('/', function () {
+	// $medida = App\Articulo::findOrFail(1);
+	// return $medida->Medida;
     return redirect('/seguridad/login');
 });
 
@@ -110,7 +122,7 @@ Route::group(['prefix' => 'partidas', 'namespace' => 'Admin', 'middleware' => ['
 	->middleware(sprintf("autorizacion:%s", "crear_partidas"))
 	->name('store_partidas');
 
-	Route::get('/{id}/edit', 'PartidaController@edit')
+	Route::get('/{partida}/edit', 'PartidaController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_partidas"))
 	->name('edit_partidas');
 
@@ -144,6 +156,10 @@ Route::group(['prefix' => 'articulos', 'namespace' => 'Admin', 'middleware' => [
 	Route::post('/store', 'ArticuloController@store')
 	->middleware(sprintf("autorizacion:%s", "crear_articulos"))
 	->name('store_articulos');
+
+	Route::get('/{id}', 'ArticuloController@show')
+	->middleware(sprintf("autorizacion:%s", "Mostrar_articulos"))
+	->name('show_articulo');
 
 	Route::get('/{articulo}/edit', 'ArticuloController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_articulos"))
@@ -245,19 +261,22 @@ Route::group(['prefix' => 'proveedores', 'namespace' => 'Admin', 'middleware' =>
 	->middleware(sprintf("autorizacion:%s", "crear_proveedores"))
 	->name('store_proveedor');
 
-	Route::get('/edit', 'ProveedoresController@edit')
+	Route::get('/{id}/edit', 'ProveedoresController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_proveedores"))
 	->name('edit_proveedor');
+
+	Route::get('/{id}', 'ProveedoresController@show')->middleware(sprintf("autorizacion:%s", "Mostrar_Proveedores"))
+	->name('show_proveedor');
 
 	Route::put('/{proveedor}/update', 'ProveedoresController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_proveedores"))
 	->name('update_proveedor');
 
-	Route::get('/{id}/destroy','ProveedoresController@destroy')
-	->middleware(sprintf("autorizacion:%s", "eliminar_proveedores"))
-	->name('destroy_proveedor');
+	// Route::get('/{id}/destroy','ProveedoresController@destroy')
+	// ->middleware(sprintf("autorizacion:%s", "eliminar_proveedores"))
+	// ->name('destroy_proveedor');
 
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
+	Route::delete('/{proveedor}/destroy', 'ProveedoresController@changeStatus')->name('destroy_proveedor');
 
 	// Route::get('/', 'PermissionController@index')->name('permisos');
 });

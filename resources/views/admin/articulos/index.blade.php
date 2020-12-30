@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3 class="card-title"><b>Gestionar Articulos</b></h3> 
+                    <h3 class="card-title"><b>Gestion Articulos</b></h3> 
                 </div>
                 <div class="col-md-2">
                     <a href="{{route('create_articulos')}}" class="btn btn-primary">Nuevo Articulo</a>
@@ -23,15 +23,17 @@
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table unidades de medidas habilitados --}}
                 <div class="tab-pane fade show active" id="nav-articulo-activos" role="tabpanel" aria-labelledby=" nav-articulo-activos-tab" style="padding-top: 15px;">
-                    <table id="dataAltas" class="table table-striped table-bordered" style="width:100%">
+                    <table id="dataAltas" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                               <th>#</th>
-                               <th>Item</th>
+                               <th>Codigo</th>
                                <th>Nombre</th>
-                               <th>Ubicacion</th>
                                <th>Cantidad Actual</th>
-                               {{-- <th>Acciones</th> --}}
+                               <th>Unidad de Medidas</th>
+                               <th>Estado</th>
+                               <th>Ver Articulo</th>
+                               <th>Modificar Articulo</th>
+                               <th>Deshabilitar Articulo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,10 +41,40 @@
                                 @if($articulo->ESTADO_ARTICULO == 1 )
                                     <tr>
                                         <td>{{ $articulo->COD_ARTICULO }}</td>
-                                        <td>{{ $articulo->ITEM }}</td>
                                         <td>{{ $articulo->NOM_ARTICULO }}</td>
-                                        <td>{{ $articulo->UBICACION }}</td>
                                         <td>{{ $articulo->CANT_ACTUAL }}</td>
+                                        <td>{{ $articulo->Medida->NOM_MEDIDA }}</td>
+                                        <td>
+                                            @if($articulo->ESTADO_ARTICULO)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
+                                        </td>
+                                        <td>
+                                          @can('modificar_articulos')
+                                            <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
+                                          @endcan
+                                        </td>
+                                        <td> 
+                                          <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
+                                              @method('DELETE')
+                                              @csrf
+                                              @if($articulo->ESTADO_ARTICULO)
+                                                <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                  Deshabilitar
+                                                </button>
+                                              @else
+                                                <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                  Habilitar
+                                                </button>
+
+                                              @endif
+                                          </form>
+                                        </td>
                                     </tr>
                                 @endif
                            @endforeach     
@@ -54,12 +86,14 @@
                     <table id="dataBajas" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                               <th>#</th>
-                               <th>Item</th>
-                               <th>Nombre</th>
-                               <th>Ubicacion</th>
-                               <th>Cantidad Actual</th>
-                               {{-- <th>Acciones</th> --}}
+                              <th>Codigo</th>
+                              <th>Nombre</th>
+                              <th>Cantidad Actual</th>
+                              <th>Unidad de Medidas</th>
+                              <th>Estado</th>
+                              <th>Ver Articulo</th>
+                              <th>Modificar Articulo</th>
+                              <th>Deshabilitar Articulo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,10 +101,40 @@
                                 @if($articulo->ESTADO_ARTICULO == 0 )
                                     <tr>
                                         <td>{{ $articulo->COD_ARTICULO }}</td>
-                                        <td>{{ $articulo->ITEM }}</td>
                                         <td>{{ $articulo->NOM_ARTICULO }}</td>
-                                        <td>{{ $articulo->UBICACION }}</td>
                                         <td>{{ $articulo->CANT_ACTUAL }}</td>
+                                        <td>{{ $articulo->Medida->NOM_MEDIDA }}</td>
+                                        <td>
+                                            @if($articulo->ESTADO_ARTICULO)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
+                                        </td>
+                                        <td>
+                                          @can('modificar_articulos')
+                                            <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
+                                          @endcan
+                                        </td>
+                                        <td> 
+                                          <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
+                                              @method('DELETE')
+                                              @csrf
+                                              @if($articulo->ESTADO_ARTICULO)
+                                                <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                  Deshabilitar
+                                                </button>
+                                              @else
+                                                <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                  Habilitar
+                                                </button>
+
+                                              @endif
+                                          </form>
+                                        </td>
                                     </tr>
                                 @endif
                            @endforeach     
@@ -115,14 +179,15 @@
     }
 
 
-   function eliminar(event) {
-        var r = confirm("Acepta elminar el Articulo Seleccionado?");
-        if (r == true) {
+   // function eliminar(event) {
+   //      var r = confirm("Acepta elminar el Articulo Seleccionado?");
+   //      if (r == true) {
 
-        } 
-        else{
-             event.preventDefault();
-        }
-    }
+   //      } 
+   //      else{
+   //           event.preventDefault();
+   //      }
+   //  }
     </script>
 @endsection
+

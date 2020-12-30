@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AreaRequest extends FormRequest
 {
@@ -23,10 +24,33 @@ class AreaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'NOM_AREA' => 'required|string',
-            'UBICACION' =>'sometimes',
-            'DESC_AREA' => 'sometimes',
-        ];
+
+        switch ($this->method()) {
+        case 'GET':
+        case 'DELETE':
+            return [];
+        case 'POST': {
+            return [
+                'AREA_PADRE' => [
+                    'sometimes',
+                    Rule::exists('AREAS', 'COD_AREA')
+                ],
+                'NOM_AREA' => 'required|min:4',
+                'UBICACION_AREA' => 'sometimes',
+                'DESC_AREA' => 'sometimes'
+            ];
+        }
+        case 'PUT': {
+            return [
+                'AREA_PADRE' => [
+                    'sometimes',
+                    Rule::exists('AREAS', 'COD_AREA')
+                ],
+                'UBICACION_AREA' => 'sometimes',
+                'DESC_AREA' => 'sometimes'
+            ];
+            }
+        }
     }
+
 }

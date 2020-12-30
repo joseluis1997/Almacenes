@@ -1,10 +1,11 @@
+{{ $errors}}}
 <!-- Grupo: Nit Proveedor -->
             <div class="formulario__grupo" id="grupo__nit">
                 <label for="nit" class="formulario__label"><b class="colorAste">*</b>&nbsp;NIT:&nbsp;&nbsp;
                     <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de NIT" data-content="Solo puede contener numeros enteros positivos por Ej:9014586527">?</a>
                 </label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="nit" placeholder="numero de NIT">
+                    <input type="text" class="formulario__input" name="NIT" id="nit" placeholder="numero de NIT">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
@@ -17,7 +18,7 @@
                     <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de la Empresa" data-content="Solo puede contener letras por Ej: INPROL...">?</a>
                 </label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="nombre" placeholder="Nombre de la Empresa">
+                    <input type="text" class="formulario__input" name="NOM_PROVEEDOR" id="nombre" placeholder="Nombre de la Empresa">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
@@ -30,7 +31,7 @@
                     <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Contacto" data-content="Solo puede contener numeros enteros positivos por Ej:75389565">?</a>
                 </label>
                 <div class="formulario__grupo-input">
-                    <input type="tel" class="formulario__input" name="#" id="telefono" placeholder="(Código de área) Número">
+                    <input type="tel" class="formulario__input" name="TELEF_PROVEEDOR" id="telefono" placeholder="(Código de área) Número">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
@@ -43,7 +44,7 @@
                     <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Direccion del Proveedor" data-content="Solo puede contener letras por Ej: B/contructor">?</a>
                 </label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="direccion" placeholder="Direccion de la Empresa...">
+                    <input type="text" class="formulario__input" name="DIR_PROVEEDOR" id="direccion" placeholder="Direccion de la Empresa...">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">

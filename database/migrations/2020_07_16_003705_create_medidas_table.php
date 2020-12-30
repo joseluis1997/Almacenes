@@ -15,7 +15,7 @@ class CreateMedidasTable extends Migration
     {
         Schema::create('MEDIDA', function (Blueprint $table) {
             $table->bigIncrements('COD_MEDIDA');
-            $table->string('NOM_MEDIDA',50);
+            $table->string('NOM_MEDIDA');
             $table->text('DESC_MEDIDA');
             $table->boolean('ESTADO_MEDIDA')->default(true);
             $table->timestamps();

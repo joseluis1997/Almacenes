@@ -27,7 +27,8 @@ class AreaController extends Controller
      */
     public function create()
     {
-        return view('admin.areas.crear');
+        $areas = Area::all()->where('ESTADO_AREA', '=', 1);
+        return view('admin.areas.crear', compact('areas'));
     }
 
     /**
@@ -68,7 +69,13 @@ class AreaController extends Controller
      */
     public function edit(Area $area)
     {
-        return view('admin.areas.editar', compact('area'));
+        if ($area->COD_AREA == 1) {
+             abort(403, 'Acción no autorizada.');
+        }
+
+        $areas = Area::all()->where('ESTADO_AREA', '=', 1)->where('COD_AREA', '<>', $area->COD_AREA);
+        return view('admin.areas.editar', compact('area', 'areas'));
+
     }
 
     /**
@@ -81,6 +88,10 @@ class AreaController extends Controller
     public function update(AreaRequest $area_request, Area $area)
     {
         try {
+            if ($area->COD_AREA == 1) {
+              abort(403, 'Acción no autorizada.');
+            }
+            
             $area->fill($area_request->input())->save();
             return redirect()->route('list_areas')->with('message', ['success', 'Area modificada correctamente!']);
         } catch (\Illuminate\Database\QueryException $e) {

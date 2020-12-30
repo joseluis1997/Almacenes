@@ -15,10 +15,13 @@ class CreatePartidasTable extends Migration
     {
         Schema::create('PARTIDA', function (Blueprint $table) {
             $table->bigIncrements('COD_PARTIDA');
-            $table->string('PADRE')->nullable();
+
+            $table->unsignedBigInteger('PARTIDA_PADRE')->nullable();
+            $table->foreign('PARTIDA_PADRE')->references('COD_PARTIDA')->on('PARTIDA')->onDelete('cascade');
+
             $table->string('NOM_PARTIDA')->unique();
-            $table->string('NRO_PARTIDA');
-            $table->boolean('VALOR')->default(true);
+            $table->string('NRO_PARTIDA')->unique();
+            $table->boolean('ESTADO_PARTIDA')->default(true);
             $table->timestamps();
         });
     }

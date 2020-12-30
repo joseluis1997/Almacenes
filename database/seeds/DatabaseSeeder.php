@@ -22,11 +22,19 @@ class DatabaseSeeder extends Seeder
     //        'password' => Hash::make('pass123')
     //     ]);
     // $users = factory(App\User::class, 10)->create();
+        factory(\App\Area::class, 1)->create([
+              'NOM_AREA' => 'GOBIERNO AUTÓNOMO DEPARTAMENTAL DE TARIJA'
+            ]);
+
+        // factory(\App\Partida::class, 1)->create([
+        //       'NOM_PARTIDA' => 'MATERIALES Y SUMINISTROS',
+        //       'NRO_PARTIDA' => 30000,
+        //     ]);
 
         $this->call(RolesAndPermissions::class);
         $this->call(UsersTableSeeder::class);
         $this->call(PartidasTableSeeder::class);
         $this->call(MedidasTableSeeder::class);
-        $this->call(ArticulosTableSeeder::class);
+        // $this->call(ArticulosTableSeeder::class);
 	}
 }

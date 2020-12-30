@@ -1,10 +1,35 @@
+<!-- Grupo: Nombre de Area Padre -->
+    <div class="formulario__grupo" id="grupo__AreaPadre">
+        <label for="AreaPadre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Selecciona Area Padre&nbsp;&nbsp;
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area Padre" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
+        </label>
+        <div class="formulario__grupo-input">
+               <select name="AREA_PADRE" class="form-control" id="AreaPadre" >
+                @if($area->AREA_PADRE)
+                  @foreach ($areas as $ar)
+                    @if($ar->COD_AREA == $area->AREA_PADRE)
+                      <option value="{{ $ar->COD_AREA }}" selected="">{{$ar->NOM_AREA}}</option>
+                    @else
+                      <option value="{{ $ar->COD_AREA }}">{{$ar->NOM_AREA}}</option>
+                    @endif
+                  @endforeach
+                @endif 
+              </select>
+
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
+        </div>
+        <p class="formulario__input-error">
+            Solo puede contener letras por Ej:Direccion de Recursos Humanos...
+        </p>
+    </div>
+
 <!-- Grupo: Nombre de Area -->
     <div class="formulario__grupo" id="grupo__nombre">
         <label for="nombre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Nombre de Area&nbsp;&nbsp;
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="NOM_AREA" value="{{$area->NOM_AREA}}" id="nombre" placeholder="Nombre Area">
+            <input disabled  type="text" class="formulario__input" name="NOM_AREA" value="{{$area->NOM_AREA}}" id="nombre" placeholder="Nombre Area">
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
@@ -17,7 +42,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Ubicacion de Area" data-content="Solo puede contener letras por Ej:B/Constructor...">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="UBICACION" id="identificador" placeholder="Direccion de la Area" value="{{$area->UBICACION}}">
+            <input type="text" class="formulario__input" name="UBICACION_AREA" id="identificador" placeholder="Direccion de la Area" value="{{$area->UBICACION}}">
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">

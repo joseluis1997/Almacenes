@@ -28,36 +28,48 @@
                             <tr>
                                 <th>Codigo</th>
                                 <th>Fecha</th>
-                                <th>Preventivo</th>
                                 <th>Orden Compra Stock</th>
-                                <th>Unidad Solicitante</th>
                                 <th>Preventivo</th>
+                                <th>Area Solicitante</th>
+                                <th>Estado</th>
+                                <th>Total</th>
                                 <th>Imprimir Compra</th>
                                 <th>Modificar Compra</th>
                                 <th>Eliminar Area</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="#" class="fas fa-print fa-2x"></a>
-                                </td>
-                                <td>
-                                    @can('modificar_usuarios')
-                                    <a href="{{ route ('edit_almacen')}}" class="fas fa-edit fa-2x"></a>
-                                    @endcan
-                                </td>
-                                <td>@can ('eliminar_usuarios')
-                                    <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                    @endcan
-                                </td>
-                            </tr>
+                            @foreach($compras as $compra)
+                                @if($compra->ESTADO_COMPRA == 1 )
+                                    <tr>
+                                        <td>{{ $compra->COD_COMPRA_STOCK }}</td>
+                                        <td>{{ $compra->FECHA }}</td>
+                                        <td>{{ $compra->NRO_ORD_COMPRA }}</td>
+                                        <td>{{ $compra->NRO_PREVENTIVO }}</td>
+                                        <td>{{ $compra->Area->NOM_AREA}}</td>
+                                        <td>
+                                            @if($compra->ESTADO_COMPRA)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>{{ $compra->total }}bs</td>
+                                        <td>
+                                            <a href="#" class="fas fa-print fa-2x"></a>
+                                        </td>
+                                        <td>
+                                            @can('modificar_usuarios')
+                                            <a href="{{ route ('edit_almacen')}}" class="fas fa-edit fa-2x"></a>
+                                            @endcan
+                                        </td>
+                                        <td>@can ('eliminar_usuarios')
+                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
+                                            @endcan
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach 
                         </tbody>
                     </table> 
                 </div>

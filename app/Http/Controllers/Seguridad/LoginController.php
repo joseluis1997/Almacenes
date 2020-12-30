@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Seguridad;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -22,6 +23,15 @@ class LoginController extends Controller
     {
          // dd("asd");
     	return view('seguridad.index');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        // dd($user);
+        if ($user->ESTADO_USUARIO == 0 ) {
+            Auth::logout();
+            abort(403, 'Cuenta suspendida por el administrador.');
+        }
     }
 
     public function username()

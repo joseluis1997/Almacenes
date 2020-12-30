@@ -12,7 +12,7 @@
         </div>
         <div class="card mt-2">
         <div class="card-body">    
-            <form action="#" id="form-general" class="formulario" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update_proveedor',$proveedor->COD_PROVEEDOR)}}" id="form-general" class="formulario" method="POST" enctype="multipart/form-data">
              @csrf @method("put")
 
                 @include('admin.proveedores.formEditar')

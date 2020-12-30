@@ -11,7 +11,7 @@
 	        	Codigo:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $partidas->COD_PARTIDA }}</span><br>
                 Nombre:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $partidas->NOM_PARTIDA }}</span><br>
                 Numero de Partida:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $partidas->NRO_PARTIDA }}</span><br>
-                Estado Partida:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $partidas->VALOR }}</span><br>
+                Estado Partida:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $partidas->ESTADO_PARTIDA }}</span><br>
             </div>
         </div>
 

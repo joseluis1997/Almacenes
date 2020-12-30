@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProveedorRequest;
 use App\Http\Controllers\Controller;
+use App\proveedor;
+use DB;
 use Illuminate\Http\Request;
 
 class ProveedoresController extends Controller
@@ -15,7 +18,8 @@ class ProveedoresController extends Controller
     public function index()
     {
         //
-        return view('admin.proveedores.index');
+        $proveedores = DB::table('PROVEEDORES')->get();
+        return view('admin.proveedores.index',compact('proveedores'));
     }
 
     /**
@@ -34,9 +38,11 @@ class ProveedoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProveedorRequest $request)
     {
-        //
+        $proveedor = $request->all();
+        proveedor::create($proveedor);
+        return redirect()->route('list_proveedores')->with('message', ['success', 'Proveedor Registrado Correctamente!']);
     }
 
     /**
@@ -47,7 +53,8 @@ class ProveedoresController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_proveedor = proveedor::find($id);
+        return view('admin.proveedores.show',['show_proveedor' => $show_proveedor]);
     }
 
     /**
@@ -56,9 +63,10 @@ class ProveedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.proveedores.editar');
+        $proveedor = proveedor::findOrFail($id);
+        return view('admin.proveedores.editar', compact('proveedor'));
     }
 
     /**
@@ -68,9 +76,29 @@ class ProveedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProveedorRequest $request, proveedor $proveedor)
     {
-        //
+        $proveedor->update($request->validated());
+        
+        return redirect()->route('list_proveedores')->with('message',['success','Proveedor Actualizado Correctamente!!']);
+    }
+
+    public function changeStatus(proveedor $proveedor)
+    {
+        $estado = true;
+
+        if ($proveedor->ESTADO_PROVEEDOR) {
+          $estado = false;
+        }
+
+        $proveedor->ESTADO_PROVEEDOR = $estado;
+        $proveedor->save();
+
+        if ($estado) {
+          return redirect()->route('list_proveedores')->with('message', ['success', 'Proveedor habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_proveedores')->with('message', ['success', 'Proveedor Desabilitado Correctamente!']);
+        }
     }
 
     /**

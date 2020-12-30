@@ -1,3 +1,22 @@
+<!-- Grupo: Nombre de Area Padre-->
+    <div class="formulario__grupo" id="grupo__AreaPadre">
+        <label for="AreaPadre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Selecciona Area Padre&nbsp;&nbsp;
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area Padre" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
+        </label>
+        <div class="formulario__grupo-input">
+              <select name="AREA_PADRE" class="form-control" id="AreaPadre" required>
+                @foreach ($areas as $area)
+                  <option value="{{ $area->COD_AREA }}">{{ $area->NOM_AREA }}</option>
+                @endforeach
+              </select>
+
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
+        </div>
+        <p class="formulario__input-error">
+            Solo puede contener letras por Ej:Direccion de Recursos Humanos...
+        </p>
+    </div>
+
 <!-- Grupo: Nombre de Area -->
     <div class="formulario__grupo" id="grupo__nombre">
         <label for="nombre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Nombre de Area&nbsp;&nbsp;
@@ -11,21 +30,21 @@
             Solo puede contener letras por Ej:Direccion de Recursos Humanos...
         </p>
     </div>
+
 <!-- Grupo: Ubicacion de Area -->
     <div class="formulario__grupo" id="grupo__ubicacion">
         <label for="ubicacion" class="formulario__label"><b class="colorAste">*</b>&nbsp;Ubicacion de Area&nbsp;&nbsp;
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Ubicacion de Area" data-content="Solo puede contener letras por Ej:B/Constructor...">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="UBICACION" id="identificador" placeholder="Direccion de la Area">
+            <input type="text" class="formulario__input" name="UBICACION_AREA" id="identificador" placeholder="Direccion de la Area">
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
             Solo puede contener letras por Ej:B/Constructor...
         </p>
     </div>
-
-            
+ 
 <!-- Grupo: Descripcion -->
     <div class="formulario__grupo" id="grupo__descripcion">
         <label for="descripcion" class="formulario__label"><b class="colorAste">*</b>&nbsp;Descripcion de Area&nbsp;&nbsp;
@@ -57,3 +76,5 @@
         <a href="{{route('list_areas')}}" class="btn formulario__btn2">Cancelar</a>
         <button type="submit" class="formulario__btn1">Guardar</button>
     </div>
+
+

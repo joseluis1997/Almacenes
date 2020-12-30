@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rule;
+
 class ArticuloRequest extends FormRequest
 {
     /**
@@ -23,13 +25,27 @@ class ArticuloRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'COD_PARTIDA' => 'required',
-            'COD_MEDIDA' =>'required',
-            'NOM_ARTICULO' => 'required|string',
-            'DESC_ARTICULO' => 'required|string',
-            'CANT_MINIMA' => 'required',
-            'UBICACION' => 'required|string',
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE':
+                return [];
+            case 'POST':
+                return [
+                    'FK_COD_PARTIDA' => 'required',
+                    'FK_COD_MEDIDA' =>'required',
+                    'NOM_ARTICULO' => 'required|string|max:50',
+                    'DESC_ARTICULO' => 'max:512',
+                    'CANT_ACTUAL' => 'required|numeric',
+                ];
+            case 'PUT':
+                return [
+                    'FK_COD_PARTIDA' => 'required',
+                    'FK_COD_MEDIDA' =>'required',
+                    'NOM_ARTICULO' => 'required|string|max:50',
+                    'DESC_ARTICULO' => 'sometimes|max:512',
+                    'CANT_ACTUAL' => 'required',
+                ];
+        }
+
     }
 }

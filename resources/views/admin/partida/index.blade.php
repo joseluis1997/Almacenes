@@ -38,14 +38,14 @@
                         </thead>
                         <tbody>
                             @foreach($partidas as $partida)
-                                @if($partida->VALOR == 1)
+                                @if($partida->ESTADO_PARTIDA == 1)
                                     <tr>
                                         <td>{{$partida->COD_PARTIDA}}</td>
                                         <td>{{$partida->NOM_PARTIDA}}</td>
                                         <td>{{$partida->NRO_PARTIDA}}</td>
                                         <td>{{$partida->created_at}}</td>
                                         <td>
-                                            @if($partida->VALOR)
+                                            @if($partida->ESTADO_PARTIDA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
                                             @else
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
@@ -58,10 +58,10 @@
                                            <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
                                         </td>
                                         <td>
-                                            <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->VALOR}}, this)" method="POST">
+                                            <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->ESTADO_PARTIDA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                @if($partida->VALOR)
+                                                @if($partida->ESTADO_PARTIDA)
                                                   <button type="submit" class="btn-sm btn btn-outline-danger w-100">
                                                     Deshabilitar
                                                   </button>
@@ -99,14 +99,14 @@
                         </thead>
                         <tbody>
                             @foreach($partidas as $partida)
-                                @if($partida->VALOR == 0)
+                                @if($partida->ESTADO_PARTIDA == 0)
                                     <tr>
                                         <td>{{$partida->COD_PARTIDA}}</td>
                                         <td>{{$partida->NOM_PARTIDA}}</td>
                                         <td>{{$partida->NRO_PARTIDA}}</td>
                                         <td>{{$partida->created_at}}</td>
                                         <td>
-                                            @if($partida->VALOR)
+                                            @if($partida->ESTADO_PARTIDA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
                                             @else
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
@@ -119,10 +119,10 @@
                                            <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
                                         </td>
                                         <td>
-                                            <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->VALOR}}, this)" method="POST">
+                                            <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->ESTADO_PARTIDA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                @if($partida->VALOR)
+                                                @if($partida->ESTADO_PARTIDA)
                                                   <button type="submit" class="btn-sm btn btn-outline-danger w-100">
                                                     Deshabilitar
                                                   </button>

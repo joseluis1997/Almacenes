@@ -16,9 +16,9 @@ class CreatePedidosTable extends Migration
         Schema::create('PEDIDOS', function (Blueprint $table) {
             $table->bigIncrements('COD_PEDIDO');
             
-            $table->unsignedBigInteger('COD_ESTRUCTURA_G')->unique();
+            $table->unsignedBigInteger('COD_AREA')->unique();
 
-            $table->foreign('COD_ESTRUCTURA_G')->references('COD_ESTRUCTURA_G')->on('ESTRUCTURA_G')->onDelete('cascade');
+            $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
             
             $table->string('DETALLE_PEDIDO');
             $table->string('NOTA');
