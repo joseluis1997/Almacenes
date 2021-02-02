@@ -39,7 +39,6 @@ class AreaController extends Controller
       */
     public function store(AreaRequest $area_request)
     {
-
         try {
           Area::create($area_request->input());
           return redirect()->route('list_areas')->with('message', ['success', 'Nueva area creada']);

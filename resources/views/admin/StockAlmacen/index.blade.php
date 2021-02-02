@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-title"><b>Gestionar Stock Alamcen</b></h3> 
+                    <h3 class="card-title"><b>Gestionar Stock Almacen</b></h3> 
                 </div>
                 <div class="col-md-5">
                     <a href="{{route('create_almacen')}}" class="btn btn-primary rounded-pill float-right"><b>Nueva Compra Stock Almacen</b></a>
@@ -26,27 +26,26 @@
                     <table id="dataAltas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
                                 <th>Fecha</th>
                                 <th>Orden Compra Stock</th>
                                 <th>Preventivo</th>
                                 <th>Area Solicitante</th>
-                                <th>Estado</th>
                                 <th>Total</th>
-                                <th>Imprimir Compra</th>
-                                <th>Modificar Compra</th>
-                                <th>Eliminar Area</th>
+                                <th>Estado</th>
+                                <th>Detalles</th>
+                                <th>Deshabilitar Compra</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($compras as $compra)
                                 @if($compra->ESTADO_COMPRA == 1 )
                                     <tr>
-                                        <td>{{ $compra->COD_COMPRA_STOCK }}</td>
+                                        {{-- <td>{{ $compra->COD_COMPRA_STOCK }}</td> --}}
                                         <td>{{ $compra->FECHA }}</td>
                                         <td>{{ $compra->NRO_ORD_COMPRA }}</td>
                                         <td>{{ $compra->NRO_PREVENTIVO }}</td>
                                         <td>{{ $compra->Area->NOM_AREA}}</td>
+                                        <td>{{ $compra->total }}bs</td>
                                         <td>
                                             @if($compra->ESTADO_COMPRA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
@@ -54,18 +53,25 @@
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                             @endif
                                         </td>
-                                        <td>{{ $compra->total }}bs</td>
-                                        <td>
-                                            <a href="#" class="fas fa-print fa-2x"></a>
+                                         <td>
+                                            <a href="{{route('show_almacen',$compra->COD_COMPRA_STOCK)}}" ><button class="btn btn-primary">Detalles</button></a>
                                         </td>
-                                        <td>
-                                            @can('modificar_usuarios')
-                                            <a href="{{ route ('edit_almacen')}}" class="fas fa-edit fa-2x"></a>
-                                            @endcan
-                                        </td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
+
+                                        <td> 
+                                            <form action="{{route('destroy_almacen', $compra->COD_COMPRA_STOCK)}}" onsubmit="submitForm(event, {{$compra->ESTADO_COMPRA}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($compra->ESTADO_COMPRA)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
                                         </td>
                                     </tr>
                                 @endif
@@ -78,42 +84,56 @@
                     <table id="dataBajas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
                                 <th>Fecha</th>
-                                <th>Preventivo</th>
                                 <th>Orden Compra Stock</th>
-                                <th>Unidad Solicitante</th>
                                 <th>Preventivo</th>
-                                <th>Imprimir Compra</th>
-                                <th>Modificar Compra</th>
-                                <th>Eliminar Area</th>
+                                <th>Area Solicitante</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Detalles</th>
+                                <th>Habilitar Compra</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach()
-                                @if() --}}
+                            @foreach($compras as $compra)
+                                @if($compra->ESTADO_COMPRA == 0)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        {{-- <td>{{ $compra->COD_COMPRA_STOCK }}</td> --}}
+                                        <td>{{ $compra->FECHA }}</td>
+                                        <td>{{ $compra->NRO_ORD_COMPRA }}</td>
+                                        <td>{{ $compra->NRO_PREVENTIVO }}</td>
+                                        <td>{{ $compra->Area->NOM_AREA}}</td>
+                                        <td>{{ $compra->total }}bs</td>
                                         <td>
-                                            <a href="#" class="fas fa-print fa-2x"></a>
+                                            @if($compra->ESTADO_COMPRA)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
                                         </td>
-                                        <td>
-                                            @can('modificar_usuarios')
-                                            <a href="{{ route ('edit_almacen')}}" class="fas fa-edit fa-2x"></a>
-                                            @endcan
+                                         <td>
+                                            <a href="{{route('show_almacen',$compra->COD_COMPRA_STOCK)}}" ><button class="btn btn-primary">Detalles</button></a>
                                         </td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
+
+                                        <td> 
+                                            <form action="{{route('destroy_almacen', $compra->COD_COMPRA_STOCK)}}" onsubmit="submitForm(event, {{$compra->ESTADO_COMPRA}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($compra->ESTADO_COMPRA)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
                                         </td>
                                     </tr>
-                            {{--      @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach 
                         </tbody>
                     </table> 
                 </div>
@@ -146,9 +166,9 @@
             event.preventDefault();
             var r = null;
             if(estado == 1){
-              r = confirm("Acepta Desabilitar el pedido Seleccionado");
+              r = confirm("Acepta Desabilitar la compra Stock Seleccionado");
             }else{
-              r = confirm("Acepta habilitar el pedido Seleccionado");
+              r = confirm("Acepta habilitar la compra Stock Seleccionado");
             }
             if (r == true) {
               form.submit();

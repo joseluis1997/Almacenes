@@ -73,6 +73,8 @@ class RolesAndPermissions extends Seeder
         $permission = Permission::create(['name' => 'crear_almacen']);
         $permission = Permission::create(['name' => 'modificar_almacen']);
         $permission = Permission::create(['name'  => 'eliminar_almacen']);
+        $permission = Permission::create(['name'  => 'mostrar_almacen']);
+
 
         // Grupo: Consumo Directo
         $permission = Permission::create(['name' => 'accesso_consumodirecto']);

@@ -68,11 +68,14 @@ class StockAlmacenController extends Controller
             $articulos_sync = array();
             $articulos = $compra_request->input("articulos");
 
+            // dd($articulos);
+
             if($articulos == null){
               $articulos = array();
             }
+
             foreach ($articulos as $key => $value) {
-                error_log($value);
+            // error_log($value);
               $articulos_sync[$value] = array(
                             'CANTIDAD' => $compra_request->input('cantidad_'.$value)
                             ,'PRECIO_UNITARIO' => ($compra_request->input('precio_'.$value))
@@ -99,40 +102,31 @@ class StockAlmacenController extends Controller
      */
     public function show($id)
     {
-        //
+        $comprita = compra_stock::find($id);
+        
+        $detalles = DB::table('DETALLE_COMPRA_STOCK as d')
+        ->join('ARTICULO as a','d.COD_ARTICULO','=','a.COD_ARTICULO')
+        ->select('a.NOM_ARTICULO','d.COD_COMPRA_STOCK','d.CANTIDAD','d.PRECIO_UNITARIO')
+        ->where('d.COD_COMPRA_STOCK','=',$id)
+        ->get();
+        return view('admin.StockAlmacen.show',compact('comprita','detalles'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
+    public function changeStatus(compra_stock $compraStock)
     {
-        return view('admin.StockAlmacen.editar');
-    }
+        $estado = true;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if ($compraStock->ESTADO_COMPRA) {
+          $estado = false;
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $compraStock->ESTADO_COMPRA = $estado;
+        $compraStock->save();
+
+        if ($estado) {
+          return redirect()->route('list_almacen')->with('message', ['success', 'Compra Stock habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_almacen')->with('message', ['success', 'Compra Stock Desabilitado Correctamente!']);
+        }
     }
 }

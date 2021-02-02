@@ -332,17 +332,15 @@ Route::group(['prefix' => 'StockAlmacenController', 'namespace' => 'Admin', 'mid
 	->middleware(sprintf("autorizacion:%s", "modificar_almacen"))
 	->name('edit_almacen');
 
+	Route::get('/{id}', 'StockAlmacenController@show')->middleware(sprintf("autorizacion:%s", "mostrar_almacen"))
+	->name('show_almacen');
+
 	Route::put('/{almacen}/update', 'StockAlmacenController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_almacen"))
 	->name('update_almacen');
 
-	Route::get('/{id}/destroy','StockAlmacenController@destroy')
-	->middleware(sprintf("autorizacion:%s", "eliminar_almacen"))
-	->name('destroy_almacen');
+	Route::delete('/{compraStock}/destroy', 'StockAlmacenController@changeStatus')->middleware(sprintf("autorizacion:%s", "eliminar_almacen"))->name('destroy_almacen');
 
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Stock Almacen*/
 
