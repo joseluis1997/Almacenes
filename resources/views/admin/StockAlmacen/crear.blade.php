@@ -8,7 +8,7 @@
 
     <div class="card mt-10">
         <div class="card-body">
-            <form  action="{{ route('store_almacen')}}"   method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('store_almacen')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 @include('admin.StockAlmacen.formCrear')

@@ -22,7 +22,7 @@ class pedido extends Model
 
     public function Articulos(){
 
-        return $this->belongsToMany(\App\Articulo::class,'DETALLE_PEDIDO','COD_PEDIDO','COD_ARTICULO')->withPivot('CANTIDAD', 'ESTADO_DETALLE');
+        return $this->belongsToMany(\App\Articulo::class,'DETALLE_PEDIDO','COD_PEDIDO','COD_ARTICULO')->withPivot('CANTIDAD', 'ESTADO_PEDIDO');
     }
 
     public function suprPedidos(){

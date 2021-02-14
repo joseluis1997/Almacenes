@@ -715,3 +715,29 @@ a:hover{
   color: #000000;
   background: #DAF7A6;
 }
+
+/*div.dropdown-menu.open
+  {
+      background: white;
+      max-height: 50px !important;
+      overflow: hidden;
+  }
+ul.dropdown-menu.inner
+  {
+      background:white;
+      max-height: 60px !important;
+      overflow-y: auto;
+  }
+.bootstrap-select>.dropdown-toggle{
+  width: 100% !important;
+}
+.text{
+  font-size: 12px;
+  color: black;
+  background: #ffffff;
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: red;
+    text-decoration: none;
+    background-color: #007bff;
+  }*/

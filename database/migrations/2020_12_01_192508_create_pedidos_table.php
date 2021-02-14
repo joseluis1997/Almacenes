@@ -21,8 +21,7 @@ class CreatePedidosTable extends Migration
             $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
             
             $table->string('DETALLE_PEDIDO');
-            $table->string('NOTA');
-            $table->string('VALIDADO');
+            $table->boolean('VALIDADO')->default(false);
             $table->date('FECHA');
             $table->boolean('ESTADO_PEDIDO')->default(true);
             $table->timestamps();

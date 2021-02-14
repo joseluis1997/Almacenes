@@ -14,7 +14,7 @@ class CreateDetallePedidoTable extends Migration
     public function up()
     {
         Schema::create('DETALLE_PEDIDO', function (Blueprint $table) {
-            $table->bigIncrements('COD_DET_PEDIDO');
+            // $table->bigIncrements('COD_DET_PEDIDO');
 
             $table->unsignedBigInteger('COD_ARTICULO');
             $table->unsignedBigInteger('COD_PEDIDO');
