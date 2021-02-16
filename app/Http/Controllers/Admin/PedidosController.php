@@ -19,9 +19,7 @@ class PedidosController extends Controller
     public function index()
     {
         $pedidos = pedido::all();
-        $articulos = Articulo::all();
-        //return $articulos;
-        return view('admin.Pedidos.index',compact('articulos')); 
+        return view('admin.Pedidos.index',compact('pedidos')); 
     }
 
     /**
@@ -101,7 +99,10 @@ class PedidosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pedidos = pedido::findOrFail($id);
+        $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
+        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        return view('admin.Pedidos.editar', compact('pedidos','areas','Articulos'));
     }
 
     /**
@@ -111,9 +112,44 @@ class PedidosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PedidosRequest $pedido_request, pedido $pedido)
     {
-        //
+        // dd($pedido->Articulos);
+
+        try{
+            DB::beginTransaction();
+
+            $pedido->COD_AREA = $pedido_request->get('COD_AREA');
+            $pedido->FECHA = $pedido_request->get('FECHA');
+            $pedido->DETALLE_PEDIDO = $pedido_request->get('DETALLE_PEDIDO');
+
+            $pedido->save();
+
+            $articulos_sync = array();
+            $articulos = $pedido_request->input("articulos");
+
+            // dd($articulos);
+
+            if($articulos == null){
+              $articulos = array();
+            }
+
+            foreach ($articulos as $key => $value) {
+            // error_log($value);
+              $articulos_sync[$value] = array(
+                            'CANTIDAD' => $pedido_request->input('cantidad_'.$value)
+                        );
+            }
+       
+            $pedido->Articulos()->sync($articulos_sync);
+            DB::commit();
+
+            return redirect()->route('list_pedidos')->with('message', ['success', 'Pedido Modificado Correctamente']);
+        }catch(\Exception $e){
+            error_log($e->getMessage());
+            DB::rollback();
+            return redirect()->route('list_pedidos')->with('message', ['danger', 'Error al  Modificar el Pedido']);
+        }
     }
 
     /**
@@ -122,8 +158,21 @@ class PedidosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function changeStatus(pedido $pedido)
     {
-        //
+        $estado = true;
+
+        if ($pedido->ESTADO_PEDIDO) {
+          $estado = false;
+        }
+
+        $pedido->ESTADO_PEDIDO = $estado;
+        $pedido->save();
+
+        if ($estado) {
+          return redirect()->route('list_pedidos')->with('message', ['success', 'Pedido habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_pedidos')->with('message', ['success', 'Pedido Desabilitado Correctamente!']);
+        }
     }
 }

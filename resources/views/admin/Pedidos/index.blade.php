@@ -26,30 +26,67 @@
                     <table id="dataAltas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
+                                {{-- <th>Codigo</th> --}}
                                 <th>Area Solicitante</th>
                                 <th>Fecha Registro</th>
+                                <th>Condicion</th>
                                 <th>Estado</th>
                                 <th>Imprimir Pedido</th>
+                                <th>Detalles</th>
+                                <th>Modificar Pedido</th>
                                 <th>Deshabilitar Pedido</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach()
-                                @if() --}}
+                            @foreach($pedidos as $pedido)
+                                @if($pedido->ESTADO_PEDIDO == 1)
                                     <tr>
-                                        <td>gg</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
+                                        {{-- <td>{{ $pedido->COD_PEDIDO  }}</td> --}}
+                                        <td>{{ $pedido->Area->NOM_AREA }}</td>
+                                        <td>{{ $pedido->FECHA }}</td>
+                                        @if($pedido->VALIDADO == 1)
+                                            <td><span class="badge badge-success">Entregado</span></td>
+                                        
+                                        @else
+                                            <td><span class="badge badge-info">Pendiente</span></td>
+                                        @endif
+                                        <td>
+                                            @if($pedido->ESTADO_PEDIDO)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            E
+                                        </td>
+                                        <td>
+                                            <a href="#" ><button class="btn btn-primary">Detalles</button></a>
+                                        </td>
+                                        <td>
+                                          @can('modificar_articulos')
+                                            <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x"></a>
+                                          @endcan
+                                        </td>
+                                        <td> 
+                                            <form action="{{ route('destroy_pedidos', $pedido->COD_PEDIDO) }}" onsubmit="submitForm(event, {{ $pedido->ESTADO_PEDIDO }}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($pedido->ESTADO_PEDIDO)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
                                         </td>
                                     </tr>
-                           {{--      @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                 </div>
@@ -58,30 +95,64 @@
                     <table id="dataBajas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
                                 <th>Area Solicitante</th>
                                 <th>Fecha Registro</th>
+                                <th>Condicion</th>
                                 <th>Estado</th>
                                 <th>Imprimir Pedido</th>
-                                <th>Eliminar Area</th>
+                                <th>Detalles</th>
+                                <th>Modificar Pedido</th>
+                                <th>Deshabilitar Pedido</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {{-- @foreach()
-                                @if() --}}
+                            <tbody>
+                            @foreach($pedidos as $pedido)
+                                @if($pedido->ESTADO_PEDIDO == 0)
                                     <tr>
-                                        <td>jj</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
+                                        {{-- <td>{{ $pedido->COD_PEDIDO  }}</td> --}}
+                                        <td>{{ $pedido->Area->NOM_AREA }}</td>
+                                        <td>{{ $pedido->FECHA }}</td>
+                                        @if($pedido->VALIDADO == 1)
+                                            <td><span class="badge badge-success">Entregado</span></td>
+                                        
+                                        @else
+                                            <td><span class="badge badge-info">Pendiente</span></td>
+                                        @endif
+                                        <td>
+                                           {{--  @if($pedido->ESTADO_PEDIDO)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else --}}
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            {{-- @endif --}}
+                                        </td>
+                                        <td>
+                                            E
+                                        </td>
+                                        <td>
+                                            <a href="#" ><button class="btn btn-primary">Detalles</button></a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="fas fa-edit fa-2x"></a>
+                                        </td>
+                                        <td> 
+                                            <form action="{{ route('destroy_pedidos', $pedido->COD_PEDIDO) }}" onsubmit="submitForm(event, {{ $pedido->ESTADO_PEDIDO }}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                {{-- @if($pedido->ESTADO_PEDIDO)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else --}}
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                {{-- @endif --}}
+                                            </form>
                                         </td>
                                     </tr>
-                           {{--      @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                 </div>
@@ -110,7 +181,7 @@
             });
         });
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form){ 
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -121,16 +192,6 @@
             if (r == true) {
               form.submit();
             }
-        }
-
-        function eliminar(event) {
-            var r = confirm("Acepta elminar el pedido Seleccionado?");
-            if (r == true) {
-
-            } 
-            else {
-                 event.preventDefault();
-             }
         }
     </script>
 @endsection

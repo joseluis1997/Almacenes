@@ -12,21 +12,21 @@
 */
 // pruebas
 
-// Route::get('/', function(){
+	// Route::get('/', function(){
 
-// 	$Articulo = App\Articulo::findOrFail(5);
-// 	dd($Articulo->Medida);
-//     return $partida->Articulos;
-	
-// });
+	// 	$pedido = App\pedido::findOrFail(8);
+	//     return $pedido->Area;
+		
+	// });
 
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
 Route::get('/', function () {
-	// $medida = App\Articulo::findOrFail(1);
-	// return $medida->Medida;
+	// $Salidas = App\salida::findOrFail(2);
+	// dd($Salidas->pedido);
+	// return $Salidas->salida;
     return redirect('/seguridad/login');
 });
 
@@ -210,7 +210,6 @@ Route::group(['prefix' => 'medidas', 'namespace' => 'Admin', 'middleware' => ['a
 
 	Route::delete('/{medida}/destroy', 'MedidaController@changeStatus')->name('destroy_medida');
 
-	Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin Rutas Medidas*/
 
@@ -243,7 +242,6 @@ Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['aut
 	->middleware(sprintf("autorizacion:%s", "eliminar_areas"))
 	->name('destroy_areas');
 
-	Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /* Fin Gestionar Areas*/
 
@@ -272,13 +270,10 @@ Route::group(['prefix' => 'proveedores', 'namespace' => 'Admin', 'middleware' =>
 	->middleware(sprintf("autorizacion:%s", "modificar_proveedores"))
 	->name('update_proveedor');
 
-	// Route::get('/{id}/destroy','ProveedoresController@destroy')
-	// ->middleware(sprintf("autorizacion:%s", "eliminar_proveedores"))
-	// ->name('destroy_proveedor');
+	Route::delete('/{proveedor}/destroy', 'ProveedoresController@changeStatus')
+	->middleware(sprintf("autorizacion:%s", "eliminar_proveedores"))
+	->name('destroy_proveedor');
 
-	Route::delete('/{proveedor}/destroy', 'ProveedoresController@changeStatus')->name('destroy_proveedor');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Proveedores*/
 
@@ -308,9 +303,6 @@ Route::group(['prefix' => 'cierregestion', 'namespace' => 'Admin', 'middleware' 
 	->middleware(sprintf("autorizacion:%s", "eliminar_cierregestion"))
 	->name('destroy_cierregestion');
 
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Cierre Gestion*/
 
@@ -370,9 +362,6 @@ Route::group(['prefix' => 'ConsumoDirecto', 'namespace' => 'Admin', 'middleware'
 	->middleware(sprintf("autorizacion:%s", "eliminar_consumodirecto"))
 	->name('destroy_consumodirecto');
 
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Consumo Directo*/
 
@@ -390,21 +379,18 @@ Route::group(['prefix' => 'Pedidos', 'namespace' => 'Admin', 'middleware' => ['a
 	->middleware(sprintf("autorizacion:%s", "crear_pedidos"))
 	->name('store_pedidos');
 
-	Route::get('/edit', 'PedidosController@edit')
+	Route::get('/{id}/edit', 'PedidosController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_pedidos"))
 	->name('edit_pedidos');
 
-	Route::put('/{area}/update', 'PedidosController@update')
+	Route::put('/{pedido}/update', 'PedidosController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_pedidos"))
 	->name('update_pedidos');
 
-	Route::get('/{id}/destroy','PedidosController@destroy')
+	Route::delete('/{pedido}/destroy', 'PedidosController@changeStatus')
 	->middleware(sprintf("autorizacion:%s", "eliminar_pedidos"))
 	->name('destroy_pedidos');
 
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Pedidos*/
 
@@ -433,10 +419,6 @@ Route::group(['prefix' => 'Salidas', 'namespace' => 'Admin', 'middleware' => ['a
 	Route::get('/{id}/destroy','SalidasController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_salidas"))
 	->name('destroy_salidas');
-
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Salidas*/
 
@@ -445,30 +427,6 @@ Route::group(['prefix' => 'Reportes', 'namespace' => 'Admin', 'middleware' => ['
 	Route::get('/index', 'ReportesController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_reportes"))
 	->name('list_reportes');
-
-	Route::get('/create', 'ReportesController@create')
-	->middleware(sprintf("autorizacion:%s", "crear_reportes"))
-	->name('create_reportes');
-
-	Route::post('/store', 'ReportesController@store')
-	->middleware(sprintf("autorizacion:%s", "crear_reportes"))
-	->name('store_reportes');
-
-	Route::get('/edit', 'ReportesController@edit')
-	->middleware(sprintf("autorizacion:%s", "modificar_reportes"))
-	->name('edit_reportes');
-
-	Route::put('/{area}/update', 'ReportesController@update')
-	->middleware(sprintf("autorizacion:%s", "modificar_reportes"))
-	->name('update_reportes');
-
-	Route::get('/{id}/destroy','ReportesController@destroy')
-	->middleware(sprintf("autorizacion:%s", "eliminar_reportes"))
-	->name('destroy_reportes');
-
-	// Route::delete('/{medida}/destroy', 'ProveedoresController@changeStatus')->name('destroy_areas');
-
-	// Route::get('/', 'PermissionController@index')->name('permisos');
 });
 /*Fin: Gestionar Reportes*/
 
@@ -477,6 +435,10 @@ Route::group(['prefix' => 'InventarioActual', 'namespace' => 'Admin', 'middlewar
 	Route::get('/index', 'InventarioActualController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
 	->name('list_reportesInventarioActual');
+
+	Route::get('/InventarioActual', 'InventarioActualController@ReporteInventarioActualPDF')
+	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
+	->name('ReporteInventarioActualPDF');
 });
 
 /* Rutas: Reporte Inventario Manual*/

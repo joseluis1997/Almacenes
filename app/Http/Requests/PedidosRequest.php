@@ -28,7 +28,7 @@ class PedidosRequest extends FormRequest
             case 'GET':
             case 'DELETE':
                 return [];
-            case 'POST': {
+            case 'POST': 
                 return [
                     // 'nombre' => 'required|min:4',
                     // 'fecha' => 'required',
@@ -36,7 +36,9 @@ class PedidosRequest extends FormRequest
                     // 'detalle' => 'sometimes',
                     ''
                 ];
-            }
+                case 'PUT':
+                    return [
+                    ];
         }
     }
 }

@@ -26,32 +26,31 @@
                     <table id="dataAltas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Numero Salida</th>
-                                <th>Numero Pedido</th>
-                                <th>Fecha Salida</th>
-                                <th>Estado</th>
+                                <th># Salida</th>
+                                <th># Pedido</th>
+                                <th>Fecha</th>
                                 <th>Area Solicitante</th>
+                                <th>Estado</th>
                                 <th>Imprimir Salida</th>
-                                <th>Eliminar Salida</th>
+                                <th>Deshabilitar Salida</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach()
-                                @if() --}}
+                            @foreach($Salidas as $salida)
+                                @if($salida->ESTADO_SALIDA==1)
                                     <tr>
-                                        <td>sd</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $salida->COD_SALIDA }}</td>
+                                        <td>{{ $salida->COD_PEDIDO }}</td>
+                                        <td>{{ $salida->FECHA }}</td>
+                                        <td>{{ $salida->area->NOM_AREA }}</td>
+                                        <td>{{ $salida->ESTADO_SALIDA }}</td>
                                         <td>@can ('eliminar_usuarios')
                                             <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
                                             @endcan
                                         </td>
                                     </tr>
-                           {{--      @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                 </div>

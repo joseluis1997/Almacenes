@@ -16,7 +16,7 @@ class CreatePedidosTable extends Migration
         Schema::create('PEDIDOS', function (Blueprint $table) {
             $table->bigIncrements('COD_PEDIDO');
             
-            $table->unsignedBigInteger('COD_AREA')->unique();
+            $table->unsignedBigInteger('COD_AREA');
 
             $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
             

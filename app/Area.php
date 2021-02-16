@@ -22,6 +22,11 @@ class Area extends Model
         return $this->hasMany(\App\compra_stock::class,'COD_AREA','COD_AREA');
     }
     
+    public function Pedidos()
+    {
+        return $this->hasMany(\App\pedido::class,'COD_AREA','COD_AREA');
+    }
+
     public function AreaPadre() {
 
     	return $this->belongsTo(\App\Area::class, 'AREA_PADRE', 'COD_AREA');

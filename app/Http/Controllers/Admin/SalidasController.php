@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\salida;
+use DB;
 class SalidasController extends Controller
 {
     /**
@@ -14,7 +15,9 @@ class SalidasController extends Controller
      */
     public function index()
     {
-        return view('admin.Salidas.index');
+        $Salidas = salida::all();
+
+        return view('admin.Salidas.index',compact('Salidas'));
     }
 
     /**

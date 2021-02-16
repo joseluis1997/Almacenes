@@ -53,7 +53,7 @@
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                             @endif
                                         </td>
-                                         <td>
+                                        <td>
                                             <a href="{{route('show_almacen',$compra->COD_COMPRA_STOCK)}}" ><button class="btn btn-primary">Detalles</button></a>
                                         </td>
 
