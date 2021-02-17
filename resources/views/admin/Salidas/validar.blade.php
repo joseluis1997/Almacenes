@@ -3,19 +3,19 @@
 @section('contenido')
 
     <div class="title">
-        <h1 align="center"><b>Modificar Pedido</b></h1>
+        <h1 align="center"><b>Validar Salidad del Pedido</b></h1>
     </div>
 
     <div class="card mt-2">
         <div class="card-body">
-            <form  action="{{ route('update_pedidos',$pedidos->COD_PEDIDO) }}" method="POST" enctype="multipart/form-data" id="formulario" >
-                @csrf @method("put")
-                @include('admin.Pedidos.formEditar')
+            <form  action="{{ route('store_salidas',$pedido->COD_PEDIDO) }}" method="POST" enctype="multipart/form-data" id="formulario" >
+                @csrf 
+                @include('admin.Salidas.ValidarPedido')
 
                 <!-- Grupo: Guardar y Cancelar -->
                 <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
-                    <a href="{{route('list_pedidos')}}" class="btn formulario__btn2">Cancelar</a>
-                    <button type="submit" class="formulario__btn1">Modificar</button>
+                    <a href="{{route('list_salidas')}}" class="btn formulario__btn2">Cancelar</a>
+                    <button type="submit" class="formulario__btn1">Validar Pedido</button>
                 </div>
             </form>
         </div>
@@ -30,8 +30,8 @@
     </script>
     <script>
         $(document).ready(function(){
-            evaluar();
             mostrarvalores();
+            evaluar();
             $('#btn_add').click(function(){
                 agregar();
             });

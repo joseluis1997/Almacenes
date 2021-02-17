@@ -404,21 +404,24 @@ Route::group(['prefix' => 'Salidas', 'namespace' => 'Admin', 'middleware' => ['a
 	->middleware(sprintf("autorizacion:%s", "crear_salidas"))
 	->name('create_salidas');
 
-	Route::post('/store', 'SalidasController@store')
+	Route::post('{pedido}/store', 'SalidasController@store')
 	->middleware(sprintf("autorizacion:%s", "crear_salidas"))
 	->name('store_salidas');
 
-	Route::get('/edit', 'SalidasController@edit')
+	Route::get('{id}/edit', 'SalidasController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_salidas"))
 	->name('edit_salidas');
 
-	Route::put('/{area}/update', 'SalidasController@update')
+	Route::put('/{pedido}/update', 'SalidasController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_salidas"))
 	->name('update_salidas');
 
 	Route::get('/{id}/destroy','SalidasController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_salidas"))
 	->name('destroy_salidas');
+
+	Route::get('/{id}/Validar','SalidasController@ValidarPedido')
+	->name('Validar_Pedido');
 });
 /*Fin: Gestionar Salidas*/
 

@@ -64,9 +64,15 @@
                                             <a href="#" ><button class="btn btn-primary">Detalles</button></a>
                                         </td>
                                         <td>
-                                          @can('modificar_articulos')
-                                            <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x"></a>
-                                          @endcan
+                                            @if($pedido->VALIDADO == 0)
+                                              @can('modificar_articulos')
+                                                <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x"></a>
+                                              @endcan
+                                              @else
+                                                @can('modificar_articulos')
+                                                <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x disabled" ></a>
+                                              @endcan
+                                            @endif
                                         </td>
                                         <td> 
                                             <form action="{{ route('destroy_pedidos', $pedido->COD_PEDIDO) }}" onsubmit="submitForm(event, {{ $pedido->ESTADO_PEDIDO }}, this)" method="POST">

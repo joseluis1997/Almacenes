@@ -741,3 +741,8 @@ ul.dropdown-menu.inner
     text-decoration: none;
     background-color: #007bff;
   }*/
+
+  a.disabled{
+    pointer-events: none;
+    cursor: default;
+}

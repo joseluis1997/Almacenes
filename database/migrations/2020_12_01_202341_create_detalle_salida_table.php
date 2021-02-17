@@ -14,7 +14,7 @@ class CreateDetalleSalidaTable extends Migration
     public function up()
     {
         Schema::create('DETALLE_SALIDA', function (Blueprint $table) {
-            $table->bigIncrements('COD_DETALLE_SALIDA');
+            // $table->bigIncrements('COD_DETALLE_SALIDA');
 
             $table->unsignedBigInteger('COD_SALIDA');
             $table->unsignedBigInteger('COD_ARTICULO');

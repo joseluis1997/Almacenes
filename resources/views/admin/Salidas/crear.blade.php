@@ -11,7 +11,7 @@
             <form  action="{{ route('store_salidas')}}"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
                 @csrf
                 
-                @include('admin.Salidas.form')
+                @include('admin.Salidas.formCrear')
               
             </form>
         </div>

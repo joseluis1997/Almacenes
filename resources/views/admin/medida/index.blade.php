@@ -17,6 +17,7 @@
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-medida-activos-tab" data-toggle="tab" href="#nav-medida-activos" role="tab" aria-controls="nav-medida-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
+
                 <a class="nav-item nav-link" id="nav-medida-bajas-tab" data-toggle="tab" href="#nav-medida-bajas" role="tab" aria-controls="nav-medida-bajas" aria-selected="false">Bajas</a>
               </div>
             </nav> 
@@ -78,7 +79,7 @@
                     </table> 
                 </div>
                 {{-- data table unidades de medidas desabilitado --}}
-                <div class="tab-pane fade" id="nav-medida-bajas" role="tabpanel" aria-labelledby="nav-medida-bajas-tab" style="padding-top: 15px">
+                <div class="tab-pane fade" id="nav-medida-bajas" role="tabpanel" aria-labelledby="nav-medida-bajas-tab" style="padding-top:15px">
                      <table id="dataBajas" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
@@ -142,24 +143,22 @@
 
 @section('scripts')
 
-<!-- CSS -->
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> --}}
-
     <script type="text/javascript">
+
         $(document).ready(function() {
-            $('#dataAltas').dataTable( {
+            $('#dataAltas').dataTable({
                 "scrollCollapse":true,
                 "language": {
                     "url": "/jsons/Spanish.json"
                 },
             });
-            $('#dataBajas').dataTable( {
+            $('#dataBajas').dataTable({
                 "scrollCollapse":true,
                 "language": {
                     "url": "/jsons/Spanish.json"
                 },
             });
-        } );
+        });
 
         function submitForm(event, estado,form) { 
             event.preventDefault();

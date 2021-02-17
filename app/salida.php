@@ -32,4 +32,10 @@ class salida extends Model
     public function area(){
         return $this->hasOne(\App\Area::class,'AREA_PADRE','COD_AREA');
     }
+
+    // MOSTRAR
+    public function Articulos(){
+
+        return $this->belongsToMany(\App\Articulo::class,'DETALLE_SALIDA','COD_SALIDA','COD_ARTICULO')->withPivot('CANTIDAD');
+    }
 }
