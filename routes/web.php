@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 Route::get('/', function () {
-	// $Salidas = App\salida::findOrFail(2);
-	// dd($Salidas->pedido);
+	// $CONSUMO = App\Area::findOrFail(2);
+	// dd($CONSUMO->ConsumoDirectos);
 	// return $Salidas->salida;
     return redirect('/seguridad/login');
 });
@@ -241,7 +241,7 @@ Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::delete('/{area}/destroy','AreaController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_areas"))
 	->name('destroy_areas');
-
+	
 });
 /* Fin Gestionar Areas*/
 
@@ -350,15 +350,15 @@ Route::group(['prefix' => 'ConsumoDirecto', 'namespace' => 'Admin', 'middleware'
 	->middleware(sprintf("autorizacion:%s", "crear_consumodirecto"))
 	->name('store_consumodirecto');
 
-	Route::get('/edit', 'ConsumoDirectoController@edit')
+	Route::get('{id}/edit', 'ConsumoDirectoController@edit')
 	->middleware(sprintf("autorizacion:%s", "modificar_consumodirecto"))
 	->name('edit_consumodirecto');
 
-	Route::put('/{area}/update', 'ConsumoDirectoController@update')
+	Route::put('/{consumo_directo}/update', 'ConsumoDirectoController@update')
 	->middleware(sprintf("autorizacion:%s", "modificar_consumodirecto"))
 	->name('update_consumodirecto');
 
-	Route::get('/{id}/destroy','ConsumoDirectoController@destroy')
+	Route::delete('/{consumoDirecto}/destroy','ConsumoDirectoController@destroy')
 	->middleware(sprintf("autorizacion:%s", "eliminar_consumodirecto"))
 	->name('destroy_consumodirecto');
 

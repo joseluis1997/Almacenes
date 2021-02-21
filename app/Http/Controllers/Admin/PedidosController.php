@@ -42,7 +42,7 @@ class PedidosController extends Controller
      */
     public function store(PedidosRequest $pedido_request)
     {
-
+        // dd($pedido_request);
         try{
             DB::beginTransaction();
 

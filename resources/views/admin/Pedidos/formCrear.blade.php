@@ -97,22 +97,7 @@
             </tbody>
         </table>
     </div>
-{{-- <div class="container">
-  <div class="row">
-      <div class="col-7 col-md-5">
-            <select name="ddlFruits" id="ddlFruits" class="form-control selectpicker" data-show-subtext="true"
-        data-live-search="true" data-size="3" style="width: 100px;">
-        <option disabled selected value="0">Seleccione un articulo...</option>
-        <option value="Apple">Apple</option>
-        <option value="Banana">Banana</option>
-        <option value="Orange">Orange</option>
-    </select>
-        
-      </div>
-  </div>
-</div> --}}
-
-
+    
 <!-- Grupo: Mensaje -->
     <div class="formulario__mensaje" id="formulario__mensaje">
         <p>

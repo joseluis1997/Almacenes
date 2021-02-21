@@ -12,46 +12,26 @@ use Illuminate\Support\Collection;
 
 class StockAlmacenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // $compras= compra_stock::all();
 
         $compras = compra_stock::leftJoin(DB::raw('(SELECT COD_COMPRA_STOCK, SUM(CANTIDAD*PRECIO_UNITARIO) as total FROM DETALLE_COMPRA_STOCK GROUP BY COD_COMPRA_STOCK) AS detalle'), function ($join) {
             $join->on('detalle.COD_COMPRA_STOCK', '=', 'COMPRA_STOCKS.COD_COMPRA_STOCK');
-        })
-    // ->select('COD_COMPRA_STOCK','COD_AREA','total')
-    ->get();
-    // dd($total);
+        })->get();
 
         return view('admin.StockAlmacen.index',compact('compras'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function create(){
         $proveedores = DB::table('PROVEEDORES')->where('ESTADO_PROVEEDOR','=','1')->get();
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
         $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
         return view('admin.StockAlmacen.crear',compact('proveedores','areas','Articulos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CompraStockAlmacenRequest $compra_request)
-    {
+    public function store(CompraStockAlmacenRequest $compra_request){
         try{
             DB::beginTransaction();
 
@@ -91,17 +71,10 @@ class StockAlmacenController extends Controller
             DB::rollback();
             return redirect()->route('list_almacen')->with('message', ['danger', 'Error al  Agregar Compra Stock']);
         }
-        // return $compra->COD_COMPRA_STOCK;
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+    public function show($id){
         $comprita = compra_stock::find($id);
         
         $detalles = DB::table('DETALLE_COMPRA_STOCK as d')
@@ -112,8 +85,7 @@ class StockAlmacenController extends Controller
         return view('admin.StockAlmacen.show',compact('comprita','detalles'));
     }
 
-    public function changeStatus(compra_stock $compraStock)
-    {
+    public function changeStatus(compra_stock $compraStock){
         $estado = true;
 
         if ($compraStock->ESTADO_COMPRA) {

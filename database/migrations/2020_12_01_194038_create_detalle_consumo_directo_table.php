@@ -14,7 +14,7 @@ class CreateDetalleConsumoDirectoTable extends Migration
     public function up()
     {
         Schema::create('DETALLE_CONSUMO_DIRECTO', function (Blueprint $table) {
-            $table->bigIncrements('COD_DET_CONSUMO_DIRECTO');
+            // $table->bigIncrements('COD_DET_CONSUMO_DIRECTO');
 
             $table->unsignedBigInteger('COD_CONSUMO_DIRECTO');
 

@@ -10,7 +10,6 @@
                 </div>
                 <div class="col-md-5">
                     <a href="{{route('create_consumodirecto')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Consumo Directo</b></a><br/><br/>
-                     <a href="{{route('create_consumodirecto')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Consumo Directo Automatico</b></a>
                 </div>
             </div>
         </div>
@@ -32,35 +31,40 @@
                             <th>Numero Preventivo</th>
                             <th>Numero Orden Compra</th>
                             <th>Unidad Solicitante</th>
-                            <th>Imprimir</th>
+                            <th>Opciones</th>
                             <th>Modificar Consumo D.</th>
-                            <th>Eliminar Consumo D.</th>
+                            <th>Deshabilitar Consumo D.</th>
                         </tr>
                         </thead>
                         <tbody>
-                           {{--  @foreach($ as $)
-                                @if($->) --}}
+                            @foreach($ConsumoDirecto as $Consumo)
+                                @if($Consumo->ESTADO_COMPRA == 1)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $Consumo->COD_CONSUMO_DIRECTO }}</td>
+                                        <td>{{ $Consumo->FECHA }}</td>
+                                        <td>{{ $Consumo->NRO_PREVENTIVO }}</td>
+                                        <td>{{ $Consumo->NRO_ORD_COMPRA }}</td>
+                                        <td>{{ $Consumo->Area->NOM_AREA }}</td>
                                         <td>
                                             <a href="#" class="fas fa-print fa-2x"></a>
                                         </td>
                                         <td>
                                             @can('modificar_usuarios')
-                                            <a href="{{ route ('edit_consumodirecto')}}" class="fas fa-edit fa-2x"></a>
+                                            <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
                                             @endcan
                                         </td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
+                                        <td> 
+                                            <form action="{{route('destroy_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" onsubmit="submitForm(event, {{$Consumo->ESTADO_COMPRA}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                    <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                        Deshabilitar
+                                                    </button>
+                                            </form>
                                         </td>
                                     </tr>
-                           {{--      @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                     </div>
@@ -80,29 +84,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                           {{--  @foreach($ as $)
-                                @if($->) --}}
+                            @foreach($ConsumoDirecto as $Consumo)
+                                @if($Consumo->ESTADO_COMPRA == 0)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $Consumo->COD_CONSUMO_DIRECTO }}</td>
+                                        <td>{{ $Consumo->FECHA }}</td>
+                                        <td>{{ $Consumo->NRO_PREVENTIVO }}</td>
+                                        <td>{{ $Consumo->NRO_ORD_COMPRA }}</td>
+                                        <td>{{ $Consumo->Area->NOM_AREA }}</td>
                                         <td>
                                             <a href="#" class="fas fa-print fa-2x"></a>
                                         </td>
                                         <td>
                                             @can('modificar_usuarios')
-                                            <a href="{{ route ('edit_consumodirecto')}}" class="fas fa-edit fa-2x"></a>
+                                            <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
                                             @endcan
                                         </td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
+                                        <td> 
+                                            <form action="{{route('destroy_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" onsubmit="submitForm(event, {{$Consumo->ESTADO_COMPRA}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                            
+                                                    <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                        Habilitar
+                                                    </button>
+
+                                            </form>
                                         </td>
                                     </tr>
-                           {{--      @endif
-                            @endforeach --}}
+                                @endif
+                            @endforeach
                         </tbody>
                     </table> 
                 </div>

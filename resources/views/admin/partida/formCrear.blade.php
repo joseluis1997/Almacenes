@@ -4,7 +4,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area Padre" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
         </label>
         <div class="formulario__grupo-input">
-              <select name="PARTIDA_PADRE" class="form-control" id="PartidaPadre" required>
+              <select name="PARTIDA_PADRE" class="form-control" id="PartidaPadre" size="8" required>
                 @foreach ($partidas as $partida)
                   <option value="{{ $partida->COD_PARTIDA }}">{{$partida->NRO_PARTIDA}} | {{$partida->NOM_PARTIDA}}</option>
                 @endforeach

@@ -31,4 +31,9 @@ class Area extends Model
 
     	return $this->belongsTo(\App\Area::class, 'AREA_PADRE', 'COD_AREA');
  	}
+
+    public function ConsumoDirectos(){
+
+        return $this->hasMany(\App\consumo_directo::class, 'COD_AREA','COD_AREA');
+    }
 }

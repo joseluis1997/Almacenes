@@ -1,161 +1,126 @@
-@extends('layouts.app')
+@extends("layouts.app")
 
 @section('contenido')
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-            <div class="col-md-12">
-                <h3 class="card-title"><b>Modificar Consumo Directo</b></h3> 
-            </div>
-            </div>
-        </div>
-        <div class="card mt-2">
-        <div class="card-body">    
-            <form action="#" id="form-general" class="formulario form--label-right" method="POST" enctype="multipart/form-data">
-             @csrf @method("put")
-<!-- Grupo: fecha Registro -->
-            <div class="formulario__grupo" id="grupo__fecharegistro">
-                <label for="fecharegistro" class="formulario__label">Fecha 
-                Registro</label>
-                <div class="formulario__grupo-input">
-                    <input type="date" class="formulario__input" name="#" id="fecharegistro">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>
-                </div>
-                <p class="formulario__input-error">
-                    El Articulo tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: factura -->
-            <div class="formulario__grupo" id="grupo__factura">
-                <label for="factura" class="formulario__label">Factura o Resivo</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="factura" placeholder="factura o Recibo">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: numeroOrdenCompra -->
-            <div class="formulario__grupo" id="grupo__numeroOrdenCompra">
-                <label for="numeroOrdenCompra" class="formulario__label">Numero Orden Compra</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="numeroOrdenCompra" placeholder="Digite numero orden de compra">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: NumeroOrdenTrabajo -->
-            <div class="formulario__grupo" id="grupo__NumeroOrdenTrabajo">
-                <label for="NumeroOrdenTrabajo" class="formulario__label">Numero de Orden de Trabajo</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="NumeroOrdenTrabajo" placeholder="Digite Orden de Trabajo">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: Preventivo -->
-            <div class="formulario__grupo" id="grupo__preventivo">
-                <label for="preventivo" class="formulario__label">Preventivo</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="preventivo" placeholder="Numero de Preventivo...">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: Nota Ingreso -->
-            <div class="formulario__grupo" id="grupo__notaIngreso">
-                <label for="notaIngreso" class="formulario__label">Nota de Ingreso</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="notaIngreso" placeholder="Nota de Ingreso...">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: Area -->
-            <div class="formulario__grupo" id="grupo__area">
-                <label for="area" class="formulario__label">Area</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="area" placeholder="Area Solicitante">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: Proveedor -->
-            <div class="formulario__grupo" id="grupo__proveedor">
-                <label for="proveedor" class="formulario__label">Proveedor</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="proveedor" placeholder="Nombre de la empresa del proveedor">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: cantidad -->
-            <div class="formulario__grupo" id="grupo__cantidad">
-                <label for="cantidad" class="formulario__label">Cantidad</label>
-                <div class="formulario__grupo-input">
-                    <input type="number" class="formulario__input" name="#" id="cantidad" placeholder="Cantidad de Articulos">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
-<!-- Grupo: Detalle Compra Stock -->
-            <div class="formulario__grupo" id="grupo__DetalleCompra">
-                <label for="DetalleCompra" class="formulario__label">Detalle</label>
-                <div class="formulario__grupo-input">
-                    <textarea  class="formulario__input" id="DetalleCompra" name="w3review" rows="4" cols="50">
-                        Detalle consumo Directo Almacen.....
-                     </textarea>
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
-            </div>
 
+    <div class="title">
+        <h1 align="center"><b>Modificar Consumo Directo</b></h1>
+    </div>
 
-<!-- Grupo: PrecioUnidad -->
-            <div class="formulario__grupo" id="grupo__PrecioUnidad">
-                <label for="PrecioUnidad" class="formulario__label">Precio Unidad</label>
-                <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="PrecioUnidad" placeholder="Precio por unidad">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>                   
-                </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
+    <div class="card mt-10">
+        <div class="card-body">
+            <form  action="{{ route('update_consumodirecto',$consumo_directo->COD_CONSUMO_DIRECTO)}}" method="POST" enctype="multipart/form-data">
+                @csrf @method("put")
+                @include('admin.ConsumoDirecto.formEditar')
+                 {{-- Grupo: Boton Cancelar y Guardar --}}
+            <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <a href="{{route('list_consumodirecto')}}" class="btn formulario__btn2">Cancelar</a>
+                <button type="submit" class="formulario__btn1">Modificar</button>
             </div>
-<!-- Grupo: Mensaje -->
-            <div class="formulario__mensaje" id="formulario__mensaje">
-                <p>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <b>Error:</b>
-                    Por favor rellene el formulario correctamente.
-                </p>
-            </div>
-<!-- Grupo: Modificar y Cancelar -->
-                <div class="formulario__grupo formulario__btn-guardar text-center">
-                    <a href="{{route('list_consumodirecto')}}" class="btn formulario__btn2">Cancelar</a>
-                    <button type="submit" class="formulario__btn1">Modificar</button>
-                </div>
             </form>
         </div>
-        </div>
     </div>
-</div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+    </script>
+    <script>
+        var totalCD = 0;
+
+        $(document).ready(function(){
+            evaluar();
+            mostrarvalores();
+            $('#btn_add').click(function(){
+                agregar();
+            });
+            modificarCD();
+        });
+
+        function modificarCD(){
+            totalCD = 0;
+            $("input[id*='cantidad_']").each(function( index ){
+            let idarticulo = $( this ).attr('idarticulo');
+            let cantidad =parseInt($( this ).val());
+            let precio = parseInt($("#precio_"+idarticulo ).val());
+            let subtotal = cantidad*precio;
+            $("#subTotal_"+idarticulo ).html(subtotal);
+            totalCD += subtotal;
+            // console.log( index + ":" + $( this ).val() );
+            })
+            $("#total").html('Bs/.'+totalCD);
+        }
+
+        var contador = 0;
+        total = 0;
+        subtotal=[];
+
+        $("#Guardar").hide();
+        $("#pidarticulo").change(mostrarvalores);
+
+        function mostrarvalores(){
+            datosArticulos= document.getElementById('pidarticulo').value.split('_');
+            $("#pstock").val(datosArticulos[1]);
+        }
+
+        function agregar(){
+
+            idarticulo = $("#pidarticulo").val();
+            cantidad = $("#cantidad").val();
+            precio = $("#precio").val();
+
+            articulo = $("#pidarticulo option:selected");
+            if(articulo.attr('disabled')!=undefined){
+                alert('producto agregado');
+                return 
+            }
+
+            if(idarticulo != null && cantidad != null && cantidad > 0 && precio != null){
+                articulo.attr('disabled','disabled');
+                articulo = $("#pidarticulo option:selected").text();
+
+                subtotal[contador] =(cantidad*precio);
+                total = total+subtotal[contador];
+                var fila = '<tr class="selected filaConsumo" id="fila'+idarticulo+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+idarticulo+')">X</button></td><td><input type="hidden" name="articulos[]" value="'+idarticulo+'"></input>'+articulo+'</td><td><input type="hidden" name="cantidad_'+idarticulo+'" value="'+cantidad+'"></input><input type="number" idArticulo="'+idarticulo+'" value="'+cantidad+'" disabled id="cantidad_'+idarticulo+'"></input></td><td><input type="hidden" name="precio_'+idarticulo+'" value="'+precio+'" ></input><input type="number" value="'+precio+'" disabled id="precio_'+idarticulo+'" ></input></td><td id="subTotal_'+idarticulo+'"></td></tr>';
+
+                contador++;
+                limpiar();
+
+                evaluar();
+
+                $('#detalles').append(fila);
+                modificarCD();
+
+            }else{
+                alert("Error al ingresar el detalle compra Stock, revise sus datos");
+            }
+        }
+        function limpiar(){
+            $("#pidarticulo").val("");
+            $("#cantidad").val("");
+            // $("#precio").val("");
+        }
+
+        function evaluar(){
+            let filasPedido = $('.filaConsumo').length; 
+            if(filasPedido>0 || filasPedido == " " ){
+                $("#Guardar").show();
+            }else{
+                $("#Guardar").hide();
+            }
+        }
+
+        function eliminar(index){
+            // alert(index);
+            $('#articulo_'+index).removeAttr('disabled');
+            // total = total-subtotal[index];
+            // $("#total").html("Bs/."+total); 
+            $("#fila"+index).remove();
+            evaluar();
+            modificarCD();
+        }
+    </script>
 @endsection
