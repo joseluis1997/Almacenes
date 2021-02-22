@@ -11,7 +11,8 @@ class Area extends Model
     protected $primaryKey = 'COD_AREA';
 
     protected $fillable = [
-    	'AREA_PADRE','NOM_AREA',
+    	'AREA_PADRE',
+        'NOM_AREA',
     	'DESC_AREA',
     	'UBICACION_AREA',
     	'ESTADO_AREA'

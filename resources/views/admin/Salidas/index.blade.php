@@ -40,7 +40,7 @@
                             @foreach($Salidas as $salida)
                                 @if($salida->ESTADO_SALIDA==1)
                                     <tr>
-                                        <td>{{$salida->COD_SALIDA }}</td>
+                                        <td>{{$salida->COD_SALIDA}}</td>
                                         <td>{{$salida->COD_PEDIDO}}</td>
                                         <td>{{$salida->FECHA}}</td>
                                         <td>{{$salida->area->NOM_AREA}}</td>
@@ -80,40 +80,7 @@
                         </tbody>
                     </table> 
                 </div>
-                {{-- data table salida desabilitado --}}
-                <div class="tab-pane fade" id="nav-salida-bajas" role="tabpanel" aria-labelledby="nav-salida-bajas-tab" style="padding-top: 15px">
-                    <table id="dataBajas" class="table table-striped table-bordered " style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Numero Salida</th>
-                                <th>Numero Pedido</th>
-                                <th>Fecha Salida</th>
-                                <th>Estado</th>
-                                <th>Area Solicitante</th>
-                                <th>Imprimir Salida</th>
-                                <th>Eliminar Salida</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- @foreach()
-                                @if() --}}
-                                    <tr>
-                                        <td>abs</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>@can ('eliminar_usuarios')
-                                            <a href="#" style="color:red;" class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
-                                            @endcan
-                                        </td>
-                                    </tr>
-                           {{--      @endif
-                            @endforeach --}}
-                        </tbody>
-                    </table> 
-                </div>
+                
             </div>
         </div>
     </div>
