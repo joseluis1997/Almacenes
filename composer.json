@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-gd": "^7.4",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
@@ -61,8 +62,6 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "require": {
-        "ext-Gd": "*"
-        }
+    }    
+  
 }
