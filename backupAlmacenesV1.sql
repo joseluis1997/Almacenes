@@ -70,7 +70,7 @@ CREATE TABLE `ARTICULO` (
   KEY `articulo_fk_cod_medida_foreign` (`FK_COD_MEDIDA`),
   CONSTRAINT `articulo_fk_cod_medida_foreign` FOREIGN KEY (`FK_COD_MEDIDA`) REFERENCES `MEDIDA` (`COD_MEDIDA`) ON DELETE CASCADE,
   CONSTRAINT `articulo_fk_cod_partida_foreign` FOREIGN KEY (`FK_COD_PARTIDA`) REFERENCES `PARTIDA` (`COD_PARTIDA`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `ARTICULO` (
 
 LOCK TABLES `ARTICULO` WRITE;
 /*!40000 ALTER TABLE `ARTICULO` DISABLE KEYS */;
-INSERT INTO `ARTICULO` VALUES (1,1,1,'pilfrus','asdasd','1921',1,'2021-02-14 20:52:35','2021-02-14 20:52:35'),(2,1,1,'tonners','asdasasewq2e','5080',1,'2021-02-14 20:52:46','2021-02-14 20:52:46');
+INSERT INTO `ARTICULO` VALUES (1,1,2,'pilfrus','asdasd','21',1,'2021-02-14 20:52:35','2021-02-21 18:17:44'),(2,1,2,'tonners','asdasasewq2e','101',1,'2021-02-14 20:52:46','2021-02-21 18:18:01'),(3,4,4,'Cafe','Cafe para desayuno del personal','11',1,'2021-02-21 14:37:39','2021-02-21 18:18:07'),(4,4,5,'Mate de manzanilla','mate de manzanilla para desayuno para el personal','21',1,'2021-02-21 14:38:56','2021-02-21 18:18:13'),(5,4,3,'Cafe Instantaneo de 200 gramos','cafe instantáneo para desayuno del personal','151',1,'2021-02-21 14:48:14','2021-02-21 18:18:18'),(6,10,9,'Productos Agrícolas',NULL,'11',1,'2021-02-21 14:53:10','2021-02-21 18:18:23'),(7,20,6,'Botas de Seguridad','botas de seguridad para el personal de la gobernación','201',1,'2021-02-21 14:55:41','2021-02-21 18:18:33'),(8,24,8,'Gasolina','Gasolina para distribuir al personal de las estaciones policiales','3001',1,'2021-02-21 14:57:00','2021-02-21 18:18:40'),(9,24,8,'Diesel','Diesel para consumo de las maquinas de la gobernación','2001',1,'2021-02-21 14:58:14','2021-02-21 18:18:48'),(10,27,6,'Lentes de Seguridad','Lentes de seguridad para el personal de la gobernacion','101',1,'2021-02-21 15:00:31','2021-02-21 18:18:56'),(11,27,3,'Alcohol en Gel','Alcohol en gel para distribuir a las distintas areas de la gobernacion','51',1,'2021-02-21 15:02:39','2021-02-21 18:19:55'),(12,28,6,'Llantas Medidas 265/75 R16','Llantas para los vehiculos de la gobernacion','101',1,'2021-02-21 15:04:12','2021-02-21 18:19:46'),(13,28,6,'Llantas Medidas 225/75 R16',NULL,'151',1,'2021-02-21 15:05:07','2021-02-21 18:19:35'),(14,30,9,'Prod. de minerales no metalicos y plasticos',NULL,'1',1,'2021-02-21 15:06:49','2021-02-21 18:19:27'),(15,33,9,'Herramientas Menores',NULL,'1',1,'2021-02-21 15:07:29','2021-02-21 18:19:19'),(16,39,9,'Oximetros digitales de dedo',NULL,'21',1,'2021-02-21 15:08:21','2021-02-21 18:19:11'),(17,39,6,'Mascara Facial de Proteccion',NULL,'5001',1,'2021-02-21 15:09:05','2021-02-21 18:19:04');
 /*!40000 ALTER TABLE `ARTICULO` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +135,7 @@ CREATE TABLE `COMPRA_STOCKS` (
   PRIMARY KEY (`COD_COMPRA_STOCK`),
   KEY `compra_stocks_cod_area_foreign` (`COD_AREA`),
   CONSTRAINT `compra_stocks_cod_area_foreign` FOREIGN KEY (`COD_AREA`) REFERENCES `AREAS` (`COD_AREA`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `COMPRA_STOCKS` (
 
 LOCK TABLES `COMPRA_STOCKS` WRITE;
 /*!40000 ALTER TABLE `COMPRA_STOCKS` DISABLE KEYS */;
-INSERT INTO `COMPRA_STOCKS` VALUES (1,2,'004','004','Factura','2021-02-18','sdfsfsd',1,'2021-02-17 02:32:07','2021-02-17 02:32:07'),(2,1,'004','004','Factura','2021-02-23','SDFSDF',1,'2021-02-17 04:23:45','2021-02-17 04:23:45'),(3,1,'005','005','Factura','2021-02-03','SFSGFDGDF',1,'2021-02-17 04:24:31','2021-02-17 04:24:31');
+INSERT INTO `COMPRA_STOCKS` VALUES (1,2,'004','004','Factura','2021-02-18','sdfsfsd',1,'2021-02-17 02:32:07','2021-02-17 02:32:07'),(2,1,'004','004','Factura','2021-02-23','SDFSDF',1,'2021-02-17 04:23:45','2021-02-17 04:23:45'),(3,1,'005','005','Factura','2021-02-03','SFSGFDGDF',1,'2021-02-17 04:24:31','2021-02-17 04:24:31'),(6,1,'004','004','Factura','2021-02-10','comprita',1,'2021-02-21 18:36:55','2021-02-21 18:36:55'),(7,1,'564','564','Factura','2021-02-10','primera compra stock almacen',1,'2021-02-21 18:39:49','2021-02-21 18:39:49');
 /*!40000 ALTER TABLE `COMPRA_STOCKS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,9 +242,27 @@ CREATE TABLE `DETALLE_COMPRA_STOCK` (
 
 LOCK TABLES `DETALLE_COMPRA_STOCK` WRITE;
 /*!40000 ALTER TABLE `DETALLE_COMPRA_STOCK` DISABLE KEYS */;
-INSERT INTO `DETALLE_COMPRA_STOCK` VALUES (1,1,3,3.00,1,NULL,NULL),(1,2,3,200.00,1,NULL,NULL),(2,1,2000,2.00,1,NULL,NULL),(3,2,5000,5.00,1,NULL,NULL);
+INSERT INTO `DETALLE_COMPRA_STOCK` VALUES (1,1,3,3.00,1,NULL,NULL),(1,2,3,200.00,1,NULL,NULL),(2,1,2000,2.00,1,NULL,NULL),(3,2,5000,5.00,1,NULL,NULL),(6,1,20,2.00,1,NULL,NULL),(7,2,100,50.00,1,NULL,NULL),(7,3,10,8.00,1,NULL,NULL),(7,4,20,9.00,1,NULL,NULL),(7,5,150,7.50,1,NULL,NULL),(7,6,10,5.00,1,NULL,NULL),(7,7,200,158.00,1,NULL,NULL),(7,8,3000,3.70,1,NULL,NULL),(7,9,2000,3.00,1,NULL,NULL),(7,10,100,15.00,1,NULL,NULL),(7,11,50,35.00,1,NULL,NULL),(7,12,100,220.00,1,NULL,NULL),(7,13,150,250.00,1,NULL,NULL),(7,16,20,56.00,1,NULL,NULL),(7,17,5000,10.00,1,NULL,NULL);
 /*!40000 ALTER TABLE `DETALLE_COMPRA_STOCK` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER updStockAlmacen AFTER INSERT ON DETALLE_COMPRA_STOCK
+FOR EACH ROW 
+	UPDATE ARTICULO SET CANT_ACTUAL = CANT_ACTUAL+ NEW.CANTIDAD
+	WHERE ARTICULO.COD_ARTICULO = NEW.COD_ARTICULO */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `DETALLE_CONSUMO_DIRECTO`
@@ -337,24 +355,6 @@ LOCK TABLES `DETALLE_SALIDA` WRITE;
 INSERT INTO `DETALLE_SALIDA` VALUES (2,2,12,NULL,NULL),(3,1,20,NULL,NULL),(3,2,20,NULL,NULL),(4,1,100,NULL,NULL),(4,2,20,NULL,NULL),(5,2,21,NULL,NULL);
 /*!40000 ALTER TABLE `DETALLE_SALIDA` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER updStockAlmacen AFTER INSERT ON DETALLE_SALIDA
-FOR EACH ROW
-	UPDATE ARTICULO SET CANT_ACTUAL = CANT_ACTUAL - NEW.CANTIDAD
-	WHERE ARTICULO.COD_ARTICULO=NEW.COD_ARTICULO */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `MEDIDA`
@@ -371,7 +371,7 @@ CREATE TABLE `MEDIDA` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`COD_MEDIDA`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,7 +380,7 @@ CREATE TABLE `MEDIDA` (
 
 LOCK TABLES `MEDIDA` WRITE;
 /*!40000 ALTER TABLE `MEDIDA` DISABLE KEYS */;
-INSERT INTO `MEDIDA` VALUES (1,'Kg','Unidad de medida kilogramos',0,NULL,NULL);
+INSERT INTO `MEDIDA` VALUES (1,'Kg','Unidad de medida kilogramos',0,NULL,NULL),(2,'caja','unidad de medida en cajas',1,NULL,NULL),(3,'frasco','unidad de medida en frasco',1,NULL,NULL),(4,'kilo','unidad de medida en kilogramos',1,NULL,NULL),(5,'Paquete','unidad de medida en paquetes',1,NULL,NULL),(6,'pieza','unidad de medida en piezas',1,NULL,NULL),(7,'Resma','unida de medida en resmas para hojas bom',1,NULL,NULL),(8,'litros','unida de medida en litros para el combustible',1,NULL,NULL),(9,'Global','Unidad de medida para global para productos agropecuarios',1,NULL,NULL);
 /*!40000 ALTER TABLE `MEDIDA` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,7 +404,7 @@ CREATE TABLE `PARTIDA` (
   UNIQUE KEY `partida_nro_partida_unique` (`NRO_PARTIDA`),
   KEY `partida_partida_padre_foreign` (`PARTIDA_PADRE`),
   CONSTRAINT `partida_partida_padre_foreign` FOREIGN KEY (`PARTIDA_PADRE`) REFERENCES `PARTIDA` (`COD_PARTIDA`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +413,7 @@ CREATE TABLE `PARTIDA` (
 
 LOCK TABLES `PARTIDA` WRITE;
 /*!40000 ALTER TABLE `PARTIDA` DISABLE KEYS */;
-INSERT INTO `PARTIDA` VALUES (1,NULL,'MATERIALES Y SUMINISTROS','30000',1,NULL,NULL);
+INSERT INTO `PARTIDA` VALUES (1,NULL,'MATERIALES Y SUMINISTROS','30000',1,NULL,NULL),(2,1,'Alimentos y Productos Agroforestales','31000',1,NULL,NULL),(3,2,'Alimentos y bebidas para personas, desayuno escolar y otros','31100',1,NULL,NULL),(4,3,'Gastos por Refrigerios al personal permanente','31110',1,NULL,NULL),(5,3,'Gastos por alimentacion y otros similares','31120',1,NULL,NULL),(6,3,'desayuno Escolar','31130',1,NULL,NULL),(7,3,'Alimentacion hospitalaria, penitencieria, Aeronaves y otras especificas','31140',1,NULL,NULL),(8,3,'Alimentos y Bebidas para la atencion de emergencias y desastres naturales','31150',1,NULL,NULL),(9,2,'Alimentos para animales','31200',1,NULL,NULL),(10,2,'Productos Agricolas, Pecuarios y forestales','31300',1,NULL,NULL),(11,1,'Productos de papel, Carton e Impresos','32000',1,NULL,NULL),(12,11,'Papel','32100',1,NULL,NULL),(13,11,'Productos de Artes Gráficas','32200',1,NULL,NULL),(14,11,'Litros, Manuales y revistas','32300',1,NULL,NULL),(15,11,'Texto de Enseñanza','32400',1,NULL,NULL),(16,11,'Periódicos y boletines','32500',1,NULL,NULL),(17,1,'Textiles y vestuarios','33000',1,NULL,NULL),(18,17,'Hilados y telas','33100',1,NULL,NULL),(19,17,'Confesiones Textiles','33200',1,NULL,NULL),(20,17,'Prendes  de Vestir','33300',1,NULL,NULL),(21,17,'Calzados','33400',1,NULL,NULL),(22,1,'Combustibles, Productos Químicos, Farmacéuticos y otras Fuentes de Energía','34000',1,NULL,NULL),(23,22,'Combustibles, Lubricantes, Derivados y otras fuentes de Energia','34100',1,NULL,NULL),(24,23,'Combustibles, Lubricantes y Derivados para consumo','34110',1,NULL,NULL),(25,23,'Combustibles, Lubricantes y Derivados para Comercializacion','34120',1,NULL,NULL),(26,23,'Energía Eléctrica para Comercialización','34130',1,NULL,NULL),(27,22,'Productos Químicos y Farmacéuticos','34200',1,NULL,NULL),(28,22,'Llantas y Neumáticos','34300',1,NULL,NULL),(29,22,'Productos de Cuero y Caucho','34400',1,NULL,NULL),(30,22,'Productos de Minerales no  Metalicos y Plasticos','34500',1,NULL,NULL),(31,22,'Productos Metalicos','34600',1,NULL,NULL),(32,22,'Minerales','34700',1,NULL,NULL),(33,22,'Herramientas Menores','34800',1,NULL,NULL),(34,22,'Material y Equipo militar','34900',1,NULL,NULL),(35,1,'Productos Varios','39000',1,NULL,NULL),(36,35,'Materiales de Limpieza','39100',1,NULL,NULL),(37,35,'Material Deportivo y Recreativo','39200',1,NULL,NULL),(38,35,'Utensilios de Cocina y Comedor','39300',1,NULL,NULL),(39,35,'Instrumental Menor Medico-Quirurgico','39400',1,NULL,NULL),(40,35,'Útiles de Escritorio y Oficina','39500',1,NULL,NULL),(41,35,'Útiles Educacionales, Culturales y de Capacitación','39600',1,NULL,NULL),(42,35,'Útiles y Materiales Eléctricos','39700',1,NULL,NULL),(43,35,'Otros Repuestos y Accesorios','39800',1,NULL,NULL),(44,35,'Otros Materiales y Suministros','39900',1,NULL,NULL);
 /*!40000 ALTER TABLE `PARTIDA` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -946,4 +946,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-20  3:48:38
+-- Dump completed on 2021-02-21 21:29:14

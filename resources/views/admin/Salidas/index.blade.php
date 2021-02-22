@@ -40,10 +40,10 @@
                             @foreach($Salidas as $salida)
                                 @if($salida->ESTADO_SALIDA==1)
                                     <tr>
-                                        <td>{{ $salida->COD_SALIDA }}</td>
-                                        <td>{{ $salida->COD_PEDIDO}}</td>
-                                        <td>{{ $salida->FECHA }}</td>
-                                        <td>{{ $salida->area->NOM_AREA }}</td>
+                                        <td>{{$salida->COD_SALIDA }}</td>
+                                        <td>{{$salida->COD_PEDIDO}}</td>
+                                        <td>{{$salida->FECHA}}</td>
+                                        <td>{{$salida->area->NOM_AREA}}</td>
                                         <td>
                                             @if($salida->ESTADO_SALIDA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
