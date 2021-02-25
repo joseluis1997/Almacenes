@@ -150,11 +150,13 @@
 
     </header>
     <main>
+      @php
+        $Catidad =  0;
+        $CatidadTotal =  0;
+        $SubTotal =  0;
+        $Total =  0;
+      @endphp
       @foreach($partidas as $partida)
-        @php
-          $SubTotal =  0.00;
-          $Total =  0.00;
-        @endphp
         <table style="margin-bottom: 30px;">
           <thead>
             <tr>
@@ -170,19 +172,36 @@
           </thead>
           <tbody>
             @foreach($partida->Articulos as $index=>$articulo)
+              @php
+                $CatidadTotal = $articulo->CANT_ACTUAL;
+                $SubTotal = 0;
+              @endphp
+              @foreach($articulo->ComprasStocks as $compra)
+                @if($CatidadTotal > $compra->pivot->CANTIDAD)
+                  @php
+                    $SubTotal = $SubTotal+($compra->pivot->CANTIDAD * $compra->pivot->PRECIO_UNITARIO);
+                    $CatidadTotal = $CatidadTotal - $compra->pivot->CANTIDAD;
+                  @endphp
+                @elseif($compra->pivot->CANTIDAD == $CatidadTotal)
+                  @php
+                    $SubTotal = $SubTotal+($compra->pivot->CANTIDAD * $compra->pivot->PRECIO_UNITARIO);
+                  @endphp
+                  @break
+                @else
+                  @php
+                    $SubTotal = $SubTotal+($CatidadTotal * $compra->pivot->PRECIO_UNITARIO);
+
+                  @endphp
+                  @break
+                @endif
+              @endforeach
               <tr>
                 <td class="inf">{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
                 <td class="inf">{{$articulo->NOM_ARTICULO}}</td>
                 <td class="inf">{{$articulo->CANT_ACTUAL}}</td>
                 <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
                 @php
-                  if($articulo->total_cantidad <= 0 || $articulo->total_precio<= 0){
-                    $SubTotal = 0;
-                    $Total = $Total + $SubTotal;
-                  }else{
-                    $SubTotal = $articulo->CANT_ACTUAL*($articulo->total_precio/$articulo->total_cantidad);
-                    $Total = $Total + $SubTotal;
-                  }
+                  $Total = $Total + $SubTotal;
                 @endphp
                 <td class="inf">bs/ {{number_format($SubTotal, 2, '.', '')}}</td>
               </tr>
@@ -206,8 +225,5 @@
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
       </div>
     </main>
-    <footer>
-      Gobierno Autonomo Departamental de Tarija
-    </footer>
   </body>
 </html>
