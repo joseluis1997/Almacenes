@@ -40,7 +40,7 @@ class Articulo extends Model
 
     public function ComprasStocks(){
 
-        return $this->belongsToMany(\App\compra_stock::class,'DETALLE_COMPRA_STOCK','COD_ARTICULO','COD_COMPRA_STOCK');
+        return $this->belongsToMany(\App\compra_stock::class,'DETALLE_COMPRA_STOCK','COD_ARTICULO','COD_COMPRA_STOCK')->withPivot('CANTIDAD', 'PRECIO_UNITARIO', 'ESTADO_DETALLE');
     }
 
     public function Pedidos(){
