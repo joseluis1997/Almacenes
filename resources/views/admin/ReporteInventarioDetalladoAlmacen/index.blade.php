@@ -12,7 +12,7 @@
         </div>
         <div class="card mt-2">
             <div class="card-body">
-            <form  action="#"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('create_report_InventarioDetalladoAlmacen') }}"  id="formulario" class="row" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 @include('admin.ReporteInventarioDetalladoAlmacen.form')

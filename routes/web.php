@@ -481,6 +481,11 @@ Route::group(['prefix' => 'InventarioDetAlmacen', 'namespace' => 'Admin', 'middl
 	Route::get('/index', 'InventarioDetalladoAlmacenController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_InventarioDetalladoAlmacen"))
 	->name('list_InventarioDetalladoAlmacen');
+
+	Route::post('/create_report', 'InventarioDetalladoAlmacenController@createReport')
+	->middleware(sprintf("autorizacion:%s", "accesso_InventarioDetalladoAlmacen"))
+	->name('create_report_InventarioDetalladoAlmacen');
+
 });
 /*Fin: Inventario Detallado Almacen*/
 
