@@ -473,6 +473,10 @@ Route::group(['prefix' => 'fisicoValorado', 'namespace' => 'Admin', 'middleware'
 	Route::get('/index', 'FisicoValoradoConsumoDirectoController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoConsumoDirecto"))
 	->name('list_FisicoValoradoConsumoDirecto');
+
+	Route::post('/InventarioActual', 'FisicoValoradoConsumoDirectoController@createReport')
+	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
+	->name('create_report__FisicoValoradoConsumoDirecto');
 });
 /*Fin: Fisico Valorado Consumo Directo*/
 
