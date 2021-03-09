@@ -35,7 +35,7 @@ class Articulo extends Model
 
     public function ConsumosDirectos(){
 
-        return $this->belongsToMany(\App\consumo_directo::class,'DETALLE_CONSUMO_DIRECTO','COD_ARTICULO','COD_CONSUMO_DIRECTO');
+        return $this->belongsToMany(\App\consumo_directo::class,'DETALLE_CONSUMO_DIRECTO','COD_ARTICULO','COD_CONSUMO_DIRECTO')->withPivot('CANTIDAD', 'PRECIO_UNITARIO');
     }
 
     public function ComprasStocks(){

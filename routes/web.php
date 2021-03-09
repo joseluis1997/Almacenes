@@ -506,6 +506,11 @@ Route::group(['prefix' => 'RdIngresosConsumoDirecto', 'namespace' => 'Admin', 'm
 	Route::get('/index', 'ReporteDetalladoIngresosConsumoDirectoController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoIngresosConsumoDirecto"))
 	->name('list_ReporteDetalladoIngresosConsumoDirecto');
+
+	Route::post('/create_report', 'ReporteDetalladoIngresosConsumoDirectoController@createReport')
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoIngresosConsumoDirecto"))
+	->name('create_report_ReporteDetalladoIngresosConsumoDirecto');
+
 });
 /*Fin: Reporte Detallado de Ingresos por Consumo Directo*/
 
