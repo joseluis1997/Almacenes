@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Partida;
 
 class FisicoValoradoConsumoDirectoController extends Controller
 {
@@ -15,7 +16,7 @@ class FisicoValoradoConsumoDirectoController extends Controller
     public function index()
     {
         //
-        return view('admin.ResumenFisicoValoradoConsumoDirecto.index');
+        return view('admin.ReporteFisicoValoradoConsumoDirecto.index');
     }
 
     /**

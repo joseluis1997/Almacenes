@@ -1,21 +1,38 @@
-@extends('layouts.app')
+@extends("layouts.app")
+
+@section('contenido')
+
+    <div class="title">
+        <h1 align="center"><b>Gestion Reportes</b></h1>
+    </div>
+
+    <div id="Reportes">
+        <a href="{{route ('list_reportesInventarioActual')}}" >
+            <b>Reporte Inventario Actual</b>
+        </a><br><br>
+        <a href="{{ route('list_InventarioDetalladoAlmacen') }}">
+            <b>Inventario Detallado de Almacen</b>
+        </a><br><br>
+        <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}">
+            <b>Reporte Fisico Valorado (Consumo Directo)</b>
+        </a>
+    </div>
+
+@endsection
+
+{{-- @extends('layouts.app')
 @section('contenido')
 	<div class="containerre">
         <div class="col-md-7" >
-            <h3 class="card-title" >Gestionar Reportes</h3> 
+            <h3 class="card-title" >Gestion Reportes</h3> 
         </div>
         <div class="box1">
             <div class="icon1">
                 <i class="fas fa-print"></i>
-                <a href="{{route ('list_reportesInventarioActual')}}" class="textito"> Inventario Actual</a>
+                <a href="{{route ('list_reportesInventarioActual')}}" class="textito">Reporte Inventario Actual</a>
             </div>
         </div>
-        <div class="box2">
-            <div class="icon2">
-                <i class="fas fa-print"></i>
-                <a href="{{route ('list_reportesInventarioManual')}}" class="textito">Inventario Manual</a>
-            </div>
-        </div>
+
         <div class="box3">
             <div class="icon3">
                 <i class="fas fa-print"></i>
@@ -31,7 +48,7 @@
         <div class="box5">
             <div class="icon5">
                 <i class="fas fa-print"></i>
-                <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}" class="textito"><b>Resumen Fisico Valorado (Consumo Directo)</b></a>
+                <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}" class="textito"><b>Reporte Fisico Valorado (Consumo Directo)</b></a>
             </div>
         </div>
         <div class="box6">
@@ -60,3 +77,4 @@
         </div>
     </div>
 @endsection
+ --}}

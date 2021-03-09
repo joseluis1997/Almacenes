@@ -85,12 +85,12 @@
                                 {{-- Gestionar Usuarios --}}
                                 @canany(['accesso_usuarios','crear_usuarios','modificar_usuarios','eliminar_usuarios'])
                                     <a href="{{route ('list_users')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestionar Usuarios</span> </li>
+                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Usuarios</span> </li>
                                     </a>
                                 @endcan
                                 {{-- Gestionar Roles --}}
                                     <a href="{{route ('list_roles')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-fist-raised"></i><span class="spannn menusito">Gestionar Roles</span></li>
+                                        <li><i class="fas fa-fist-raised"></i><span class="spannn menusito">Gestion Roles</span></li>
                                     </a>
                             </ul>
                         {{-- Grupo:Articulos  --}}
@@ -101,19 +101,19 @@
                             <ul class="slide menusito" data-animation="center">
                                 {{-- Gestionar Articulos --}}
                                     <a href="{{route ('list_articulos')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-box-open"></i><span class="spannn menusito">Gestionar Articulos</span></li>
+                                        <li><i class="fas fa-box-open"></i><span class="spannn menusito">Gestion Articulos</span></li>
                                     </a>
                                 {{-- Gestionar Unidad de Medida --}}
                                     <a href="{{route ('list_medidas')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-ruler-vertical"></i><span class="spannn menusito">Gestionar Unidad de Medida</span></li>
+                                        <li><i class="fas fa-ruler-vertical"></i><span class="spannn menusito">Gestion Unidad de Medida</span></li>
                                     </a>
                                 {{-- Gestionar Partidas --}}
                                     <a href="{{route ('list_partidas')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-book-open"></i><span class="spannn menusito">Gestionar Partidas</span></li>
+                                        <li><i class="fas fa-book-open"></i><span class="spannn menusito">Gestion Partidas</span></li>
                                     </a>
                                 {{-- Gestionar Proveedores --}}
                                     <a href="{{ route ('list_proveedores') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestionar Proveedores</span></li>
+                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Proveedores</span></li>
                                     </a>
                             </ul>
                              {{-- Grupo: Consumos --}}
@@ -124,23 +124,23 @@
                             <ul class="slide menusito" data-animation="center">
                                 {{-- Gestionar Areas --}}
                                     <a href="{{ route ('list_areas') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-chart-area"></i><span class="spannn menusito">Gestionar Areas</span></li>
+                                        <li><i class="fas fa-chart-area"></i><span class="spannn menusito">Gestion Areas</span></li>
                                     </a>
                                 {{-- Gestionar Consumo Directo --}}
                                     <a href="{{ route('list_consumodirecto') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-copyright"></i><span class="spannn menusito">Gestionar Consumo Directo</span></li>
+                                        <li><i class="fas fa-copyright"></i><span class="spannn menusito">Gestion Consumo Directo</span></li>
                                     </a>                                
                                 {{-- Gestionar Pedidos --}}
                                     <a href="{{ route('list_pedidos') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-biking"></i><span class="spannn menusito">Gestionar Pedidos</span></li>
+                                        <li><i class="fas fa-biking"></i><span class="spannn menusito">Gestion Pedidos</span></li>
                                     </a>
                                 {{-- Gestionar Salidas --}}
                                     <a href="{{ route('list_salidas') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-plane-departure"></i><span class="spannn menusito">Gestionar Salidas</span></li>
+                                        <li><i class="fas fa-plane-departure"></i><span class="spannn menusito">Gestion Salidas</span></li>
                                     </a>
                                 {{-- Gestionar Stock Alamacen --}}
                                     <a href="{{ route('list_almacen') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestionar Stock Almacen</span></li>
+                                        <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestion Stock Almacen</span></li>
                                     </a>
                             </ul>
                             {{-- Grupo: Administracion del Sistema --}}
@@ -151,7 +151,7 @@
                                 <ul class="slide menusito" data-animation="center">
                                     {{-- Gestionar Reportes --}}
                                         <a href="{{ route('list_reportes') }}" class="MENU-BTN ahrf">
-                                            <li><i class="fas fa-file-pdf"></i><span class="spannn menusito">Gestionar Reportes</span> </li>
+                                            <li><i class="fas fa-file-pdf"></i><span class="spannn menusito">Gestion Reportes</span> </li>
                                         </a>                               
                                 </ul>
                     </nav> 

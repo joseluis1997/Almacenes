@@ -28,7 +28,12 @@ class InventarioActualController extends Controller
     //     });
     // }])->get();
 
-      $partidas = Partida::where('COD_PARTIDA', '=' , )->with(['Articulos' => function($query) {
+    //   $partidas = Partida::where('COD_PARTIDA', '=' , )->with(['Articulos' => function($query) {
+    //     $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, COUNT(CANTIDAD) as total_cantidad, SUM(PRECIO_UNITARIO) as total_precio FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
+    //         $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
+    //     });
+    // }])->get();
+      $partidas = Partida::with(['Articulos' => function($query) {
         $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, COUNT(CANTIDAD) as total_cantidad, SUM(PRECIO_UNITARIO) as total_precio FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
             $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
         });

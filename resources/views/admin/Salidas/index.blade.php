@@ -80,7 +80,65 @@
                         </tbody>
                     </table> 
                 </div>
-                
+                {{-- data table salida Deshabilitados --}}
+                <div class="tab-pane fade show bajas" id="nav-salida-bajas" role="tabpanel" aria-labelledby="nav-salida-activos-tab" style="padding-top: 15px;">
+                    <table id="dataBajas" class="table table-striped table-bordered " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Pedido</th>
+                                <th>Fecha</th>
+                                <th>Area Solicitante</th>
+                                <th>Estado</th>
+                                <th>Modificar Salida</th>
+                                <th>Imprimir Salida</th>
+                                <th>Deshabilitar Salida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($Salidas as $salida)
+                                @if($salida->ESTADO_SALIDA==0)
+                                    <tr>
+                                        <td>{{$salida->COD_SALIDA}}</td>
+                                        <td>{{$salida->COD_PEDIDO}}</td>
+                                        <td>{{$salida->FECHA}}</td>
+                                        <td>{{$salida->area->NOM_AREA}}</td>
+                                        <td>
+                                            @if($salida->ESTADO_SALIDA)
+                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                            @else
+                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                          @can('modificar_articulos')
+                                            <a href="{{route ('edit_salidas',$salida->COD_SALIDA)}}" class="fas fa-edit fa-2x"></a>
+                                          @endcan
+                                        </td>
+                                        <td>Imprimir</td>
+                                        <td> 
+                                            <form action="{{ route('destroy_salidas', $salida->COD_SALIDA) }}" onsubmit="submitForm(event, {{ $salida->ESTADO_SALIDA}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                @if($salida->ESTADO_SALIDA)
+                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                  </button>
+                                                @else
+                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    Habilitar
+                                                  </button>
+
+                                                @endif
+                                            </form>
+                                        </td>
+                                        
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table> 
+                </div>
             </div>
         </div>
     </div>
@@ -110,24 +168,24 @@
             event.preventDefault();
             var r = null;
             if(estado == 1){
-              r = confirm("Acepta Desabilitar el pedido Seleccionado");
+              r = confirm("Acepta Desabilitar la Salida Seleccionada");
             }else{
-              r = confirm("Acepta habilitar el pedido Seleccionado");
+              r = confirm("Acepta habilitar la Salida Seleccionada");
             }
             if (r == true) {
               form.submit();
             }
         }
 
-        function eliminar(event) {
+        // function eliminar(event) {
           
-            var r = confirm("Acepta elminar la Salida Seleccionada?");
-            if (r == true) {
+        //     var r = confirm("Acepta elminar la Salida Seleccionada?");
+        //     if (r == true) {
 
-            } 
-            else {
-                 event.preventDefault();
-             }
-        }
+        //     } 
+        //     else {
+        //          event.preventDefault();
+        //      }
+        // }
     </script>
 @endsection

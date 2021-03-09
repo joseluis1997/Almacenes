@@ -158,15 +158,30 @@
                 },
             });
         } );
-        function eliminar(event) {
-      
-        var r = confirm("Acepta elminar el Area Seleccionado?");
-        if (r == true) {
 
-        } 
-        else {
-             event.preventDefault();
-         }
+
+        function submitForm(event, estado,form) { 
+            event.preventDefault();
+            var r = null;
+            if(estado == 1){
+              r = confirm("Acepta Desabilitar el Area Seleccionado");
+            }else{
+              r = confirm("Acepta habilitar el Area Seleccionado");
+            }
+            if (r == true) {
+              form.submit();
+            }
         }
+
+        // function eliminar(event) {
+      
+        // var r = confirm("Acepta elminar el Area Seleccionado?");
+        // if (r == true) {
+
+        // } 
+        // else {
+        //      event.preventDefault();
+        //  }
+        // }
     </script>
 @endsection

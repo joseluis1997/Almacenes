@@ -31,7 +31,7 @@ class InventarioDetalladoAlmacenController extends Controller
     if ($fecha_inicio != null && $fecha_fin != null) {
       $date_inicio = \DateTime::createFromFormat('Y-m-d', $fecha_inicio);
       $date_fin = \DateTime::createFromFormat('Y-m-d', $fecha_fin);
-      if ($date_fin > $date_fin) {
+      if ($date_fin > $date_inicio) {
         $this->fecha_ok = TRUE;
       }
     }
@@ -45,9 +45,9 @@ class InventarioDetalladoAlmacenController extends Controller
         if ($this->fecha_ok) {
           $query2->whereDate('FECHA', '>=', $this->fecha_inicio)
           ->whereDate('FECHA', '<=', $this->fecha_fin)
-          ->orderBy('COD_COMPRA_STOCK', 'desc');
+          ->orderBy('COD_COMPRA_STOCK', 'asc');
         }else{
-          $query2->orderBy('COD_COMPRA_STOCK', 'desc');
+          $query2->orderBy('COD_COMPRA_STOCK', 'asc');
         }
       }])
       ->with(['Medida' => function($query) {

@@ -238,9 +238,11 @@ Route::group(['prefix' => 'areas', 'namespace' => 'Admin', 'middleware' => ['aut
 	->middleware(sprintf("autorizacion:%s", "modificar_areas"))
 	->name('update_areas');
 
-	Route::delete('/{area}/destroy','AreaController@destroy')
+	Route::delete('/{area}/destroy','AreaController@changeStatus')
 	->middleware(sprintf("autorizacion:%s", "eliminar_areas"))
 	->name('destroy_areas');
+	
+	// Route::delete('/{area}/destroy', 'AreaController@changeStatus')->name('eliminar_areas');
 	
 });
 /* Fin Gestionar Areas*/
@@ -416,7 +418,7 @@ Route::group(['prefix' => 'Salidas', 'namespace' => 'Admin', 'middleware' => ['a
 	->middleware(sprintf("autorizacion:%s", "modificar_salidas"))
 	->name('update_salidas');
 
-	Route::get('/{id}/destroy','SalidasController@destroy')
+	Route::delete('/{salida}/destroy','SalidasController@changeStatus')
 	->middleware(sprintf("autorizacion:%s", "eliminar_salidas"))
 	->name('destroy_salidas');
 

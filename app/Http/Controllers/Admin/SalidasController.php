@@ -92,7 +92,21 @@ class SalidasController extends Controller
 
     }
 
-    public function destroy($id){
+    public function changeStatus(salida $salida)
+    {
+        $estado = true;
 
+        if ($salida->ESTADO_SALIDA) {
+          $estado = false;
+        }
+
+        $salida->ESTADO_SALIDA = $estado;
+        $salida->save();
+
+        if ($estado) {
+          return redirect()->route('list_salidas')->with('message', ['success', 'Salida habilitado Correctamente!']);  
+        }else{
+          return redirect()->route('list_salidas')->with('message', ['success', 'Salida Desabilitado Correctamente!']);
+        }
     }
 }

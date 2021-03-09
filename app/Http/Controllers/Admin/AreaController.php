@@ -105,7 +105,7 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function changeStatus(Area $area)
     {
         $estado = true;
 

@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-le"><b>Gestionar Pedidos</b></h3> 
+                    <h3 class="card-le"><b>Gestion Pedidos</b></h3> 
                 </div>
                 <div class="col-md-5">
                     <a href="{{route('create_pedidos')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Pedido</b></a>
