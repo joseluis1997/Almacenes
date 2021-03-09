@@ -23,9 +23,12 @@ class ReporteDetalladoIngresosConsumoDirectoController extends Controller
   public $partida_ok = FALSE;
   public $fecha_ok = FALSE;
   public function createReport(Request $request){
-    $partida = $request->get('partida');
-    if($partida != null && $partida > 0){
+    $cod_partida = $request->get('partida');
+    $partida = null;
+    if($cod_partida != null && $cod_partida > 0){
       $this->partida_ok = TRUE;
+      $partida = Partida::find($cod_partida);
+      $partida = $partida->NRO_PARTIDA;
     }
     $fecha_inicio = $request->get('fecha_inicio');
     $fecha_fin = $request->get('fecha_fin');
@@ -39,7 +42,7 @@ class ReporteDetalladoIngresosConsumoDirectoController extends Controller
     // dd($fecha_inicio);
     $partidaQuery = Partida::query();
     if ($this->partida_ok) {
-      $partidaQuery = $partidaQuery->where('COD_PARTIDA', '=', 1);
+      $partidaQuery = $partidaQuery->where('COD_PARTIDA', '=', $cod_partida);
     }
     $partidas = $partidaQuery->with(['Articulos' => function($query) {
       $query->with(['ConsumosDirectos' => function($query2) {
@@ -66,9 +69,23 @@ class ReporteDetalladoIngresosConsumoDirectoController extends Controller
     // dd($partidas[0]->Articulos);
 
 
-    // return view('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.Reporte', compact('partidas'));
+    // return view('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.Reporte', [
+    //   'partidas'=> $partidas,
+    //   'partida_ok'=> $this->partida_ok,
+    //   'partida'=> $partida,
+    //   'fecha_ok'=> $this->fecha_ok,
+    //   'fecha_inicio'=> $fecha_inicio,
+    //   'fecha_fin'=> $fecha_fin,
+    // ]);
 
-    $reporteInventarioActual = \PDF::loadView('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.Reporte', compact('partidas'))
+    $reporteInventarioActual = \PDF::loadView('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.Reporte', [
+      'partidas'=> $partidas,
+      'partida_ok'=> $this->partida_ok,
+      'partida'=> $partida,
+      'fecha_ok'=> $this->fecha_ok,
+      'fecha_inicio'=> $fecha_inicio,
+      'fecha_fin'=> $fecha_fin,
+    ])
     ->setPaper('a4', 'landscape');
     return $reporteInventarioActual->download('ReporteDetalladoDeIngresosPorConsumoDirecto.pdf');
   }
