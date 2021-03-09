@@ -15,6 +15,9 @@
         </a><br><br>
         <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}">
             <b>Reporte Fisico Valorado (Consumo Directo)</b>
+        </a><br><br>
+        <a href="{{ route('list_ReporteDetalladoIngresosConsumoDirecto') }}">
+            <b>Reporte Detallado de Ingresos Por Consumo Directo</b>
         </a>
     </div>
 
@@ -26,12 +29,7 @@
         <div class="col-md-7" >
             <h3 class="card-title" >Gestion Reportes</h3> 
         </div>
-        <div class="box1">
-            <div class="icon1">
-                <i class="fas fa-print"></i>
-                <a href="{{route ('list_reportesInventarioActual')}}" class="textito">Reporte Inventario Actual</a>
-            </div>
-        </div>
+   
 
         <div class="box3">
             <div class="icon3">
@@ -45,12 +43,7 @@
                 <a href="{{ route('list_ReporteDetalladoStockAlmacen') }}" class="textito"><b>Reporte Detallado <br>Por stock de Almacen</b></a>
             </div>
         </div>
-        <div class="box5">
-            <div class="icon5">
-                <i class="fas fa-print"></i>
-                <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}" class="textito"><b>Reporte Fisico Valorado (Consumo Directo)</b></a>
-            </div>
-        </div>
+   
         <div class="box6">
             <div class="icon6">
                 <i class="fas fa-print"></i>
