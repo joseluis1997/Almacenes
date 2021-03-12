@@ -154,9 +154,24 @@
           <br>
           REPORTE DETALLADO DE INGRESOS CONSUMO DIRECTO
         </h1>
-
     </header>
     <main>
+      <div>
+        @if($partida_ok)
+        <p>
+          <b>PARTIDA: </b> {{$partida}}
+        </p>
+        @endif
+        @if($fecha_ok)
+        <p>
+          <b>
+            PERIODO DEL REPORTE: 
+          </b>
+          {{date('d-m-Y',strtotime($fecha_inicio))}} al 
+          {{date('d-m-Y',strtotime($fecha_fin))}} 
+        </p>
+        @endif
+      </div>
       @foreach($partidas as $partida)
         <table style="margin-bottom: 30px;" class="text-left">
           <tr>

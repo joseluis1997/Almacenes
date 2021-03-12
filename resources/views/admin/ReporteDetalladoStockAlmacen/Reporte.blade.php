@@ -103,7 +103,6 @@
 
       table td {
         padding: 20px 0px;
-        text-align: right;
       }
 
       .text-center td {
@@ -147,9 +146,13 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b>
-            UNIDAD DE ALMACENES CENTRAL<br>
-            INVENTARIO ACTUAL DE ALMACEN
+        <h1>
+          <b>
+            GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
+          </b>
+          UNIDAD DE ALMACENES CENTRAL
+          <br>
+          REPORTE DETALLADO DE INGRESOS STOCK DE ALMACEN
         </h1>
     </header>
     <main>
@@ -170,39 +173,37 @@
         @endif
       </div>
       @foreach($partidas as $partida)
-        <table style="margin-bottom: 30px;">
-          <thead>
-            <tr>
-              <th colspan="6" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
-            </tr>
-            <tr>
-              <th>NRO</th>
-              <th>ITEM</th>
-              <th colspan="3">NOMBRE</th>
-              <th>MEDIDA</th>
-            </tr>
-          </thead>
+        <table style="margin-bottom: 30px;" class="text-left">
+          <tr>
+            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
+          </tr>
+          <tr>
+            <th>FECHA</th>
+            <th>CODIGO</th>
+            <th>PREVENTIVO</th>
+            <th>SOLICITANTE</th>
+            <th>ITEM</th>
+            <th>NOMBRE</th>
+            <th>MEDIDA</th>
+            <th>CANTIDAD</th>
+            <th>P.U</th>
+            <th>TOTAL</th>
+          </tr>
           <tbody>
             @foreach($partida->Articulos as $indexA=>$articulo)
-              <tr class="text-center">
-                <td>{{$indexA+1}}</td>
-                <td>{{$partida->NRO_PARTIDA}} - {{$indexA+1}}</td>
-                <td colspan="3">{{$articulo->NOM_ARTICULO}}</td>
-                <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
-              </tr>
-              <tr>
-                <td colspan="3">&#160;</td>
-                <td style="background-color: #c1ced9;">Cantidad</td>
-                <td style="background-color: #c1ced9;">Precio Unitario</td>
-                <td style="background-color: #c1ced9;">Total</td>
-              </tr>
               @php
                 $SubTotal =  0.00;
                 $Total =  0.00;
               @endphp
               @foreach($articulo->ComprasStocks as $compra)
-                <tr style="text-align: center;">
-                  <td colspan="3">&#160;</td>
+                <tr>
+                  <td>{{$compra->FECHA}}</td>
+                  <td>{{$compra->COD_COMPRA_STOCK}}</td>
+                  <td>{{$compra->NRO_PREVENTIVO}}</td>
+                  <td>{{$compra->Area->NOM_AREA}}</td>
+                  <td>{{$partida->NRO_PARTIDA}} - {{$indexA+1}}</td>
+                  <td>{{$articulo->NOM_ARTICULO}}</td>
+                  <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
                   <td>{{number_format($compra->pivot->CANTIDAD, 2, '.', '')}}</td>
                   <td>{{number_format($compra->pivot->PRECIO_UNITARIO, 2, '.', '')}}</td>
                   @php
@@ -213,7 +214,7 @@
                 </tr>
               @endforeach
               <tr>
-                <td colspan="3">&#160;</td>
+                <td colspan="7">&#160;</td>
                 <td style="background-color: #cbd7e2;">Total</td>
                 <td style="background-color: #cbd7e2;">&#160;</td>
                 <td style="background-color: #cbd7e2;">BS/ {{number_format($Total, 2, '.', '')}}</td>

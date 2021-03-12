@@ -1,20 +1,22 @@
  <!-- Grupo: Partida Presupuestaria -->
             <div class="formulario__grupo" id="grupo__partidaPresupuestaria">
-                <label for="partidaPresupuestaria" class="formulario__label">Partida Presupuestaria</label>
+                <label for="Partida" class="formulario__label">Partida Presupuestaria</label>
                 <div class="formulario__grupo-input">
-                    <input type="text" class="formulario__input" name="#" id="partidaPresupuestaria" placeholder="Partida Presupuestaria">
-                    <i class="formulario__validacion-estado far fa-times-circle"></i>
+                  <select name="partida" class="form-control" id="Partida" required>
+                    <option value="0">Todas las partidas</option>
+                    @foreach ($partidas as $partida)
+                      <option value="{{ $partida->COD_PARTIDA }}">{{$partida->NRO_PARTIDA}} | {{$partida->NOM_PARTIDA}}</option>
+                    @endforeach
+                  </select>
+                  <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">
-                    El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
-                </p>
             </div>
 
 <!-- Grupo: fecha Final -->
             <div class="formulario__grupo" id="grupo__fechafinal">
                 <label for="fechafinal" class="formulario__label">Fecha Inicio</label>
                 <div class="formulario__grupo-input">
-                    <input type="date" class="formulario__input" name="#" id="fechafinal">
+                    <input type="date" class="formulario__input" name="fecha_inicio" id="fechafinal">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
@@ -25,7 +27,7 @@
             <div class="formulario__grupo" id="grupo__fechaInicio">
                 <label for="fechaInicio" class="formulario__label">Fecha Fin</label>
                 <div class="formulario__grupo-input">
-                    <input type="date" class="formulario__input" name="#" id="fechaInicio">
+                    <input type="date" class="formulario__input" name="fecha_fin" id="fechaInicio">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">

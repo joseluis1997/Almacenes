@@ -467,6 +467,11 @@ Route::group(['prefix' => 'stockAlmacen', 'namespace' => 'Admin', 'middleware' =
 	Route::get('/index', 'ReporteDetalladoStockAlmacenController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoStockAlmacen"))
 	->name('list_ReporteDetalladoStockAlmacen');
+
+	Route::post('/create_report', 'ReporteDetalladoStockAlmacenController@createReport')
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoStockAlmacen"))
+	->name('create_report_ReporteDetalladoStockAlmacen');
+	
 });
 /*Fin:Reporte Detallado Stock Almacen*/
 
