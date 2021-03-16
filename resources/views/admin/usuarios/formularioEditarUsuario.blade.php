@@ -26,49 +26,49 @@
         <i class="formulario__validacion-estado far fa-times-circle"></i>
     </div>
     <p class="formulario__input-error">
-        El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+        El ci tiene que ser de 7 a 10 digitos y solo puede contener numeros.
     </p>
 </div>
 
 <!-- Grupo: Nombre -->
     <div class="formulario__grupo" id="grupo__nombre">
         <label for="name" class="formulario__label"><b class="colorAste">*</b>&nbsp;Nombre&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Nombre" data-content="Puede Modificar su nombre por ejemplo:Jose, solo puede ser letras...">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Nombre" data-content="El nombre debe comenzar con mayusculas por jemplo:Jose, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
                 <input type="text" class="formulario__input" name="NOMBRE" id="name" value="{{$user->NOMBRE}}" required >
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+                El nombre debe comenzar con mayusculas.
             </p>
     </div>
 
 <!-- Grupo: Apellidos -->
     <div class="formulario__grupo" id="grupo__apellidos">
         <label for="apellidos" class="formulario__label"><b class="colorAste">*</b>&nbsp;Apellidos&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Apellidos" data-content="Puede Modificar su Apellido por ejemplo:Mercado, solo puede ser letras...">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Apellidos" data-content="El Apellido debe comenzar con mayusculas por ejemplo:Mercado, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
                 <input type="text" class="formulario__input" name="APELLIDO" id="apellidos" value="{{$user->APELLIDO}}" required>
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+                El Apellido debe comenzar con mayusculas.
             </p>
     </div>
 
 <!-- Grupo: Telefono -->
     <div class="formulario__grupo" id="grupo__telefono">
         <label for="telefono" class="formulario__label">Telefono&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Telefono" data-content="Modificar su numero de celular por Ej:75316489.">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Telefono" data-content="El telefono solo puede contener numeros por Ej:+(591) 753-164-89, 753.164.89, 753-150-92.">?</a>
         </label>
             <div class="formulario__grupo-input">
                 <input type="text" class="formulario__input" name="TELEFONO" id="telefono"  value="{{ $user->TELEFONO}}" required>
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El telefono solo puede contener numeros y el maximo son 14 dígitos.
+                El telefono solo puede contener numeros.
             </p>
     </div>
 
@@ -76,14 +76,14 @@
 <!-- Grupo: Usuario -->
     <div class="formulario__grupo" id="grupo__usuario">
         <label for="username" class="formulario__label"><b class="colorAste">*</b>&nbsp;Usuario&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Nombre de Usuario" data-content="Modificar su nombre de usuario por ejemplo:Jose_123, solo puede contener letras y Guion bajo...">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Nombre de Usuario" data-content="l usuario puede ser de la siguente forma:Jose_123, jose123, jose">?</a>
         </label>
             <div class="formulario__grupo-input">
                 <input type="text" class="formulario__input" name="NOM_USUARIO" id="username" value="{{$user->NOM_USUARIO}}" autocomplete="new-text" required >
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El usuario tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+               El usuario no es correcto.
             </p>
     </div>
 <!-- Grupo: Rol -->
@@ -134,21 +134,6 @@
             Ambas contraseñas deben ser iguales.
         </p>
     </div>
-
-{{-- Grupo: Foto del Usuario --}}
-{{--     <div class="form-group row">
-        <label for="roles" class="col-lg-3 col-form-label "><b>Imagen</b></label>
-        <div class="col-lg-8">
-                <input type="file"name="imagen" {{!isset($user) ? 'required' : ' '}}>
-                @if($user->imagen != "")
-                    <img src="{{ asset('/images/users/'.$user->imagen) }}" alt="{{ $user->imagen }}" height="60px" width="60px">
-                @else
-
-                     <img src="{{ asset('/images/users/'.$user->imagen) }}" alt="{{ $user->imagen }}" height="60px" width="60px">
-                @endif
-        </div>
-    </div> --}}
-    
 <!-- Grupo: Guardar y Cancelar -->
     <div class="formulario__grupo formulario__btn-guardar text-center">
         <a href="{{route('list_users')}}" class="btn formulario__btn2">Cancelar</a>

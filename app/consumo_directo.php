@@ -15,7 +15,7 @@ class consumo_directo extends Model
         'NRO_PREVENTIVO',
         'NOTA_INGRESO',
         'FECHA',
-        'FACTURA',
+        'COMPROBANTE',
         'DETALLE_CONSUMO',
     ];
 

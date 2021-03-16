@@ -31,7 +31,7 @@
                             <th>Estado</th>
                             <th>Ver</th>
                             <th>Modificar</th>
-                            <th>Eliminar</th>
+                            <th>Deshabilitar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
                                     <a href="{{route('show_areas',$area->COD_AREA)}}" class="fas fa-eye fa-2x"></a>
                                     </td>
                                 <td>
-                                    @can('modificar_usuarios')
+                                    @can('Modificar_areas')
                                     <a href="{{route ('edit_areas',$area->COD_AREA)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>
@@ -88,7 +88,7 @@
                             <th>Estado</th>
                             <th>Ver</th>
                             <th>Modificar</th>
-                            <th>Eliminar</th>
+                            <th>Habilitar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,7 +109,7 @@
                                     <a href="{{route('show_areas',$area->COD_AREA)}}" class="fas fa-eye fa-2x"></a>
                                     </td>
                                 <td>
-                                    @can('modificar_usuarios')
+                                    @can('Modificar_areas')
                                     <a href="{{route ('edit_areas',$area->COD_AREA)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>

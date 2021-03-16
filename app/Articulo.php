@@ -13,13 +13,10 @@ class Articulo extends Model
     protected $fillable = [
         'FK_COD_PARTIDA',
         'FK_COD_MEDIDA',
-        // 'ITEM',
         'NOM_ARTICULO',
         'DESC_ARTICULO',
         'CANT_ACTUAL',
-        // 'CANT_MINIMA',
-        // 'UBICACION',
-        // 'TIPO',
+        'MARCA',
         'ESTADO_ARTICULO'
     ];
 

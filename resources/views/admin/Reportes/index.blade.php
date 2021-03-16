@@ -7,18 +7,45 @@
     </div>
 
     <div id="Reportes">
-        <a href="{{route ('list_reportesInventarioActual')}}" >
-            <b>Reporte Inventario Actual</b>
-        </a><br><br>
-        <a href="{{ route('list_InventarioDetalladoAlmacen') }}">
-            <b>Inventario Detallado de Almacen</b>
-        </a><br><br>
-        <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}">
-            <b>Reporte Fisico Valorado (Consumo Directo)</b>
-        </a><br><br>
-        <a href="{{ route('list_ReporteDetalladoIngresosConsumoDirecto') }}">
-            <b>Reporte Detallado de Ingresos Por Consumo Directo</b>
-        </a>
+        @can('accesso_reporteInventarioActual')
+            <a href="{{route ('list_reportesInventarioActual')}}" >
+                <b>Reporte Inventario Actual</b>
+            </a><br>
+        @endcan
+        @can('accesso_reporteInventarioActualDetallado')
+            <a href="{{ route('list_InventarioDetalladoAlmacen') }}">
+                <b>Reporte Detallado Inventario Actual</b>
+            </a><br>
+        @endcan
+        @can('accesso_FisicoValoradoConsumoDirecto')
+            <a href="{{ route('list_FisicoValoradoConsumoDirecto') }}">
+                <b>Reporte Fisico Valorado Consumos Directos</b>
+            </a><br>
+        @endcan
+        @can('ccesso_ReporteDetalladoIngresosConsumoDirecto')
+            <a href="{{ route('list_ReporteDetalladoIngresosConsumoDirecto') }}">
+                <b>Reporte Detallado Consumos Directos</b>
+            </a><br>
+        @endcan
+         @can('accesso_ReporteDetalladoStockAlmacen')
+            <a href="#"><b>Reporte De Compras</b>
+            </a><br>
+        @endcan
+        @can('accesso_ReporteDetalladoStockAlmacen')
+            <a href="{{ route('list_ReporteDetalladoStockAlmacen') }}"><b>Reporte Detallado De Compras</b>
+            </a><br>
+        @endcan
+        @can('accesso_Kardex')
+            <a href="{{ route('list_kardexAlmacen') }}"><b>Kardex Articulos</b>
+            </a><br>
+        @endcan
+
+        <a href="{{ route('list_kardexAlmacen') }}"><b>Reporte Por Areas</b></a><br>
+
+        @can('accesso_ConsolidadoFisicoValoradoTotal')
+            <a href="{{ route('list_ConsolidadoFisicoValoradoTotal') }}"><b>Reporte Consolidado Valorado Total</b>
+            </a><br>
+        @endcan
     </div>
 
 @endsection

@@ -40,7 +40,7 @@ class StockAlmacenController extends Controller
             $compra->COD_AREA = $compra_request->get('COD_AREA');
             $compra->NRO_ORD_COMPRA = $compra_request->get('NRO_ORD_COMPRA');
             $compra->NRO_PREVENTIVO = $compra_request->get('NRO_PREVENTIVO');
-            $compra->FACTURA = $compra_request->get('FACTURA');
+            $compra->COMPROBANTE = $compra_request->get('COMPROBANTE');
             $compra->FECHA = $compra_request->get('FECHA');
             $compra->DETALLE_COMPRA = $compra_request->get('DETALLE_COMPRA');
             $compra->save();
@@ -76,7 +76,6 @@ class StockAlmacenController extends Controller
 
     public function show($id){
         $comprita = compra_stock::find($id);
-        
         $detalles = DB::table('DETALLE_COMPRA_STOCK as d')
         ->join('ARTICULO as a','d.COD_ARTICULO','=','a.COD_ARTICULO')
         ->select('a.NOM_ARTICULO','d.COD_COMPRA_STOCK','d.CANTIDAD','d.PRECIO_UNITARIO')

@@ -15,7 +15,7 @@ class compra_stock extends Model
     	'COD_AREA',
     	'NRO_ORD_COMPRA',
     	'NRO_PREVENTIVO',
-    	'FACTURA',
+    	'COMPROBANTE',
     	'FECHA',
     	'DETALLE_COMPRA_STOCK',
     	'ESTADO_COMPRA'

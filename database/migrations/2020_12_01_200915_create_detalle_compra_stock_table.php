@@ -24,7 +24,7 @@ class CreateDetalleCompraStockTable extends Migration
             $table->foreign('COD_ARTICULO')->references('COD_ARTICULO')->on('ARTICULO')->onDelete('cascade');
 
             $table->integer('CANTIDAD');
-            $table->decimal('PRECIO_UNITARIO', 8, 2);
+            $table->decimal('PRECIO_UNITARIO');
             // $table->integer('TOTAL');
             $table->boolean('ESTADO_DETALLE')->default(true);
 

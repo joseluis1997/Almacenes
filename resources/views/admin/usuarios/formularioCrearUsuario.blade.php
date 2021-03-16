@@ -21,72 +21,72 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Carnet de Indentid" data-content="Solo puede contener numeros enteros positivos por Ej:81747041">?</a>
         </label> 
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="CI" id="ci" placeholder="numero de carnet de identidad">    
+            <input type="text" class="formulario__input" name="CI" id="ci" placeholder="numero de carnet de identidad" value="{{old('CI')}}">    
                 <i class="formulario__validacion-estado far fa-times-circle">    
                 </i>
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            El ci tiene que ser de 7 a 10 digitos y solo puede contener numeros.
         </p>
     </div>
 
 <!-- Grupo: Nombre -->
     <div class="formulario__grupo" id="grupo__nombre">
         <label for="name" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">&nbsp;Nombre&nbsp;&nbsp;
-             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre" data-content="Escriba su nombre por ejemplo:Jose, solo puede ser letras...">?</a>
+             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre" data-content="El nombre debe comenzar con mayusculas por jemplo:Jose, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="NOMBRE" id="name" placeholder="nombre de nuevo usuario">
+                <input type="text" class="formulario__input" name="NOMBRE" id="name" placeholder="nombre de nuevo usuario" value="{{old('NOMBRE')}}">
                 <i class="formulario__validacion-estado far fa-times-circle">
                 </i>
             </div>
             <p class="formulario__input-error">
-                El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+                El nombre debe comenzar con mayusculas
             </p>
     </div>
             
 <!-- Grupo: Apellidos -->
     <div class="formulario__grupo" id="grupo__apellidos">
         <label for="apellidos" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">&nbsp;Apellidos&nbsp;&nbsp;
-             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Apellidos" data-content="Escriba su Apellido por ejemplo:Mercado, solo puede ser letras...">?</a>
+             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Apellidos" data-content="El Apellido debe comenzar con mayusculas por ejemplo:Mercado, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="APELLIDO" id="apellidos" placeholder="apellidos de nuevo usuario">
+                <input type="text" class="formulario__input" name="APELLIDO" id="apellidos" placeholder="Apellidos" value="{{ old('APELLIDO') }}" >
                 <i class="formulario__validacion-estado far fa-times-circle">
                 </i>
             </div>
             <p class="formulario__input-error">
-                El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+                El Apellido debe comenzar con mayusculas.
             </p>
     </div>
 
 <!-- Grupo: Telefono -->
     <div class="formulario__grupo" id="grupo__telefono">
         <label for="telefono" class="formulario__label">Telefono&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Telefono" data-content="Escriba su numero de celular por Ej:75316489.">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Telefono" data-content="El telefono solo puede contener numeros por Ej:+(591) 753-164-89, 753.164.89, 753-150-92.">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="TELEFONO" id="telefono" placeholder="numero de telefono de nuevo usuario">
+                <input type="text" class="formulario__input" name="TELEFONO" id="telefono" placeholder="numero de telefono de nuevo usuario" value="{{ old('TELEFONO') }}" >
                 <i class="formulario__validacion-estado far fa-times-circle">
                 </i>
             </div>
             <p class="formulario__input-error">
-                El telefono solo puede contener numeros y el maximo son 14 dígitos.
+                El telefono solo puede contener numeros.
             </p>
     </div>
 
 <!-- Grupo: Usuario -->
     <div class="formulario__grupo" id="grupo__usuario">
         <label for="username" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">&nbsp;Usuario&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Usuario" data-content="Escriba su nombre de usuario por ejemplo:Jose_123, solo puede contener letras y Guion bajo...">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Usuario" data-content="El usuario puede ser de la siguente forma:Jose_123, jose123, jose">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="NOM_USUARIO" id="username" placeholder="nombre de usuario">
+                <input type="text" class="formulario__input" name="NOM_USUARIO" id="username" placeholder="nombre de usuario" value="{{ old('NOM_USUARIO') }}" >
                 <i class="formulario__validacion-estado far fa-times-circle">
                 </i>
             </div>
             <p class="formulario__input-error">
-                El usuario tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+                El usuario no es correcto
             </p>
     </div>
             
@@ -137,22 +137,7 @@
             Ambas contraseñas deben ser iguales.
         </p>
     </div>
-          
- <!-- Grupo: Imagen Usuario -->
-{{--     <div class="formulario__grupo" id="grupo__imagen">
-        <label for="imagen" class="formulario__label"><b class="colorAste">*</b>&nbsp;Imagen&nbsp;&nbsp;
-             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Foto de Perfil" data-content="Elija una foto para su perfil, solo con extecion jpg, jpeg, png">?</a>
-        </label>
-        <div class="formulario__grupo-input">
-            <input type="file"  name="imagen" id="imagen" >
-            <i class="formulario__validacion-estado far fa-times-circle"></i>
-        </div>
-        <p class="formulario__input-error">
-            Debe asiganar una foto para el perfil del nuevo usuario.
-        </p>
-    </div>
-    <div></div> --}}
-
+    
 <!-- Grupo: Mensaje -->
     <div class="formulario__mensaje" id="formulario__mensaje">
         <p>
@@ -166,4 +151,5 @@
     <div class="formulario__grupo formulario__btn-guardar text-center">
         <a href="{{route('list_users')}}" class="btn formulario__btn2">Cancelar</a>
         <button type="submit" class="formulario__btn1">Guardar</button>
+        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos Enviados</p>
     </div>

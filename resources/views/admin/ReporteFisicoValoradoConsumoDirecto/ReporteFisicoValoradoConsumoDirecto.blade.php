@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Example 1</title>
+    <title>RFVCD</title>
     <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
       .clearfix:after {
@@ -144,7 +144,7 @@
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b>
-            UNIDAD DE ALMACENES CENTRAL<br>
+            UNIDAD DE ALMACEN CENTRAL<br>
             INVENTARIO ACTUAL DE ALMACEN
         </h1>
 

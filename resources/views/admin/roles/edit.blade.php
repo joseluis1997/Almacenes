@@ -9,7 +9,7 @@
     <div class="card mt-2">
         <div class="card-body">
             <form class="form-validation" method="POST"  action="{{ route('update_roles', $role->id) }}" novalidate>  
-                {{ method_field('PUT')}}
+                 @method("put")
                 {{ csrf_field() }}
 
                 @include('admin.roles.formEdit')

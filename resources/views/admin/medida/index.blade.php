@@ -31,9 +31,9 @@
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Estado</th>
-                                <th>Ver Unidad de Medida</th>
-                                <th>Modificar Unidad de Medida</th>
-                                <th>Desabilitar Unidad de Medida</th>
+                                <th>Ver</th>
+                                <th>Modificar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                        <a href="{{route ('edit_medidas',$medida->COD_MEDIDA)}}" class="fas fa-edit fa-2x"></a>
                                     </td>
                                     <td> 
-                                        <form action="{{route('destroy_medida', $medida->COD_MEDIDA)}}" onsubmit="submitForm(event, {{$medida->ESTADO_MEDIDA}}, this)" method="POST">
+                                        <form action="{{route('destroy_medidas', $medida->COD_MEDIDA)}}" onsubmit="submitForm(event, {{$medida->ESTADO_MEDIDA}}, this)" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             @if($medida->ESTADO_MEDIDA)
@@ -87,9 +87,9 @@
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Estado</th>
-                                <th>Ver Unidad de Medida</th>
-                                <th>Modificar Unidad de Medida</th>
-                                <th>Desabilitar Unidad de Medida</th>
+                                <th>Ver</th>
+                                <th>Modificar</th>
+                                <th>Habilitar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,7 +113,7 @@
                                        <a href="{{route ('edit_medidas',$medida->COD_MEDIDA)}}" class="fas fa-edit fa-2x"></a>
                                     </td>
                                     <td> 
-                                        <form action="{{route('destroy_medida', $medida->COD_MEDIDA)}}" onsubmit="submitForm(event, {{$medida->ESTADO_MEDIDA}}, this)" method="POST">
+                                        <form action="{{route('destroy_medidas', $medida->COD_MEDIDA)}}" onsubmit="submitForm(event, {{$medida->ESTADO_MEDIDA}}, this)" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             @if($medida->ESTADO_MEDIDA)

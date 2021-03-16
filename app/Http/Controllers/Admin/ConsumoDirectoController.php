@@ -33,7 +33,7 @@ class ConsumoDirectoController extends Controller
 
             $consumo_directo = new consumo_directo;
             $consumo_directo->FECHA = $Consumo_Directo->get('FECHA');
-            $consumo_directo->FACTURA = $Consumo_Directo->get('FACTURA');
+            $consumo_directo->COMPROBANTE = $Consumo_Directo->get('COMPROBANTE');
             $consumo_directo->NRO_ORD_COMPRA = $Consumo_Directo->get('NRO_ORD_COMPRA');
             $consumo_directo->NRO_PREVENTIVO = $Consumo_Directo->get('NRO_PREVENTIVO');
             $consumo_directo->NOTA_INGRESO = $Consumo_Directo->get('NOTA_INGRESO');
@@ -69,7 +69,15 @@ class ConsumoDirectoController extends Controller
     }
 
     public function show($id){
-        //
+        
+        $consumoD = consumo_directo::findOrFail($id);
+        $detalleConsumoD = DB::table('DETALLE_CONSUMO_DIRECTO as d')
+        ->join('ARTICULO as a', 'd.COD_ARTICULO', '=','a.COD_ARTICULO')
+        ->select('a.NOM_ARTICULO', 'd.PRECIO_UNITARIO','d.CANTIDAD')
+        ->where('d.COD_CONSUMO_DIRECTO', '=',$id)
+        ->get();
+
+        return view('admin.ConsumoDirecto.show', compact('consumoD','detalleConsumoD'));
     }
 
     public function edit($id){
@@ -84,37 +92,16 @@ class ConsumoDirectoController extends Controller
         
        try{
                 DB::beginTransaction();
-                error_log('pruebitaa111');
                 $consumo_directo->FECHA = $request_consumo->get('FECHA');
-                $consumo_directo->FACTURA = $request_consumo->get('FACTURA');
+                $consumo_directo->COMPROBANTE = $request_consumo->get('COMPROBANTE');
                 $consumo_directo->NRO_ORD_COMPRA = $request_consumo->get('NRO_ORD_COMPRA');
                 $consumo_directo->NRO_PREVENTIVO = $request_consumo->get('NRO_PREVENTIVO');
                 $consumo_directo->NOTA_INGRESO = $request_consumo->get('NOTA_INGRESO');
                 $consumo_directo->COD_AREA = $request_consumo->get('COD_AREA');
                 $consumo_directo->DETALLE_CONSUMO = $request_consumo->get('DETALLE_CONSUMO');
-                error_log('pruebita222');
 
                 $consumo_directo->save();
-                error_log('pruebita444444444');
 
-                $articulos_sync = array();
-                $articulos = $request_consumo->input("articulos");
-                // dd($articulos);
-                if($articulos == null){
-                  $articulos = array();
-                }
-                error_log('luchiot');
-                
-                foreach ($articulos as $key => $value) {
-                // error_log($value);
-                  $articulos_sync[$value] = array(
-                                'CANTIDAD' => $request_consumo->input('cantidad_'.$value)
-                                ,'PRECIO_UNITARIO' => ($request_consumo->input('precio_'.$value))
-                            );
-                }
-                error_log('luchitoasd');
-                // dd($articulos_sync);
-                $consumo_directo->Articulos()->sync($articulos_sync);
                 DB::commit();
 
                 return redirect()->route('list_consumodirecto')->with('message', ['success', 'Consumo Directo Modificado Correctamente']);

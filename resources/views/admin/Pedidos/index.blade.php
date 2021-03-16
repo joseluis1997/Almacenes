@@ -26,22 +26,25 @@
                     <table id="dataAltas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                {{-- <th>Codigo</th> --}}
                                 <th>Area Solicitante</th>
                                 <th>Fecha Registro</th>
                                 <th>Condicion</th>
                                 <th>Estado</th>
-                                <th>Imprimir Pedido</th>
-                                <th>Detalles</th>
-                                <th>Modificar Pedido</th>
-                                <th>Deshabilitar Pedido</th>
+                                @can('VerDetalle_pedidos')
+                                    <th>Ver Detalle</th>
+                                @endcan
+                                @can('Modificar_pedidos')
+                                    <th>Modificar</th>
+                                @endcan
+                                @can('Deshabilitar_pedidos')
+                                    <th>Deshabilitar</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($pedidos as $pedido)
                                 @if($pedido->ESTADO_PEDIDO == 1)
                                     <tr>
-                                        {{-- <td>{{ $pedido->COD_PEDIDO  }}</td> --}}
                                         <td>{{ $pedido->Area->NOM_AREA }}</td>
                                         <td>{{ $pedido->FECHA }}</td>
                                         @if($pedido->VALIDADO == 1)
@@ -57,38 +60,32 @@
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                             @endif
                                         </td>
-                                        <td>
-                                            E
-                                        </td>
-                                        <td>
-                                            <a href="#" ><button class="btn btn-primary">Detalles</button></a>
-                                        </td>
+                                        @can('VerDetalle_pedidos')
+                                            <td>
+                                                <a href="{{route('show_pedidos',$pedido->COD_PEDIDO)}}" ><button class="btn btn-primary">Detalles</button></a>
+                                            </td>
+                                        @endcan
                                         <td>
                                             @if($pedido->VALIDADO == 0)
-                                              @can('modificar_articulos')
-                                                <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x"></a>
-                                              @endcan
-                                              @else
-                                                @can('modificar_articulos')
-                                                <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x disabled" ></a>
-                                              @endcan
+                                                @can('Modificar_pedidos')
+                                                    <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x"></a>
+                                                @endcan
+                                            @else
+                                                @can('Modificar_pedidos')
+                                                    <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x disabled" ></a>
+                                                @endcan
                                             @endif
                                         </td>
                                         <td> 
+                                        @can('Deshabilitar_pedidos')
                                             <form action="{{ route('destroy_pedidos', $pedido->COD_PEDIDO) }}" onsubmit="submitForm(event, {{ $pedido->ESTADO_PEDIDO }}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                @if($pedido->ESTADO_PEDIDO)
-                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    <button type="submit" class="btn-sm btn btn-outline-danger w-60">
                                                     Deshabilitar
-                                                  </button>
-                                                @else
-                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                    Habilitar
-                                                  </button>
-
-                                                @endif
+                                                    </button>
                                             </form>
+                                        @endcan
                                         </td>
                                     </tr>
                                 @endif
@@ -105,10 +102,15 @@
                                 <th>Fecha Registro</th>
                                 <th>Condicion</th>
                                 <th>Estado</th>
-                                <th>Imprimir Pedido</th>
-                                <th>Detalles</th>
-                                <th>Modificar Pedido</th>
-                                <th>Deshabilitar Pedido</th>
+                                @can('VerDetalle_pedidos')
+                                    <th>Ver Detalle</th>
+                                @endcan
+                                @can('Modificar_pedidos')
+                                    <th>Modificar</th>
+                                @endcan
+                                @can('Deshabilitar_pedidos')
+                                    <th>Habilitar</th>
+                                @endcan
                             </tr>
                         </thead>
                             <tbody>
@@ -131,31 +133,33 @@
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                             {{-- @endif --}}
                                         </td>
+                                        @can('VerDetalle_pedidos')
                                         <td>
-                                            E
+                                            <a href="{{route('show_pedidos',$pedido->COD_PEDIDO)}}" ><button class="btn btn-primary">Detalles</button></a>
                                         </td>
-                                        <td>
-                                            <a href="#" ><button class="btn btn-primary">Detalles</button></a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="fas fa-edit fa-2x"></a>
-                                        </td>
+                                        @endcan
+                                        @can('Modificar_pedidos')
+                                            <td>
+                                                @if($pedido->VALIDADO == 0)
+                                                    <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x"></a>
+                                                @endcan
+                                                @else
+                                                    @can('Modificar_pedidos')
+                                                    <a href="{{route ('edit_pedidos',$pedido->COD_PEDIDO)}}" class="fas fa-edit fa-2x disabled" ></a>
+                                                @endif
+                                            </td>
+                                        @endcan
+                                         @can('Habilitar_pedidos')
                                         <td> 
                                             <form action="{{ route('destroy_pedidos', $pedido->COD_PEDIDO) }}" onsubmit="submitForm(event, {{ $pedido->ESTADO_PEDIDO }}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                {{-- @if($pedido->ESTADO_PEDIDO)
-                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
-                                                    Deshabilitar
-                                                  </button>
-                                                @else --}}
-                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                    <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                                     Habilitar
-                                                  </button>
-
-                                                {{-- @endif --}}
+                                                    </button>
                                             </form>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endif
                             @endforeach

@@ -29,8 +29,8 @@
                             <th>Permisos</th>
                             <th>Estado</th>
                             <th>Ver</th>
-                            <th>Modificar Rol</th>
-                            <th>Eliminar Rol</th>
+                            <th>Modificar</th>
+                            <th>Deshabilitar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,7 +57,7 @@
                                         <a href="{{route('edit_roles',$rol->id)}}" class="fas fa-edit fa-2x"></a>
                                     </td>
                                     <td> 
-                                        <form action="{{route('destroy_role', $rol->id)}}" onsubmit="submitForm(event, {{$rol->estado}}, this)" method="POST">
+                                        <form action="{{route('destroy_roles', $rol->id)}}" onsubmit="submitForm(event, {{$rol->estado}}, this)" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             @if($rol->estado)
@@ -86,8 +86,8 @@
                                 <th>Permisos</th>
                                 <th>Estado</th>
                                 <th>Ver</th>
-                                <th>Modificar Rol</th>
-                                <th>Eliminar Rol</th>
+                                <th>Modificar</th>
+                                <th>Habilitar</th>
                             </tr>
                         </thead>
                         <tbody>

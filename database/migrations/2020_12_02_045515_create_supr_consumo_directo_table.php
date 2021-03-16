@@ -14,7 +14,7 @@ class CreateSuprConsumoDirectoTable extends Migration
     public function up()
     {
         Schema::create('SUPR_CONSUMO_DIRECTO', function (Blueprint $table) {
-            $table->bigIncrements('COD_SUPR_CONSUMO_DIRECTO');
+            // $table->bigIncrements('COD_SUPR_CONSUMO_DIRECTO');
 
             $table->unsignedBigInteger('COD_CONSUMO_DIRECTO');
 

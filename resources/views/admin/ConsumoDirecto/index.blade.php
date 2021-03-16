@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-title"><b>Gestionar Consumo Directos</b></h3> 
+                    <h3 class="card-title"><b>Gestion Consumo Directos</b></h3> 
                 </div>
                 <div class="col-md-5">
                     <a href="{{route('create_consumodirecto')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Consumo Directo</b></a><br/><br/>
@@ -31,9 +31,9 @@
                             <th>Numero Preventivo</th>
                             <th>Numero Orden Compra</th>
                             <th>Unidad Solicitante</th>
-                            <th>Opciones</th>
-                            <th>Modificar Consumo D.</th>
-                            <th>Deshabilitar Consumo D.</th>
+                            <th>Modificar</th>
+                            <th>Ver Detalles</th>
+                            <th>Deshabilitar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,14 +45,16 @@
                                         <td>{{ $Consumo->NRO_PREVENTIVO }}</td>
                                         <td>{{ $Consumo->NRO_ORD_COMPRA }}</td>
                                         <td>{{ $Consumo->Area->NOM_AREA }}</td>
-                                        <td>
-                                            <a href="#" class="fas fa-print fa-2x"></a>
-                                        </td>
-                                        <td>
-                                            @can('modificar_usuarios')
-                                            <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
-                                            @endcan
-                                        </td>
+                                        @can('Modificar_consumos_directos')
+                                            <td>
+                                                <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
+                                            </td>
+                                        @endcan
+                                        @can('VerDetalles_consumos_directos')
+                                            <td>
+                                                <a href="{{ route('show_consumoD',$Consumo->COD_CONSUMO_DIRECTO) }}" ><button class="btn btn-primary">Ver Detalles</button></a>
+                                            </td>
+                                        @endcan
                                         <td> 
                                             <form action="{{route('destroy_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" onsubmit="submitForm(event, {{$Consumo->ESTADO_COMPRA}}, this)" method="POST">
                                                 @method('DELETE')
@@ -78,9 +80,9 @@
                             <th>Numero Preventivo</th>
                             <th>Numero Orden Compra</th>
                             <th>Unidad Solicitante</th>
-                            <th>Imprimir</th>
-                            <th>Modificar Consumo D.</th>
-                            <th>Eliminar Consumo D.</th>
+                            <th>Modificar</th>
+                            <th>Ver Detalles</th>
+                            <th>Habilitar</th>
                         </tr>
                         </thead>
                         <tbody>

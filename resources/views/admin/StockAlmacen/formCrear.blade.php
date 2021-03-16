@@ -42,7 +42,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Tipo de Comprobante" data-content="Seleccione el Tipo de comprobante de la compra por ejemplo: Factura o Resivo">?</a>
         </label>
         <div class="form-group formulario__grupo-input">
-            <select name="FACTURA" class="form-control formulario__input" id="tipocomprobante" required>
+            <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
                 <option value="Factura">Factura</option>
                 <option value="Resivo">Resivo</option>
             </select>
@@ -101,9 +101,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Detalle Compra" data-content="Realize un breve descripcion de la compra, es opcional">?</a>
         </label>
         <div class="form-group formulario__grupo-input">
-            <Textarea name="DETALLE_COMPRA" id="detalle" class="form-control formulario__input">
-                
-            </Textarea>
+            <Textarea name="DETALLE_COMPRA" id="detalle" class="form-control formulario__input"></Textarea>
         </div>
          <p class="formulario__input-error">
             Realize un breve descripcion de la compra, es opcional...

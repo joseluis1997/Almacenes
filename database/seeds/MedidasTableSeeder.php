@@ -11,10 +11,10 @@ class MedidasTableSeeder extends Seeder
      */
     public function run()
     {
-        Medida::create([
-            'NOM_MEDIDA' => 'Kg',
-            'DESC_MEDIDA' => 'Unidad de medida kilogramos'
+        // Medida::create([
+        //     'NOM_MEDIDA' => 'Kg',
+        //     'DESC_MEDIDA' => 'Unidad de medida kilogramos'
             
-        ]);
+        // ]);
     }
 }

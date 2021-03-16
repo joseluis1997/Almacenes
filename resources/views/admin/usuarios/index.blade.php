@@ -9,7 +9,9 @@
                     <h3 class="card-title"><b>Gestion Usuarios</b></h3> 
                 </div>
                 <div class="col-md-1">
+                @can('Crear_usuarios')
                     <a href="{{route('create_users')}}" class="btn btn-primary float-right"><b>Nuevo Usuario</b></a>
+                @endcan
                 </div>
             </div>
         </div>
@@ -32,9 +34,15 @@
                                 <th>Usuario</th>
                                 <th>Rol</th>
                                 <th>Estado</th>
-                                <th>Ver</th>
-                                <th>Modificar</th>
-                                <th>Eliminar</th>
+                                @can('Ver_usuarios')
+                                    <th>Ver</th>
+                                @endcan
+                                @can('Modificar_usuarios')
+                                    <th>Modificar</th>
+                                @endcan
+                                @can('Deshabilitar_usuarios')
+                                    <th>Deshabilitar</th>
+                                @endcan
                             </tr>
                         </thead>
                     <tbody>
@@ -56,30 +64,34 @@
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                         @endif
                                 </td>
-                               <td>
-                                <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x circulo"></a>
+                                @can('Ver_usuarios')
+                                <td>
+                                    <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x circulo"></a>
                                 </td>
-                               <td>
-                                    @can('modificar_usuarios')
-                                    <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x circulo"></a>
-                                    @endcan
-                                </td>
-                                  <td> 
-                                        <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            @if($user->ESTADO_USUARIO)
-                                              <button type="submit" class="btn-sm btn btn-outline-danger w-60">
-                                                Deshabilitar
-                                              </button>
-                                            @else
-                                              <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                Habilitar
-                                              </button>
+                                @endcan
+                                @can('Modificar_usuarios')
+                                    <td>
+                                        <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x circulo"></a>
+                                    </td>
+                                @endcan
+                                @can('Deshabilitar_usuarios')
+                                <td> 
+                                    <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        @if($user->ESTADO_USUARIO)
+                                          <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                            Deshabilitar
+                                          </button>
+                                        @else
+                                          <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                            Habilitar
+                                          </button>
 
-                                            @endif
-                                        </form>
-                                    </td> 
+                                        @endif
+                                    </form>
+                                </td> 
+                                @endcan
                                {{--  <td>
                                     @can ('eliminar_usuarios')
                                     <a href="{{route ('destroy_user',$user->id)}}" style="color:red;"class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
@@ -119,18 +131,18 @@
                                 <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
                                 <!-- con esta nuevo sacamos los array pero con implode separamos los array -->
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
-                                 <td>
+                                <td>
                                         @if($user->ESTADO_USUARIO)
                                             <button type="button" class="btn btn-success navbar-btn">Activo</button>
                                         @else
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                         @endif
                                 </td>
-                               <td>
+                                <td>
                                 <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x"></a>
                                 </td>
-                               <td>
-                                    @can('modificar_usuarios')
+                                <td>
+                                    @can('Modificar_usuarios')
                                     <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>

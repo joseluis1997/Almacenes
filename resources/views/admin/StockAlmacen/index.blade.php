@@ -32,8 +32,8 @@
                                 <th>Area Solicitante</th>
                                 <th>Total</th>
                                 <th>Estado</th>
-                                <th>Detalles</th>
-                                <th>Deshabilitar Compra</th>
+                                <th>Ver Detalle</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,8 +90,8 @@
                                 <th>Area Solicitante</th>
                                 <th>Total</th>
                                 <th>Estado</th>
-                                <th>Detalles</th>
-                                <th>Habilitar Compra</th>
+                                <th>Ver Detalle</th>
+                                <th>Habilitar</th>
                             </tr>
                         </thead>
                         <tbody>

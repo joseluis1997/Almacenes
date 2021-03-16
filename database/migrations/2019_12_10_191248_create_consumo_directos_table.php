@@ -20,7 +20,7 @@ class CreateConsumoDirectosTable extends Migration
             $table->string('NRO_PREVENTIVO');
             $table->string('NOTA_INGRESO');
             $table->date('FECHA');
-            $table->string('FACTURA');
+            $table->string('COMPROBANTE');
             $table->string('DETALLE_CONSUMO');
             $table->boolean('ESTADO_COMPRA')->default(true);
 

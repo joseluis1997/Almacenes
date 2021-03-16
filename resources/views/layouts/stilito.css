@@ -1,52 +1,50 @@
+.con-menu{
+  width: 233px;
+  margin: 50px auto;
+}
+.con-menu .con-enlace{
+  box-shadow: 0px 0px 2px 1px white;
+}
+/*efecto para aparecer y desaparecer enlace*/
+.con-menu .con-enlace .enlace{
+  height: 0;
+  overflow: hidden;
+}
+.con-menu .con-enlace .enlace .animacion{
+  height: 100%;
+  
+}
+/*estilos para las opciones*/
+.con-menu .con-enlace .opcion{
+  display:flex;
+  justify-content: space-between;
+  background: red;
+  color: white;
+  padding: 50px auto;
+  font-size: 22px;
+  cursor: pointer;
+  user-select: none;
+}
 
-            
-        .con-menu{
-          width: 233px;
-          margin: 50px auto;
-        }
-        .con-menu .con-enlace{
-          box-shadow: 0px 0px 2px 1px white;
-        }
-        /*efecto para aparecer y desaparecer enlace*/
-        .con-menu .con-enlace .enlace{
-          height: 0;
-          overflow: hidden;
-        }
-        .con-menu .con-enlace .enlace .animacion{
-          height: 100%;
-          
-        }
-        /*estilos para las opciones*/
-        .con-menu .con-enlace .opcion{
-          display:flex;
-          justify-content: space-between;
-          background: red;
-          color: white;
-          padding: 50px auto;
-          font-size: 22px;
-          cursor: pointer;
-          user-select: none;
-        }
+.con-menu .con-enlace .opcion .icono{
+  background-color: white;
+  color:red;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+  width: 26px;
+  border-radius: 5px;
+}
+.con-menu .con-enlace .enlace a{
+  display: block;
+  padding:10px 15px;
+  text-decoration: none;
+  font-size: 20px;
+  color: rgba(0,0,0,.8);
+  background-color: white;
 
-        .con-menu .con-enlace .opcion .icono{
-          background-color: white;
-          color:red;
-          font-weight: bold;
-          font-size: 22px;
-          text-align: center;
-          width: 26px;
-          border-radius: 5px;
-        }
-        .con-menu .con-enlace .enlace a{
-          display: block;
-          padding:10px 15px;
-          text-decoration: none;
-          font-size: 20px;
-          color: rgba(0,0,0,.8);
-          background-color: white;
-
-        }
-        .con-menu .ocn-enlace .enlace a:hover{
-          background: blue;
-          color: white;
-        }
+}
+.con-menu .ocn-enlace .enlace a:hover{
+  background: blue;
+  color: white;
+}

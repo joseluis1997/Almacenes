@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="card-le"><b>Pedidos Pendientes</b></h3> 
+                    <h3 class="card-le"><b>Pedidos Pendiente</b></h3> 
                 </div>
             </div>
         </div>
@@ -22,7 +22,9 @@
                                 <th>Fecha Registro</th>
                                 <th>Condicion</th>
                                 <th>Validar Pedido</th>
-                                <th>Detalles</th>
+                                @can('VerDetalle_pedidos_Pendientes')
+                                    <th>Ver Detalles</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -39,12 +41,16 @@
                                         {{-- @else --}}
                                             <td><span class="badge badge-info">Pendiente</span></td>
                                         {{-- @endif --}}
-                                        <td>
-                                            <a href="{{ route('Validar_Pedido',$pedido->COD_PEDIDO) }}" ><button class="btn btn-success">Validar Pedido</button></a>
-                                        </td>
-                                        <td>
-                                            <a href="#" ><button class="btn btn-primary">Detalles</button></a>
-                                        </td>
+                                        @can('Validar_Salida_Pedido')
+                                            <td>
+                                                <a href="{{ route('Validar_Pedido',$pedido->COD_PEDIDO) }}" ><button class="btn btn-success">Validar Pedido</button></a>
+                                            </td>
+                                        @endcan
+                                        @can('VerDetalle_pedidos_Pendientes')
+                                            <td>
+                                                <a href="{{route('mostrar_pedidosPendientes',$pedido->COD_PEDIDO)}}" ><button class="btn btn-primary">Ver Detalles</button></a>
+                                            </td>
+                                        @endcan
                                     </tr>
                                     @endif
                                 @endif

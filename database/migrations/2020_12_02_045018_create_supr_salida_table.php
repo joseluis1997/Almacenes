@@ -14,7 +14,7 @@ class CreateSuprSalidaTable extends Migration
     public function up()
     {
         Schema::create('SUPR_SALIDA', function (Blueprint $table) {
-            $table->bigIncrements('COD_SUPR_SALIDA');
+            // $table->bigIncrements('COD_SUPR_SALIDA');
             $table->unsignedBigInteger('COD_SALIDA');
             $table->unsignedBigInteger('COD_USUARIO');
 

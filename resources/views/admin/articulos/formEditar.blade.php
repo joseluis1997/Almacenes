@@ -59,13 +59,13 @@
         </p>
     </div>
 
-<!-- Grupo: cantidad Articulo-->
+<!-- Grupo: Marca del Articulo-->
     <div class="formulario__grupo" id="grupo__CantidadArticulo">
-        <label for="CantidadArticulo" class="formulario__label"><b class="colorAste">*</b>&nbsp;Cantidad Articulo&nbsp;&nbsp;
+        <label for="CantidadArticulo" class="formulario__label"><b class="colorAste">*</b>&nbsp;Marca Articulo&nbsp;&nbsp;
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Cantidad Articulo" data-content="Digite la cantidad de articulos que se esta registrando, solo puede ser numero enteros positivos">?</a>
         </label>
         <div class="formulario__grupo-input">
-           <input type="number" min="1" step="any" pattern="^[0-9]+" class="form-control" placeholder="Digite cantidad minima" name="CANT_ACTUAL" value="{{ $articulo->CANT_ACTUAL }}" required>
+           <input type="text" class="formulario__input" name="MARCA" id="marca" placeholder="Escriba la marco del Articulo" value="{{$articulo->MARCA}}" required>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
@@ -80,9 +80,7 @@
         </label>
         <div class="formulario__grupo-input ">
             
-            <textarea class="formulario__input " name="DESC_ARTICULO" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;">
-                {{ $articulo->DESC_ARTICULO}}
-            </textarea>
+            <textarea class="formulario__input " name="DESC_ARTICULO" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;">{{ $articulo->DESC_ARTICULO}}</textarea>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">

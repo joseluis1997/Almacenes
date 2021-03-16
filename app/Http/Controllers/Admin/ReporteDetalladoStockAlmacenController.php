@@ -33,10 +33,10 @@ class ReporteDetalladoStockAlmacenController extends Controller
     $fecha_inicio = $request->get('fecha_inicio');
     $fecha_fin = $request->get('fecha_fin');
     if ($fecha_inicio != null && $fecha_fin != null) {
-      $date_inicio = \DateTime::createFromFormat('Y-m-d', $fecha_inicio);
-      $date_fin = \DateTime::createFromFormat('Y-m-d', $fecha_fin);
-      if ($date_fin > $date_fin) {
-        $this->fecha_ok = TRUE;
+        $date_inicio = \DateTime::createFromFormat('Y-m-d', $fecha_inicio);
+        $date_fin = \DateTime::createFromFormat('Y-m-d', $fecha_fin);
+        if ($date_fin > $date_fin) {
+          $this->fecha_ok = TRUE;
       }
     }
     // dd($fecha_inicio);

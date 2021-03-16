@@ -35,7 +35,7 @@ class ArticuloRequest extends FormRequest
                     'FK_COD_MEDIDA' =>'required',
                     'NOM_ARTICULO' => 'required|string|max:50',
                     'DESC_ARTICULO' => 'max:512',
-                    'CANT_ACTUAL' => 'required|numeric',
+                    'MARCA' => 'required',
                 ];
             case 'PUT':
                 return [
@@ -43,7 +43,7 @@ class ArticuloRequest extends FormRequest
                     'FK_COD_MEDIDA' =>'required',
                     'NOM_ARTICULO' => 'required|string|max:50',
                     'DESC_ARTICULO' => 'sometimes|max:512',
-                    'CANT_ACTUAL' => 'required',
+                    'MARCA' => 'required',
                 ];
         }
 

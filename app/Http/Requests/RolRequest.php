@@ -24,17 +24,22 @@ class RolRequest extends FormRequest
     public function rules()
     {
 
-        if($this->route('role')){
-            return [
-                'name' => 'required|max:100',
-                'descripcion' => 'nullable'
-            ];
-        }
-        else{
-            return [
-                'name' => 'required|max:100|unique:roles,name',
-                'descripcion' => 'nullable'
-            ];
-        }
+        switch ($this->method()) {
+                case 'GET':
+                case 'DELETE':
+                    return [];
+                case 'POST':
+                    return [
+                        'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{2,20}[ ]?){1,2}$/'],
+                        'descripcion' => 'nullable'
+                    ];
+                case 'PUT':
+                    return [
+                        'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{2,20}[ ]?){1,2}$/'],
+                        'descripcion' => 'nullable'
+                    ];
+            }
     }
 }
+
+           

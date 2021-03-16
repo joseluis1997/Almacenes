@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Example 1</title>
+    <title>RDCD</title>
     <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
       .clearfix:after {
@@ -146,14 +146,14 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1>
+        <h3>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
-          </b>
+          </b><br>
           UNIDAD DE ALMACENES CENTRAL
           <br>
-          REPORTE DETALLADO DE INGRESOS CONSUMO DIRECTO
-        </h1>
+          REPORTE DETALLADO CONSUMOS DIRECTOS
+        </h3>
     </header>
     <main>
       <div>
@@ -181,7 +181,7 @@
             <th>FECHA</th>
             <th>CODIGO</th>
             <th>PREVENTIVO</th>
-            <th>SOLICITANTE</th>
+            <th>AREA SOLICITANTE</th>
             <th>ITEM</th>
             <th>NOMBRE</th>
             <th>MEDIDA</th>
@@ -228,7 +228,7 @@
       @endforeach
       
       <div>
-        <div>Articulos:</div>
+        <div>Reporte Detallado Consumos Directos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
       </div>
     </main>

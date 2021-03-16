@@ -77,22 +77,26 @@
 
                     <nav class="navv MENU-BTN ">
                         {{-- Grupo: Administracion del Sistema --}}
-                        <label for="touch" class="">
-                             <i class="fas fa-desktop spann"><span class="padre">Administracion del Sistema</span></i>
-                        </label>           
-                        <input type="checkbox" id="touch"> 
+                        @canany(['Listar_usuarios','Listar_roles'])
+                            <label for="touch" class="">
+                                 <i class="fas fa-desktop spann"><span class="padre">Administracion del Sistema</span></i>
+                            </label>           
+                            <input type="checkbox" id="touch"> 
                             <ul class="slide menusito" data-animation="center">
                                 {{-- Gestionar Usuarios --}}
-                                @canany(['accesso_usuarios','crear_usuarios','modificar_usuarios','eliminar_usuarios'])
-                                    <a href="{{route ('list_users')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Usuarios</span> </li>
-                                    </a>
-                                @endcan
+                                    @can('Listar_usuarios')
+                                        <a href="{{route ('list_users')}}" class="MENU-BTN ahrf">
+                                            <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Usuarios</span> </li>
+                                        </a>
+                                    @endcan
                                 {{-- Gestionar Roles --}}
+                                    @can('Listar_roles')
                                     <a href="{{route ('list_roles')}}" class="MENU-BTN ahrf">
                                         <li><i class="fas fa-fist-raised"></i><span class="spannn menusito">Gestion Roles</span></li>
                                     </a>
+                                    @endcan
                             </ul>
+                        @endcan
                         {{-- Grupo:Articulos  --}}
                         <label for="touch1">
                              <i class="fas fa-box-open spann"><span >Articulos</span></i>
@@ -224,6 +228,13 @@
                 "colvis": "Visibilidad"
             }
         }
+        
+        $(document).ready(function() {
+            // show the alert
+            setTimeout(function() {
+            $(".alert").alert('close');
+         }, 3000);
+        });
     </script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 

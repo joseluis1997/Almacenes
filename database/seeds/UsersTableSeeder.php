@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('Wilson2021')
         ]);
         // asiganando roles admin
-        $admin->assignRole('super-admin');
+        $admin->assignRole('Administrador');
 
         
         // $editor = User::create([

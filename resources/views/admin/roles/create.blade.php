@@ -14,6 +14,7 @@
                 <div class="formulario__grupo formulario__btn-guardar text-center">
                     <a href="{{route('list_roles')}}" class="btn formulario__btn2">Cancelar</a>
                     <button type="submit" class="formulario__btn1">Guardar</button>
+                    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos Enviados</p>
                 </div>
             </form>
             {{-- {{!! dd( old() ) !!}} --}}
@@ -27,10 +28,10 @@
 
         
     </script>
-<script>
-    $(function () {
-      $('[data-toggle="popover"]').popover()
-    }) 
-</script>
+    <script>
+        $(function () {
+          $('[data-toggle="popover"]').popover()
+        }) 
+    </script>
 
 @endsection

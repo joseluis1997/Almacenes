@@ -9,13 +9,17 @@ use App\pedido;
 use App\Area;
 use App\Http\Requests\SalidaRequest;
 use DB;
+use Illuminate\Support\Collection;
+
 class SalidasController extends Controller
 {
 
     public function index()
     {
         $Salidas = salida::all();
+        // dd($Salidas[0]->area);
         return view('admin.Salidas.index',compact('Salidas'));
+
     }
 
     public function ValidarPedido($id){
@@ -48,8 +52,8 @@ class SalidasController extends Controller
             $Salida->COD_PEDIDO = $pedido->COD_PEDIDO;
             $Salida->COD_AREA = $pedido->COD_AREA;
             $Salida->FECHA = date('Y-m-d');
-            // $Salida->DETALLE_SALIDA = $request_salida->get('DETALLE_SALIDA');
-            $Salida->DETALLE_SALIDA = 'va de nuevo';
+            $Salida->DETALLE_SALIDA = $pedido->DETALLE_PEDIDO;
+            // $Salida->DETALLE_SALIDA = 'va de nuevo';
 
             $Salida->save();
 
@@ -81,7 +85,23 @@ class SalidasController extends Controller
     }
 
     public function show($id){
-        
+        $salida = salida::find($id);
+        $detalleSalida = DB::table('DETALLE_SALIDA as d')
+        ->join('ARTICULO as a','d.COD_ARTICULO','=','a.COD_ARTICULO')
+        ->select('a.NOM_ARTICULO','d.CANTIDAD')
+        ->where('d.COD_SALIDA','=',$id)
+        ->get();
+        return view('admin.Salidas.show',compact('salida','detalleSalida'));
+    }
+
+    public function MostrarPedidosPendientes($id){
+        $pedido = pedido::findOrFail($id);
+        $detallePedido = DB::table('DETALLE_PEDIDO as d')
+        ->join('ARTICULO as a', 'd.COD_ARTICULO','=','a.COD_ARTICULO')
+        ->select('a.NOM_ARTICULO','d.CANTIDAD')
+        ->where('d.COD_PEDIDO', '=', $id)
+        ->get();
+        return view('admin.Salidas.showpedPendientes',compact('pedido','detallePedido'));
     }
 
     public function edit($id){

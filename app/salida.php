@@ -12,6 +12,7 @@ class salida extends Model
     protected $primaryKey = 'COD_SALIDA';
 
   	protected $fillable = [
+        'COD_SALIDA',
     	'COD_PEDIDO',
     	'COD_AREA',
     	'FECHA',
@@ -30,7 +31,7 @@ class salida extends Model
     }
 
     public function area(){
-        return $this->hasOne(\App\Area::class,'AREA_PADRE','COD_AREA');
+        return $this->hasOne(\App\Area::class,'COD_AREA','COD_AREA');
     }
 
     // MOSTRAR

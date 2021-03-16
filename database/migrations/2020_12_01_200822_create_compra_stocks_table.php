@@ -21,7 +21,7 @@ class CreateCompraStocksTable extends Migration
             $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
             $table->string('NRO_ORD_COMPRA');
             $table->string('NRO_PREVENTIVO');
-            $table->string('FACTURA');
+            $table->string('COMPROBANTE');
             $table->date('FECHA');
             $table->string('DETALLE_COMPRA');
             $table->boolean('ESTADO_COMPRA')->default(true);

@@ -8,25 +8,17 @@ use App\pedido;
 use App\Articulo;
 use App\Http\Requests\PedidosRequest;
 use DB;
+use Illuminate\Support\Collection;
 
 class PedidosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $pedidos = pedido::all();
         return view('admin.Pedidos.index',compact('pedidos')); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
@@ -34,12 +26,7 @@ class PedidosController extends Controller
         return view('admin.Pedidos.crear',compact('areas','Articulos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(PedidosRequest $pedido_request)
     {
         // dd($pedido_request);
@@ -80,23 +67,18 @@ class PedidosController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+  
+    public function show($id){
+        $pedido = pedido::find($id);
+        $detallesPedido = DB::table('DETALLE_PEDIDO as d')
+        ->join('ARTICULO as a','d.COD_ARTICULO','=','a.COD_ARTICULO')
+        ->select('a.NOM_ARTICULO','d.CANTIDAD')
+        ->where('d.COD_PEDIDO','=',$id)
+        ->get();
+        return view('admin.Pedidos.show',compact('pedido','detallesPedido'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $pedidos = pedido::findOrFail($id);
@@ -105,13 +87,7 @@ class PedidosController extends Controller
         return view('admin.Pedidos.editar', compact('pedidos','areas','Articulos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(PedidosRequest $pedido_request, pedido $pedido)
     {
         // dd($pedido->Articulos);
@@ -152,12 +128,7 @@ class PedidosController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function changeStatus(pedido $pedido)
     {
         $estado = true;

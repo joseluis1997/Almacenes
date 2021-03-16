@@ -1,4 +1,3 @@
-{{ $errors}}}
 <!-- Grupo: Nit Proveedor -->
             <div class="formulario__grupo" id="grupo__nit">
                 <label for="nit" class="formulario__label"><b class="colorAste">*</b>&nbsp;NIT:&nbsp;&nbsp;
@@ -31,7 +30,7 @@
                     <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Contacto" data-content="Solo puede contener numeros enteros positivos por Ej:75389565">?</a>
                 </label>
                 <div class="formulario__grupo-input">
-                    <input type="tel" class="formulario__input" name="TELEF_PROVEEDOR" id="telefono" placeholder="(Código de área) Número">
+                    <input type="tel" class="formulario__input" name="TELEF_PROVEEDOR" id="telefono" placeholder="(+Código) Número">
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">

@@ -26,13 +26,13 @@
                     <table id="dataAltas" class="table table-striped table-bordered " style="width:100%">
                         <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Nit</th>
                                 <th>Direccion</th>
                                 <th>Telefono</th>
                                 <th>Estado</th>
-                                <th>Ver Proveedor</th>
+                                <th>Ver</th>
                                 <th>Modificar</th>
                                 <th>Deshabilitar</th>
                             </tr>
@@ -57,7 +57,7 @@
                                             <a href="{{route('show_proveedor',$proveedor->COD_PROVEEDOR)}}" class="fas fa-eye fa-2x"></a>
                                          </td>
                                         <td>
-                                            @can('modificar_usuarios')
+                                            @can('Modificar_proveedores')
                                                 <a href="{{ route ('edit_proveedor',$proveedor->COD_PROVEEDOR)}}" class="fas fa-edit fa-2x"></a>
                                             @endcan
                                         </td>
@@ -93,9 +93,10 @@
                                 <th>Nit</th>
                                 <th>Direccion</th>
                                 <th>Telefono</th>
+                                <th>Ver</th>
                                 <th>Estado</th>
                                 <th>Modificar</th>
-                                <th>Deshabilitar</th>
+                                <th>Habilitar</th>
                             </tr>
                         </thead>
                         <tbody>

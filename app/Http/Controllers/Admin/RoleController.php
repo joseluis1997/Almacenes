@@ -30,7 +30,7 @@ class RoleController extends Controller
     {
         $input = $request->all();
         $role = new Role([
-            'name' => $input['name'],
+            'name' => $input['nombre'],
             'descripcion' => $input['descripcion'],
         ]);
 
@@ -62,14 +62,13 @@ class RoleController extends Controller
         return view('admin.roles.edit', [ 'role' => $role, 'permissions' => $permissions,'permission_rol'=>$permission_role]);
     }
 
- 
-    public function update(RolRequest $request, Role $role)
+     public function update(RolRequest $request, Role $role)
     {
         $input = $request->all();
 
         // dd($input);
         $role->update([
-            'name' => $input['name'],
+            'name' => $input['nombre'],
             'descripcion' => $input['descripcion'],
         ]);
 
@@ -79,17 +78,6 @@ class RoleController extends Controller
         return redirect()->route('list_roles')->with('message', ['success', 'Rol Actualizado Correctamente!']);
 
     }
-
-    // public function destroy($id)
-    // {
-    //     //eliminando rol
-
-    //     $rol = Role::findOrFail($id);
-        
-    //     $rol->delete();
-
-    //     return redirect()->route('list_roles');
-    // }
 
     public function changeStatus(Role $rol)
     {

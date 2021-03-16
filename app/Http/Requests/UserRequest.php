@@ -23,30 +23,34 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-
-        if($this->route('id')){
-            return [
-                'CI' => 'required|integer',
-                'NOMBRE' => 'required|max:50'. $this->route('id'),
-                'APELLIDO' => 'required',
-                'TELEFONO' => 'required',
-                'NOM_USUARIO' => 'required|max:50'. $this->route('id'),
-                'password' => 'nullable|min:5',
-                're_password' => 'nullable|min:5|same:password',
-                'rol' => 'required'
-            ];
-        }else{
-            return [
-                'CI' => 'required|integer',
-                'NOMBRE' => 'required|max:50',
-                'APELLIDO' => 'required',
-                'TELEFONO' => 'required',
-                'NOM_USUARIO' => 'required|max:50',
-                'password' => 'required|min:5',
-                're_password' => 'required|min:5|same:password',
-                'rol' => 'required',
-                'imagen' => 'required|mimes:jpeg,bmp,png'
-            ];
-        }
+       switch ($this->method()) {
+                case 'GET':
+                case 'DELETE':
+                    return [];
+                case 'POST':
+                    return [
+                        'CI' => ['required', 'regex:/^[0-9]{7,8}[T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z||S|Q|V|H|L|C|K|E]?$/'],
+                        'NOMBRE' => ['required', 'regex:/^([A-Z]{1}[a-z]{2,20}[ ]?){1,2}$/'],
+                        'APELLIDO' => ['required', 'regex:/^([A-Z]{1}[a-z]{2,30}[ ]?){1,3}$/'],
+                        'TELEFONO' => ['required', 'regex:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/'],
+                        'NOM_USUARIO' => ['required', 'regex:/^[a-zA-Z0-9\_\-]{4,20}$/'],
+                        'password' => ['required', 'regex:/^[a-zA-Z0-9\_\-]{4,20}$/'],
+                        're_password' => ['required', 'regex:/^.{4,20}$/','same:password'],
+                        'rol' => 'required',
+                        'imagen' => 'required|mimes:jpeg,bmp,png'
+                    ];
+                case 'PUT':
+                    return [
+                        'CI' => ['required', 'regex:/^[0-9]{7,8}[T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z||S|Q|V|H|L|C|K|E]?$/'],
+                        'NOMBRE' => ['required', 'regex:/^([A-Z]{1}[a-z]{2,20}[ ]?){1,2}$/'],
+                        'APELLIDO' => ['required', 'regex:/^([A-Z]{1}[a-z]{2,30}[ ]?){1,3}$/'],
+                        'TELEFONO' => ['required', 'regex:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/'],
+                        'NOM_USUARIO' => ['required', 'regex:/^[a-zA-Z0-9\_\-]{4,20}$/'],
+                        'password' => ['nullable', 'regex:/^.{4,20}$/','same:password'],
+                        're_password' => ['nullable', 'regex:/^.{4,20}$/','same:password'],
+                        'rol' => 'required'
+                    ];
+            }
+        
     }
 }

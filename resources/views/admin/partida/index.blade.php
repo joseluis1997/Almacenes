@@ -31,9 +31,9 @@
                                 <th>Numero Partida</th>
                                 <th>Creacion</th>
                                 <th>Estado</th>
-                                <th>Ver Partida</th>
-                                <th>Modificar Partida</th>
-                                <th>Desabilitar Partida</th>
+                                <th>Ver</th>
+                                <th>Modificar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,9 +92,9 @@
                                 <th>Numero Partida</th>
                                 <th>Creacion</th>
                                 <th>Estado</th>
-                                <th>Ver Partida</th>
-                                <th>Modificar Partida</th>
-                                <th>Desabilitar Partida</th>
+                                <th>Ver</th>
+                                <th>Modificar</th>
+                                <th>Habilitar</th>
                             </tr>
                         </thead>
                         <tbody>

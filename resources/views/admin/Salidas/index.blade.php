@@ -31,9 +31,15 @@
                                 <th>Fecha</th>
                                 <th>Area Solicitante</th>
                                 <th>Estado</th>
-                                <th>Modificar Salida</th>
-                                <th>Imprimir Salida</th>
-                                <th>Deshabilitar Salida</th>
+                                @can('Modificar_salidas')
+                                    <th>Modificar</th>
+                                @endcan
+                                @can('VerDetalle_salidas')
+                                    <th>Ver Detalles</th>
+                                @endcan
+                                @can('Deshabilitar_salidas')
+                                    <th>Deshabilitar</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -51,29 +57,27 @@
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                             @endif
                                         </td>
-                                        <td>
-                                          @can('modificar_articulos')
-                                            <a href="{{route ('edit_salidas',$salida->COD_SALIDA)}}" class="fas fa-edit fa-2x"></a>
-                                          @endcan
-                                        </td>
-                                        <td>Imprimir</td>
+                                        @can('Modificar_salidas')
+                                            <td>
+                                                <a href="{{route ('edit_salidas',$salida->COD_SALIDA)}}" class="fas fa-edit fa-2x"></a>
+                                            </td>
+                                        @endcan
+                                        @can('VerDetalle_salidas')
+                                            <td>
+                                                <a href="{{route ('show_salidas', $salida->COD_SALIDA) }}" ><button class="btn btn-primary">Ver Detalles</button></a>
+                                            </td>
+                                        @endcan
+                                        @can('Deshabilitar_salidas')
                                         <td> 
                                             <form action="{{ route('destroy_salidas', $salida->COD_SALIDA) }}" onsubmit="submitForm(event, {{ $salida->ESTADO_SALIDA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                @if($salida->ESTADO_SALIDA)
-                                                  <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    <button type="submit" class="btn-sm btn btn-outline-danger w-60">
                                                     Deshabilitar
-                                                  </button>
-                                                @else
-                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                    Habilitar
-                                                  </button>
-
-                                                @endif
+                                                    </button>
                                             </form>
                                         </td>
-                                        
+                                        @endcan
                                     </tr>
                                 @endif
                             @endforeach
@@ -90,9 +94,9 @@
                                 <th>Fecha</th>
                                 <th>Area Solicitante</th>
                                 <th>Estado</th>
-                                <th>Modificar Salida</th>
-                                <th>Imprimir Salida</th>
-                                <th>Deshabilitar Salida</th>
+                                <th>Ver Detalle</th>
+                                <th>Modificar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -111,9 +115,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                          @can('modificar_articulos')
-                                            <a href="{{route ('edit_salidas',$salida->COD_SALIDA)}}" class="fas fa-edit fa-2x"></a>
-                                          @endcan
+                                            @can('modificar_articulos')
+                                                <a href="{{route ('edit_salidas',$salida->COD_SALIDA)}}" class="fas fa-edit fa-2x"></a>
+                                            @endcan
                                         </td>
                                         <td>Imprimir</td>
                                         <td> 

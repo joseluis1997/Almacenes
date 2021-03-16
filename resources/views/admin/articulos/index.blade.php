@@ -8,9 +8,11 @@
                 <div class="col-md-10">
                     <h3 class="card-title"><b>Gestion Articulos</b></h3> 
                 </div>
-                <div class="col-md-2">
-                    <a href="{{route('create_articulos')}}" class="btn btn-primary">Nuevo Articulo</a>
-                </div>
+                @can('Crear_articulos')
+                  <div class="col-md-2">
+                      <a href="{{route('create_articulos')}}" class="btn btn-primary">Nuevo Articulo</a>
+                  </div>
+                @endcan
             </div>
         </div>
         <div class="card-body">   
@@ -26,55 +28,58 @@
                     <table id="dataAltas" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                               <th>Codigo</th>
-                               <th>Nombre</th>
-                               <th>Cantidad Actual</th>
-                               <th>Unidad de Medidas</th>
-                               <th>Estado</th>
-                               <th>Ver Articulo</th>
-                               <th>Modificar Articulo</th>
-                               <th>Deshabilitar Articulo</th>
+                              <th>Codigo</th>
+                              <th>Nombre</th>
+                              <th>Cantidad Actual</th>
+                              <th>Unidad de Medidas</th>
+                              <th>Estado</th>
+                              @can('Ver_articulos')
+                                 <th>Ver</th>
+                              @endcan
+                              @can('Modificar_articulos')
+                                 <th>Modificar</th>
+                              @endcan
+                              @can('Deshabilitar_articulos')
+                                 <th>Deshabilitar</th>
+                              @endcan
                             </tr>
                         </thead>
                         <tbody>
                           @foreach($articulos as $articulo)
                                 @if($articulo->ESTADO_ARTICULO == 1 )
                                     <tr>
-                                        <td>{{ $articulo->COD_ARTICULO }}</td>
-                                        <td>{{ $articulo->NOM_ARTICULO }}</td>
-                                        <td>{{ $articulo->CANT_ACTUAL }}</td>
-                                        <td>{{ $articulo->Medida->NOM_MEDIDA }}</td>
-                                        <td>
-                                            @if($articulo->ESTADO_ARTICULO)
-                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
-                                            @else
-                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
-                                        </td>
-                                        <td>
-                                          @can('modificar_articulos')
-                                            <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
-                                          @endcan
-                                        </td>
-                                        <td> 
+                                       <td>{{ $articulo->COD_ARTICULO }}</td>
+                                       <td>{{ $articulo->NOM_ARTICULO }}</td>
+                                       <td>{{ $articulo->CANT_ACTUAL }}</td>
+                                       <td>{{ $articulo->Medida->NOM_MEDIDA }}</td>
+                                       <td>
+                                          @if($articulo->ESTADO_ARTICULO)
+                                             <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                          @else
+                                             <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                          @endif
+                                       </td>
+                                       @can('Ver_articulos')
+                                          <td>
+                                             <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
+                                          </td>
+                                       @endcan
+                                       @can('Modificar_articulos')
+                                          <td>
+                                               <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
+                                          </td>
+                                       @endcan
+                                       @can('Deshabilitar_articulos')
+                                       <td> 
                                           <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
                                               @method('DELETE')
                                               @csrf
-                                              @if($articulo->ESTADO_ARTICULO)
                                                 <button type="submit" class="btn-sm btn btn-outline-danger w-60">
                                                   Deshabilitar
                                                 </button>
-                                              @else
-                                                <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                  Habilitar
-                                                </button>
-
-                                              @endif
                                           </form>
-                                        </td>
+                                       </td>
+                                       @endcan
                                     </tr>
                                 @endif
                            @endforeach     
@@ -91,50 +96,53 @@
                               <th>Cantidad Actual</th>
                               <th>Unidad de Medidas</th>
                               <th>Estado</th>
-                              <th>Ver Articulo</th>
-                              <th>Modificar Articulo</th>
-                              <th>Deshabilitar Articulo</th>
+                              @can('Ver_articulos')
+                                 <th>Ver</th>
+                              @endcan
+                              @can('Modificar_articulos')
+                                 <th>Modificar</th>
+                              @endcan
+                              @can('Habilitar_articulos')
+                                 <th>Habilitar</th>
+                              @endcan
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($articulos as $articulo)
                                 @if($articulo->ESTADO_ARTICULO == 0 )
                                     <tr>
-                                        <td>{{ $articulo->COD_ARTICULO }}</td>
-                                        <td>{{ $articulo->NOM_ARTICULO }}</td>
-                                        <td>{{ $articulo->CANT_ACTUAL }}</td>
-                                        <td>{{ $articulo->Medida->NOM_MEDIDA }}</td>
-                                        <td>
-                                            @if($articulo->ESTADO_ARTICULO)
-                                                <button type="button" class="btn btn-success navbar-btn">Activo</button>
-                                            @else
-                                                 <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
-                                        </td>
-                                        <td>
-                                          @can('modificar_articulos')
-                                            <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
-                                          @endcan
-                                        </td>
-                                        <td> 
-                                          <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
-                                              @method('DELETE')
-                                              @csrf
-                                              @if($articulo->ESTADO_ARTICULO)
-                                                <button type="submit" class="btn-sm btn btn-outline-danger w-60">
-                                                  Deshabilitar
-                                                </button>
-                                              @else
-                                                <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                  Habilitar
-                                                </button>
-
-                                              @endif
-                                          </form>
-                                        </td>
+                                       <td>{{ $articulo->COD_ARTICULO }}</td>
+                                       <td>{{ $articulo->NOM_ARTICULO }}</td>
+                                       <td>{{ $articulo->CANT_ACTUAL }}</td>
+                                       <td>{{ $articulo->Medida->NOM_MEDIDA }}</td>
+                                       <td>
+                                          @if($articulo->ESTADO_ARTICULO)
+                                             <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                          @else
+                                             <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                          @endif
+                                       </td>
+                                       @can('Ver_articulos')
+                                          <td>
+                                             <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
+                                          </td>
+                                       @endcan
+                                       @can('Modificar_articulos')
+                                          <td>
+                                               <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
+                                          </td>
+                                       @endcan
+                                       @can('Habilitar_articulos')
+                                          <td> 
+                                             <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                   <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                                   Habilitar
+                                                   </button>
+                                             </form>
+                                          </td>
+                                       @endcan
                                     </tr>
                                 @endif
                            @endforeach     

@@ -6,27 +6,32 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Fecha Registro" data-content="Seleccione la fecha de registro del consumo directo">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="date" class="formulario__input" name="FECHA" id="fecharegistro" value="{{$consumo_directo->FECHA}}">
-            <i class="formulario__validacion-estado far fa-times-circle"></i>
+            <input type="date" class="formulario__input" name="FECHA" id="fecharegistro" value="{{$consumo_directo->FECHA}}" readonly="" >
+            <i class="formulario__validacion-estado far fa-times-circle" ></i>
         </div>
         <p class="formulario__input-error">
             El Articulo tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
         </p>
     </div>
-<!-- Grupo: factura -->
-    <div class="col-lg-6 col-sm-3 col-md-3 col-xs-12 formulario__grupo" id="grupo__factura">
-        <label for="factura" class="formulario__label">
-            <b class="colorAste">*</b>Factura o Resivo
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Factura o Resivo" data-content="Seleccione la si es factura o resivo el comprovante de la compra de los Articulos del consumo directo">?</a>
+
+{{-- Grupo: Tipo de Comprobante --}}
+    <div class="col-lg-6 col-sm-3 col-md-3 col-xs-12">
+        <label for="tipocomprobante" class="formulario__grupo">
+            <b class="colorAste">*</b>Tipo Comprobante
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Tipo de Comprobante" data-content="Seleccione el Tipo de comprobante de la compra por ejemplo: Factura o Resivo">?</a>
         </label>
-        <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="FACTURA" id="factura" placeholder="factura o Recibo" value="{{$consumo_directo->FACTURA}}">
-            <i class="formulario__validacion-estado far fa-times-circle"></i>                   
+        <div class="form-group formulario__grupo-input">
+            <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
+                <option value="">Seleccione una Opción</option>
+                <option value="Factura" @if($consumo_directo->COMPROBANTE == 'Factura') selected @endif>Factura</option>
+                <option value="Recivo"  @if($consumo_directo->COMPROBANTE == 'Recivo') selected @endif>Recivo</option>
+            </select>
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            Seleccione un tipo de comprobante de la compra para el stock..
         </p>
     </div>
+
 <!-- Grupo: numeroOrdenCompra -->
     <div class="formulario__grupo col-lg-6 col-sm-3 col-md-3 col-xs-12" id="grupo__numeroOrdenCompra">
         <label for="numeroOrdenCompra" class="formulario__label">
@@ -130,7 +135,7 @@
     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
         <div class="form-group">
             <label for="pidarticulo">Articulos</label>    
-            <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
+            <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true" disabled="">
                 @foreach($Articulos as $articulo)
                     <option value="{{ $articulo->COD_ARTICULO }}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }} </option>
                 @endforeach
@@ -143,7 +148,7 @@
         <div class="form-group">
             <label for="cantidad">Cantidad</label>    
             <input type="number" name="CANTIDAD" id="cantidad" class="form-control"
-            placeholder="Digite la Cantidad">
+            placeholder="Digite la Cantidad" disabled="">
         </div>
     </div>
 {{-- Grupo:Precio Unidad --}}
@@ -151,13 +156,13 @@
         <div class="form-group">
             <label for="precio">Precio Unidad</label>    
             <input type="number" name="PRECIO_UNITARIO" id="precio" class="form-control"
-            placeholder="Digite Precio por unidad" min="1" pattern="^[0-9]+">
+            placeholder="Digite Precio por unidad" min="1" pattern="^[0-9]+" disabled="">
         </div>
     </div>
 {{-- Grupo:Boton Agregar --}}
     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
         <div class="form-group">
-            <button type="button" id="btn_add" class="btn btn-primary">Agregar Arituculo</button>
+            <button type="button" id="btn_add" class="btn btn-primary" disabled="">Agregar Arituculo</button>
         </div>
     </div>
 {{-- Grupo:Tabla --}}
@@ -181,20 +186,20 @@
                  @foreach($consumo_directo->articulos as $articulo)
                     <tr class="selected filaConsumo" id="fila{{$articulo->COD_ARTICULO}}">
                         <td>
-                            <button type="button" class="btn btn-warning" onclick="eliminar({{$articulo->COD_ARTICULO}})">X</button>
+                            <button type="button" class="btn btn-warning" onclick="eliminar({{$articulo->COD_ARTICULO}})"disabled="">X</button>
                         </td>
                         <td>
                             <input type="hidden" name="articulos[]" value="{{$articulo->COD_ARTICULO}}"></input>{{$articulo->NOM_ARTICULO}}
                         </td>
                         <td>
-                            <input type="hidden" name="cantidad_{{$articulo->COD_ARTICULO}}" value="{{$articulo->pivot->CANTIDAD}}" ></input>
+                            <input type="hidden" name="cantidad_{{$articulo->COD_ARTICULO}}" value="{{$articulo->pivot->CANTIDAD}}" ></input disabled="">
                             <input type="number" idArticulo="{{$articulo->COD_ARTICULO}}" value="{{$articulo->pivot->CANTIDAD}}" disabled id="cantidad_{{$articulo->COD_ARTICULO}}"></input>
                         </td>
                         <td>
-                            <input type="hidden" name="precio_{{$articulo->COD_ARTICULO}}" value="{{$articulo->pivot->PRECIO_UNITARIO}}" >
+                            <input type="hidden" name="precio_{{$articulo->COD_ARTICULO}}" value="{{$articulo->pivot->PRECIO_UNITARIO}}" disabled="">
                                 
                             </input>
-                            <input type="number" value="{{$articulo->pivot->PRECIO_UNITARIO}}" disabled id="precio_{{$articulo->COD_ARTICULO}}" ></input>
+                            <input type="number" value="{{$articulo->pivot->PRECIO_UNITARIO}}" disabled id="precio_{{$articulo->COD_ARTICULO}}" disabled=""></input>
                         </td>
 
                         <td id="subTotal_{{$articulo->COD_ARTICULO}}">{{$articulo->pivot->CANTIDAD*$articulo->pivot->PRECIO_UNITARIO}}</td>

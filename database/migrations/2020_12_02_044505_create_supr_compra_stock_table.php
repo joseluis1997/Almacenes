@@ -14,7 +14,7 @@ class CreateSuprCompraStockTable extends Migration
     public function up()
     {
         Schema::create('SUPR_COMPRA_STOCK', function (Blueprint $table) {
-            $table->bigIncrements('COD_SUPR_COMPRA_STOCK');
+            // $table->bigIncrements('COD_SUPR_COMPRA_STOCK');
 
             $table->unsignedBigInteger('COD_COMPRA_STOCK');
             $table->foreign('COD_COMPRA_STOCK')->references('COD_COMPRA_STOCK')->on('COMPRA_STOCKS')->onDelete('cascade');

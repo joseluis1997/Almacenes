@@ -13,17 +13,17 @@ class CreateSesionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sesions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('usuario_id');
-            $table->datetime('inicio_sesion');
-            $table->datetime('cierre_sesion');
-            $table->boolean('estado_usuario')->default(true);
+        // Schema::create('sesions', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->unsignedBigInteger('usuario_id');
+        //     $table->datetime('inicio_sesion');
+        //     $table->datetime('cierre_sesion');
+        //     $table->boolean('estado_usuario')->default(true);
 
-            //relacionando tabla sesiones con usuarios
-            $table->foreign('usuario_id')->references('id')->on('users');
-            $table->timestamps();
-        });
+        //     //relacionando tabla sesiones con usuarios
+        //     $table->foreign('usuario_id')->references('id')->on('users');
+        //     $table->timestamps();
+        // });
     }
 
     /**
