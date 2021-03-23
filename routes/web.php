@@ -496,7 +496,7 @@ Route::group(['prefix' => 'fisicovaloradototal', 'namespace' => 'Admin', 'middle
 	->name('list_ConsolidadoFisicoValoradoTotal');
 
 	Route::post('/create_report', 'ConsolidadoFisicoValoradoTotalController@RepConsolidadoValoradoTotal')
-	->middleware(sprintf("autorizacion:%s", "ccesso_ReporteDetalladoIngresosConsumoDirecto"))
+	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
 	->name('create_report_ReporteConsolidadoValoradoTotal');
 });
 

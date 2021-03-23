@@ -150,70 +150,53 @@
 
     </header>
     <main>
-     @foreach($partidas as $partida)
-        @php
-          $SubTotalC =  0.00;
-          $totalito =  0.00;
-          $SubTotalS =  0.00;
-          $Total =  0.00;
-        @endphp 
-        <table style="margin-bottom: 30px;">
-          <thead>
-            <tr>
-              <th colspan="5" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
-            </tr>
-            <tr>
-              <th>PARTIDA PRESUPUESTARIA</th>
-              <th>INGRESOS VALORADOS</th>
-              <th>EGRESOS VALORADOS</th>
-              <th>SALDO ACTUAL</th>
-            </tr>
-          </thead>
-          <tbody>
+      <table style="margin-bottom: 30px;">
+        <thead>
+          <tr>
+            <th>PARTIDA PRESUPUESTARIA</th>
+            <th>INGRESOS VALORADOS</th>
+            <th>EGRESOS VALORADOS</th>
+            <th>SALDO ACTUAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          @php
+            $valorPonderados = array();
+            $Total =  0.00;
+          @endphp 
+          @foreach($partidas as $partida)
+            @php
+              $TotalIngresos =  0.00;
+              $TotalSalidas =  0.00;
+              $TotalPartida =  0.00;
+            @endphp 
             @foreach($partida->Articulos as $index=>$articulo)
-              @foreach($articulo->ComprasStocks as $compra)
-                @foreach($articulo->Salidas as $salida)
-                  {{-- {{ $salida->pivot }} --}}
-                  <tr>
-                    <td class="inf">{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
-                    {{-- <td class="inf">{{$articulo->CANT_ACTUAL}}</td> --}}
-                    {{-- <td class="inf">{{$compra->pivot->PRECIO_UNITARIO}}</td> --}}
-                    @php
-                        $SubTotalC =  $compra->pivot->CANTIDAD * $compra->pivot->PRECIO_UNITARIO;
-                    @endphp
-                    @php
-                        $SubTotalS =  $salida->pivot->CANTIDAD *$compra->pivot->PRECIO_UNITARIO;
-                    @endphp
-                    @php
-                      $totalito = $SubTotalC-$SubTotalS;
-                    @endphp
-                    @php
-                      $Total+=$totalito;
-                    @endphp
-                    <td class="inf">bs/ {{number_format($SubTotalC, 2, '.', '')}}</td>
-                    <td class="inf">bs/ {{number_format($SubTotalS, 2, '.', '')}}</td>
-                    <td class="inf">bs/ {{number_format($totalito, 2, '.', '')}}</td>
-                    {{-- <td class="inf">bs/ {{number_format($Total, 2, '.', '')}}</td> --}}
-                  </tr>
-                @endforeach
-              @endforeach
+              @php
+                $TotalIngresos =  $TotalIngresos+$articulo->total_prec_DCS;
+                if($articulo->total_cant_DCS > 0){
+                  $TotalSalidas =  $articulo->total_cant_SAL*($articulo->total_prec_DCS/$articulo->total_cant_DCS);
+                }else{
+                  $TotalSalidas = 0.00;
+                }
+                $TotalPartida =  $TotalIngresos-$TotalSalidas;
+              @endphp
             @endforeach
-          </tbody>
-          <tfoot>
+            @php
+              $Total =  $Total+$TotalPartida;
+            @endphp
             <tr>
-              <td colspan="3"></td>
-              <td class="inf">Total: </td>
-              <td class="inf">Bs/ {{number_format($Total, 2, '.', '')}}</td>
+              <td>
+                {{$partida->NRO_PARTIDA}}
+              </td>
+              <td>{{number_format($TotalIngresos, 2, '.', '')}}</td>
+              <td>{{number_format($TotalSalidas, 2, '.', '')}}</td>
+              <td>{{number_format($TotalPartida, 2, '.', '')}}</td>
             </tr>
-          </tfoot>
-        </table>
-        @php
-          $Total = 0;
-        @endphp
-      @endforeach
-      
+          @endforeach
+        </tbody>
+      </table>      
       <div>
-        <div>Consolidado valorado Total:</div>
+        <div>Consolidado valorado Total: {{number_format($Total, 2, '.', '')}} Bs.</div>
       </div>
     </main>
     <footer>
