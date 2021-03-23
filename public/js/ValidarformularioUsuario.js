@@ -7,7 +7,8 @@ const expresiones = {
     APELLIDO: /^([A-Z]{1}[a-z]{2,30}[ ]?){1,3}$/,
 	TELEFONO: /^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/, // 7 a 14 numeros.
 	NOM_USUARIO: /^[a-zA-Z0-9\_\-]{4,20}$/, // Letras, numeros, guion y guion_bajo
-    password: /^.{4,20}$/ // 4 a 12 digitos.
+    password: /^.{4,20}$/, // 4 a 12 digitos.
+    // FOTO: /^.jpg|.jpeg|.png|$/
 }
 
 const campos ={
@@ -16,6 +17,7 @@ const campos ={
     apellidos: false,
     telefono: false,
     usuario: false,
+    // foto: false,
     password: false
 }
 
@@ -41,10 +43,16 @@ const validarFormulario = (e) =>{
     case "NOM_USUARIO":
         validarCampo(expresiones.NOM_USUARIO,e.target,'usuario');
     break;
+
+    // case "imagen":
+    //     validarCampo(expresiones.FOTO,e.target,'foto');
+    // break;
+
     case "password":    
         validarCampo(expresiones.password,e.target,'password');
         validarPassword2();
     break;
+
     case "re_password":
 			validarPassword2();
 	break;

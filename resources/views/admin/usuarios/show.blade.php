@@ -15,13 +15,20 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
                         @endif
                     </div><br>
+                        <h5>Rol:<samp class="badge badge-primary">{{ $usuario->Roles->pluck('name')->first()}}</samp></h5>
         	        	<b>Codigo:</b><span class="badge badge-info">{{ $usuario->id }}</span><br>
                         <b>Cedula:</b><span class="badge badge-info">{{ $usuario->CI }}</span><br>
                         <b>Nombre:</b><span class="badge badge-info">{{ $usuario->NOM_USUARIO }}</span><br>
                         <b>Apellidos:</b><span class="badge badge-info">{{ $usuario->APELLIDO }}</span><br>
                         <b>Telefono:</b><span class="badge badge-info">{{ $usuario->TELEFONO }}</span><br>
                         <b>Nombre de Usuario:</b><span class="badge badge-info">{{ $usuario->NOM_USUARIO }}</span><br>
-                        <b>Estado de Usuario:</b><span class="badge badge-info">{{ $usuario->ESTADO_USUARIO }}</span><br>
+                        @if($usuario->ESTADO_USUARIO)
+                            <b>Estado de Usuario:</b><span class="badge badge-success">Habilitado</span><br>
+                        @else
+                            <b>Estado de Usuario:</b><span class="badge badge-danger">Deshabilitado</span>
+                        @endif
+                        
+                        
                 </div>
                 <br>
             </div>

@@ -25,25 +25,26 @@ class ArticuloRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->route('articulo')->COD_ARTICULO);
         switch ($this->method()) {
             case 'GET':
             case 'DELETE':
                 return [];
             case 'POST':
                 return [
-                    'FK_COD_PARTIDA' => 'required',
-                    'FK_COD_MEDIDA' =>'required',
-                    'NOM_ARTICULO' => 'required|string|max:50',
+                    'FK_COD_PARTIDA' => ['required'],
+                    'FK_COD_MEDIDA' =>['required'],
+                    'NOM_ARTICULO' => ['required','regex:/^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/','unique:ARTICULO,NOM_ARTICULO'],
+                    'MARCA' => ['required','regex:/^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/'],
                     'DESC_ARTICULO' => 'max:512',
-                    'MARCA' => 'required',
                 ];
             case 'PUT':
                 return [
                     'FK_COD_PARTIDA' => 'required',
                     'FK_COD_MEDIDA' =>'required',
-                    'NOM_ARTICULO' => 'required|string|max:50',
-                    'DESC_ARTICULO' => 'sometimes|max:512',
+                    'NOM_ARTICULO' => ['required','regex:/^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/',Rule::unique('ARTICULO','NOM_ARTICULO')->ignore($this->route('articulo'))],                    
                     'MARCA' => 'required',
+                    'DESC_ARTICULO' => 'sometimes|max:512',
                 ];
         }
 

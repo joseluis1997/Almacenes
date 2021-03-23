@@ -1,4 +1,3 @@
-{{ $errors }}
 <!-- Grupo: Nombre -->
 <div class="formulario__grupo" id="grupo__nombre">
     <label for="nombre" class="formulario__label"><b class="colorAste">*</b>Nombre

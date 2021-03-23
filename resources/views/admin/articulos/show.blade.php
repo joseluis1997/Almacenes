@@ -18,6 +18,8 @@
                         | {{ $articulo->Partida->NOM_PARTIDA }}</span><br>
                 <strong>Cantidad Articulo:</strong>                                       
                     <span class="badge badge-info">{{$articulo->CANT_ACTUAL}}</span><br>
+                <strong>Marca Articulo:</strong>                                       
+                    <span class="badge badge-info">{{$articulo->MARCA}}</span><br>
                 <strong>Descripcion Articulo:</strong>                                       
                     <span class="badge badge-info">{{$articulo->DESC_ARTICULO}}</span><br>
                 <strong>Estado Articulo:</strong> 

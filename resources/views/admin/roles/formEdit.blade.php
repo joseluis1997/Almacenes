@@ -1,15 +1,15 @@
-{{ $errors }}
+{{-- {{ $errors }} --}}
 <!-- Grupo: Nombre -->
 <div class="formulario__grupo" id="grupo__nombre">
     <label for="nombre" class="formulario__label"><b class="colorAste">*</b>Nombre
         <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Nombre Rol" data-content="La Modificacion del Rol solo puede contener leltras...">?</a>
     </label>
     <div class="formulario__grupo-input">
-        <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombre del Nuevo Rol" value="{{ isset($role) ? $role->name : '' }}">
+        <input type="text" class="formulario__input" name="nombre" id="nombre" value="{{ isset($role) ? $role->name : '' }}">
         <i class="formulario__validacion-estado far fa-times-circle"></i>
     </div>
     <p class="formulario__input-error">
-        El nombre del nuevo Rol, Solo puede contener letras.
+        El nombre del nuevo Rol debe comenzar con mayusculas y solo puede contener letras.
     </p>
 </div>
 <!-- Grupo: Descripcion -->

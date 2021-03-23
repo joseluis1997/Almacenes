@@ -34,15 +34,9 @@
                                 <th>Usuario</th>
                                 <th>Rol</th>
                                 <th>Estado</th>
-                                @can('Ver_usuarios')
-                                    <th>Ver</th>
-                                @endcan
-                                @can('Modificar_usuarios')
-                                    <th>Modificar</th>
-                                @endcan
-                                @can('Deshabilitar_usuarios')
-                                    <th>Deshabilitar</th>
-                                @endcan
+                                <th>Ver</th>
+                                <th>Modificar</th>
+                                <th>Deshabilitar</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -57,41 +51,30 @@
                                 <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
                                 <!-- con esta nuevo sacamos los array pero con implode separamos los array -->
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
-                                 <td>
-                                        @if($user->ESTADO_USUARIO)
-                                            <button type="button" class="btn bottA navbar-btn ">Activo</button>
-                                        @else
-                                             <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                        @endif
-                                </td>
-                                @can('Ver_usuarios')
                                 <td>
-                                    <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x circulo"></a>
+                                    <button type="button" class="btn btn-success">Activo</button>
                                 </td>
-                                @endcan
-                                @can('Modificar_usuarios')
-                                    <td>
+                                <td>
+                                    @can('Ver_usuarios')
+                                        <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x circulo"></a>
+                                    @endcan
+                                </td>
+                                <td>
+                                    @can('Modificar_usuarios')
                                         <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x circulo"></a>
-                                    </td>
-                                @endcan
-                                @can('Deshabilitar_usuarios')
+                                    @endcan
+                                </td>
                                 <td> 
-                                    <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        @if($user->ESTADO_USUARIO)
-                                          <button type="submit" class="btn-sm btn btn-outline-danger w-60">
-                                            Deshabilitar
-                                          </button>
-                                        @else
-                                          <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                            Habilitar
-                                          </button>
-
-                                        @endif
-                                    </form>
+                                    @can('Deshabilitar_usuarios')
+                                        <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                                <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                                    Deshabilitar
+                                                </button>
+                                        </form>
+                                    @endcan
                                 </td> 
-                                @endcan
                                {{--  <td>
                                     @can ('eliminar_usuarios')
                                     <a href="{{route ('destroy_user',$user->id)}}" style="color:red;"class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
@@ -132,21 +115,20 @@
                                 <!-- con esta nuevo sacamos los array pero con implode separamos los array -->
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
                                 <td>
-                                        @if($user->ESTADO_USUARIO)
-                                            <button type="button" class="btn btn-success navbar-btn">Activo</button>
-                                        @else
-                                             <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                        @endif
+                                    <button type="button" class="btn btn-danger">Inactivo</button>
                                 </td>
                                 <td>
-                                <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x"></a>
+                                    @can('Ver_usuarios')
+                                        <a href="{{route('show_usuario',$user->id)}}" class="fas fa-eye fa-2x"></a>
+                                    @endcan
                                 </td>
                                 <td>
                                     @can('Modificar_usuarios')
                                     <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>
-                                  <td> 
+                                <td> 
+                                    @can('Habilitar_usuarios')
                                         <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
                                             @method('DELETE')
                                             @csrf
@@ -161,7 +143,8 @@
 
                                             @endif
                                         </form>
-                                    </td>
+                                    @endcan
+                                </td>
                             </tr>
                             @endif
                         @endforeach

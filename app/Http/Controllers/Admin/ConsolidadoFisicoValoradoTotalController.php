@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Articulo;
+use App\Partida;
+use DB;
 
 class ConsolidadoFisicoValoradoTotalController extends Controller
 {
@@ -15,72 +18,45 @@ class ConsolidadoFisicoValoradoTotalController extends Controller
     public function index()
     {
         //
-        return view('admin.ReporteConsolidadoPresupuestario.index');
+        $partidas = Partida::all();
+        return view('admin.ReporteConsolidadoValoradoTotal.index', compact('partidas'));
     }
+    public $partida_ok = FALSE;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function RepConsolidadoValoradoTotal(Request $request){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $cod_partida = $request->get('partida');
+        $partida = null;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if($cod_partida != null && $cod_partida > 0){
+          $this->partida_ok = TRUE;
+          $partida = Partida::find($cod_partida);
+          $partida = $partida->NRO_PARTIDA;
+        }
+     
+        $partidaQuery = Partida::query();
+        if ($this->partida_ok) {
+            $partidaQuery = $partidaQuery->where('COD_PARTIDA', '=', $cod_partida);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+       $partidas = $partidaQuery->with(['Articulos' => function($query) {
+            $query->with(['ComprasStocks' => function($query2) {
+            }]);
+            $query->with(['Salidas'=>function($query){
+                
+            }]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        }])
+        ->get();
+        // dd($partidas);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+     return view('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal',[
+
+        'partidas'=>$partidas,
+    ]);
+
+    
+        // return $reporteInventarioActual->download('RepConValTotal.pdf');
     }
 }

@@ -60,9 +60,9 @@
     </div>
 
 <!-- Grupo: Marca del Articulo-->
-    <div class="formulario__grupo" id="grupo__CantidadArticulo">
-        <label for="CantidadArticulo" class="formulario__label"><b class="colorAste">*</b>&nbsp;Marca Articulo&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Cantidad Articulo" data-content="Digite la cantidad de articulos que se esta registrando, solo puede ser numero enteros positivos">?</a>
+    <div class="formulario__grupo" id="grupo__marca">
+        <label for="marca" class="formulario__label"><b class="colorAste">*</b>&nbsp;Marca Articulo&nbsp;&nbsp;
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Marca" data-content="Solo puede contener letras y debe empezar con mayuscula. por ejemplo epson, pil">?</a>
         </label>
         <div class="formulario__grupo-input">
            <input type="text" class="formulario__input" name="MARCA" id="marca" placeholder="Escriba la marco del Articulo" value="{{$articulo->MARCA}}" required>

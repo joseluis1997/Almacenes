@@ -44,4 +44,9 @@ class Articulo extends Model
 
         return $this->belongsToMany(\App\pedido::class,'DETALLE_PEDIDO','COD_ARTICULO','COD_PEDIDO');
     }
+
+    public function Salidas(){
+
+        return $this->belongsToMany(\App\salida::class,'DETALLE_SALIDA','COD_ARTICULO','COD_SALIDA')->withPivot('CANTIDAD');
+    }
 }

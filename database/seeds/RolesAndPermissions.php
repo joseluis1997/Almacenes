@@ -127,9 +127,9 @@ class RolesAndPermissions extends Seeder
         $permission = Permission::create(['name' => 'accesso_ConsolidadoFisicoValoradoTotal']);
         $permission = Permission::create(['name' => 'accesso_Kardex']);
 
-        $role = Role::create(['name' => 'Tecnico']);
-        $role = Role::create(['name' => 'Visitante']);
         $role = Role::create(['name' => 'Administrador']);
         $role->givePermissionTo(Permission::all());
+        $role = Role::create(['name' => 'Tecnico']);
+        $role = Role::create(['name' => 'Visitante']);
     }
 }

@@ -1,5 +1,10 @@
-<div class="col-lg-10 order-lg-0 text-center profile-avatar" >
-    <h2 class="text-center font-weight-light">Foto de Perfil</h2>
+<div class="col-lg-10 order-lg-0 text-center profile-avatar" id="grupo__foto" >
+    {{-- <h2 class="text-center font-weight-light">*Foto de Perfil
+        <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Carnet de Indentid" data-content="Solo puede contener numeros enteros positivos por Ej:81747041">?</a>
+    </h2> --}}
+    <label  for="ci" id="mostrar" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">Foto De Perfil
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Foto de Perfil" data-content="se permite los siguientes formatos para la foto de perfil, jpg, png,jpeg.">?</a>
+    </label> 
     <div id="preview">  
         @if($user->imagen != "")
             <img src="{{ asset('/images/users/'.$user->imagen) }}" class="img img-fluid rounded-circle" alt="avatar" />
@@ -9,16 +14,17 @@
     </div><br>
     <div class="input-group px-xl-4" >
         <div class="custom-file" >
-            <input type="file" class="custom-file-input" name="imagen" id="fileToUpload">
-            <label class="custom-file-label" for="fileToUpload" aria-describedby="inputGroupFileAddon02">Agregar Foto</label>
+            <input type="file" class="custom-file-input" name="imagen" id="fileToUpload" >
+            <label class="custom-file-label" for="fileToUpload" aria-describedby="inputGroupFileAddon02">Agregar Foto: jpg, jpeg, pgn.<br><br>
+            </label>
         </div>
     </div>
-</div>
+</div><br><br><br><br><br><br><br><br><br>
 <br>
 <!-- Grupo: Ci -->
     <div class="formulario__grupo" id="grupo__ci">
         <label  for="ci" id="mostrar" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">&nbsp;Numero de Carnet&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Carnet de Indentid" data-content="Solo puede contener numeros enteros positivos por Ej:81747041">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Carnet de Indentidad" data-content="Solo puede contener numeros enteros positivos por Ej:81747041">?</a>
         </label> 
         <div class="formulario__grupo-input">
             <input type="text" class="formulario__input" name="CI" id="ci" placeholder="numero de carnet de identidad" value="{{old('CI')}}">    
@@ -99,13 +105,16 @@
             <div class="formulario__grupo-input">
                 <!-- <input type="text" class="formulario__input" name="" id="rol" > -->
                     <select class="form-control formulario__input " name="rol" id="rol" >
+                        <option value="" >Seleccione un Rol</option>
                         @foreach($roles as $key =>$value)
-                            @if($user->hasRole($value))
-                                <option value="{{$value}}" selected >{{$value}}</option>
-                                <!-- <i class="formulario__validacion-estado far fa-times-circle"></i> -->
-                                @else
-                                 <option value="{{$value}}">{{$value}}</option>
-                                 <!-- <i class="formulario__validacion-estado far fa-times-circle"></i> -->
+                            @if($key == 2 || $key == 3)
+                                @if($user->hasRole($value))
+                                    {{-- <option value="{{$value}}" selected >{{$value}}</option> --}}
+                                    <!-- <i class="formulario__validacion-estado far fa-times-circle"></i> -->
+                                    @else
+                                     <option value="{{$value}}">{{$value}}</option>
+                                     <!-- <i class="formulario__validacion-estado far fa-times-circle"></i> -->
+                                @endif
                             @endif
                         @endforeach
                     </select>  

@@ -423,6 +423,10 @@ Route::group(['prefix' => 'InventarioActual', 'namespace' => 'Admin', 'middlewar
 	Route::get('/index/inventario', 'InventarioActualController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
 	->name('list_reportesInventarioActual');
+
+	Route::get('/InventarioActual', 'InventarioActualController@ReporteInventarioActualPDF')
+	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
+	->name('ReporteInventarioActualPDF');
 });
 
 /* Rutas: Reporte Detallado Inventario Actual*/
@@ -490,5 +494,9 @@ Route::group(['prefix' => 'fisicovaloradototal', 'namespace' => 'Admin', 'middle
 	Route::get('/index', 'ConsolidadoFisicoValoradoTotalController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
 	->name('list_ConsolidadoFisicoValoradoTotal');
+
+	Route::post('/create_report', 'ConsolidadoFisicoValoradoTotalController@RepConsolidadoValoradoTotal')
+	->middleware(sprintf("autorizacion:%s", "ccesso_ReporteDetalladoIngresosConsumoDirecto"))
+	->name('create_report_ReporteConsolidadoValoradoTotal');
 });
 

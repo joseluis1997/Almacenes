@@ -1,5 +1,8 @@
 <div class="col-lg-10 order-lg-0 text-center profile-avatar" >
-    <h2 class="text-center font-weight-light">Foto de Perfil</h2>
+    {{-- <h2 class="text-center font-weight-light">Foto de Perfil</h2> --}}
+     <label  for="ci" id="mostrar" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">Foto De Perfil
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Foto de Perfil" data-content="se permite los siguientes formatos para la foto de perfil, jpg, png,jpeg.">?</a>
+    </label> 
     <div id="preview">  
         @if($user->imagen != "")
             <img src="{{ asset('/images/users/'.$user->imagen) }}" class="img img-fluid rounded-circle" alt="avatar" />
@@ -10,7 +13,7 @@
     <div class="input-group px-xl-4" >
         <div class="custom-file" >
             <input type="file" class="custom-file-input" name="imagen" id="fileToUpload">
-            <label class="custom-file-label" for="fileToUpload" aria-describedby="inputGroupFileAddon02">Modificar Foto</label>
+            <label class="custom-file-label" for="fileToUpload" aria-describedby="inputGroupFileAddon02">Modificar Foto: jpg, jpeg, pgn.</label>
         </div>
     </div>
 </div>
@@ -26,7 +29,7 @@
         <i class="formulario__validacion-estado far fa-times-circle"></i>
     </div>
     <p class="formulario__input-error">
-        El ci tiene que ser de 7 a 10 digitos y solo puede contener numeros.
+        El ci tiene que ser de 7 a 10 digitos y solo puede contener numeros positivos.
     </p>
 </div>
 
@@ -40,21 +43,21 @@
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El nombre debe comenzar con mayusculas.
+                Cada nombre debe comenzar con mayuscula.
             </p>
     </div>
 
 <!-- Grupo: Apellidos -->
     <div class="formulario__grupo" id="grupo__apellidos">
         <label for="apellidos" class="formulario__label"><b class="colorAste">*</b>&nbsp;Apellidos&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Apellidos" data-content="El Apellido debe comenzar con mayusculas por ejemplo:Mercado, solo puede ser letras...">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Apellidos" data-content="El inicio de cada Apellido debe empezar con mayuscula. por ejemplo:Mercado, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
                 <input type="text" class="formulario__input" name="APELLIDO" id="apellidos" value="{{$user->APELLIDO}}" required>
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El Apellido debe comenzar con mayusculas.
+                El inicio de cada Apellido debe empezar con mayuscula.
             </p>
     </div>
 
@@ -95,13 +98,13 @@
                 <!-- <input type="text" class="formulario__input" name="" id="rol" > -->
                 <select class="form-control formulario__input " name="rol" id="rol" >
                     @foreach($roles as $key =>$value)
-                        @if($user->hasRole($value))
-                            <option value="{{$value}}" selected >{{$value}}</option>
-                            <!-- <i class="formulario__validacion-estado far fa-times-circle"></i> -->
-                            @else
-                             <option value="{{$value}}">{{$value}}</option>
-                             <!-- <i class="formulario__validacion-estado far fa-times-circle"></i> -->
-                        @endif
+                        {{-- @if(($key == 2 || $key == 3)) --}}
+                            @if($user->hasRole($value))
+                                <option value="{{$value}}" selected >{{$value}}</option>
+                                @else
+                                 <option value="{{$value}}">{{$value}}</option>
+                            @endif
+                        {{-- @endif --}}
                     @endforeach
                 </select>  
             </div>

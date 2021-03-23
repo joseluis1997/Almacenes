@@ -22,6 +22,7 @@ class ReporteDetalladoIngresosConsumoDirectoController extends Controller
 
   public $partida_ok = FALSE;
   public $fecha_ok = FALSE;
+  
   public function createReport(Request $request){
     $cod_partida = $request->get('partida');
     $partida = null;

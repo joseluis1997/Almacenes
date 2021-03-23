@@ -8,6 +8,7 @@ use App\User;
 use DB;
 use \Spatie\Permission\Models\Role;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Collection;
 class UsuarioController extends Controller
 {
 
@@ -44,31 +45,34 @@ class UsuarioController extends Controller
             $file->move(public_path().'/images/users/',$name);
         }
 
-        $datas = $request->all();
-        $user=User::create($datas);
-        $user->imagen = $name;
-        $user->save();
-        $user->assignRole($request->input('rol'));
-        
+        $rol = $request->input('rol');
+
+        if($rol == 'Administrador'){
+            return redirect()->route('create_users')->with('message', ['danger', 'Solo puede Existir un Administrador']);
+        }else{
+            $datas = $request->all();
+            $user=User::create($datas);
+            $user->imagen = $name;
+            $user->save();
+            $user->assignRole($rol);
         return redirect()->route('list_users')->with('message', ['success', 'Usuario Agregado Correctamente!']);
+        }
+        
 
     }
-
-    
 
     public function editar($id)
     {
         $user = User::findOrFail($id);
         $roles = Role::all()->pluck('name','id');
         return view('admin.usuarios.editar',compact('user','roles'));
-
     }
 
     public function show($id)
     {
-        //
         $show_usuarios = User::find($id);
-
+        // $role=$show_usuarios->Roles->pluck('name')->first();
+        // dd($role);
         return view('admin.usuarios.show',['usuario' => $show_usuarios]);
     }
     public function actualizar(UserRequest $request, $id)
@@ -90,16 +94,16 @@ class UsuarioController extends Controller
             // $user->imagen = $name;
         }
         // $input = $request->all();
-
        
         // $user->save();
-        // dd($request->input());
         $user->update(array_filter($request->input()));
-        // $user->fill($request->input())->save();
-
         $user->syncRoles($request->input('rol'));
-
         return redirect()->route('list_users')->with('message', ['success', 'Usuario Modificado Correctamente!']);
+        // dd($request->input('rol'));
+        // if($request->input('rol') == 'Administrador'){
+        //     return redirect()->route('edit_user', $id)->with('message', ['danger', 'Solo puede Existir un usuario con el Administrador!']);
+        // }else{
+        // }
     }
 
     // public function eliminar($id)

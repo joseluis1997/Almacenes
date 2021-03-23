@@ -2,18 +2,23 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	nombre: /^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/
+	nombre: /^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/,
+	marca: /^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/
 }
 
 const campos ={
     nombre: false,
+    marca: false,
 }
 
 const validarFormulario = (e) =>{
     console.log(e.target.name);
    switch (e.target.name){
-    case "nombre":
+    case "NOM_ARTICULO":
         validarCampo(expresiones.nombre,e.target,'nombre');
+    break;
+    case "MARCA":
+        validarCampo(expresiones.marca,e.target,'marca');
     break;
    }
 }

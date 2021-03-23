@@ -1,14 +1,14 @@
 <!-- Grupo: Nombre Articulo-->
     <div class="formulario__grupo" id="grupo__nombre">
         <label for="nombre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Nombre de Articulo&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Articulo" data-content="Solo puede contener letras por Ej:Tonners">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Articulo" data-content="Solo puede contener letras por Ej:Tonners, Pilfrus y cada nombre debe empezar con mayuscula">?</a>
         </label>
         <div class="formulario__grupo-input">
             <input type="text" class="formulario__input" name="NOM_ARTICULO" id="nombre" placeholder="Escriba el nombre del Articulo" value="{{ old('NOM_ARTICULO') }}" >
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej: hojas bom ...
+            Solo puede contener letras y debe empezar con mayuscula.
         </p>
     </div>
 
@@ -54,16 +54,16 @@
     </div>
 
 <!-- Grupo: Marca del Articulo-->
-    <div class="formulario__grupo" id="grupo__CantidadArticulo">
+    <div class="formulario__grupo" id="grupo__marca">
         <label for="CantidadArticulo" class="formulario__label"><b class="colorAste">*</b>&nbsp;Marca Articulo&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Cantidad Articulo" data-content="Digite la cantidad de articulos que se esta registrando, solo puede ser numero enteros positivos">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Marca" data-content="Solo puede contener letras y debe empezar con mayuscula. por ejemplo epson, pil">?</a>
         </label>
         <div class="formulario__grupo-input">
-           <input type="text" class="formulario__input" name="MARCA" id="marca" placeholder="Escriba la marco del Articulo" value="{{ old('MARCA') }}" required>
+           <input type="text" class="formulario__input" name="MARCA" id="marca" placeholder="Escriba la marca del Articulo" value="{{ old('MARCA') }}" required>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Seleccione la partidad a la cual pertenece el Articulo...
+            Solo puede contener letras y debe empezar con mayuscula.
         </p>
     </div>
  

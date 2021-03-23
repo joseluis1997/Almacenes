@@ -3,12 +3,22 @@
 @section('contenido')
 
     <div class="title">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h3><b>Modificar Rol</b></h3>
     </div>
 
     <div class="card mt-2">
         <div class="card-body">
-            <form class="form-validation" method="POST"  action="{{ route('update_roles', $role->id) }}" novalidate>  
+            <form class="form-validation" method="POST"  action="{{ route('update_roles', $role->id) }}" novalidate id="formulario">  
                  @method("put")
                 {{ csrf_field() }}
 
@@ -23,9 +33,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/ValidarformularioRol.js') }}">
-
-        
+    <script src="{{ asset('js/ValidarformularioRol.js') }}">  
     </script>
 <script>
     $(function () {
