@@ -161,7 +161,6 @@
         </thead>
         <tbody>
           @php
-            $valorPonderados = array();
             $Total =  0.00;
           @endphp 
           @foreach($partidas as $partida)
@@ -182,10 +181,10 @@
                 }else{
                   $TotalSalidas += 0.00;
                 }
-                $TotalPartida +=  $TotalIngresos-$TotalSalidas;
               @endphp
             @endforeach
             @php
+              $TotalPartida +=  $TotalIngresos-$TotalSalidas;
               $Total =  $Total+$TotalPartida;
             @endphp
             <tr>

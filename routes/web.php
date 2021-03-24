@@ -468,6 +468,11 @@ Route::group(['prefix' => 'FisicoValoradoStockAlmacen', 'namespace' => 'Admin', 
 	Route::get('/index', 'FisicoValoradoStockAlmacenController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoStockAlmacen"))
 	->name('list_FisicoValoradoStockAlmacen');
+
+	Route::post('/crear-reporte', 'FisicoValoradoStockAlmacenController@createReport')
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoStockAlmacen"))
+	->name('create_report_FisicoValoradoStockAlmacen');
+
 });
 
 /* Rutas: Reporte Detallado de Compras*/

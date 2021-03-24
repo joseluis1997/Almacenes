@@ -145,25 +145,28 @@
     </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             UNIDAD DE ALMACEN CENTRAL<br>
-            CUADRO RESUMEN FISICO VALORADO CONSUMOS DIRECTOS
+            CUADRO RESUMEN FISICO VALORADO STOCK ALMACEN
         </h1>
 
     </header>
     <main>
       @php
         $TotalMonto = 0.00;
+        $TotalIngresos =  0.00;
+        $TotalEgresos =  0.00;
       @endphp
       @foreach($partidas as $partida)
         @php
+          $SubTotalIngresos =  0.00;
+          $SubTotalEgresos =  0.00;
           $SubTotal =  0.00;
-          $Total =  0.00;
         @endphp
         <table style="margin-bottom: 30px;">
           <thead>
             <tr style="padding: 10px 0px; background-color: #e0e0e0">
-              <th colspan="3" >Partida: {{$partida->NRO_PARTIDA}}</th>
-              <th colspan="2">FISICOS</th>
-              <th colspan="2">VALORADOS</th>
+              <th colspan="3">Partida: {{$partida->NRO_PARTIDA}}</th>
+              <th colspan="3">FISICOS</th>
+              <th colspan="3">VALORADOS</th>
             </tr>
             <tr>
               <th>ITEM</th>
@@ -171,51 +174,93 @@
               <th>U. MEDIDA</th>
               <th>INGRESOS</th>
               <th>EGRESOS</th>
+              <th>SALDO</th>
               <th>INGRESOS</th>
               <th>EGRESOS</th>
+              <th>SALDO</th>
             </tr>
           </thead>
           <tbody>
             @foreach($partida->Articulos as $index=>$articulo)
-              @if($articulo->total_cantidad > 0)
+              @php
+                $PrecioPonderado =  0.00;
+                $Total_cant_DCS =  0.00;
+                $Total_cant_SAL =  0.00;
+                $Total_prec_DCS =  0.00;
+                if ($articulo->total_cant_DCS > 0){
+                  $Total_cant_DCS = $articulo->total_cant_DCS;
+                  $PrecioPonderado = $articulo->total_prec_DCS/$articulo->total_cant_DCS;
+                }
+                if ($articulo->total_cant_SAL > 0) {
+                  $Total_cant_SAL = $articulo->total_cant_SAL;
+                }
+                if ($articulo->total_prec_DCS > 0) {
+                  $Total_prec_DCS = $articulo->total_prec_DCS;
+                }
+              @endphp
               <tr>
                 <td class="inf">{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
                 <td class="inf">{{$articulo->NOM_ARTICULO}}</td>
                 <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
-                <td class="inf">{{$articulo->total_cantidad}}</td>
-                <td class="inf">{{$articulo->total_cantidad}}</td>
-                <td class="inf">{{$articulo->total}}</td>
-                <td class="inf">{{$articulo->total}}</td>
-                @php
-                  if($articulo->total_cantidad <= 0){
-                    $SubTotal = 0;
-                    $Total = $Total + $SubTotal;
-                  }else{
-                    $SubTotal = $articulo->total;
-                    $Total = $Total + $SubTotal;
-                  }
-                @endphp
+                <td class="inf">
+                  {{number_format($Total_cant_DCS, 2, '.', '')}}
+                </td>
+                <td class="inf">
+                  {{number_format($Total_cant_SAL, 2, '.', '')}}
+                </td>
+                <td class="inf">
+                  {{number_format($Total_cant_DCS - $Total_cant_SAL, 2, '.', '')}}
+                </td>
+                <td class="inf">
+                  {{number_format($Total_cant_DCS*$PrecioPonderado, 2, '.', '')}}
+                </td>
+                <td class="inf">
+                  {{number_format($Total_cant_SAL*$PrecioPonderado, 2, '.', '')}}
+                </td>
+                <td class="inf">
+                  {{number_format($PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL), 2, '.', '')}}
+                </td>
               </tr>
-              @endif
+              @php
+                $SubTotalIngresos +=  $Total_cant_DCS*$PrecioPonderado;
+                $SubTotalEgresos +=  $Total_cant_SAL*$PrecioPonderado;
+                $SubTotal +=  $PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL);
+              @endphp
             @endforeach
+            @php
+              $TotalIngresos +=  $SubTotalIngresos;
+              $TotalEgresos +=  $SubTotalEgresos;
+              $TotalMonto += $SubTotal;
+            @endphp
           </tbody>
           <tfoot>
             <tr>
               <td colspan="5"></td>
               <td class="inf">Total: </td>
-              <td class="inf">Bs/ {{number_format($Total, 2, '.', '')}}</td>
+              <td class="inf">
+                {{number_format($SubTotalIngresos, 2, '.', '')}}
+              </td>
+              <td class="inf">
+                {{number_format($SubTotalEgresos, 2, '.', '')}}
+              </td>
+              <td class="inf">
+                {{number_format($SubTotal, 2, '.', '')}}
+              </td>
             </tr>
           </tfoot>
         </table>
-        @php
-          $TotalMonto = $TotalMonto + $Total;
-        @endphp
       @endforeach
       <div>
         <div>
-          <b>Consumo directo:</b>
+          <b>Stock alamacen:</b>
           <p>
-            Total: <b> {{$TotalMonto}} </b>
+            Total Ingresos: <b>{{$TotalIngresos}}</b>
+          </p>
+          <p>
+            Total Egresos: <b>{{$TotalEgresos}}</b>
+          </p>
+          <p>
+            Total Ingresos: <b>{{$TotalMonto}}</b>
           </p>
         </div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>

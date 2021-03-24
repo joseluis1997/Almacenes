@@ -15,18 +15,37 @@ class FisicoValoradoConsumoDirectoController extends Controller
    */
   public function index()
   {
-      return view('admin.ResumenFisicoValoradoConsumoDirecto.index');
+    $partidas = Partida::all();
+    return view('admin.ResumenFisicoValoradoConsumoDirecto.index', compact('partidas'));
   }
 
-  public function createReport(){
-    $partidas = Partida::with(['Articulos' => function($query) {
+  public $partida_ok = FALSE;
+  public function createReport(Request $request){
+
+    $cod_partida = $request->get('partida');
+    $partida = null;
+
+    if($cod_partida != null && $cod_partida > 0){
+      $this->partida_ok = TRUE;
+      $partida = Partida::find($cod_partida);
+      $partida = $partida->NRO_PARTIDA;
+    }
+ 
+    $partidaQuery = Partida::query();
+    if ($this->partida_ok) {
+        $partidaQuery = $partidaQuery->where('COD_PARTIDA', '=', $cod_partida);
+    }
+
+
+    $partidas = $partidaQuery->with(['Articulos' => function($query) {
       $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, SUM(CANTIDAD) as total_cantidad, SUM(CANTIDAD*PRECIO_UNITARIO) as total FROM DETALLE_CONSUMO_DIRECTO GROUP BY COD_ARTICULO) as detalle'), function ($join) {
           $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
       });
     }])->get();
-    // return view('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
+    
+    return view('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
 
-    $reporteInventarioActual = \PDF::loadView('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
-    return $reporteInventarioActual->download('RepResFisValorDirect.pdf');
+    // $reporteInventarioActual = \PDF::loadView('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
+    // return $reporteInventarioActual->download('RepResFisValorDirect.pdf');
  }
 }

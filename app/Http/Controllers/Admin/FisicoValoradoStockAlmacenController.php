@@ -4,83 +4,56 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Articulo;
+use App\Partida;
+use DB;
 
 class FisicoValoradoStockAlmacenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        return view('admin.ResumenFisicoValoradoStockAlmacen.index');
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    $partidas = Partida::all();
+    return view('admin.ResumenFisicoValoradoStockAlmacen.index', compact('partidas'));
+  }
+
+  public $partida_ok = FALSE;
+  public function createReport(Request $request){
+    $cod_partida = $request->get('partida');
+    $partida = null;
+
+    if($cod_partida != null && $cod_partida > 0){
+      $this->partida_ok = TRUE;
+      $partida = Partida::find($cod_partida);
+      $partida = $partida->NRO_PARTIDA;
+    }
+ 
+    $partidaQuery = Partida::query();
+    if ($this->partida_ok) {
+        $partidaQuery = $partidaQuery->where('COD_PARTIDA', '=', $cod_partida);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    $partidas = $partidaQuery->with(['Articulos' => function($query) {
+      $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, SUM(CANTIDAD) as total_cant_DCS, SUM(CANTIDAD*PRECIO_UNITARIO) as total_prec_DCS FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle_cs'), function ($join) {
+          $join->on('detalle_cs.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
+      });
+      $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, SUM(CANTIDAD) as total_cant_SAL FROM DETALLE_SALIDA GROUP BY COD_ARTICULO) as detalle_sal'), function ($join) {
+          $join->on('detalle_sal.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
+      });
+    }])->get();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    //dd($partidas[0]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    return view('admin.ResumenFisicoValoradoStockAlmacen.Reporte',[
+      'partidas'=>$partidas,
+    ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    // $reportePDF = \PDF::loadView('admin.ResumenFisicoValoradoStockAlmacen.Reporte', compact('partidas'));
+    // return $reportePDF->download('RepResFisValoradoStockAlmacen.pdf');
+  }
 }
