@@ -172,13 +172,17 @@
             @endphp 
             @foreach($partida->Articulos as $index=>$articulo)
               @php
-                $TotalIngresos =  $TotalIngresos+$articulo->total_prec_DCS;
-                if($articulo->total_cant_DCS > 0){
-                  $TotalSalidas =  $articulo->total_cant_SAL*($articulo->total_prec_DCS/$articulo->total_cant_DCS);
+                if($articulo->total_prec_DCS > 0){
+                  $TotalIngresos +=  $TotalIngresos+$articulo->total_prec_DCS;
                 }else{
-                  $TotalSalidas = 0.00;
+                  $TotalIngresos += 0.00;
                 }
-                $TotalPartida =  $TotalIngresos-$TotalSalidas;
+                if($articulo->total_cant_DCS > 0){
+                  $TotalSalidas += $articulo->total_cant_SAL*($articulo->total_prec_DCS/$articulo->total_cant_DCS);
+                }else{
+                  $TotalSalidas += 0.00;
+                }
+                $TotalPartida +=  $TotalIngresos-$TotalSalidas;
               @endphp
             @endforeach
             @php
