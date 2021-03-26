@@ -22,6 +22,11 @@ class Area extends Model
     {
         return $this->hasMany(\App\compra_stock::class,'COD_AREA','COD_AREA');
     }
+
+    public function Salidas()
+    {
+        return $this->hasMany(\App\salida::class,'COD_AREA','COD_AREA');
+    }
     
     public function Pedidos()
     {

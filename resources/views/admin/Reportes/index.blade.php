@@ -40,7 +40,7 @@
             </a><br>
         @endcan
 
-        <a href="{{ route('list_kardexAlmacen') }}"><b>Reporte Por Areas</b></a><br>
+        <a href="{{ route('list_area_egresos_salidas') }}"><b>Reporte Por Areas</b></a><br>
 
         @can('accesso_ConsolidadoFisicoValoradoTotal')
             <a href="{{ route('list_ConsolidadoFisicoValoradoTotal') }}"><b>Reporte Consolidado Valorado Total</b>

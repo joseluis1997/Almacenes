@@ -41,6 +41,9 @@ class FisicoValoradoConsumoDirectoController extends Controller
       $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, SUM(CANTIDAD) as total_cantidad, SUM(CANTIDAD*PRECIO_UNITARIO) as total FROM DETALLE_CONSUMO_DIRECTO GROUP BY COD_ARTICULO) as detalle'), function ($join) {
           $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
       });
+      $query->with(['Medida' => function($query2) {
+        $query2->select('COD_MEDIDA','NOM_MEDIDA');
+      }]);
     }])->get();
     
     return view('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));

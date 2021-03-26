@@ -424,9 +424,9 @@ Route::group(['prefix' => 'InventarioActual', 'namespace' => 'Admin', 'middlewar
 	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
 	->name('list_reportesInventarioActual');
 
-	Route::get('/InventarioActual', 'InventarioActualController@ReporteInventarioActualPDF')
+	Route::post('/create_report', 'InventarioActualController@createReport')
 	->middleware(sprintf("autorizacion:%s", "accesso_reporteInventarioActual"))
-	->name('ReporteInventarioActualPDF');
+	->name('create_report_InventarioActual');
 });
 
 /* Rutas: Reporte Detallado Inventario Actual*/
@@ -503,5 +503,16 @@ Route::group(['prefix' => 'fisicovaloradototal', 'namespace' => 'Admin', 'middle
 	Route::post('/create_report', 'ConsolidadoFisicoValoradoTotalController@RepConsolidadoValoradoTotal')
 	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
 	->name('create_report_ReporteConsolidadoValoradoTotal');
+});
+
+/* Rutas: Reportes por Area */
+Route::group(['prefix' => 'AreaEgresosAalidas', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+	Route::get('/index', 'ReporteAreaController@index')
+	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
+	->name('list_area_egresos_salidas');
+
+	Route::post('/create_report', 'ReporteAreaController@createReport')
+	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
+	->name('create_report_area_egresos_salidas');
 });
 

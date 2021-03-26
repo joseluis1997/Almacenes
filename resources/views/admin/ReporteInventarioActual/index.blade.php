@@ -14,7 +14,7 @@
 
             <div class="card mt-2">
                 <div class="card-body">
-                <form  action="#"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
+                <form  action="{{route('create_report_InventarioActual')}}"  id="formulario" class="" method="POST" enctype="multipart/form-data">
                     @csrf
                     
                     @include('admin.ReporteInventarioActual.form')

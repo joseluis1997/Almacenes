@@ -45,6 +45,9 @@ class FisicoValoradoStockAlmacenController extends Controller
       $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, SUM(CANTIDAD) as total_cant_SAL FROM DETALLE_SALIDA GROUP BY COD_ARTICULO) as detalle_sal'), function ($join) {
           $join->on('detalle_sal.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
       });
+      $query->with(['Medida' => function($query2) {
+        $query2->select('COD_MEDIDA','NOM_MEDIDA');
+      }]);
     }])->get();
 
     //dd($partidas[0]);

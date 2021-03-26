@@ -103,7 +103,10 @@
 
       table td {
         padding: 20px 0px;
-        text-align: right;
+      }
+
+      .text-center td {
+        text-align: center !important;
       }
 
       table td.service,
@@ -136,6 +139,12 @@
         padding: 8px 0;
         text-align: center;
       }
+      tr.tr-articulos > td{
+        background-color: #cbd7e2 !important;
+      }
+      tr.tr-consumos > td{
+        background-color: #F5F5F5 !important;
+      }
     </style>
   </head>
   <body>
@@ -143,74 +152,73 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b>
-            UNIDAD DE ALMACENES CENTRAL<br>
-            INVENTARIO ACTUAL DE ALMACEN
+        <h1>
+          <b>
+            GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
+          </b>
+          UNIDAD DE ALMACENES CENTRAL
+          <br>
+          REPORTE POR AREAS DE LAS SALIDAS
         </h1>
-
     </header>
     <main>
-      @foreach($partidas as $partida)
-        @php
-          $SubTotal =  0.00;
-          $Total =  0.00;
-        @endphp
-        <table style="margin-bottom: 30px;">
-          <thead>
-            <tr>
-              <th colspan="5" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
-            </tr>
-            <tr>
-              <th>ITEM</th>
-              <th>NOMBRE</th>
-              <th>STOCK</th>
-              <th>MEDIDA</th>
-              <th>IMPORTE</th>
-            </tr>
-          </thead>
+      <div>
+        @if($area_ok)
+        <p>
+          <b>Area: </b> {{$area}}
+        </p>
+        @endif
+        @if($fecha_ok)
+        <p>
+          <b>
+            PERIODO DEL REPORTE: 
+          </b>
+          {{date('d-m-Y',strtotime($fecha_inicio))}} al 
+          {{date('d-m-Y',strtotime($fecha_fin))}} 
+        </p>
+        @endif
+      </div>
+      @foreach($areas as $Area)
+        <table style="margin-bottom: 30px;" class="text-left">
+          <tr>
+            <th colspan="4" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Area: {{$Area->NOM_AREA}}</th>
+          </tr>
           <tbody>
-            @foreach($partida->Articulos as $index=>$articulo)
-              @php
-                $PrecioPonderado =  0.00;
-                $Total_cant_DCS =  0.00;
-                $Total_cant_SAL =  0.00;
-                $Total_prec_DCS =  0.00;
-                if ($articulo->total_cant_DCS > 0){
-                  $Total_cant_DCS = $articulo->total_cant_DCS;
-                  $PrecioPonderado = $articulo->total_prec_DCS/$articulo->total_cant_DCS;
-                }
-                if ($articulo->total_cant_SAL > 0) {
-                  $Total_cant_SAL = $articulo->total_cant_SAL;
-                }
-                if ($articulo->total_prec_DCS > 0) {
-                  $Total_prec_DCS = $articulo->total_prec_DCS;
-                }
-                $Total += $PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL);
-              @endphp
+            
+            @foreach($Area->Salidas as $indexA=>$salida)
+              <tr class="tr-consumos">
+                <td style="vertical-align: top;" rowspan="2">Salida: </td>
+                <td>FECHA</td>
+                <td>CODIGO SALIDA</td>
+                <td>CODIDO PEDIDO</td>
+              </tr>
+              <tr class="tr-consumos">
+                <td>{{$salida->FECHA}}</td>
+                <td>{{$salida->COD_SALIDA}}</td>
+                <td>{{$salida->COD_PEDIDO}}</td>
+              </tr>
+              <tr class="tr-articulos">
+                <td style="vertical-align: top; text-align: right;" rowspan="{{count($salida->Articulos)+1}}">Articulos de la salida: </td>
+                <td>Nombre</td>
+                <td>Medida</td>
+                <td>Cantidad</td>
+              </tr>
+              @foreach($salida->Articulos as $articulo)
+                <tr class="tr-articulos">
+                  <td>{{$articulo->NOM_ARTICULO}}</td>
+                  <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
+                  <td>{{number_format($articulo->pivot->CANTIDAD, 2, '.', '')}}</td>
+                </tr>
+              @endforeach
               <tr>
-                <td class="inf">{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
-                <td class="inf">{{$articulo->NOM_ARTICULO}}</td>
-                <td class="inf">{{$Total_cant_DCS - $Total_cant_SAL}}</td>
-                <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
-                <td class="inf">bs/ {{number_format($PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL), 2, '.', '')}}</td>
+                <td colspan="6">&#160;</td>
               </tr>
             @endforeach
           </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3"></td>
-              <td class="inf">Total: </td>
-              <td class="inf">Bs/ {{number_format($Total, 2, '.', '')}}</td>
-            </tr>
-          </tfoot>
         </table>
-        @php
-          $Total = 0;
-        @endphp
       @endforeach
       
       <div>
-        <div>Articulos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
       </div>
     </main>
