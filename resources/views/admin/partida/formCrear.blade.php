@@ -1,7 +1,7 @@
 <!-- Grupo: Nombre de Partida Padre-->
     <div class="formulario__grupo" id="grupo__PartidaPadre">
         <label for="PartidaPadre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Selecciona Partida Padre&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area Padre" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Partida Padre" data-content="Debe seleccionar un partida padre a la cual va pertenecer su nueva partida">?</a>
         </label>
         <div class="formulario__grupo-input">
               <select name="PARTIDA_PADRE" class="form-control" id="PartidaPadre" size="8" required>
@@ -27,7 +27,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            El numero de la nueva partida solo puede contener numero enteros positivos...
+            El numero de la partida no es Correcto.
         </p>
     </div>
 
@@ -41,7 +41,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            El nombre de la nueva partida solo puede contener letras...
+            El nombre no es Correcto.
         </p>
     </div>
 

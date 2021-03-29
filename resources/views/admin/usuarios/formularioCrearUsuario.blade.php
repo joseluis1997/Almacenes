@@ -24,7 +24,7 @@
 <!-- Grupo: Ci -->
     <div class="formulario__grupo" id="grupo__ci">
         <label  for="ci" id="mostrar" class="formulario__label {{isset($user) ? 'requerido' : ' '}}">&nbsp;Numero de Carnet&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Carnet de Indentidad" data-content="Solo puede contener numeros enteros positivos por Ej:81747041">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero de Carnet de Indentidad" data-content="Solo puede contener numeros enteros positivos por Ej:81747041 o 8175126T">?</a>
         </label> 
         <div class="formulario__grupo-input">
             <input type="text" class="formulario__input" name="CI" id="ci" placeholder="numero de carnet de identidad" value="{{old('CI')}}">    
@@ -32,7 +32,7 @@
                 </i>
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 7 a 10 digitos y solo puede contener numeros.
+            El numero de Carnet no es Correcto.
         </p>
     </div>
 
@@ -42,12 +42,12 @@
              <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre" data-content="El nombre debe comenzar con mayusculas por jemplo:Jose, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="NOMBRE" id="name" placeholder="nombre de nuevo usuario" value="{{old('NOMBRE')}}">
+                <input type="text" class="formulario__input" name="NOMBRES" id="name" placeholder="nombre de nuevo usuario" value="{{old('NOMBRES')}}">
                 <i class="formulario__validacion-estado far fa-times-circle">
                 </i>
             </div>
             <p class="formulario__input-error">
-                El nombre debe comenzar con mayusculas
+                El nombre no es Correcto.
             </p>
     </div>
             
@@ -57,12 +57,12 @@
              <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Apellidos" data-content="El Apellido debe comenzar con mayusculas por ejemplo:Mercado, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="APELLIDO" id="apellidos" placeholder="Apellidos" value="{{ old('APELLIDO') }}" >
+                <input type="text" class="formulario__input" name="APELLIDOS" id="apellidos" placeholder="Apellidos" value="{{ old('APELLIDOS') }}" >
                 <i class="formulario__validacion-estado far fa-times-circle">
                 </i>
             </div>
             <p class="formulario__input-error">
-                El Apellido debe comenzar con mayusculas.
+                El o los Apellidos no es Correcto.
             </p>
     </div>
 
@@ -77,7 +77,7 @@
                 </i>
             </div>
             <p class="formulario__input-error">
-                El telefono solo puede contener numeros.
+                El telefono no es Correcto.
             </p>
     </div>
 
@@ -92,7 +92,7 @@
                 </i>
             </div>
             <p class="formulario__input-error">
-                El usuario no es correcto
+                El usuario no es Correcto
             </p>
     </div>
             
@@ -132,7 +132,7 @@
                 </i>
         </div>
         <p class="formulario__input-error">
-            La contraseña tiene que ser de 4 a 12 dígitos.
+            La contraseña el debil.
         </p>
     </div>
 <!-- Grupo: Password 2 -->

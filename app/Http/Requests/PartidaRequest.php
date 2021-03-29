@@ -36,8 +36,8 @@ class PartidaRequest extends FormRequest
                     'sometimes',
                     Rule::exists('PARTIDA', 'COD_PARTIDA')
                 ],
-                'NOM_PARTIDA' => 'required|string|max:255',
-                'NRO_PARTIDA' => 'required|numeric',
+                'NOM_PARTIDA' =>['required', 'regex:/^([A-Z]{0,1}[a-z]{1,50}[ ]?){1,50}$/','unique:PARTIDA,NOM_PARTIDA'],
+                'NRO_PARTIDA' => ['required', 'regex:/^[0-9]{4,6}$/','unique:PARTIDA,NRO_PARTIDA'],
                 'PARTIDA_PADRE' => 'required',
             ];
         }
@@ -48,8 +48,8 @@ class PartidaRequest extends FormRequest
                     Rule::exists('PARTIDA', 'COD_PARTIDA')
                 ],
                 'PARTIDA_PADRE' => 'required',
-                // 'NRO_PARTIDA' => 'required|numeric',
-                'NOM_PARTIDA' => 'required|string|max:255',
+                'NOM_PARTIDA' => ['required', 'regex:/^([A-Z]{0,1}[a-z]{1,50}[ ]?){1,50}$/', Rule::unique('PARTIDA','NOM_PARTIDA')->ignore($this->route('partida'))],
+                'NRO_PARTIDA' => ['required', 'regex:/^[0-9]{4,6}$/', Rule::unique('PARTIDA','NRO_PARTIDA')->ignore($this->route('partida'))],
             ];
             }
         }

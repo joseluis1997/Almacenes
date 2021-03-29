@@ -22,10 +22,10 @@ class CreateDetalleSalidaTable extends Migration
             $table->foreign('COD_SALIDA')->references('COD_SALIDA')->on('SALIDAS')->onDelete('cascade');
             $table->foreign('COD_ARTICULO')->references('COD_ARTICULO')->on('ARTICULO')->onDelete('cascade');
 
-            $table->integer('CANTIDAD');
+            $table->decimal('CANTIDAD', 10, 2);
 
             // $table->boolean('ESTADO_DETALLE')->default(true);
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>Example 1</title>
-    <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
       .clearfix:after {
         content: "";

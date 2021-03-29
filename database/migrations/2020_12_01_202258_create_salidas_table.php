@@ -18,11 +18,14 @@ class CreateSalidasTable extends Migration
 
             $table->unsignedBigInteger('COD_PEDIDO');
             $table->unsignedBigInteger('COD_AREA');
+            $table->unsignedBigInteger('COD_USUARIO');
+            
 
             $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
 
             $table->foreign('COD_PEDIDO')->references('COD_PEDIDO')->on('PEDIDOS')->onDelete('cascade');
-
+            $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
+            
            
             
             $table->date('FECHA');

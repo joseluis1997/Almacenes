@@ -144,7 +144,7 @@
                                     </a>
                                 {{-- Gestionar Stock Alamacen --}}
                                     <a href="{{ route('list_almacen') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestion Stock Almacen</span></li>
+                                        <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestion Compras</span></li>
                                     </a>
                             </ul>
                             {{-- Grupo: Administracion del Sistema --}}

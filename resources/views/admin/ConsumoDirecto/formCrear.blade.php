@@ -97,7 +97,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Proveedor" data-content="Seleccione el nombre de su proveedor">?</a>
         </label>
         <div class="form-group formulario__grupo-input">
-            <select name="" id="proveedor" class="form-control formulario__input" data-live-search="true">
+            <select name="PROVEEDOR" id="proveedor" class="form-control formulario__input" data-live-search="true">
                 @foreach ($proveedores as $proveedor)
                     <option value="{{ $proveedor->COD_PROVEEDOR }}">{{ $proveedor->NOM_PROVEEDOR }}</option>
                 @endforeach

@@ -32,4 +32,12 @@ class consumo_directo extends Model
     public function Area(){
     	return $this->belongsTo(\App\Area::class,'COD_AREA','COD_AREA');
     }
+
+    public function user(){
+        return $this->belongsTo(\App\User::class,'COD_USUARIO');
+    }
+
+    public function proveedor(){
+        return $this->belongsTo(\App\proveedor::class,'COD_PROVEEDOR','COD_PROVEEDOR');
+    }
 }

@@ -119,11 +119,11 @@ class RolesAndPermissions extends Seeder
         $permission = Permission::create(['name' => 'accesso_reportes']);
         $permission = Permission::create(['name' => 'accesso_reporteInventarioActual']);
         $permission = Permission::create(['name' => 'accesso_reporteInventarioActualDetallado']);
-        $permission = Permission::create(['name' => 'accesso_FisicoValoradoConsumoDirecto']);
-        $permission = Permission::create(['name' => 'ccesso_ReporteDetalladoIngresosConsumoDirecto']);
-        $permission = Permission::create(['name' => 'accesso_FisicoValoradoStockAlmacen']);
-        $permission = Permission::create(['name' => 'accesso_ReporteDetalladoStockAlmacen']);
-        $permission = Permission::create(['name' => 'accesso_InventarioDetalladoCompras']);
+        $permission = Permission::create(['name' => 'accesso_FisicoValoradoConsumoDirectos']);
+        $permission = Permission::create(['name' => 'acesso_ReporteDetalladoConsumoDirectos']);
+        $permission = Permission::create(['name' => 'accesso_FisicoValoradoCompras']);
+        $permission = Permission::create(['name' => 'accesso_ReporteDetalladoCompras']);
+        $permission = Permission::create(['name' => 'accesso_ReporteAreas']);
         $permission = Permission::create(['name' => 'accesso_ConsolidadoFisicoValoradoTotal']);
         $permission = Permission::create(['name' => 'accesso_Kardex']);
 

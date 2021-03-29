@@ -17,6 +17,8 @@
                     <span class="badge badge-info">{{ $show_proveedor->TELEF_PROVEEDOR }}</span><br>
                 <strong>Estado Proveedor:</strong>
                     <span class="badge badge-info">{{ $show_proveedor->ESTADO_PROVEEDOR }}</span><br>
+                <strong>Direccion Proveedor:</strong>
+                    <span class="badge badge-info">{{ $show_proveedor->DIR_PROVEEDOR }}</span><br>
             </div><br>
         </div>
 

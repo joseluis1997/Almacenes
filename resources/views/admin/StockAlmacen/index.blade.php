@@ -6,10 +6,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-title"><b>Gestion Stock Almacen</b></h3> 
+                    <h3 class="card-title"><b>Gestion Compras</b></h3> 
                 </div>
                 <div class="col-md-5">
-                    <a href="{{route('create_almacen')}}" class="btn btn-primary rounded-pill float-right"><b>Nueva Compra Stock Almacen</b></a>
+                    <a href="{{route('create_almacen')}}" class="btn btn-primary rounded-pill float-right"><b>Nueva Compra</b></a>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Fecha</th>
-                                <th>Orden Compra Stock</th>
+                                <th>Orden Compra</th>
                                 <th>Preventivo</th>
                                 <th>Area Solicitante</th>
                                 <th>Total</th>
@@ -85,7 +85,7 @@
                         <thead>
                             <tr>
                                 <th>Fecha</th>
-                                <th>Orden Compra Stock</th>
+                                <th>Orden Compra</th>
                                 <th>Preventivo</th>
                                 <th>Area Solicitante</th>
                                 <th>Total</th>

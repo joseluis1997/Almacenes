@@ -13,20 +13,20 @@ class CreateConsumoProveedorTable extends Migration
      */
     public function up()
     {
-        Schema::create('CONSUMO_PROVEEDOR', function (Blueprint $table) {
-            $table->bigIncrements('COD_CONSUMO_PROVEEDOR');
+        // Schema::create('CONSUMO_PROVEEDOR', function (Blueprint $table) {
+        //     $table->bigIncrements('COD_CONSUMO_PROVEEDOR');
 
-            $table->unsignedBigInteger('COD_PROVEEDOR');
-            $table->unsignedBigInteger('COD_CONSUMO_DIRECTO');
+        //     $table->unsignedBigInteger('COD_PROVEEDOR');
+        //     $table->unsignedBigInteger('COD_CONSUMO_DIRECTO');
 
-            $table->foreign('COD_PROVEEDOR')->references('COD_PROVEEDOR')->on('PROVEEDORES')->onDelete('cascade');
+        //     $table->foreign('COD_PROVEEDOR')->references('COD_PROVEEDOR')->on('PROVEEDORES')->onDelete('cascade');
 
-            $table->foreign('COD_CONSUMO_DIRECTO')->references('COD_CONSUMO_DIRECTO')->on('CONSUMO_DIRECTOS')->onDelete('cascade');
+        //     $table->foreign('COD_CONSUMO_DIRECTO')->references('COD_CONSUMO_DIRECTO')->on('CONSUMO_DIRECTOS')->onDelete('cascade');
 
-            $table->boolean('ESTADO')->default(true);
+        //     $table->boolean('ESTADO')->default(true);
             
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -36,6 +36,6 @@ class CreateConsumoProveedorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('CONSUMO_PROVEEDOR');
+        // Schema::dropIfExists('CONSUMO_PROVEEDOR');
     }
 }

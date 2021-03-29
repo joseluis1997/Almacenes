@@ -38,4 +38,8 @@ class pedido extends Model
     public function salida(){
         return $this->hasOne(\App\salida::class,'COD_PEDIDO');
     }
+
+    public function user(){
+        return $this->belongsTo(\App\User::class,'COD_USUARIO');
+    }
 }

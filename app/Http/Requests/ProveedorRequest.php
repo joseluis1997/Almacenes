@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProveedorRequest extends FormRequest
 {
@@ -23,20 +24,24 @@ class ProveedorRequest extends FormRequest
      */
     public function rules()
     {
-          if($this->route('id')){
-            return [
-                'NIT' => 'required',
-                'NOM_PROVEEDOR' => 'required|max:50'. $this->route('id'),
-                'DIR_PROVEEDOR' => 'required',
-                'TELEF_PROVEEDOR' => 'required',
-            ];
-        }else{
-            return [
-                'NIT' => 'required',
-                'NOM_PROVEEDOR' => 'required|max:50',
-                'DIR_PROVEEDOR' => 'sometimes',
-                'TELEF_PROVEEDOR' => 'required',
-            ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE':
+                return [];
+            case 'POST':
+                return [
+                    'NIT' => ['required', 'regex:/^[0-9]{10,13}$/','unique:PROVEEDORES,NIT'],
+                    'NOM_PROVEEDOR' => ['required', 'regex:/^([A-Z]{0,1}[a-z]{2,30}[ ]?)$/','unique:PROVEEDORES,NOM_PROVEEDOR'],
+                    'TELEF_PROVEEDOR' => ['required', 'regex:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/','unique:PROVEEDORES,TELEF_PROVEEDOR'],
+                    'DIR_PROVEEDOR' => ['sometimes'],
+                ];
+            case 'PUT':
+                return [
+                    'NIT' => ['required', 'regex:/^[0-9]{10,13}$/',Rule::unique('PROVEEDORES','NIT')->ignore($this->route('proveedor'))],
+                    'NOM_PROVEEDOR' => ['required', 'regex:/^([A-Z]{0,1}[a-z]{2,30}[ ]?)$/',Rule::unique('PROVEEDORES','NOM_PROVEEDOR')->ignore($this->route('proveedor'))],
+                    'TELEF_PROVEEDOR' => ['required', 'regex:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/',Rule::unique('PROVEEDORES','TELEF_PROVEEDOR')->ignore($this->route('proveedor'))],
+                    'DIR_PROVEEDOR' => ['sometimes'],
+                ];
         }
     }
 }

@@ -29,7 +29,7 @@
         <i class="formulario__validacion-estado far fa-times-circle"></i>
     </div>
     <p class="formulario__input-error">
-        El ci tiene que ser de 7 a 10 digitos y solo puede contener numeros positivos.
+        El numero de Carnet no es Correcto.
     </p>
 </div>
 
@@ -39,11 +39,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Nombre" data-content="El nombre debe comenzar con mayusculas por jemplo:Jose, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="NOMBRE" id="name" value="{{$user->NOMBRE}}" required >
+                <input type="text" class="formulario__input" name="NOMBRES" id="name" value="{{$user->NOMBRES}}" required >
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                Cada nombre debe comenzar con mayuscula.
+                El nombre no es Correcto.
             </p>
     </div>
 
@@ -53,11 +53,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Modificar Apellidos" data-content="El inicio de cada Apellido debe empezar con mayuscula. por ejemplo:Mercado, solo puede ser letras...">?</a>
         </label>
             <div class="formulario__grupo-input">
-                <input type="text" class="formulario__input" name="APELLIDO" id="apellidos" value="{{$user->APELLIDO}}" required>
+                <input type="text" class="formulario__input" name="APELLIDOS" id="apellidos" value="{{$user->APELLIDOS}}" required>
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El inicio de cada Apellido debe empezar con mayuscula.
+                El o los Apellidos no son Correctos.
             </p>
     </div>
 
@@ -71,7 +71,7 @@
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-                El telefono solo puede contener numeros.
+                El telefono no es Correcto.
             </p>
     </div>
 
@@ -86,7 +86,7 @@
                 <i class="formulario__validacion-estado far fa-times-circle"></i>
             </div>
             <p class="formulario__input-error">
-               El usuario no es correcto.
+               El usuario no es Correcto.
             </p>
     </div>
 <!-- Grupo: Rol -->
@@ -122,7 +122,7 @@
                     </i>
             </div>
             <p class="formulario__input-error">
-                La contraseña tiene que ser de 4 a 12 dígitos.
+                La contraseña es Debil.
             </p>
     </div>
 

@@ -13,18 +13,18 @@ class CreateSuprPedidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('SUPR_PEDIDO', function (Blueprint $table) {
-            // $table->bigIncrements('COD_SUPR_PEDIDO');
+    //     Schema::create('SUPR_PEDIDO', function (Blueprint $table) {
+    //         // $table->bigIncrements('COD_SUPR_PEDIDO');
 
-            $table->unsignedBigInteger('COD_PEDIDO');
-            $table->foreign('COD_PEDIDO')->references('COD_PEDIDO')->on('PEDIDOS')->onDelete('cascade');
+    //         $table->unsignedBigInteger('COD_PEDIDO');
+    //         $table->foreign('COD_PEDIDO')->references('COD_PEDIDO')->on('PEDIDOS')->onDelete('cascade');
 
-            $table->unsignedBigInteger('COD_USUARIO');
-            $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
+    //         $table->unsignedBigInteger('COD_USUARIO');
+    //         $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
 
-            $table->date('FECHA');
-            $table->timestamps();
-        });
+    //         $table->date('FECHA');
+    //         $table->timestamps();
+    //     });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateSuprPedidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('SUPR_PEDIDO');
+        // Schema::dropIfExists('SUPR_PEDIDO');
     }
 }

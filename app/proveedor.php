@@ -15,6 +15,11 @@ class proveedor extends Model
 
     public function ConsumosDirectos(){
 
-    	return $this->belongsToMany(\App\consumo_directo::class,'CONSUMO_PROVEEDOR','COD_PROVEEDOR','COD_CONSUMO_DIRECTO');
+    	return $this->hasMany(\App\consumo_directo::class,'COD_PROVEEDOR','COD_CONSUMO_DIRECTO');
+    }
+
+    public function Compras(){
+
+    	return $this->hasMany(\App\compra_stock::class,'COD_PROVEEDOR','COD_CONSUMO_DIRECTO');
     }
 }

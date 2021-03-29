@@ -24,11 +24,11 @@ class CreateDetalleConsumoDirectoTable extends Migration
             
             $table->foreign('COD_ARTICULO')->references('COD_ARTICULO')->on('ARTICULO')->onDelete('cascade');
 
-            $table->decimal('PRECIO_UNITARIO');
-            $table->integer('CANTIDAD');
+            $table->decimal('PRECIO_UNITARIO',10,2);
+            $table->decimal('CANTIDAD',10,2);
             // $table->integer('CANT_DISPONIBLE');
 
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

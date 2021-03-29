@@ -13,19 +13,19 @@ class CreateSuprCompraStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('SUPR_COMPRA_STOCK', function (Blueprint $table) {
-            // $table->bigIncrements('COD_SUPR_COMPRA_STOCK');
+        // Schema::create('SUPR_COMPRA_STOCK', function (Blueprint $table) {
+        //     $table->bigIncrements('COD_SUPR_COMPRA_STOCK');
 
-            $table->unsignedBigInteger('COD_COMPRA_STOCK');
-            $table->foreign('COD_COMPRA_STOCK')->references('COD_COMPRA_STOCK')->on('COMPRA_STOCKS')->onDelete('cascade');
+        //     $table->unsignedBigInteger('COD_COMPRA_STOCK');
+        //     $table->foreign('COD_COMPRA_STOCK')->references('COD_COMPRA_STOCK')->on('COMPRA_STOCKS')->onDelete('cascade');
 
-            $table->unsignedBigInteger('COD_USUARIO');
-            $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
+        //     $table->unsignedBigInteger('COD_USUARIO');
+        //     $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
 
-            $table->date('FECHA');
+        //     $table->date('FECHA');
 
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateSuprCompraStockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('SUPR_COMPRA_STOCK');
+        // Schema::dropIfExists('SUPR_COMPRA_STOCK');
     }
 }

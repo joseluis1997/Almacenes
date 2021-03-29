@@ -39,4 +39,8 @@ class salida extends Model
 
         return $this->belongsToMany(\App\Articulo::class,'DETALLE_SALIDA','COD_SALIDA','COD_ARTICULO')->withPivot('CANTIDAD');
     }
+
+    public function user(){
+        return $this->belongsTo(\App\User::class,'COD_USUARIO');
+    }
 }

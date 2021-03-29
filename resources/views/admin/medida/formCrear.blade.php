@@ -8,7 +8,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            El nombre de la unidad de medidad solo puede contener letras...
+            El nombre no es Correcto.
         </p>
     </div>
 {{-- Grupo: Descripcion Unidad de Medida --}}
@@ -29,13 +29,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Descripcion Unidad de Medida" data-content="Solo puede contener letras,Descripcion del nombre de la unidad de medida ">?</a>
         </label>
         <div class="input-group">
-            <textarea class="form-control formulario__input" id="DescripcionUnidadMedida" name="DESC_MEDIDA" rows="3"  >
-                
-            </textarea>
+            <textarea class="form-control formulario__input" id="DescripcionUnidadMedida" name="DESC_MEDIDA" rows="3"></textarea>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            El nombre de la unidad de medidad solo puede contener letras...
+            El descripcion de la unidad de medida.
         </p>
     </div>
 

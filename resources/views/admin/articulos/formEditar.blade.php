@@ -9,7 +9,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej: hojas bom ...
+            El nombre no es Correcto.
         </p>
     </div>
 
@@ -62,14 +62,14 @@
 <!-- Grupo: Marca del Articulo-->
     <div class="formulario__grupo" id="grupo__marca">
         <label for="marca" class="formulario__label"><b class="colorAste">*</b>&nbsp;Marca Articulo&nbsp;&nbsp;
-            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Marca" data-content="Solo puede contener letras y debe empezar con mayuscula. por ejemplo epson, pil">?</a>
+            <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Marca" data-content="Solo puede contener letras y debe empezar con mayuscula. por ejemplo Epson, Pil">?</a>
         </label>
         <div class="formulario__grupo-input">
            <input type="text" class="formulario__input" name="MARCA" id="marca" placeholder="Escriba la marco del Articulo" value="{{$articulo->MARCA}}" required>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Seleccione la partidad a la cual pertenece el Articulo...
+            El nombre no es Correcto.
         </p>
     </div>
 

@@ -8,7 +8,7 @@
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
-                    El numero del NIT solo puede contener numeros enteros positivos...
+                    El numero del NIT no es Correcto
                 </p>
             </div>
 {{-- Grupo: Nombre de la Empresa --}}
@@ -21,7 +21,7 @@
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
-                   Solo puede contener letras por Ej: INPROL...
+                   El nombre no es Correcto.
                 </p>
             </div>
 {{-- Grupo: Telefono de Contacto --}}
@@ -34,7 +34,7 @@
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
-                    Solo puede contener numeros enteros positivos por Ej:75389565...
+                    El numero no es Correcto.
                 </p>
             </div>
 {{-- Grupo: Direccion --}}
@@ -47,7 +47,7 @@
                     <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">
-                    El area tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+                    La Direccion no es Correcto.
                 </p>
             </div>
 <!-- Grupo: Mensaje -->

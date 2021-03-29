@@ -13,19 +13,19 @@ class CreateSuprConsumoDirectoTable extends Migration
      */
     public function up()
     {
-        Schema::create('SUPR_CONSUMO_DIRECTO', function (Blueprint $table) {
-            // $table->bigIncrements('COD_SUPR_CONSUMO_DIRECTO');
+        // Schema::create('SUPR_CONSUMO_DIRECTO', function (Blueprint $table) {
+        //     // $table->bigIncrements('COD_SUPR_CONSUMO_DIRECTO');
 
-            $table->unsignedBigInteger('COD_CONSUMO_DIRECTO');
+        //     $table->unsignedBigInteger('COD_CONSUMO_DIRECTO');
 
-            $table->foreign('COD_CONSUMO_DIRECTO')->references('COD_CONSUMO_DIRECTO')->on('CONSUMO_DIRECTOS')->onDelete('cascade');
+        //     $table->foreign('COD_CONSUMO_DIRECTO')->references('COD_CONSUMO_DIRECTO')->on('CONSUMO_DIRECTOS')->onDelete('cascade');
             
-            $table->unsignedBigInteger('COD_USUARIO');
-            $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
+        //     $table->unsignedBigInteger('COD_USUARIO');
+        //     $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
 
-            $table->date('FECHA');
-            $table->timestamps();
-        });
+        //     $table->date('FECHA');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateSuprConsumoDirectoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('SUPR_CONSUMO_DIRECTO');
+        // Schema::dropIfExists('SUPR_CONSUMO_DIRECTO');
     }
 }

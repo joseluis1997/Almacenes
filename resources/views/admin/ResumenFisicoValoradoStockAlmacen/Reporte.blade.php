@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>RFVCD</title>
-    <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
       .clearfix:after {
         content: "";
@@ -141,7 +140,7 @@
   <body>
     <header class="clearfix">
     <div id="logo">
-        <img src="{{ public_path('images/GobernacionLogo.png') }}">
+        <img src="{{ public_path('images/jhonn.pyng') }}">
     </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             UNIDAD DE ALMACEN CENTRAL<br>

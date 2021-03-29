@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class MedidaRequest extends FormRequest
 {
@@ -25,9 +27,20 @@ class MedidaRequest extends FormRequest
     {
         
         // if($this.route('medida'))
-        return [
-            'NOM_MEDIDA' => 'required|string|max:255',
-            'DESC_MEDIDA' => 'nullable|string|max:255',
-            ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE':
+                return [];
+            case 'POST':
+                return [
+                    'NOM_MEDIDA' => ['required', 'regex:/^([A-Z]{0,2}[a-z]{3,30}[ ]?){1}$/','unique:MEDIDA,NOM_MEDIDA'],
+                    'DESC_MEDIDA' => 'nullable'
+                ];
+            case 'PUT':
+                return [
+                    'NOM_MEDIDA' => ['required', 'regex:/^([A-Z]{0,2}[a-z]{3,30}[ ]?){1}$/', Rule::unique('MEDIDA','NOM_MEDIDA')->ignore($this->route('medida'))],
+                    'DESC_MEDIDA' => 'nullable'
+                ];
+        }
     }
 }

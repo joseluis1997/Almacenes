@@ -28,7 +28,7 @@
                         <thead>
                             <tr>
                                 <th>Cedula</th>
-                                <th>Nombre</th>
+                                <th>Nombres</th>
                                 <th>Apellidos</th>
                                 <th>telefono</th>
                                 <th>Usuario</th>
@@ -44,8 +44,8 @@
                             @if($user->ESTADO_USUARIO == 1)
                             <tr>
                                 <td>{{ $user->CI}}</td>
-                                <td>{{ $user->NOMBRE}}</td>
-                                <td>{{ $user->APELLIDO}}</td>
+                                <td>{{ $user->NOMBRES}}</td>
+                                <td>{{ $user->APELLIDOS}}</td>
                                 <td>{{ $user->TELEFONO}}</td>
                                 <td>{{ $user->NOM_USUARIO}}</td>
                                 <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
@@ -107,8 +107,8 @@
                             @if($user->ESTADO_USUARIO == 0)
                             <tr>
                                 <td>{{ $user->CI}}</td>
-                                <td>{{ $user->NOM_USUARIO}}</td>
-                                <td>{{ $user->APELLIDO}}</td>
+                                <td>{{ $user->NOMBRES}}</td>
+                                <td>{{ $user->APELLIDOS}}</td>
                                 <td>{{ $user->TELEFONO}}</td>
                                 <td>{{ $user->NOM_USUARIO}}</td>
                                 <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 

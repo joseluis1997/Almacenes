@@ -9,6 +9,7 @@ use App\Articulo;
 use App\Http\Requests\PedidosRequest;
 use DB;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class PedidosController extends Controller
 {
@@ -35,6 +36,7 @@ class PedidosController extends Controller
 
             $pedido = new pedido;
             $pedido->COD_AREA = $pedido_request->get('COD_AREA');
+            $pedido->COD_USUARIO = Auth::user()->id;
             $pedido->FECHA = $pedido_request->get('FECHA');
             $pedido->DETALLE_PEDIDO = $pedido_request->get('DETALLE_PEDIDO');
 
@@ -96,6 +98,7 @@ class PedidosController extends Controller
             DB::beginTransaction();
 
             $pedido->COD_AREA = $pedido_request->get('COD_AREA');
+            $pedido->COD_USUARIO = Auth::user()->id;
             $pedido->FECHA = $pedido_request->get('FECHA');
             $pedido->DETALLE_PEDIDO = $pedido_request->get('DETALLE_PEDIDO');
 

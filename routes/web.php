@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['register' => false]);
 
 Route::get('/', function () {
-	// $CONSUMO = App\Area::findOrFail(2);
+	// $user = App\User::findOrFail(1);
+	// dd($user->consumo_directos);
 	// dd($CONSUMO->ConsumoDirectos);
 	// return $Salidas->salida;
     return redirect('/seguridad/login');
@@ -487,11 +488,15 @@ Route::group(['prefix' => 'stockAlmacen', 'namespace' => 'Admin', 'middleware' =
 	
 });
 
-/* Rutas: Reporte Kardex Almacen*/
+/* Rutas: Reporte Kardex */
 Route::group(['prefix' => 'Kardex', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index', 'KardexController@index')
 	->middleware(sprintf("autorizacion:%s", "accesso_Kardex"))
 	->name('list_kardexAlmacen');
+
+	Route::post('/create_kardex', 'KardexController@Kardex')
+	->middleware(sprintf("autorizacion:%s", "accesso_Kardex"))
+	->name('create_kardex');
 });
 
 /* Rutas: Consolidado Fisico Valorado Total*/

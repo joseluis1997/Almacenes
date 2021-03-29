@@ -9,6 +9,7 @@ use App\Area;
 use App\Articulo;
 use App\Http\Requests\ConsumoDirectoRequest;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class ConsumoDirectoController extends Controller
 {
@@ -38,6 +39,8 @@ class ConsumoDirectoController extends Controller
             $consumo_directo->NRO_PREVENTIVO = $Consumo_Directo->get('NRO_PREVENTIVO');
             $consumo_directo->NOTA_INGRESO = $Consumo_Directo->get('NOTA_INGRESO');
             $consumo_directo->COD_AREA = $Consumo_Directo->get('COD_AREA');
+            $consumo_directo->COD_PROVEEDOR = $Consumo_Directo->get('PROVEEDOR');
+            $consumo_directo->COD_USUARIO = Auth::user()->id;
             $consumo_directo->DETALLE_CONSUMO = $Consumo_Directo->get('DETALLE_CONSUMO');
 
             $consumo_directo->save();
@@ -98,6 +101,8 @@ class ConsumoDirectoController extends Controller
                 $consumo_directo->NRO_PREVENTIVO = $request_consumo->get('NRO_PREVENTIVO');
                 $consumo_directo->NOTA_INGRESO = $request_consumo->get('NOTA_INGRESO');
                 $consumo_directo->COD_AREA = $request_consumo->get('COD_AREA');
+                $consumo_directo->COD_PROVEEDOR = $request_consumo->get('PROVEEDOR');
+                $consumo_directo->COD_USUARIO = Auth::user()->id;
                 $consumo_directo->DETALLE_CONSUMO = $request_consumo->get('DETALLE_CONSUMO');
 
                 $consumo_directo->save();

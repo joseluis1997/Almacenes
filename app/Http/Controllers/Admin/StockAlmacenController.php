@@ -9,6 +9,7 @@ use App\Articulo;
 use DB;
 use App\Http\Requests\CompraStockAlmacenRequest;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class StockAlmacenController extends Controller
 {
@@ -32,12 +33,15 @@ class StockAlmacenController extends Controller
     }
 
     public function store(CompraStockAlmacenRequest $compra_request){
+
         try{
             DB::beginTransaction();
 
             $compra = new compra_stock;
-            $compra->COD_COMPRA_STOCK = $compra_request->get('COD_COMPRA_STOCK');
+            // $compra->COD_COMPRA_STOCK = $compra_request->get('COD_COMPRA_STOCK');
             $compra->COD_AREA = $compra_request->get('COD_AREA');
+            $compra->COD_PROVEEDOR = $compra_request->get('COD_PROVEEDOR');
+            $compra->COD_USUARIO = Auth::user()->id;
             $compra->NRO_ORD_COMPRA = $compra_request->get('NRO_ORD_COMPRA');
             $compra->NRO_PREVENTIVO = $compra_request->get('NRO_PREVENTIVO');
             $compra->COMPROBANTE = $compra_request->get('COMPROBANTE');

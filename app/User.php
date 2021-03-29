@@ -17,50 +17,24 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $primaryKey = 'id';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
-        'CI','NOMBRE','APELLIDO','TELEFONO','NOM_USUARIO', 'password','ESTADO_USUARIO','imagen',
+        'CI',
+        'NOMBRES',
+        'APELLIDOS',
+        'TELEFONO',
+        'NOM_USUARIO', 
+        'password',
+        'imagen',
     ];
 
-    // protected $fillable = [
-    //     'ci','name','lastname','telephone','username', 'password','imagen','ESTADO_USUARIO',
-    // ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
-    // public function getAuthPassword()
-    // {
-    //     return $this->CONTRASENA;
-    // }
-
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // ralacion con tabla bitacoras
-    public function Bitacoras()
-    {
-        return $this->hasMany(\App\Bitacora::class);
-    }
-
-
     public function sesions()
     {
         return $this->hasMany(\App\Sesion::class);
@@ -71,10 +45,29 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Funcion', 'permisos');
     }
 
-    public function suprPedidos(){
+    public function compras(){
 
-        return $this->belongsToMany(\App\pedido::class,'SUPR_PEDIDO','COD_USUARIO','COD_PEDIDO');
+        return $this->hasMany(\App\compra_stock::class,'COD_USUARIO','id');
     }
+
+    public function consumo_directos(){
+
+        return $this->hasMany(\App\consumo_directo::class,'COD_USUARIO','id');
+    }
+
+    public function pedidos(){
+
+        return $this->hasMany(\App\pedido::class,'COD_USUARIO','id');
+    }
+
+    public function salidas(){
+
+        return $this->hasMany(\App\salida::class,'COD_USUARIO','id');
+    }
+
+
+
+
     // funcion que me permite actulizar el password y la encripta
     // public function setPasswordAttribute($value)
     // {

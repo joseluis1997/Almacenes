@@ -23,10 +23,10 @@ class CreateDetallePedidoTable extends Migration
 
             $table->foreign('COD_PEDIDO')->references('COD_PEDIDO')->on('PEDIDOS')->onDelete('cascade');
 
-            $table->integer('CANTIDAD');
+            $table->decimal('CANTIDAD', 10, 2);
             $table->boolean('ESTADO_PEDIDO')->default(true);
 
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

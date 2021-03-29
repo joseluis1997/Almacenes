@@ -26,20 +26,20 @@ class RolRequest extends FormRequest
     {
         // dd($this->route('role')->id);
         switch ($this->method()) {
-                case 'GET':
-                case 'DELETE':
-                    return [];
-                case 'POST':
-                    return [
-                        'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/','unique:roles,name'],
-                        'descripcion' => 'nullable'
-                    ];
-                case 'PUT':
-                    return [
-                        'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/', Rule::unique('roles','name')->ignore($this->route('role')->id)],
-                        'descripcion' => 'nullable'
-                    ];
-            }
+            case 'GET':
+            case 'DELETE':
+                return [];
+            case 'POST':
+                return [
+                    'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/','unique:roles,name'],
+                    'descripcion' => 'nullable'
+                ];
+            case 'PUT':
+                return [
+                    'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/', Rule::unique('roles','name')->ignore($this->route('role')->id)],
+                    'descripcion' => 'nullable'
+                ];
+        }
     }
 }
 

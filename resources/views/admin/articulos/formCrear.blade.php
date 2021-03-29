@@ -8,7 +8,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras y debe empezar con mayuscula.
+            El nombre no es Correcto.
         </p>
     </div>
 
@@ -63,7 +63,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras y debe empezar con mayuscula.
+            El nombre no es Correcto.
         </p>
     </div>
  

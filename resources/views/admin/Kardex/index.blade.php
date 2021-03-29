@@ -6,13 +6,13 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Kardex Por Articulo</b></h3> 
+                    <h3 class="card-title"><b>Kardex De Articulo</b></h3> 
                 </div>
             </div>
         </div>
         <div class="card mt-2">
             <div class="card-body">
-            <form  action="#"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('create_kardex') }}"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 @include('admin.Kardex.form')

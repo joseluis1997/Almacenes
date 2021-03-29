@@ -10,6 +10,7 @@ use App\Area;
 use App\Http\Requests\SalidaRequest;
 use DB;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class SalidasController extends Controller
 {
@@ -51,6 +52,7 @@ class SalidasController extends Controller
 
             $Salida->COD_PEDIDO = $pedido->COD_PEDIDO;
             $Salida->COD_AREA = $pedido->COD_AREA;
+            $Salida->COD_USUARIO = Auth::user()->id;
             $Salida->FECHA = date('Y-m-d');
             $Salida->DETALLE_SALIDA = $pedido->DETALLE_PEDIDO;
             // $Salida->DETALLE_SALIDA = 'va de nuevo';

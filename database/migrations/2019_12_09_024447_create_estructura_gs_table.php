@@ -19,7 +19,7 @@ class CreateEstructuraGsTable extends Migration
             $table->unsignedBigInteger('AREA_PADRE')->nullable();
             $table->foreign('AREA_PADRE')->references('COD_AREA')->on('AREAS');
 
-            $table->string('NOM_AREA');
+            $table->string('NOM_AREA')->unique();
             $table->string('UBICACION_AREA')->nullable();
             $table->text('DESC_AREA')->nullable();
             $table->boolean('ESTADO_AREA')->default(true);

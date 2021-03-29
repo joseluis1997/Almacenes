@@ -17,8 +17,12 @@ class CreatePedidosTable extends Migration
             $table->bigIncrements('COD_PEDIDO');
             
             $table->unsignedBigInteger('COD_AREA');
+            $table->unsignedBigInteger('COD_USUARIO');
+
 
             $table->foreign('COD_AREA')->references('COD_AREA')->on('AREAS')->onDelete('cascade');
+            $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
+            
             
             $table->string('DETALLE_PEDIDO');
             $table->boolean('VALIDADO')->default(false);

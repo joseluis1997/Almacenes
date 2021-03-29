@@ -8,7 +8,7 @@
         <i class="formulario__validacion-estado far fa-times-circle"></i>
     </div>
     <p class="formulario__input-error">
-        El nombre del nuevo Rol, Solo puede contener letras.
+        El nombre no es Correcto.
     </p>
 </div>
 
@@ -38,7 +38,7 @@
                         @if($item->id >=0 && $item->id <=1)
                             <h1>Gestion Usuarios</h1>
                         @endif
-                        @if($item->id < 6)
+                        @if($item->id < 7)
                             <input type="checkbox"
                             id="permissions_{{$item->id}}" 
                             value="{{$item->id}}" 
@@ -60,11 +60,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)
-                    @if($item->id >5 && $item->id <=6)
+                    @if($item->id >6 && $item->id <=7)
                         <h1>Gestion Roles</h1>
                     @endif
 
-                    @if($item->id >5 && $item->id <=10)
+                    @if($item->id >6 && $item->id <=12)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -86,11 +86,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)
-                    @if($item->id >10 && $item->id <=11)
+                    @if($item->id >24 && $item->id <=25)
                         <h1>Gestion Articulos</h1>
                     @endif
 
-                    @if($item->id >20 && $item->id <=25)
+                    @if($item->id >24 && $item->id <=30)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -112,11 +112,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >15 && $item->id <=16)
+                    @if($item->id >18 && $item->id <=19)
                         <h1>Gestion Medidas</h1>
                     @endif
 
-                    @if($item->id >15 && $item->id <=20)
+                    @if($item->id >18 && $item->id <=24)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{ $item->id }}" 
@@ -138,11 +138,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                  @foreach ($permissions as $item)  
-                    @if($item->id >25 && $item->id <=26)
+                    @if($item->id >30 && $item->id <=31)
                         <h1>Gestion Areas</h1>
                     @endif
 
-                    @if($item->id >25 && $item->id <=30)
+                    @if($item->id >30 && $item->id <=36)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -164,11 +164,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >10 && $item->id <=11)
+                    @if($item->id >12 && $item->id <=13)
                         <h1>Gestion Partidas</h1>
                     @endif
 
-                    @if($item->id >10 && $item->id <=15)
+                    @if($item->id >12 && $item->id <=18)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -190,11 +190,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >30 && $item->id <=31)
+                    @if($item->id >36 && $item->id <=37)
                         <h1>Gestion Proveedores</h1>
                     @endif
 
-                    @if($item->id >30 && $item->id <=35)
+                    @if($item->id >36 && $item->id <=42)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -213,7 +213,7 @@
             </ul>
         </div>
 {{-- Grupo: Cierre de Gestion  --}}
-        <div class="formulario__grupo col-md-6">
+{{--         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
                     @if($item->id >35 && $item->id <=36)
@@ -237,16 +237,16 @@
                     @endif
                 @endforeach
             </ul>
-        </div>
+        </div> --}}
 {{-- Grupo: Stock Almacen  --}}
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >39 && $item->id <=40)
-                        <h1>Gestion Stock Almacen</h1>
+                    @if($item->id >42 && $item->id <=43)
+                        <h1>Gestion Compras</h1>
                     @endif
 
-                    @if($item->id >39 && $item->id <=43)
+                    @if($item->id >42 && $item->id <=48)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -268,11 +268,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >43 && $item->id <=44)
+                    @if($item->id >48 && $item->id <=49)
                         <h1>Gestion Consumo Directo</h1>
                     @endif
 
-                    @if($item->id >43 && $item->id <=47)
+                    @if($item->id >48 && $item->id <=54)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -294,11 +294,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >47 && $item->id <=48)
+                    @if($item->id >54 && $item->id <=55)
                         <h1>Gestion Pedidos</h1>
                     @endif
 
-                    @if($item->id >47 && $item->id <=51)
+                    @if($item->id >54 && $item->id <=60)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -316,15 +316,16 @@
                 @endforeach
             </ul>
         </div>
+
 {{-- Grupo: Salidas  --}}
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >51 && $item->id <=52)
+                    @if($item->id >60 && $item->id <=61)
                         <h1>Gestion Salidas</h1>
                     @endif
 
-                    @if($item->id >51 && $item->id <=55)
+                    @if($item->id >60 && $item->id <=68)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 
@@ -346,11 +347,11 @@
         <div class="formulario__grupo col-md-6">
             <ul class="list-unstyled" >
                 @foreach ($permissions as $item)  
-                    @if($item->id >55 && $item->id <=56)
+                    @if($item->id >68 && $item->id <=69)
                         <h1>Gestion Reportes</h1>
                     @endif
 
-                    @if($item->id >55 && $item->id <=68)
+                    @if($item->id >68 && $item->id <=78)
                         <input type="checkbox" 
                             name="permissions[]" 
                             id="permissions_{{$item->id}}" 

@@ -13,16 +13,16 @@ class CreateSuprSalidaTable extends Migration
      */
     public function up()
     {
-        Schema::create('SUPR_SALIDA', function (Blueprint $table) {
-            // $table->bigIncrements('COD_SUPR_SALIDA');
-            $table->unsignedBigInteger('COD_SALIDA');
-            $table->unsignedBigInteger('COD_USUARIO');
+        // Schema::create('SUPR_SALIDA', function (Blueprint $table) {
+        //     $table->bigIncrements('COD_SUPR_SALIDA');
+        //     $table->unsignedBigInteger('COD_SALIDA');
+        //     $table->unsignedBigInteger('COD_USUARIO');
 
-            $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('COD_SALIDA')->references('COD_SALIDA')->on('SALIDAS')->onDelete('cascade');
-            $table->date('FECHA');
-            $table->timestamps();
-        });
+        //     $table->foreign('COD_USUARIO')->references('id')->on('users')->onDelete('cascade');
+        //     $table->foreign('COD_SALIDA')->references('COD_SALIDA')->on('SALIDAS')->onDelete('cascade');
+        //     $table->date('FECHA');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -32,6 +32,6 @@ class CreateSuprSalidaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('SUPR_SALIDA');
+        // Schema::dropIfExists('SUPR_SALIDA');
     }
 }
