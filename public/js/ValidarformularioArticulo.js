@@ -2,8 +2,8 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	nombre: /^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/,
-	marca: /^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/
+	nombre: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,30}[ ]?){1,10}$/,
+	marca: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,30}[ ]?){1,10}$/
 }
 
 const campos ={

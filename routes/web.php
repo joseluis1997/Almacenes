@@ -389,7 +389,7 @@ Route::group(['prefix' => 'Salidas', 'namespace' => 'Admin', 'middleware' => ['a
 	->middleware(sprintf("autorizacion:%s", "Modificar_salidas"))
 	->name('edit_salidas');
 
-	Route::put('/{pedido}/update', 'SalidasController@update')
+	Route::put('/{salida}/update', 'SalidasController@update')
 	->middleware(sprintf("autorizacion:%s", "Modificar_salidas"))
 	->name('update_salidas');
 
@@ -445,33 +445,33 @@ Route::group(['prefix' => 'InventarioDetAlmacen', 'namespace' => 'Admin', 'middl
 /* Rutas: Reporte Fisico Valorado Consumos Directos*/
 Route::group(['prefix' => 'fisicoValorado', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index/fisicoValorado', 'FisicoValoradoConsumoDirectoController@index')
-	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoConsumoDirecto"))
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoConsumoDirectos"))
 	->name('list_FisicoValoradoConsumoDirecto');
 
 	Route::post('/InventarioActual', 'FisicoValoradoConsumoDirectoController@createReport')
-	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoConsumoDirecto"))
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoConsumoDirectos"))
 	->name('create_report__FisicoValoradoConsumoDirecto');
 });
 
 /* Rutas: Reporte Detallado Consumo Directo*/
 Route::group(['prefix' => 'RdIngresosConsumoDirecto', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index', 'ReporteDetalladoIngresosConsumoDirectoController@index')
-	->middleware(sprintf("autorizacion:%s", "ccesso_ReporteDetalladoIngresosConsumoDirecto"))
+	->middleware(sprintf("autorizacion:%s", "acesso_ReporteDetalladoConsumoDirectos"))
 	->name('list_ReporteDetalladoIngresosConsumoDirecto');
 
 	Route::post('/create_report', 'ReporteDetalladoIngresosConsumoDirectoController@createReport')
-	->middleware(sprintf("autorizacion:%s", "ccesso_ReporteDetalladoIngresosConsumoDirecto"))
+	->middleware(sprintf("autorizacion:%s", "acesso_ReporteDetalladoConsumoDirectos"))
 	->name('create_report_ReporteDetalladoIngresosConsumoDirecto');
 });
 
 /* Rutas: Fisico Valorado Compras*/
 Route::group(['prefix' => 'FisicoValoradoStockAlmacen', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index', 'FisicoValoradoStockAlmacenController@index')
-	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoStockAlmacen"))
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoCompras"))
 	->name('list_FisicoValoradoStockAlmacen');
 
 	Route::post('/crear-reporte', 'FisicoValoradoStockAlmacenController@createReport')
-	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoStockAlmacen"))
+	->middleware(sprintf("autorizacion:%s", "accesso_FisicoValoradoCompras"))
 	->name('create_report_FisicoValoradoStockAlmacen');
 
 });
@@ -479,11 +479,11 @@ Route::group(['prefix' => 'FisicoValoradoStockAlmacen', 'namespace' => 'Admin', 
 /* Rutas: Reporte Detallado de Compras*/
 Route::group(['prefix' => 'stockAlmacen', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index', 'ReporteDetalladoStockAlmacenController@index')
-	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoStockAlmacen"))
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoCompras"))
 	->name('list_ReporteDetalladoStockAlmacen');
 
 	Route::post('/create_report', 'ReporteDetalladoStockAlmacenController@createReport')
-	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoStockAlmacen"))
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteDetalladoCompras"))
 	->name('create_report_ReporteDetalladoStockAlmacen');
 	
 });
@@ -513,11 +513,11 @@ Route::group(['prefix' => 'fisicovaloradototal', 'namespace' => 'Admin', 'middle
 /* Rutas: Reportes por Area */
 Route::group(['prefix' => 'AreaEgresosAalidas', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	Route::get('/index', 'ReporteAreaController@index')
-	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteAreas"))
 	->name('list_area_egresos_salidas');
 
 	Route::post('/create_report', 'ReporteAreaController@createReport')
-	->middleware(sprintf("autorizacion:%s", "accesso_ConsolidadoFisicoValoradoTotal"))
+	->middleware(sprintf("autorizacion:%s", "accesso_ReporteAreas"))
 	->name('create_report_area_egresos_salidas');
 });
 

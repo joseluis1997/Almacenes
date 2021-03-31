@@ -7,6 +7,7 @@
         </label>
         <div class="form-group formulario__grupo-input">
             <select name="COD_AREA" id="area" class="form-control formulario__input selectpicker" data-live-search="true" data-size="3">
+                <option value=" ">Seleccione un Area</option>
                 @foreach ($areas as $area)
                     <option value="{{ $area->COD_AREA }}">{{ $area->NOM_AREA }}</option>
                 @endforeach
@@ -38,9 +39,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Detalle Pedido" data-content="Realize una breve descripcion del nuevo pedido a registrar">?</a>
         </label>
         <div class=" form-group formulario__grupo-input">
-            <Textarea name="DETALLE_PEDIDO" id="detallePedido" class="form-control formulario__input" style="margin-top: 0px; margin-bottom: 0px; height: 80px;">
-                
-            </Textarea>
+            <Textarea name="DETALLE_PEDIDO" id="detallePedido" class="form-control formulario__input" style="margin-top: 0px; margin-bottom: 0px; height: 80px;"></Textarea>
         </div>
          <p class="formulario__input-error">
             Realize un breve descripcion del registro del nuevo pedido, es opcional...
@@ -52,6 +51,7 @@
         <div class="form-group">
             <label for="pidarticulo">Articulos</label>    
             <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
+                <option value="">Seleccione un Articulo</option>
                 @foreach($Articulos as $articulo)
                 
                     <option value={{ $articulo->COD_ARTICULO }}_{{ $articulo->CANT_ACTUAL}} id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}</option>
@@ -64,7 +64,7 @@
         <div class="form-group">
             <label for="cantidad">Cantidad</label>    
             <input type="number" id="cantidad" class="form-control"
-            placeholder="Digite la Cantidad">
+            placeholder="Digite la Cantidad" min="1">
         </div>
     </div>
 {{-- Grupo: Cantidad actual (stock) --}}

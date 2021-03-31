@@ -53,30 +53,32 @@
     </div>
 
 {{-- Grupo:Numero Orden Compra --}}
-    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12" id="grupo__numerocomprobante">
         <label for="numerocomprobante">
             <b class="colorAste">*</b>Numero Orden Compra
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero Orden de Compra" data-content="Escriba el numero de orden de compra">?</a>
         </label>
         <div class="form-group formulario__grupo-input" >
             <input type="text" class="formulario__input" name="NRO_ORD_COMPRA" id="numerocomprobante" value="{{ old('NRO_ORD_COMPRA')}}" placeholder="Numero de orden de compra" required>
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Escriba el numero de Orden de Compra...
+            El numero de Orden de Compra no es Correcto.
         </p>
     </div>
 
 {{-- Grupo:Numero Preventivo --}}
-    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12" id="grupo__preventivo">
         <label for="numeropreventivo">
             <b class="colorAste">*</b>Numero Preventivo
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Numero Preventivo" data-content="Escriba el numero Preventivo para de la compra">?</a>
         </label>
         <div class="form-group formulario__grupo-input" >
             <input type="text" class="formulario__input" name="NRO_PREVENTIVO" id="numeropreventivo" value="{{ old('NRO_PREVENTIVO')}}" placeholder="Numero Preventivo" required>
+             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Escriba el numero preventivo de Compra...
+            El numero preventivo no es Correcto.
         </p>
     </div>
 
@@ -107,61 +109,60 @@
             Realize un breve descripcion de la compra, es opcional...
         </p>
     </div>
-
-    
-        {{-- Grupo: Articulos --}}
-        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
-            <div class="form-group">
-                <label for="pidarticulo">Articulos</label>    
-                <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
-                    @foreach($Articulos as $articulo)
-                        <option value={{ $articulo->COD_ARTICULO }}>{{ $articulo->NOM_ARTICULO }}</option>
-                    @endforeach
-                </select>
-            </div>
+    {{-- Grupo: Articulos --}}
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+        <div class="form-group">
+            <label for="pidarticulo">Articulos</label>    
+            <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
+                <option value="">Seleccione un Articulo</option>
+                @foreach($Articulos as $articulo)
+                    <option value={{ $articulo->COD_ARTICULO }}>{{ $articulo->NOM_ARTICULO }}</option>
+                @endforeach
+            </select>
         </div>
-        {{-- Grupo: Cantidad --}}
-        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-            <div class="form-group">
-                <label for="cantidad">Cantidad</label>    
-                <input type="number" name="CANTIDAD" id="cantidad" class="form-control"
-                placeholder="Digite la Cantidad">
-            </div>
+    </div>
+    {{-- Grupo: Cantidad --}}
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <div class="form-group">
+            <label for="cantidad">Cantidad</label>    
+            <input type="number" name="CANTIDAD" id="cantidad" class="form-control"
+            placeholder="Digite la Cantidad" min="1">
         </div>
-        {{-- Grupo:Precio Unidad --}}
-        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-            <div class="form-group">
-                <label for="precio">Precio Unidad</label>    
-                <input type="number" name="PRECIO_UNITARIO" id="precio" class="form-control"
-                placeholder="Digite Precio por unidad">
-            </div>
+    </div>
+    {{-- Grupo:Precio Unidad --}}
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <div class="form-group">
+            <label for="precio">Precio Unitario</label>    
+            <input type="number" name="PRECIO_UNITARIO" id="precio" class="form-control"
+            placeholder="Digite Precio por unidad" min="1">
         </div>
-         {{-- Grupo:Boton Agregar --}}
-        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
-            <div class="form-group">
-                <button type="button" id="btn_add" class="btn btn-primary">Agregar</button>
-            </div>
+    </div>
+     {{-- Grupo:Boton Agregar --}}
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+        <div class="form-group">
+            <button type="button" id="btn_add" class="btn btn-primary">Agregar</button>
         </div>
-        {{-- Grupo:Tabla --}}
-         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
-                <thead style="background-color: #A9D0F5">
-                    <th>Opciones</th>
-                    <th>Articulo</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>SubTotal</th>
-                </thead>
-                <tfoot>
-                    <th>Total</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th><h4 id="total">bs/. 0.00 </h4></th>
-                </tfoot>
-                <tbody>
-                    
-                </tbody>
-            </table>
-        </div>
+    </div>
+    {{-- Grupo:Tabla --}}
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+            <thead style="background-color: #A9D0F5">
+                <th>Opciones</th>
+                <th>Articulo</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>SubTotal</th>
+            </thead>
+            <tfoot>
+                <th>Total</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><h4 id="total">bs/ 0.00 </h4></th>
+            </tfoot>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
 </div>

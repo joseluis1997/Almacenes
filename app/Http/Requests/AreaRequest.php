@@ -35,8 +35,8 @@ class AreaRequest extends FormRequest
                     'sometimes',
                     Rule::exists('AREAS', 'COD_AREA')
                 ],
-                'NOM_AREA' => 'required|min:4',
-                'UBICACION_AREA' => 'sometimes',
+                'NOM_AREA' => ['required','regex:/^([a-zA-ZÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{1,20}[ ]?){1,10}$/','unique:AREAS,NOM_AREA'],
+                'UBICACION_AREA' => ['sometimes','regex:/^([a-zA-ZÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{1,20}[ ]?){1,10}$/'],
                 'DESC_AREA' => 'sometimes'
             ];
         }
@@ -46,7 +46,8 @@ class AreaRequest extends FormRequest
                     'sometimes',
                     Rule::exists('AREAS', 'COD_AREA')
                 ],
-                'UBICACION_AREA' => 'sometimes',
+                'NOM_AREA' => ['required','regex:/^([a-zA-ZÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{1,20}[ ]?){1,10}$/',Rule::unique('AREAS','NOM_AREA')->ignore($this->route('area'))],
+                'UBICACION_AREA' => ['sometimes','regex:/^([a-zA-ZÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{1,20}[ ]?){1,10}$/'],
                 'DESC_AREA' => 'sometimes'
             ];
             }

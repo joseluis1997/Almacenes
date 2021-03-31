@@ -34,15 +34,15 @@ class ArticuloRequest extends FormRequest
                 return [
                     'FK_COD_PARTIDA' => ['required'],
                     'FK_COD_MEDIDA' =>['required'],
-                    'NOM_ARTICULO' => ['required','regex:/^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/','unique:ARTICULO,NOM_ARTICULO'],
-                    'MARCA' => ['required','regex:/^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/'],
+                    'NOM_ARTICULO' => ['required','regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,30}[ ]?){1,10}$/','unique:ARTICULO,NOM_ARTICULO'],
+                    'MARCA' => ['required','regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,30}[ ]?){1,10}$/'],
                     'DESC_ARTICULO' => 'max:512',
                 ];
             case 'PUT':
                 return [
                     'FK_COD_PARTIDA' => 'required',
                     'FK_COD_MEDIDA' =>'required',
-                    'NOM_ARTICULO' => ['required','regex:/^([A-Z]{0,1}[a-z]{1,30}[ ]?){1,10}$/',Rule::unique('ARTICULO','NOM_ARTICULO')->ignore($this->route('articulo'))],                    
+                    'NOM_ARTICULO' => ['required','regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,30}[ ]?){1,10}$/',Rule::unique('ARTICULO','NOM_ARTICULO')->ignore($this->route('articulo'))],                    
                     'MARCA' => 'required',
                     'DESC_ARTICULO' => 'sometimes|max:512',
                 ];

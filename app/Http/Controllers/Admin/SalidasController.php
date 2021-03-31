@@ -54,7 +54,8 @@ class SalidasController extends Controller
             $Salida->COD_AREA = $pedido->COD_AREA;
             $Salida->COD_USUARIO = Auth::user()->id;
             $Salida->FECHA = date('Y-m-d');
-            $Salida->DETALLE_SALIDA = $pedido->DETALLE_PEDIDO;
+            $Salida->DETALLE_SALIDA = $request_salida->DETALLE_PEDIDO;
+            // $Salida->DETALLE_SALIDA = $pedido->DETALLE_PEDIDO;
             // $Salida->DETALLE_SALIDA = 'va de nuevo';
 
             $Salida->save();
@@ -107,10 +108,32 @@ class SalidasController extends Controller
     }
 
     public function edit($id){
-
+        $salida = salida::findOrFail($id);
+        $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->Select('COD_AREA','NOM_AREA')->get();
+        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->Select('COD_ARTICULO','NOM_ARTICULO')->get();
+        return view('admin.Salidas.editar', compact('salida','areas','Articulos'));
     }
 
-    public function update(Request $request, $id){
+    public function update(SalidaRequest $request_salida, salida $salida){
+
+        try{
+                DB::beginTransaction();
+                $salida->FECHA = $request_salida->get('FECHA');
+                $salida->COD_AREA = $request_salida->get('COD_AREA');
+                $salida->COD_USUARIO = Auth::user()->id;
+                $salida->DETALLE_SALIDA = $request_salida->get('DETALLE_SALIDA');
+                $salida->save();
+
+                DB::commit();
+
+                return redirect()->route('list_salidas')->with('message', ['success', 'Salida Modificado Correctamente']);
+            }catch(\Exception $e){
+                error_log('aasda');
+
+                error_log($e->getMessage());
+                DB::rollback();
+                return redirect()->route('list_salidas')->with('message', ['danger', 'Error al  Modifica la Salida']);
+            }
 
     }
 

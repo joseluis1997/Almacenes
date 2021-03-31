@@ -22,6 +22,7 @@
         </label>
         <div class="form-group formulario__grupo-input">
             <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
+                <option value=" ">Seleccione Comprobante</option>
                 <option value="Factura">Factura</option>
                 <option value="Resivo">Resivo</option>
             </select>
@@ -42,7 +43,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>                   
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            El numero no es Correcto.
         </p>
     </div>
 <!-- Grupo: Preventivo -->
@@ -56,7 +57,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>                   
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            El numero no es Correcto.
         </p>
     </div>
 <!-- Grupo: Nota Ingreso -->
@@ -66,11 +67,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nota de Ingreso" data-content="Por favor Introduzca el numero de la nota de Ingreso del consumo directo">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="NOTA_INGRESO" id="notaIngreso" placeholder="Nota de Ingreso..." value="{{ old('NOTA_INGRESO') }}">
+            <input type="text" class="formulario__input" name="NOTA_INGRESO" id="notaIngreso" placeholder="Numero de Nota de Ingreso..." value="{{ old('NOTA_INGRESO') }}">
             <i class="formulario__validacion-estado far fa-times-circle"></i>                   
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            El numero no es Correcto.
         </p>
     </div>
 {{-- Grupo: Area Solicitante --}}
@@ -81,6 +82,7 @@
         </label>
         <div class="form-group formulario__grupo-input">
             <select name="COD_AREA" id="areaconsumodirecto" class="form-control formulario__input selectpicker" data-live-search="true">
+                <option value=" ">Seleccione un Area</option>
                 @foreach ($areas as $area)
                     <option value="{{ $area->COD_AREA }}">{{ $area->NOM_AREA }}</option>
                 @endforeach
@@ -98,6 +100,7 @@
         </label>
         <div class="form-group formulario__grupo-input">
             <select name="PROVEEDOR" id="proveedor" class="form-control formulario__input" data-live-search="true">
+                <option value=" ">Seleccione un Proveedor</option>
                 @foreach ($proveedores as $proveedor)
                     <option value="{{ $proveedor->COD_PROVEEDOR }}">{{ $proveedor->NOM_PROVEEDOR }}</option>
                 @endforeach
@@ -118,7 +121,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>                   
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            La descripcion no es Correcto.
         </p>
     </div>
 

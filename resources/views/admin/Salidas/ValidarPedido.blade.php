@@ -23,7 +23,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Fecha Pedido" data-content="Agregue la fecha registro del nuevo Pedido">?</a>
         </label>
         <div class="form-group formulario__grupo-input" >
-            <input type="date" class="formulario__input" name="FECHA" id="fecha" value="{{ $pedido->FECHA }}" required disabled="">
+            <input type="date" class="formulario__input" name="FECHA" id="fecha" value="{{ $pedido->FECHA }}" required readOnly="">
         </div>
         <p class="formulario__input-error">
            Registre la fecha de Pedido..
@@ -37,7 +37,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Detalle Pedido" data-content="Realize una breve descripcion del nuevo pedido a registrar">?</a>
         </label>
         <div class=" form-group formulario__grupo-input">
-            <Textarea name="DETALLE_PEDIDO" id="detallePedido" class="form-control formulario__input" style="margin-top: 0px; margin-bottom: 0px; height: 80px;" disabled="" >{{ $pedido->DETALLE_PEDIDO }}</Textarea>
+            <Textarea name="DETALLE_PEDIDO" id="detallePedido" class="form-control formulario__input" style="margin-top: 0px; margin-bottom: 0px; height: 80px;" >{{ $pedido->DETALLE_PEDIDO }}</Textarea>
         </div>
          <p class="formulario__input-error">
             Realize una breve descripcion del registro de la salida del pedido, es opcional...

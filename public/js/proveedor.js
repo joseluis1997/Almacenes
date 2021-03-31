@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
 	NIT: /^[0-9]{10,13}$/, 
-	NOMBRE: /^([A-Z]{0,1}[a-z]{2,30}[ ]?)$/,
+	NOMBRE: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,30}[ ]?)$/,
 	TELEFONO:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/, 
 	// DIRECCION: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)$/,
 }

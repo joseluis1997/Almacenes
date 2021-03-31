@@ -3,12 +3,21 @@
 @section('contenido')
 
     <div class="title">
-        <h1 align="center"><b>Nueva Compra Stock Almacen</b></h1>
-    </div>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
 
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <h1 align="center"><b>Nueva Compra</b></h1>
+    </div>
     <div class="card mt-10">
         <div class="card-body">
-            <form  action="{{ route('store_almacen')}}" method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('store_almacen')}}" method="POST" enctype="multipart/form-data" id="formulario">
                 @csrf
                 
                 @include('admin.StockAlmacen.formCrear')
@@ -24,6 +33,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/compra.js')}}"></script>
     <script type="text/javascript">
         $(function () {
           $('[data-toggle="popover"]').popover()
@@ -47,21 +57,31 @@
             cantidad = $("#cantidad").val();
             precio = $("#precio").val();
 
-            if(idarticulo != null && cantidad != null && cantidad > 0 && precio != null){
+            articulo = $("#pidarticulo option:selected");
+            if(articulo.attr('disabled')!=undefined){
+                alert('producto agregado');
+                return 
+            }
+
+            if(idarticulo != null && cantidad != null && cantidad > 0 && precio != null && precio>0){
+
+                articulo.attr('disabled','disabled');
+                articulo = $("#pidarticulo option:selected").text();
+
                 subtotal[contador] =(cantidad*precio);
                 total = total+subtotal[contador];
-                var fila = '<tr class="selected" id="fila'+contador+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+contador+')">X</button></td><td><input type="hidden" name="articulos[]" value="'+idarticulo+'"></input>'+articulo+'</td><td><input type="number" name="cantidad_'+idarticulo+'" value="'+cantidad+'"></input></td><td><input type="number" name="precio_'+idarticulo+'" value="'+precio+'"></input></td><td>'+subtotal[contador]+'</td></tr>';
+                var fila = '<tr class="selected" id="fila'+contador+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+contador+')">X</button></td><td><input type="hidden" name="articulos[]" value="'+idarticulo+'"></input>'+articulo+'</td><td><input type="number" name="cantidad_'+idarticulo+'" value="'+cantidad+'" readonly></input></td><td><input type="number"  name="precio_'+idarticulo+'" value="'+precio+'" readonly></input></td><td>'+parseFloat(subtotal[contador]).toFixed(2)+'</td></tr>';
 
                 contador++;
                 limpiar();
 
-                $("#total").html("Bs/."+total);
+                $("#total").html("Bs/."+parseFloat(total).toFixed(2));
 
                 evaluar();
 
                 $('#detalles').append(fila);
             }else{
-                alert("Error al ingresar el detalle compra Stock, revise sus datos");
+                alert("Error al ingresar el detalle compra, revise sus datos");
             }
         }
 

@@ -29,11 +29,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Nombre de Area" data-content="Solo puede contener letras por Ej:Direccion de Recursos Humanos">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input disabled  type="text" class="formulario__input" name="NOM_AREA" value="{{$area->NOM_AREA}}" id="nombre" placeholder="Nombre Area">
+            <input  type="text" class="formulario__input" name="NOM_AREA" value="{{$area->NOM_AREA}}" id="nombre" placeholder="Nombre Area">
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej:Direccion de Recursos Humanos...
+            El nombre no es Correcto.
         </p>
     </div>
 <!-- Grupo: Ubicacion de Area -->
@@ -42,11 +42,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Ubicacion de Area" data-content="Solo puede contener letras por Ej:B/Constructor...">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="UBICACION_AREA" id="identificador" placeholder="Direccion de la Area" value="{{$area->UBICACION}}">
+            <input type="text" class="formulario__input" name="UBICACION_AREA" id="ubicacion" placeholder="Direccion de la Area" value="{{$area->UBICACION_AREA}}">
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej:B/Constructor...
+            La ubicacion no es Correcta.
         </p>
     </div>
             
@@ -63,7 +63,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
+            La descripcion no es correcta.
         </p>
     </div>
 

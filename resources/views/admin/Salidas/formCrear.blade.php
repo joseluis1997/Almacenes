@@ -1,4 +1,4 @@
- <!-- Grupo: Nombre Articulo -->
+{{--  <!-- Grupo: Nombre Articulo -->
             <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="formulario__label">Nombre Articulo</label>
                 <div class="formulario__grupo-input">
@@ -70,4 +70,4 @@
                 <div class="formulario__grupo formulario__btn-guardar text-center">
                     <a href="{{route('list_salidas')}}" class="btn formulario__btn2">Cancelar</a>
                     <button type="submit" class="formulario__btn1">Guardar</button>
-                </div>
+                </div> --}}

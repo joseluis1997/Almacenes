@@ -27,7 +27,7 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej:Direccion de Recursos Humanos...
+            El nombre no es Correcto.
         </p>
     </div>
 
@@ -37,11 +37,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Ubicacion de Area" data-content="Solo puede contener letras por Ej:B/Constructor...">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <input type="text" class="formulario__input" name="UBICACION_AREA" id="identificador" placeholder="Direccion de la Area">
+            <input type="text" class="formulario__input" name="UBICACION_AREA" id="ubicacion" placeholder="Direccion de la Area">
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej:B/Constructor...
+            La direccion no es Correcta
         </p>
     </div>
  
@@ -52,9 +52,7 @@
         </label>
         <div class="formulario__grupo-input ">
             
-            <textarea class="formulario__input " name="DESC_AREA" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;">
-                
-            </textarea>
+            <textarea class="formulario__input " name="DESC_AREA" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;"></textarea>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">

@@ -31,12 +31,12 @@ class RolRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/','unique:roles,name'],
+                    'nombre' => ['required', 'regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{4,20}[ ]?){1}$/','unique:roles,name'],
                     'descripcion' => 'nullable'
                 ];
             case 'PUT':
                 return [
-                    'nombre' => ['required', 'regex:/^([A-Z]{1}[a-z]{4,20}[ ]?){1}$/', Rule::unique('roles','name')->ignore($this->route('role')->id)],
+                    'nombre' => ['required', 'regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{4,20}[ ]?){1}$/', Rule::unique('roles','name')->ignore($this->route('role')->id)],
                     'descripcion' => 'nullable'
                 ];
         }

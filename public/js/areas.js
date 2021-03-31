@@ -2,23 +2,23 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    numeroP: /^[0-9]{4,6}$/,
-	nombreP: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,50}[ ]?){1,50}$/,
+	nombre: /^([a-zA-ZÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{1,20}[ ]?){1,10}$/,
+	direccion:/^([a-zA-ZÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]{1,20}[ ]?){1,10}$/,
 }
 
 const campos ={
-    numeroP: false,
-    nombreP: false,
+    nombre: false,
+    direccion:false,
 }
 
 const validarFormulario = (e) =>{
     console.log(e.target.name);
    switch (e.target.name){
-    case "NOM_PARTIDA":
-        validarCampo(expresiones.nombreP,e.target,'nombreP');
+    case "NOM_AREA":
+        validarCampo(expresiones.nombre,e.target,'nombre');
     break;
-    case "NRO_PARTIDA":
-        validarCampo(expresiones.numeroP,e.target,'numeroP');
+    case "UBICACION_AREA":
+        validarCampo(expresiones.direccion,e.target,'ubicacion');
     break;
    }
 }

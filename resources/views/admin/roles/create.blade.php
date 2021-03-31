@@ -35,8 +35,6 @@
 
 @section('scripts')
     <script src="{{ asset('js/ValidarformularioRol.js') }}">
-
-        
     </script>
     <script>
         $(function () {

@@ -3,12 +3,22 @@
 @section('contenido')
 
     <div class="title">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h1 align="center"><b>Nuevo Consumo Directo</b></h1>
     </div>
 
     <div class="card mt-10">
         <div class="card-body">
-            <form  action="{{ route('store_consumodirecto')}}" method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('store_consumodirecto')}}" method="POST" enctype="multipart/form-data" id="formulario">
                 @csrf
                 @include('admin.ConsumoDirecto.formCrear')
                  {{-- Grupo: Boton Cancelar y Guardar --}}
@@ -23,6 +33,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/consumo_directo.js') }}"></script>
     <script type="text/javascript">
         $(function () {
           $('[data-toggle="popover"]').popover()
@@ -54,37 +65,37 @@
                 alert('producto agregado');
                 return 
             }
-            cantidad = parseInt($("#cantidad").val());
-            precio = parseInt($("#precio").val());
+            cantidad = parseFloat($("#cantidad").val()).toFixed(2);
+            precio = parseFloat($("#precio").val()).toFixed(2);
             
 
-            if(idarticulo != " " && idarticulo > 0 && cantidad != " " && cantidad > 0 && precio != " "){
+            if(idarticulo != null && idarticulo > 0 && cantidad != null && cantidad > 0 && precio != null && precio>0){
                 articulo.attr('disabled','disabled');
                 articulo = $("#pidarticulo option:selected").text();   
 
                 subtotal[contador] =(cantidad*precio);
                 total = total+subtotal[contador];
 
-                var fila = '<tr class="selected filaConsumo" id="fila'+idarticulo+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+idarticulo+')">X</button></td><td><input type="hidden" name="articulos[]" value="'+idarticulo+'"></input>'+articulo+'</td><td><input type="hidden" name="cantidad_'+idarticulo+'" value="'+cantidad+'" ></input><input type="number" value="'+cantidad+'" disabled ></input></td><td><input type="hidden" name="precio_'+idarticulo+'" value="'+precio+'"></input><input type="number" value="'+precio+'" disabled ></input></td><td>'+subtotal[contador]+'</td></tr>';
+                var fila = '<tr class="selected filaConsumo" id="fila'+contador+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+contador+')">X</button></td><td><input type="hidden" name="articulos[]" value="'+idarticulo+'"></input>'+articulo+'</td><td><input type="number" name="cantidad_'+idarticulo+'" value="'+cantidad+'" readonly></input></td><td><input type="number" name="precio_'+idarticulo+'" value="'+precio+'" readonly></td><td>'+parseFloat(subtotal[contador]).toFixed(2)+'</td></tr>';
 
                 contador++;
                 limpiar();
 
-                $("#total").html("Bs/."+total);
+                $("#total").html("Bs/ "+parseFloat(total).toFixed(2));
 
 
-                $('#detalles').append(fila);
                 evaluar();
+                $('#detalles').append(fila);
 
             }else{
-                alert("Error al ingresar el detalle compra Stock, revise sus datos");
+                alert("Error al ingresar el detalle del consumo directo, revise sus datos");
             }
         }
 
         function limpiar(){
-            $("#pidarticulo").val("");
-            $("#cantidad").val("");
-            $("#precio").val("");
+            $("#pidarticulo").val(" ");
+            $("#cantidad").val(" ");
+            $("#precio").val(" ");
         }
 
         function evaluar(){
@@ -94,7 +105,8 @@
             //     $("#Guardar").hide();
             // }
             let filasPedido = $('.filaConsumo').length; 
-            if(filasPedido>0){
+            console.log(filasPedido);
+            if(filasPedido>0 || total>0){
                 $("#Guardar").show();
             }else{
                 $("#Guardar").hide();
@@ -104,7 +116,7 @@
         function eliminar(index){
             // alert(index);
             $('#articulo_'+index).removeAttr('disabled');
-            // total = total-subtotal[index];
+            total = total-subtotal[index];
             $("#total").html("Bs/."+total);
             $("#fila" + index).remove();
             evaluar();

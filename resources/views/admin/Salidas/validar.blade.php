@@ -3,6 +3,16 @@
 @section('contenido')
 
     <div class="title">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h1 align="center"><b>Validar Salidad del Pedido</b></h1>
     </div>
 
@@ -60,9 +70,9 @@
                 alert('producto agregado');
                 return 
             }
-            cantidad = parseInt($("#cantidad").val());
+            cantidad = parseFloat($("#cantidad").val());
 
-            stock = parseInt($("#pstock").val());
+            stock = parseFloat($("#pstock").val());
         
             if(idarticulo !="" && cantidad !="" && cantidad > 0){
                 // subtotal[contador] =(cantidad*precio);

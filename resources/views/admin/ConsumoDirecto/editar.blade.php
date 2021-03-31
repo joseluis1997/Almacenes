@@ -3,12 +3,22 @@
 @section('contenido')
 
     <div class="title">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h1 align="center"><b>Modificar Consumo Directo</b></h1>
     </div>
 
     <div class="card mt-10">
         <div class="card-body">
-            <form  action="{{ route('update_consumodirecto',$consumo_directo->COD_CONSUMO_DIRECTO)}}" method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('update_consumodirecto',$consumo_directo->COD_CONSUMO_DIRECTO)}}" method="POST" enctype="multipart/form-data" id="formulario">
                 @csrf @method("put")
                 @include('admin.ConsumoDirecto.formEditar')
                  {{-- Grupo: Boton Cancelar y Guardar --}}
@@ -23,6 +33,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/consumo_directo.js') }}"></script>
     <script type="text/javascript">
         $(function () {
           $('[data-toggle="popover"]').popover()

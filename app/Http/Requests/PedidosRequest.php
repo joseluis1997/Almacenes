@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class PedidosRequest extends FormRequest
 {
@@ -30,14 +32,12 @@ class PedidosRequest extends FormRequest
                 return [];
             case 'POST': 
                 return [
-                    // 'nombre' => 'required|min:4',
-                    // 'fecha' => 'required',
-                    // 'cantidad'=> 'required',
-                    // 'detalle' => 'sometimes',
-                    ''
+                    'COD_AREA' => 'required',
+                    'FECHA' => 'required',
                 ];
                 case 'PUT':
                     return [
+                        
                     ];
         }
     }

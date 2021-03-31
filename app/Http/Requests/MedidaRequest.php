@@ -33,12 +33,12 @@ class MedidaRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'NOM_MEDIDA' => ['required', 'regex:/^([A-Z]{0,2}[a-z]{3,30}[ ]?){1}$/','unique:MEDIDA,NOM_MEDIDA'],
+                    'NOM_MEDIDA' => ['required', 'regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,2}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{3,30}[ ]?){1}$/','unique:MEDIDA,NOM_MEDIDA'],
                     'DESC_MEDIDA' => 'nullable'
                 ];
             case 'PUT':
                 return [
-                    'NOM_MEDIDA' => ['required', 'regex:/^([A-Z]{0,2}[a-z]{3,30}[ ]?){1}$/', Rule::unique('MEDIDA','NOM_MEDIDA')->ignore($this->route('medida'))],
+                    'NOM_MEDIDA' => ['required', 'regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,2}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{3,30}[ ]?){1}$/', Rule::unique('MEDIDA','NOM_MEDIDA')->ignore($this->route('medida'))],
                     'DESC_MEDIDA' => 'nullable'
                 ];
         }

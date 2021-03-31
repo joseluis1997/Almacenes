@@ -3,8 +3,8 @@ const inputs = document.querySelectorAll('#formulario input');
 // esto es un objeto con varias propiedas
 const expresiones = {
     CI: /^[0-9]{7,8}[T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z||S|Q|V|H|L|C|K|E]?$/, // 1 a 7 numeros.
-	NOMBRES: /^([A-Z]{1}[a-z]{2,30}[ ]?){1,2}$/,
-    APELLIDOS: /^([A-Z]{1}[a-z]{2,30}[ ]?){1,3}$/,
+	NOMBRES: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,30}[ ]?){1,2}$/,
+    APELLIDOS: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,30}[ ]?){1,3}$/,
 	TELEFONO: /^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/, // 7 a 14 numeros.
 	NOM_USUARIO: /^[a-zA-Z0-9\_\-]{4,20}$/, // Letras, numeros, guion y guion_bajo
     password: /^.{4,20}$/, // 4 a 12 digitos.
