@@ -4,7 +4,9 @@
                 <div class="formulario__grupo-input">
                     <select name="articulo" class="form-control" required>
                         <option value="0">Seleccione un Articulo</option>
-
+                        @foreach ($Articulos as $articulo)
+                            <option value="{{ $articulo->COD_ARTICULO }}">{{$articulo->NOM_ARTICULO}}</option>
+                        @endforeach
                     </select>
                   <i class="formulario__validacion-estado far fa-times-circle"></i>
                 </div>

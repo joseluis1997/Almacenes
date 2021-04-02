@@ -27,11 +27,13 @@ class ReporteAreaController extends Controller
     $cod_area = $request->get('area');
     $consumo = $request->get('consumo');
     $area = null;
+
     if($cod_area != null && $cod_area > 0){
       $this->area_ok = TRUE;
       $area =Area::find($cod_area);
       $area = $area->NOM_AREA;
     }
+    
     $fecha_inicio = $request->get('fecha_inicio');
     $fecha_fin = $request->get('fecha_fin');
     if ($fecha_inicio != null && $fecha_fin != null) {

@@ -3,9 +3,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Kardex</title>
-	<style type="text/css">
-		
-		.clearfix:after {
+      <style type="text/css">
+      .clearfix:after {
         content: "";
         display: table;
         clear: both;
@@ -34,44 +33,20 @@
       }
 
       #logo img {
-        width: 40px;
+        width: 90px;
       }
 
       h1 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.0em;
+        font-size: 2.4em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
         margin: 0 0 20px 0;
         background: url(dimension.png);
       }
-
-      #project {
-        float: left;
-      }
-
-      #project span {
-        color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
-
-      #company {
-        float: right;
-        text-align: right;
-      }
-
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
-
       table {
         width: 100%;
         border-collapse: collapse;
@@ -94,6 +69,7 @@
         border-bottom: 1px solid #C1CED9;
         white-space: nowrap;        
         font-weight: normal;
+        font-weight: bold;
       }
 
       table .inf,
@@ -109,26 +85,6 @@
         text-align: center !important;
       }
 
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
-      }
-
       footer {
         color: #5D6975;
         width: 100%;
@@ -139,13 +95,7 @@
         padding: 8px 0;
         text-align: center;
       }
-      tr.tr-articulos > td{
-        background-color: #cbd7e2 !important;
-      }
-      tr.tr-consumos > td{
-        background-color: #F5F5F5 !important;
-      }
-	</style>
+    </style>
 </head>
 <body>
 	<header class="clearfix">
@@ -162,30 +112,52 @@
         </h1>
     </header>
         <main>
-      <table style="margin-bottom: 30px;">
-        <thead>
+      <table  class="default">
           <tr>
-            <th>PARTIDA PRESUPUESTARIA</th>
-            <th>INGRESOS VALORADOS</th>
-            <th>EGRESOS VALORADOS</th>
-            <th>SALDO ACTUAL</th>
+            <th>Articulo:</th>
+            <th>U. Medida</th>
+            <th>Partida:</th>
+            <th>Ubicacion:</th>
           </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td>
-    
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          @endforeach
-        </tbody>
-      </table>      
-      <div>
-        <div>Consolidado valorado Total: {{number_format($Total, 2, '.', '')}} Bs.</div>
-      </div>
-    </main>
+
+          <tr>
+            <td>Tonners</td>
+            <td>Unidad</td>
+            <td>3000</td>
+            <td>Almacen Central</td>
+          </tr>
+      </table><br>
+      <table border="1">
+        <tr>
+          <th rowspan="2">Fecha</th>
+          <th width="15%" rowspan="2">Unidad Sol.</th>
+          <th rowspan="2">Precio U.</th>
+          <th colspan="2">Entradas</th>
+          <th colspan="2">Salidas</th>
+          <th colspan="2">Saldos</th>
+        </tr>
+
+        <tr>
+          <th>Cant.</th>
+          <th>Val.</th>
+          <th>Cant.</th>
+          <th>Val.</th>
+          <th>Cant.</th>
+          <th>Val.</th>
+        </tr>
+
+        <tr>
+          <td>2021-02-03</td>
+          <td width="15%">Recursos Humanos</td>
+          <td>33.50</td>
+          <td>10</td>
+          <td>bs 500</td>
+          <td>0</td>
+          <td>bs 0.00</td>
+          <td>5</td>
+          <td>bs 250.00</td>
+        </tr>
+
+      </table>     
 </body>
 </html>
