@@ -121,9 +121,9 @@
           </tr>
 
           <tr>
-            <td>Tonners</td>
-            <td>Unidad</td>
-            <td>3000</td>
+            <td>{{$articulo->NOM_ARTICULO}}</td>
+            <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
+            <td>{{$articulo->Partida->NRO_PARTIDA}} - {{$articulo->Partida->NOM_PARTIDA}}</td>
             <td>Almacen Central</td>
           </tr>
       </table><br>
@@ -145,18 +145,90 @@
           <th>Cant.</th>
           <th>Val.</th>
         </tr>
-
-        <tr>
-          <td>2021-02-03</td>
-          <td width="15%">Recursos Humanos</td>
-          <td>33.50</td>
-          <td>10</td>
-          <td>bs 500</td>
-          <td>0</td>
-          <td>bs 0.00</td>
-          <td>5</td>
-          <td>bs 250.00</td>
-        </tr>
+        @php
+          $valor_ant = 0;
+          $valor_act = 0;
+          $cant_ant = 0;
+          $cant_act = 0;
+          $costo_pond = 0;
+        @endphp
+        @foreach ($collections as $collection)
+          @if($collection->COD_COMPRA_STOCK > 0)
+            @php
+              $cant_act = $collection->pivot->CANTIDAD;
+              $valor_act = $collection->pivot->CANTIDAD * $collection->pivot->PRECIO_UNITARIO;
+              $aux1 = $valor_ant+$valor_act;
+              $aux2 = $cant_ant+$cant_act;
+              $costo_pond = $aux1/$aux2;
+            @endphp
+            <tr>
+              <td>{{$collection->FECHA}}</td>
+              <td width="15%">{{$collection->Area->NOM_AREA}}</td>
+              <td>{{number_format($costo_pond, 2, '.', '')}}</td>
+              <td>{{number_format($cant_act, 2, '.', '')}}</td>
+              <td>{{number_format($valor_act, 2, '.', '')}}</td>
+              <td></td>
+              <td></td>
+              @php
+                $cant_ant = $cant_ant+$cant_act;
+                $valor_ant = $cant_ant*$costo_pond;
+              @endphp
+              <td>{{number_format($cant_ant, 2, '.', '')}}</td>
+              <td>bs {{number_format($valor_ant, 2, '.', '')}}</td>
+            </tr>
+          @elseif($collection->COD_SALIDA > 0)
+            @php
+              $cant_act = $collection->pivot->CANTIDAD;
+              $valor_act = $collection->pivot->CANTIDAD * $costo_pond;
+            @endphp
+            <tr>
+              <td>{{$collection->FECHA}}</td>
+              <td width="15%">{{$collection->Area->NOM_AREA}}</td>
+              <td>{{number_format($costo_pond, 2, '.', '')}}</td>
+              <td></td>
+              <td></td>
+              <td>{{number_format($cant_act, 2, '.', '')}}</td>
+              <td>{{number_format($valor_act, 2, '.', '')}}</td>
+              @php
+                $cant_ant = $cant_ant-$cant_act;
+                $valor_ant = $cant_ant*$costo_pond;
+              @endphp
+              <td>{{number_format($cant_ant, 2, '.', '')}}</td>
+              <td>bs {{number_format($valor_ant, 2, '.', '')}}</td>
+            </tr>
+          @else
+            <tr>
+              <td>{{$collection->FECHA}}</td>
+              <td width="15%">{{$collection->Area->NOM_AREA}}</td>
+              <td>{{number_format($costo_pond, 2, '.', '')}}</td>
+              <td>{{number_format($collection->pivot->CANTIDAD, 2, '.', '')}}</td>
+              <td>{{number_format(($collection->pivot->CANTIDAD * $collection->pivot->PRECIO_UNITARIO), 2, '.', '')}}</td>
+              <td></td>
+              <td></td>
+              @php
+                $aux1 = $cant_ant+$collection->pivot->CANTIDAD;
+                $aux2 = $aux1*$costo_pond;
+              @endphp
+              <td>{{number_format($aux1, 2, '.', '')}}</td>
+              <td>bs {{number_format($aux2, 2, '.', '')}}</td>
+            </tr>
+            <tr>
+              <td>{{$collection->FECHA}}</td>
+              <td width="15%">{{$collection->Area->NOM_AREA}}</td>
+              <td>{{number_format($costo_pond, 2, '.', '')}}</td>
+              <td></td>
+              <td></td>
+              <td>{{number_format($collection->pivot->CANTIDAD, 2, '.', '')}}</td>
+              <td>{{number_format(($collection->pivot->CANTIDAD * $collection->pivot->PRECIO_UNITARIO), 2, '.', '')}}</td>
+              @php
+                $aux1 = $cant_ant;
+                $aux2 = $aux1*$costo_pond;
+              @endphp
+              <td>{{number_format($aux1, 2, '.', '')}}</td>
+              <td>bs {{number_format($aux2, 2, '.', '')}}</td>
+            </tr>
+          @endif
+        @endforeach
 
       </table>     
 </body>
