@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('CI')->unique();
             $table->string('NOMBRES', 40)->unique();
             $table->string('APELLIDOS',40); 
-            $table->integer('TELEFONO');
+            $table->string('TELEFONO');
             $table->string('NOM_USUARIO',20)->unique();
             $table->string('password');
             $table->boolean('ESTADO_USUARIO')->default(true);

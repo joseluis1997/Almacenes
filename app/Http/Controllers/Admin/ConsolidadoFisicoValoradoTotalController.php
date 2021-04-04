@@ -51,11 +51,11 @@ class ConsolidadoFisicoValoradoTotalController extends Controller
     // dd($partidas[0]);
 
 
-    return view('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal',[
-      'partidas'=>$partidas,
-    ]);
+    // return view('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal',[
+    //   'partidas'=>$partidas,
+    // ]);
 
-    // $reportePDF = \PDF::loadView('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal', compact('partidas'));
-    // return $reportePDF->download('RepResFisValorTotal.pdf');
+    $reportePDF = \PDF::loadView('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal', compact('partidas'));
+    return $reportePDF->download('RepResFisValorTotal.pdf');
   }
 }

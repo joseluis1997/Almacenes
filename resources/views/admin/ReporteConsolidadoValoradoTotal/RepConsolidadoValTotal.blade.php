@@ -41,7 +41,7 @@
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 2.0em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -103,7 +103,7 @@
 
       table td {
         padding: 20px 0px;
-        text-align: right;
+        text-align: center;
       }
 
       table td.service,
@@ -143,14 +143,14 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b>
-            UNIDAD DE ALMACENES CENTRAL<br>
+        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
+            ALMACEN CENTRAL<br>
             REPORTE CONSOLIDADO VALORADO TOTAL
         </h1>
 
     </header>
     <main>
-      <table style="margin-bottom: 30px;">
+      <table style="margin-bottom: 30px;" border="1">
         <thead>
           <tr>
             <th>PARTIDA PRESUPUESTARIA</th>

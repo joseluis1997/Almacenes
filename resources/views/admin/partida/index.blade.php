@@ -29,7 +29,6 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Numero Partida</th>
-                                <th>Creacion</th>
                                 <th>Estado</th>
                                 <th>Ver</th>
                                 <th>Modificar</th>
@@ -43,7 +42,6 @@
                                         <td>{{$partida->COD_PARTIDA}}</td>
                                         <td>{{$partida->NOM_PARTIDA}}</td>
                                         <td>{{$partida->NRO_PARTIDA}}</td>
-                                        <td>{{$partida->created_at}}</td>
                                         <td>
                                             @if($partida->ESTADO_PARTIDA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
@@ -90,7 +88,6 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Numero Partida</th>
-                                <th>Creacion</th>
                                 <th>Estado</th>
                                 <th>Ver</th>
                                 <th>Modificar</th>
@@ -104,7 +101,6 @@
                                         <td>{{$partida->COD_PARTIDA}}</td>
                                         <td>{{$partida->NOM_PARTIDA}}</td>
                                         <td>{{$partida->NRO_PARTIDA}}</td>
-                                        <td>{{$partida->created_at}}</td>
                                         <td>
                                             @if($partida->ESTADO_PARTIDA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>

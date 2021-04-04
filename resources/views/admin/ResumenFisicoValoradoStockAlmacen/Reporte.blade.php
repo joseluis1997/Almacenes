@@ -40,7 +40,7 @@
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 2.0em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -49,12 +49,12 @@
       }
 
       #project {
-        float: left;
+        float: center;
       }
 
       #project span {
         color: #5D6975;
-        text-align: right;
+        text-align: center;
         width: 52px;
         margin-right: 10px;
         display: inline-block;
@@ -63,7 +63,7 @@
 
       #company {
         float: right;
-        text-align: right;
+        text-align: center;
       }
 
       #project div,
@@ -97,12 +97,12 @@
 
       table .inf,
       table .desc {
-        text-align: left;
+        text-align: center;
       }
 
       table td {
         padding: 20px 0px;
-        text-align: right;
+        text-align: center;
       }
 
       table td.service,
@@ -140,11 +140,11 @@
   <body>
     <header class="clearfix">
     <div id="logo">
-        <img src="{{ public_path('images/jhonn.pyng') }}">
+        <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
-            UNIDAD DE ALMACEN CENTRAL<br>
-            CUADRO RESUMEN FISICO VALORADO STOCK ALMACEN
+            ALMACEN CENTRAL<br>
+            REPORTE FISICO VALORADO STOCK ALMACEN
         </h1>
 
     </header>
@@ -160,10 +160,10 @@
           $SubTotalEgresos =  0.00;
           $SubTotal =  0.00;
         @endphp
-        <table style="margin-bottom: 30px;">
+        <table style="margin-bottom: 40px;" border="1">
           <thead>
-            <tr style="padding: 10px 0px; background-color: #e0e0e0">
-              <th colspan="3">Partida: {{$partida->NRO_PARTIDA}}</th>
+            <tr style="background-color: #e0e0e0">
+              <th colspan="3" width="50%">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
               <th colspan="3">FISICOS</th>
               <th colspan="3">VALORADOS</th>
             </tr>
@@ -251,7 +251,7 @@
       @endforeach
       <div>
         <div>
-          <b>Stock alamacen:</b>
+          <b>Stock Almacen:</b>
           <p>
             Total Ingresos: <b>{{$TotalIngresos}}</b>
           </p>
@@ -259,10 +259,10 @@
             Total Egresos: <b>{{$TotalEgresos}}</b>
           </p>
           <p>
-            Total Ingresos: <b>{{$TotalMonto}}</b>
+            Total Monto: <b>{{$TotalMonto}}</b>
           </p>
         </div>
-        <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
+        {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
       </div>
     </main>
     <footer>

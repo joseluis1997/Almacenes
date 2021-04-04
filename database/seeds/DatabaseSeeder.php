@@ -6,6 +6,7 @@ use App\User;
 use App\Partida;
 use App\Medida;
 use App\Articulo;
+use App\proveedor;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 class DatabaseSeeder extends Seeder
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(PartidasTableSeeder::class);
         $this->call(MedidasTableSeeder::class);
+        $this->call(proveedores_seeder::class);
         // $this->call(ArticulosTableSeeder::class);
 	}
 }

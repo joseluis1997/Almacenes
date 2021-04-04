@@ -10,7 +10,7 @@ class Partida extends Model
 
     protected $primaryKey = 'COD_PARTIDA';
 
-    protected $fillable = ['NOM_PARTIDA','NRO_PARTIDA','ESTADO_PARTIDA','PARTIDA_PADRE'];
+    protected $fillable = ['NOM_PARTIDA','NRO_PARTIDA','DESCRIPCION','ESTADO_PARTIDA','PARTIDA_PADRE'];
 	public $timestamps = false;
 
 	public function Articulos()

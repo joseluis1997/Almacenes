@@ -46,10 +46,10 @@ class InventarioActualController extends Controller
 
    	//dd($partidas);
 
-    return view('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas'));
+    // return view('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas'));
 
-    // $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas'));
-    // return $reporteInventarioActual->download('RepInventarioActual.pdf');
+    $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas'));
+    return $reporteInventarioActual->download('RepInventarioActual.pdf');
   }
 
   public function createReportRespaldo(Request $request){

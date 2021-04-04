@@ -45,7 +45,7 @@ class UserRequest extends FormRequest
                         'CI' => ['required', 'regex:/^[0-9]{7,8}[T|R|W|A|G|M|Y|F|P|D|X|B|N|J|Z||S|Q|V|H|L|C|K|E]?$/', Rule::unique('users','CI')->ignore($this->route('id'))],
                         'NOMBRES' => ['required', 'regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,20}[ ]?){1,2}$/'],
                         'APELLIDOS' => ['required', 'regex:/^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,30}[ ]?){1,3}$/'],
-                        'TELEFONO' => ['required', 'regex:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/'],
+                        'TELEFONO' => ['required', 'regex:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/',Rule::unique('users','TELEFONO')->ignore($this->route('id'))],
                         'NOM_USUARIO' => ['required', 'regex:/^[a-zA-Z0-9\_\-]{4,20}$/',Rule::unique('users','NOM_USUARIO')->ignore($this->route('id'))],
                         'password' => ['nullable', 'regex:/^.{4,20}$/','same:password'],
                         're_password' => ['nullable', 'regex:/^.{4,20}$/','same:password'],

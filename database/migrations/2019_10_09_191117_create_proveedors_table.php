@@ -19,7 +19,7 @@ class CreateProveedorsTable extends Migration
 
             $table->string('NOM_PROVEEDOR',50)->unique();
             $table->string('DIR_PROVEEDOR')->nullable();
-            $table->integer('TELEF_PROVEEDOR')->nullable();
+            $table->string('TELEF_PROVEEDOR')->nullable();
             $table->boolean('ESTADO_PROVEEDOR')->default(true);
             $table->timestamps();
         });

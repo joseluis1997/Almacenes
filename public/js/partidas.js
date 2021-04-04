@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
     numeroP: /^[0-9]{4,6}$/,
-	nombreP: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{1,50}[ ]?){1,50}$/,
+	nombreP: /^([a-zA-Z]{1}[,]?|[ ]?){2,}$/g,
 }
 
 const campos ={
@@ -14,11 +14,11 @@ const campos ={
 const validarFormulario = (e) =>{
     console.log(e.target.name);
    switch (e.target.name){
-    case "NOM_PARTIDA":
-        validarCampo(expresiones.nombreP,e.target,'nombreP');
-    break;
     case "NRO_PARTIDA":
         validarCampo(expresiones.numeroP,e.target,'numeroP');
+    break;
+    case "NOM_PARTIDA":
+        validarCampo(expresiones.nombreP,e.target,'nombreP');
     break;
    }
 }

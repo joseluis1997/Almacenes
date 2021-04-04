@@ -52,11 +52,11 @@ class FisicoValoradoStockAlmacenController extends Controller
 
     //dd($partidas[0]);
 
-    return view('admin.ResumenFisicoValoradoStockAlmacen.Reporte',[
-      'partidas'=>$partidas,
-    ]);
+    // return view('admin.ResumenFisicoValoradoStockAlmacen.Reporte',[
+    //   'partidas'=>$partidas,
+    // ]);
 
-    // $reportePDF = \PDF::loadView('admin.ResumenFisicoValoradoStockAlmacen.Reporte', compact('partidas'));
-    // return $reportePDF->download('RepResFisValoradoStockAlmacen.pdf');
+    $reportePDF = \PDF::loadView('admin.ResumenFisicoValoradoStockAlmacen.Reporte', compact('partidas')) ->setPaper('a4', 'landscape');;
+    return $reportePDF->download('RepResFisValoradoStockAlmacen.pdf');
   }
 }

@@ -13,10 +13,10 @@
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
-            Solo puede contener letras por Ej:Direccion de Recursos Humanos...
+            la partida no es correcta.
         </p>
     </div>
-<!-- Grupo: fecha Inicio -->
+{{-- <!-- Grupo: fecha Inicio -->
             <div class="formulario__grupo col-6" id="grupo__fechaInicio">
                 <label for="fechaInicio" class="formulario__label">Fecha Inicio</label>
                 <div class="formulario__grupo-input">
@@ -37,7 +37,7 @@
                 <p class="formulario__input-error">
                     El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
                 </p>
-            </div>
+            </div> --}}
 <!-- Grupo: Imprimir y Cancelar -->
             <div class="col-12 formulario__grupo formulario__btn-guardar text-center">
                 <a href="{{route('list_reportes')}}" class="btn formulario__btn2">Cancelar</a>

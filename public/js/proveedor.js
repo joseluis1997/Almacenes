@@ -2,10 +2,10 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	NIT: /^[0-9]{10,13}$/, 
-	NOMBRE: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,30}[ ]?)$/,
+	NIT: /^[0-9]{9,13}$/, 
+	NOMBRE: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,1}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{2,30}[ ]?){1,10}$/,
 	TELEFONO:/^[+]*[(]?[0-9]{1,4}[)]?[0-9-\s\.]+$/, 
-	// DIRECCION: /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)$/,
+	DIRECCION: /^([a-zA-Z]{1,30}[ ]?([0-9]{0,5}[ ]?)){1,30}$/,
 }
 
 const campos ={
@@ -27,9 +27,9 @@ const validarFormulario = (e) =>{
     case "TELEF_PROVEEDOR":
         validarCampo(expresiones.TELEFONO,e.target,'telefono');
     break;
-    // case "DIR_PROVEEDOR":
-    //     validarCampo(expresiones.DIRECCION,e.target,'direccion');
-    // break;
+    case "DIR_PROVEEDOR":
+        validarCampo(expresiones.DIRECCION,e.target,'direccion');
+    break;
    }
 }
 

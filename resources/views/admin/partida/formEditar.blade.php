@@ -50,6 +50,20 @@
              El nombre no es Correcto.
         </p>
     </div>
+{{-- descripcion --}}
+
+<div class="formulario__grupo" id="grupo__DescripcionP">
+    <label for="DescripcionP" class="formulario__label">Descripcion
+        <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Descripcion Partida" data-content="Solo puede contener letras,Descripcion de la partida ">?</a>
+    </label>
+    <div class="input-group">
+        <textarea class="form-control formulario__input" id="DescripcionP" name="DESCRIPCION" rows="3">{{ $partida->DESCRIPCION}}</textarea>
+        <i class="formulario__validacion-estado far fa-times-circle"></i>
+    </div>
+    <p class="formulario__input-error">
+        La descripcion no es correcta.
+    </p>
+</div>
 
 {{-- Grupo: Boton Cancelar y Modificar --}}
 	<div class="formulario__grupo formulario__btn-guardar text-center">

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Example 1</title>
+    <title>RepDeCom</title>
     <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
       .clearfix:after {
@@ -150,9 +150,9 @@
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
           </b>
-          UNIDAD DE ALMACENES CENTRAL
+          ALMACEN CENTRAL
           <br>
-          REPORTE DETALLADO DE INGRESOS STOCK DE ALMACEN
+          REPORTE DETALLADO DE COMPRAS
         </h1>
     </header>
     <main>
@@ -175,7 +175,7 @@
       @foreach($partidas as $partida)
         <table style="margin-bottom: 30px;" class="text-left">
           <tr>
-            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
+            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
           </tr>
           <tr>
             <th>FECHA</th>
@@ -227,10 +227,10 @@
         @endphp
       @endforeach
       
-      <div>
+ {{--      <div>
         <div>Articulos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
-      </div>
+      </div> --}}
     </main>
     <footer>
       Gobierno Autonomo Departamental de Tarija

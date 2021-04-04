@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Example 1</title>
+    <title>RepArCons</title>
     <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
       .clearfix:after {
@@ -41,7 +41,7 @@
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 2.0em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -155,8 +155,8 @@
         <h1>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
-          </b>
-          UNIDAD DE ALMACENES CENTRAL
+          </b><br>
+          ALMACEN CENTRAL
           <br>
           REPORTE POR AREAS DE LOS CONSUMOS DIRECTOS
         </h1>
@@ -243,7 +243,7 @@
       
       <div>
         <div>Monto Total: {{ number_format($TotalMonto, 2, '.', '') }}</div>
-        <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
+        {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
       </div>
     </main>
     <footer>

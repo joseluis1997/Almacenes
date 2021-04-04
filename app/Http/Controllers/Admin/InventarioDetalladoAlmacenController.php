@@ -62,16 +62,7 @@ class InventarioDetalladoAlmacenController extends Controller
     // dd($partidas[0]->Articulos);
 
 
-    return view('admin.ReporteInventarioDetalladoAlmacen.RepInventarioActualDetallado', [
-      'partidas'=> $partidas,
-      'partida_ok'=> $this->partida_ok,
-      'partida'=> $partida,
-      'fecha_ok'=> $this->fecha_ok,
-      'fecha_inicio'=> $fecha_inicio,
-      'fecha_fin'=> $fecha_fin,
-    ]);
-
-    // $reporteInventarioActual = \PDF::loadView('ReporteInventarioDetalladoAlmacen.RepInventarioActualDetallado', [
+    // return view('admin.ReporteInventarioDetalladoAlmacen.RepInventarioActualDetallado', [
     //   'partidas'=> $partidas,
     //   'partida_ok'=> $this->partida_ok,
     //   'partida'=> $partida,
@@ -80,8 +71,17 @@ class InventarioDetalladoAlmacenController extends Controller
     //   'fecha_fin'=> $fecha_fin,
     // ]);
 
+    $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioDetalladoAlmacen.RepInventarioActualDetallado', [
+      'partidas'=> $partidas,
+      'partida_ok'=> $this->partida_ok,
+      'partida'=> $partida, 
+      'fecha_ok'=> $this->fecha_ok,
+      'fecha_inicio'=> $fecha_inicio,
+      'fecha_fin'=> $fecha_fin,
+    ]);
+
     
-    // return $reporteInventarioActual->download('RepInventarioActualDetallado.pdf');
+    return $reporteInventarioActual->download('RepInventarioActualDetallado.pdf');
   }
 
 }

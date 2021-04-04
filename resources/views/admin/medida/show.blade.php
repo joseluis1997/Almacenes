@@ -6,12 +6,17 @@
     </div>
     <div class="card mt-2">
         <div class="card-body">
-	        <div class="panel-body"> 
-	        	<br>
-	        	Codigo:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $medidas->COD_MEDIDA }}</span><br>
-	        	Nombre:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $medidas->NOM_MEDIDA}}</span><br>
-	        	Descripcion:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $medidas->DESC_MEDIDA}}</span><br>
-	        	Estado:&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-info">{{ $medidas->ESTADO_MEDIDA}}</span>
+            <div class="panel-body"> 
+                <br>
+                <label class="formulario__label">Codigo:<span class="badge badge-info">{{ $medidas->COD_MEDIDA }}</span></label>
+                <label class="formulario__label">Nombre:<span class="badge badge-info">{{ $medidas->NOM_MEDIDA}}</span></label>
+                @if($medidas->ESTADO_MEDIDA)
+                        <label class="formulario__label">Estado Partida:<span class="badge badge-success">Habilitado</span></label>
+                    @else
+                        <label class="formulario__label">Estado Partida:<span class="badge badge-danger">Deshabilitado</span></label>
+                @endif
+                <label class="formulario__label">Descripcion:</label>
+                    <textarea class="form-control formulario__input" rows="5">{{ $medidas->DESC_MEDIDA}}</textarea>
             </div>
         </div>
 

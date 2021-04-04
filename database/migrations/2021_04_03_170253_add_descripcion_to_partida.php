@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImageUsersTable extends Migration
+class AddDescripcionToPartida extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddImageUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('imagen')->after('password')->nullable();
+        Schema::table('PARTIDA', function (Blueprint $table) {
+            $table->text('DESCRIPCION')->after('NRO_PARTIDA')->nullable();
         });
     }
 
@@ -25,6 +25,8 @@ class AddImageUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('partida', function (Blueprint $table) {
+            //
+        });
     }
 }

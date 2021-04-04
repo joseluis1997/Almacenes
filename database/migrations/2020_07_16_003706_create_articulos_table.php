@@ -24,10 +24,10 @@ class CreateArticulosTable extends Migration
             
             $table->foreign('FK_COD_MEDIDA')->references('COD_MEDIDA')->on('MEDIDA')->onDelete('cascade');
             
-            $table->string('NOM_ARTICULO',40)->unique();
+            $table->string('NOM_ARTICULO',100)->unique();
             $table->string('DESC_ARTICULO')->nullable();
-            $table->decimal('CANT_ACTUAL', 10, 2)->default('0');
-            $table->string('MARCA',40)->unique();
+            $table->string('CANT_ACTUAL', 10, 2)->default('0');
+            $table->string('MARCA',100);
             $table->boolean('ESTADO_ARTICULO')->default(true);
             $table->timestamps();
         });

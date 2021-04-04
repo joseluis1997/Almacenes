@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-	nombre: /^([A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ]{0,2}[a-zëïöüáéíóúáéíóúâêîôûàèìòù]{3,30}[ ]?){1}$/,
+	nombre: /^([a-zA-Z]{2,30}[ ]?){1}$/,
 }
 
 const campos ={

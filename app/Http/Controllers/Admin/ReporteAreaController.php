@@ -98,23 +98,46 @@ class ReporteAreaController extends Controller
     //dd($areas[0]);
 
     if ($consumo == 1) {
-    	return view('admin.ReporteArea.ReporteCD', [
-		    'areas'=> $areas,
-		    'area_ok'=> $this->area_ok,
-		    'area'=> $area,
-		    'fecha_ok'=> $this->fecha_ok,
-		    'fecha_inicio'=> $fecha_inicio,
-		    'fecha_fin'=> $fecha_fin,
-		  ]);
+
+      $repArCD = \PDF::loadView('admin.ReporteArea.ReporteCD', [
+        'areas'=> $areas,
+        'area_ok'=> $this->area_ok,
+        'area'=> $area,
+        'fecha_ok'=> $this->fecha_ok,
+        'fecha_inicio'=> $fecha_inicio,
+        'fecha_fin'=> $fecha_fin,
+    ])
+    ->setPaper('a4', 'landscape');
+    return $repArCD->download('ReporteAreaCD.pdf');
+
+    // 	return view('admin.ReporteArea.ReporteCD', [
+		  //   'areas'=> $areas,
+		  //   'area_ok'=> $this->area_ok,
+		  //   'area'=> $area,
+		  //   'fecha_ok'=> $this->fecha_ok,
+		  //   'fecha_inicio'=> $fecha_inicio,
+		  //   'fecha_fin'=> $fecha_fin,
+		  // ]);
     } else{
-    	return view('admin.ReporteArea.ReporteSL', [
-	      'areas'=> $areas,
-	      'area_ok'=> $this->area_ok,
-	      'area'=> $area,
-	      'fecha_ok'=> $this->fecha_ok,
-	      'fecha_inicio'=> $fecha_inicio,
-	      'fecha_fin'=> $fecha_fin,
-	    ]);
+
+       $repArSL = \PDF::loadView('admin.ReporteArea.ReporteSL', [
+        'areas'=> $areas,
+        'area_ok'=> $this->area_ok,
+        'area'=> $area,
+        'fecha_ok'=> $this->fecha_ok,
+        'fecha_inicio'=> $fecha_inicio,
+        'fecha_fin'=> $fecha_fin,
+    ])
+    ->setPaper('a4', 'landscape');
+    return $repArSL->download('ReporteAreaSL.pdf');
+    	// return view('admin.ReporteArea.ReporteSL', [
+	    //   'areas'=> $areas,
+	    //   'area_ok'=> $this->area_ok,
+	    //   'area'=> $area,
+	    //   'fecha_ok'=> $this->fecha_ok,
+	    //   'fecha_inicio'=> $fecha_inicio,
+	    //   'fecha_fin'=> $fecha_fin,
+	    // ]);
     }
 
     

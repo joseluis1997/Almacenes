@@ -43,7 +43,7 @@
         <div class=" col-lg-3 col-sm-3 col-md-3 col-xs-12">
             <div class="form-group">
                 <label for="preveedor"><b>Comprobante de  Compra</b></label>
-                <p>{{ $comprita->FACTURA}}</p>
+                <p>{{ $comprita->COMPROBANTE}}</p>
             </div>
         </div>
          <div class=" col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -78,7 +78,7 @@
                     <th>Total</th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">{{ $total }} Bs</h4></th>
+                    <th><h4 id="total">{{$total}}</h4></th>
                 </tfoot>
             </table>
         </div>

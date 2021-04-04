@@ -14,6 +14,10 @@
                         <p class="badge badge-light">{{ $consumoD->area->NOM_AREA }}</p>
                 </div>
                 <div class="form-group">
+                    <b>Proveedor:</b><br>
+                        <p class="badge badge-light">{{ $consumoD->proveedor->NOM_PROVEEDOR }}</p>
+                </div>
+                <div class="form-group">
                    
                 </div>
                 <div class="form-group">

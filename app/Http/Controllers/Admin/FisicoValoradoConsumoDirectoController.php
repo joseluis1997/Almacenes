@@ -46,9 +46,9 @@ class FisicoValoradoConsumoDirectoController extends Controller
       }]);
     }])->get();
     
-    return view('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
+    // return view('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
 
-    // $reporteInventarioActual = \PDF::loadView('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
-    // return $reporteInventarioActual->download('RepResFisValorDirect.pdf');
+    $reporteInventarioActual = \PDF::loadView('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
+    return $reporteInventarioActual->download('RepResFisValorDirect.pdf');
  }
 }

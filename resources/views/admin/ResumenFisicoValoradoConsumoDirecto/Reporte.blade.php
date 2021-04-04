@@ -41,7 +41,7 @@
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 2em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -144,8 +144,8 @@
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
-            UNIDAD DE ALMACEN CENTRAL<br>
-            CUADRO RESUMEN FISICO VALORADO CONSUMOS DIRECTOS
+            ALMACEN CENTRAL<br>
+            REPORTE FISICO VALORADO CONSUMOS DIRECTOS
         </h1>
 
     </header>
@@ -158,10 +158,10 @@
           $SubTotal =  0.00;
           $Total =  0.00;
         @endphp
-        <table style="margin-bottom: 30px;">
+        <table style="margin-bottom: 30px;" border="1">
           <thead>
             <tr style="padding: 10px 0px; background-color: #e0e0e0">
-              <th colspan="3" >Partida: {{$partida->NRO_PARTIDA}}</th>
+              <th colspan="3" >Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
               <th colspan="2">FISICOS</th>
               <th colspan="2">VALORADOS</th>
             </tr>
@@ -213,12 +213,12 @@
       @endforeach
       <div>
         <div>
-          <b>Consumo directo:</b>
+          <b>Consumo directo Total:</b>
           <p>
             Total: <b> {{$TotalMonto}} </b>
           </p>
         </div>
-        <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
+        {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
       </div>
     </main>
     <footer>

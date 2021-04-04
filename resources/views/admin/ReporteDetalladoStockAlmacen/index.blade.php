@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Reporte Detallado De Ingresos Por Stock de Almacén</b></h3> 
+                    <h3 class="card-title"><b>Reporte Detallado De Compras</b></h3> 
                 </div>
             </div>
         </div>

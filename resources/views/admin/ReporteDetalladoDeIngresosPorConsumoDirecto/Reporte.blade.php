@@ -41,7 +41,7 @@
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 2.0em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -121,7 +121,8 @@
       }
 
       table td.grand {
-        border-top: 1px solid #5D6975;;
+        border-top: 1px solid #5D6975;
+        text-align: center;
       }
 
       #notices .notice {
@@ -146,14 +147,14 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h3>
+        <h1>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
           </b><br>
-          UNIDAD DE ALMACENES CENTRAL
+          ALMACEN CENTRAL
           <br>
           REPORTE DETALLADO CONSUMOS DIRECTOS
-        </h3>
+        </h1>
     </header>
     <main>
       <div>
@@ -175,7 +176,7 @@
       @foreach($partidas as $partida)
         <table style="margin-bottom: 30px;" class="text-left">
           <tr>
-            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
+            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
           </tr>
           <tr>
             <th>FECHA</th>
@@ -197,15 +198,15 @@
               @endphp
               @foreach($articulo->ConsumosDirectos as $consumo)
                 <tr>
-                  <td>{{$consumo->FECHA}}</td>
-                  <td>{{$consumo->COD_CONSUMO_DIRECTO}}</td>
-                  <td>{{$consumo->NRO_PREVENTIVO}}</td>
-                  <td>{{$consumo->Area->NOM_AREA}}</td>
-                  <td>{{$partida->NRO_PARTIDA}} - {{$indexA+1}}</td>
-                  <td>{{$articulo->NOM_ARTICULO}}</td>
-                  <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
-                  <td>{{number_format($consumo->pivot->CANTIDAD, 2, '.', '')}}</td>
-                  <td>{{number_format($consumo->pivot->PRECIO_UNITARIO, 2, '.', '')}}</td>
+                  <td class="inf">{{$consumo->FECHA}}</td>
+                  <td class="inf">{{$consumo->COD_CONSUMO_DIRECTO}}</td>
+                  <td class="inf">{{$consumo->NRO_PREVENTIVO}}</td>
+                  <td class="inf">{{$consumo->Area->NOM_AREA}}</td>
+                  <td class="inf">{{$partida->NRO_PARTIDA}} - {{$indexA+1}}</td>
+                  <td class="inf">{{$articulo->NOM_ARTICULO}}</td>
+                  <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
+                  <td class="inf">{{number_format($consumo->pivot->CANTIDAD, 2, '.', '')}}</td>
+                  <td class="inf">{{number_format($consumo->pivot->PRECIO_UNITARIO, 2, '.', '')}}</td>
                   @php
                     $SubTotal =  $consumo->pivot->CANTIDAD * $consumo->pivot->PRECIO_UNITARIO;
                     $Total =  $Total+$SubTotal;
@@ -227,10 +228,10 @@
         @endphp
       @endforeach
       
-      <div>
+  {{--     <div>
         <div>Reporte Detallado Consumos Directos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
-      </div>
+      </div> --}}
     </main>
     <footer>
       Gobierno Autonomo Departamental de Tarija

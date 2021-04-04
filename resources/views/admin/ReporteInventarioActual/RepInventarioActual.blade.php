@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Example 1</title>
+    <title>RepInvAct</title>
     <style type="text/css">
       .clearfix:after {
         content: "";
@@ -40,7 +40,7 @@
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 2em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -97,12 +97,12 @@
 
       table .inf,
       table .desc {
-        text-align: left;
+        text-align: center;
       }
 
       table td {
         padding: 20px 0px;
-        text-align: right;
+        text-align: center;
       }
 
       table td.service,
@@ -142,9 +142,9 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b>
-            UNIDAD DE ALMACENES CENTRAL<br>
-            INVENTARIO ACTUAL DE ALMACEN
+        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
+            ALMACEN CENTRAL<br>
+            INVENTARIO ACTUAL
         </h1>
 
     </header>
@@ -154,10 +154,10 @@
           $SubTotal =  0.00;
           $Total =  0.00;
         @endphp
-        <table style="margin-bottom: 30px;">
+        <table style="margin-bottom: 30px;" border="1">
           <thead>
             <tr>
-              <th colspan="5" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}</th>
+              <th colspan="5" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}| {{ $partida->NOM_PARTIDA }}</th>
             </tr>
             <tr>
               <th>ITEM</th>
@@ -208,10 +208,10 @@
         @endphp
       @endforeach
       
-      <div>
+     {{--  <div>
         <div>Articulos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
-      </div>
+      </div> --}}
     </main>
     <footer>
       Gobierno Autonomo Departamental de Tarija
