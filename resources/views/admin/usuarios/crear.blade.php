@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section('contenido')
-
+     {{-- @include('admin.PuntodeReorden.PuntodeReorden') --}}
     <div class="title">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -13,9 +13,10 @@
                 </ul>
             </div>
         @endif
+
         <h1 align="center"><b>Nuevo Usuario</b></h1>
     </div>
-
+   
     <div class="card mt-2">
         <div class="card-body">
             <form  action="{{ route('store_users')}}"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Articulo;
 use App\Partida;
 use DB;
+use Carbon\Carbon;
 
 class ConsolidadoFisicoValoradoTotalController extends Controller
 {
@@ -25,6 +26,9 @@ class ConsolidadoFisicoValoradoTotalController extends Controller
 
   public function RepConsolidadoValoradoTotal(Request $request){
     $cod_partida = $request->get('partida');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
     $partida = null;
 
     if($cod_partida != null && $cod_partida > 0){
@@ -55,7 +59,17 @@ class ConsolidadoFisicoValoradoTotalController extends Controller
     //   'partidas'=>$partidas,
     // ]);
 
-    $reportePDF = \PDF::loadView('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal', compact('partidas'));
-    return $reportePDF->download('RepResFisValorTotal.pdf');
+
+    if($option == 1){
+      $reportePDF = \PDF::loadView('admin.ReporteConsolidadoValoradoTotal.RepConsolidadoValTotal', compact('partidas','mytime'));
+      return $reportePDF->download('RepResFisValorTotal.pdf');
+    }else if($option == 2){
+      return view('admin.ReporteConsolidadoValoradoTotal.show',[
+      'partidas'=>$partidas,
+      'mytime'=> $mytime,
+      ]);
+    }else{
+       return redirect()->route('list_ConsolidadoFisicoValoradoTotal')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);
+    }
   }
 }

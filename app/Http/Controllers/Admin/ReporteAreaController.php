@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Partida;
 use App\Area;
+use Carbon\Carbon;
 
 class ReporteAreaController extends Controller
 {
@@ -26,6 +27,9 @@ class ReporteAreaController extends Controller
   public function createReport(Request $request){
     $cod_area = $request->get('area');
     $consumo = $request->get('consumo');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
     $area = null;
 
     if($cod_area != null && $cod_area > 0){
@@ -96,61 +100,57 @@ class ReporteAreaController extends Controller
     
 
     //dd($areas[0]);
-
-    if ($consumo == 1) {
-
-      $repArCD = \PDF::loadView('admin.ReporteArea.ReporteCD', [
+    if($option == 1){
+      if($consumo == 1){
+        $repArCD = \PDF::loadView('admin.ReporteArea.ReporteCD', [
         'areas'=> $areas,
         'area_ok'=> $this->area_ok,
         'area'=> $area,
         'fecha_ok'=> $this->fecha_ok,
         'fecha_inicio'=> $fecha_inicio,
         'fecha_fin'=> $fecha_fin,
+        'mytime'=> $mytime,
     ])
     ->setPaper('a4', 'landscape');
     return $repArCD->download('ReporteAreaCD.pdf');
-
-    // 	return view('admin.ReporteArea.ReporteCD', [
-		  //   'areas'=> $areas,
-		  //   'area_ok'=> $this->area_ok,
-		  //   'area'=> $area,
-		  //   'fecha_ok'=> $this->fecha_ok,
-		  //   'fecha_inicio'=> $fecha_inicio,
-		  //   'fecha_fin'=> $fecha_fin,
-		  // ]);
-    } else{
-
-       $repArSL = \PDF::loadView('admin.ReporteArea.ReporteSL', [
+      }else{
+        $repArSL = \PDF::loadView('admin.ReporteArea.ReporteSL', [
         'areas'=> $areas,
         'area_ok'=> $this->area_ok,
         'area'=> $area,
         'fecha_ok'=> $this->fecha_ok,
         'fecha_inicio'=> $fecha_inicio,
         'fecha_fin'=> $fecha_fin,
-    ])
+        'mytime'=> $mytime,
+      ])
     ->setPaper('a4', 'landscape');
     return $repArSL->download('ReporteAreaSL.pdf');
-    	// return view('admin.ReporteArea.ReporteSL', [
-	    //   'areas'=> $areas,
-	    //   'area_ok'=> $this->area_ok,
-	    //   'area'=> $area,
-	    //   'fecha_ok'=> $this->fecha_ok,
-	    //   'fecha_inicio'=> $fecha_inicio,
-	    //   'fecha_fin'=> $fecha_fin,
-	    // ]);
+      }
+    }else if ($option == 2) {
+      if($consumo == 1){
+        return view('admin.ReporteArea.showCD', [
+          'areas'=> $areas,
+          'area_ok'=> $this->area_ok,
+          'area'=> $area,
+          'fecha_ok'=> $this->fecha_ok,
+          'fecha_inicio'=> $fecha_inicio,
+          'fecha_fin'=> $fecha_fin,
+          'mytime'=> $mytime,
+        ]);
+      }else{
+        return view('admin.ReporteArea.showSL', [
+          'areas'=> $areas,
+          'area_ok'=> $this->area_ok,
+          'area'=> $area,
+          'fecha_ok'=> $this->fecha_ok,
+          'fecha_inicio'=> $fecha_inicio,
+          'fecha_fin'=> $fecha_fin,
+          'mytime'=> $mytime,
+        ]);
+      }
+    }else{
+      return redirect()->route('list_area_egresos_salidas')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);
     }
-
     
-
-    // $reporteInventarioActual = \PDF::loadView('admin.ReporteArea.ReporteCD', [
-    //   'areas'=> $areas,
-    //   'area_ok'=> $this->area_ok,
-    //   'partida'=> $partida,
-    //   'fecha_ok'=> $this->fecha_ok,
-    //   'fecha_inicio'=> $fecha_inicio,
-    //   'fecha_fin'=> $fecha_fin,
-    // ])
-    // ->setPaper('a4', 'landscape');
-    // return $reporteInventarioActual->download('ReporteArea.pdf');
   }
 }

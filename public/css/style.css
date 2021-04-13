@@ -792,3 +792,11 @@ ul.dropdown-menu.inner
     pointer-events: none;
     cursor: default;
 }
+
+.logo{
+  position:relative;
+  left:45%;
+  width:10%;
+  /*height:20%;*/
+}
+

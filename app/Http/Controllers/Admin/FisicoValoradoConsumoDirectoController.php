@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Articulo;
 use App\Partida;
+use Carbon\Carbon;
+
 use DB;
 
 class FisicoValoradoConsumoDirectoController extends Controller
@@ -23,6 +25,9 @@ class FisicoValoradoConsumoDirectoController extends Controller
   public function createReport(Request $request){
 
     $cod_partida = $request->get('partida');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
     $partida = null;
 
     if($cod_partida != null && $cod_partida > 0){
@@ -48,7 +53,14 @@ class FisicoValoradoConsumoDirectoController extends Controller
     
     // return view('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
 
-    $reporteInventarioActual = \PDF::loadView('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas'));
-    return $reporteInventarioActual->download('RepResFisValorDirect.pdf');
+    if($option ==1){
+      $reporteInventarioActual = \PDF::loadView('admin.ResumenFisicoValoradoConsumoDirecto.Reporte', compact('partidas','mytime'));
+      return $reporteInventarioActual->download('RepResFisValorDirect.pdf');
+    }else if($option == 2){
+      return view('admin.ResumenFisicoValoradoConsumoDirecto.show', compact('partidas','mytime'));
+    }else{
+      return redirect()->route('list_FisicoValoradoConsumoDirecto')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);
+    }
+
  }
 }

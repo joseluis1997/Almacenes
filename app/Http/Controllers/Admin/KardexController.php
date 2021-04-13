@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Articulo;
+use Carbon\Carbon;
 
 class KardexController extends Controller
 {
@@ -18,6 +19,9 @@ class KardexController extends Controller
   public $articulo_ok = FALSE;
   public function kardex(Request $request){
     $cod_articulo = $request->get('articulo');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
 
     $articulo = null;
 
@@ -49,10 +53,22 @@ class KardexController extends Controller
 
     // dd($collections);
 
-    // $kardex = \PDF::loadView('admin.Kardex.kardex')
-    // ->setPaper('a4', 'landscape');
-    // return $kardex->download('kardex.pdf');
 
-    return view('admin.Kardex.kardex', compact('collections', 'articulo'));
+
+    if($option == 1){
+      $kardex = \PDF::loadView('admin.Kardex.kardex',[
+        'collections' => $collections,
+        'articulo' => $articulo,
+        'mytime'=> $mytime,
+      ])
+      ->setPaper('a4', 'landscape');
+      return $kardex->download('kardex.pdf');
+    }else if($option == 2){
+      return view('admin.Kardex.show', compact('collections', 'articulo','mytime'));
+    }else{
+      return redirect()->route('list_kardexAlmacen')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);
+    }
+
+    // return view('admin.Kardex.kardex', compact('collections', 'articulo'));
   }
 }

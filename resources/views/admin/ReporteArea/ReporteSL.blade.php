@@ -149,9 +149,9 @@
   </head>
   <body>
     <header class="clearfix">
-    <div id="logo">
-        <img src="{{ public_path('images/GobernacionLogo.png') }}">
-    </div>
+        <div id="logo">
+            <img src="{{ public_path('images/GobernacionLogo.png') }}">
+        </div>
         <h1>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
@@ -160,6 +160,10 @@
           <br>
           REPORTE POR AREAS DE LAS SALIDAS
         </h1>
+        <div class="card-body">
+            <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
+            <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+        </div>
     </header>
     <main>
       <div>

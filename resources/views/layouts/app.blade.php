@@ -4,6 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <TITLE>Sigadet</TITLE>
+    {{--     <script type="text/javascript">
+            setTimeout("document.location=document.location", 1000);
+        </script> --}}
 
         <!-- bootstrap datatables -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -45,7 +48,28 @@
                     <div class="SIDEBAR-BTN">
                         <i class="fas fa-bars"></i>
                     </div>
+
                     <ul>
+                    <li>
+                        <div class="dropdown-container">
+
+              <div class="dropdown-toolbar">
+                <div class="dropdown-toolbar-actions">
+                  <a href="#">Mark all as read</a>
+                </div>
+                <h3 class="dropdown-toolbar-title">Notifications (2)</h3>
+              </div><!-- /dropdown-toolbar -->
+
+              <ul class="dropdown-menu">
+                  ...
+              </ul>
+
+              <div class="dropdown-footer text-center">
+                <a href="#">View All</a>
+              </div><!-- /dropdown-footer -->
+
+            </div><!-- /dropdown-container -->
+                    </li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="fas fa-power-off">
@@ -176,12 +200,13 @@
 
                 <div class="alert alert-success alert-{{ session('message')[0] }}" role="alert">
                  {{ session('message')[1] }}
-                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                  </button>
                 </div>
                 @endif
                 @yield('contenido')
+
             </div>
             <!--main container end-->
         </div>
@@ -193,6 +218,12 @@
                 $(".WRAPPER").toggleClass("COLLAPSE");
             });
          });
+    </script>
+
+    <script type="text/javascript">
+      function actualizar(){location.reload(true);}
+    //Función para actualizar cada 4 segundos(4000 milisegundos)
+      setInterval("actualizar()",5000);
     </script>
 
 <!-- scripts datatable -->

@@ -16,6 +16,18 @@
             la partida no es correcta.
         </p>
     </div>
+ <!-- Grupo: Egresos y Salidas -->
+    <div class="formulario__grupo col-12" id="grupo__partidaPresupuestaria">
+        <label for="Consumo" class="formulario__label">Seleccione: Imprimir o Consultar</label>
+        <div class="formulario__grupo-input">
+          <select name="option" class="form-control" id="option" required>
+            <option value="0">Seleccione una Opcion</option>
+            <option value="1">Imprimir</option>
+            <option value="2">Consultar</option>
+          </select>
+          <i class="formulario__validacion-estado far fa-times-circle"></i>
+        </div>
+    </div> 
 {{-- <!-- Grupo: fecha Inicio -->
             <div class="formulario__grupo col-6" id="grupo__fechaInicio">
                 <label for="fechaInicio" class="formulario__label">Fecha Inicio</label>

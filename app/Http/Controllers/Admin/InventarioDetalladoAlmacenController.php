@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Partida;
+use Carbon\Carbon;
 
 class InventarioDetalladoAlmacenController extends Controller
 {
@@ -23,6 +24,9 @@ class InventarioDetalladoAlmacenController extends Controller
   public $fecha_ok = FALSE;
   public function createReport(Request $request){
     $cod_partida = $request->get('partida');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
     $partida = null;
     if($cod_partida != null && $cod_partida > 0){
       $this->partida_ok = TRUE;
@@ -71,17 +75,30 @@ class InventarioDetalladoAlmacenController extends Controller
     //   'fecha_fin'=> $fecha_fin,
     // ]);
 
-    $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioDetalladoAlmacen.RepInventarioActualDetallado', [
+    if($option == 1){
+      $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioDetalladoAlmacen.RepInventarioActualDetallado', [
       'partidas'=> $partidas,
       'partida_ok'=> $this->partida_ok,
       'partida'=> $partida, 
       'fecha_ok'=> $this->fecha_ok,
       'fecha_inicio'=> $fecha_inicio,
       'fecha_fin'=> $fecha_fin,
+      'mytime'=>$mytime,
     ]);
-
-    
-    return $reporteInventarioActual->download('RepInventarioActualDetallado.pdf');
+      return $reporteInventarioActual->download('RepInventarioActualDetallado.pdf');
+    }else if($option==2){
+      return view('admin.ReporteInventarioDetalladoAlmacen.show', [
+      'partidas'=> $partidas,
+      'partida_ok'=> $this->partida_ok,
+      'partida'=> $partida, 
+      'fecha_ok'=> $this->fecha_ok,
+      'fecha_inicio'=> $fecha_inicio,
+      'fecha_fin'=> $fecha_fin,
+      'mytime'=>$mytime,
+    ]);
+    }else{
+      return redirect()->route('list_InventarioDetalladoAlmacen')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);;
+    }
   }
 
 }

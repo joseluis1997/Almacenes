@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Articulo;
 use App\Partida;
 use DB;
+use Carbon\Carbon;
+
 
 class FisicoValoradoStockAlmacenController extends Controller
 {
@@ -24,6 +26,10 @@ class FisicoValoradoStockAlmacenController extends Controller
   public $partida_ok = FALSE;
   public function createReport(Request $request){
     $cod_partida = $request->get('partida');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
+
     $partida = null;
 
     if($cod_partida != null && $cod_partida > 0){
@@ -55,8 +61,16 @@ class FisicoValoradoStockAlmacenController extends Controller
     // return view('admin.ResumenFisicoValoradoStockAlmacen.Reporte',[
     //   'partidas'=>$partidas,
     // ]);
-
-    $reportePDF = \PDF::loadView('admin.ResumenFisicoValoradoStockAlmacen.Reporte', compact('partidas')) ->setPaper('a4', 'landscape');;
-    return $reportePDF->download('RepResFisValoradoStockAlmacen.pdf');
+    if($option == 1){
+      $reportePDF = \PDF::loadView('admin.ResumenFisicoValoradoStockAlmacen.Reporte', compact('partidas','mytime')) ->setPaper('a4', 'landscape');;
+      return $reportePDF->download('RepResFisValoradoStockAlmacen.pdf');
+    }else if($option == 2){
+        return view('admin.ResumenFisicoValoradoStockAlmacen.show',[
+        'partidas'=>$partidas,
+        'mytime'=> $mytime,
+        ]);
+    }else{
+      return redirect()->route('list_FisicoValoradoStockAlmacen')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);
+    }
   }
 }

@@ -135,6 +135,10 @@
         padding: 8px 0;
         text-align: center;
       }
+      h5{
+          font-size: 12px;
+          
+      }
     </style>
   </head>
   <body>
@@ -146,7 +150,11 @@
             ALMACEN CENTRAL<br>
             INVENTARIO ACTUAL
         </h1>
-
+        <div class="card-body">
+          <h5>Reporte Generado por el Usuario: {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
+          {{-- <h5>CI: {{auth()->user()->CI}}</h5> --}}
+          <h5>Fecha y Hora: {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+        </div>
     </header>
     <main>
       @foreach($partidas as $partida)

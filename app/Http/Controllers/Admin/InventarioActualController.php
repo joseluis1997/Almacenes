@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Articulo;
 use App\Partida;
+use DateTime;
+use \Carbon\Carbon;
 use DB;
 
 class InventarioActualController extends Controller
@@ -16,9 +20,21 @@ class InventarioActualController extends Controller
     return view('admin.ReporteInventarioActual.index', compact('partidas'));
   }
 
+
   public $partida_ok = FALSE;
+
   public function createReport(Request $request){
+
+    
     $cod_partida = $request->get('partida');
+    $option = $request->get('option');
+
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
+
+    // $mytime = Carbon::now();
+    // $mytime->toRfc850String();
+
     $partida = null;
 
     if($cod_partida != null && $cod_partida > 0){
@@ -46,48 +62,12 @@ class InventarioActualController extends Controller
 
    	//dd($partidas);
 
-    // return view('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas'));
+    if($option == 1){
+      $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas','mytime'));
+      return $reporteInventarioActual->download('RepInventarioActual.pdf');
+    }else{
+      return view('admin.ReporteInventarioActual.showInvActu', compact('partidas','mytime'));
+    }
 
-    $reporteInventarioActual = \PDF::loadView('admin.ReporteInventarioActual.RepInventarioActual', compact('partidas'));
-    return $reporteInventarioActual->download('RepInventarioActual.pdf');
-  }
-
-  public function createReportRespaldo(Request $request){
-    // $partidas = Partida::with(['Articulos' => function($query) {
-    //     $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, SUM(CANTIDAD*PRECIO_UNITARIO) as total FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
-    //         $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
-    //     });
-    // }])->get();
-
-    // $partidas = Partida::with(['Articulos' => function($query) {
-    //     $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, COUNT(CANTIDAD) as total_cantidad, SUM(PRECIO_UNITARIO) as total_precio FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
-    //         $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
-    //     });
-    // }])->get();
-
-    //   $partidas = Partida::where('COD_PARTIDA', '=' , )->with(['Articulos' => function($query) {
-    //     $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, COUNT(CANTIDAD) as total_cantidad, SUM(PRECIO_UNITARIO) as total_precio FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
-    //         $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
-    //     });
-    // }])->get();
-    // $partidas = Partida::with(['Articulos' => function($query) {
-    //   $query->leftJoin(DB::raw('(SELECT COD_ARTICULO, COUNT(CANTIDAD) as total_cantidad, SUM(PRECIO_UNITARIO) as total_precio FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
-    //       $join->on('detalle.COD_ARTICULO', '=', 'ARTICULO.COD_ARTICULO');
-    //   });
-    // }])->get();
-
-    // $partidas = Partida::with(['Articulos' => function($query) {
-    //     $query->with(['ComprasStocks' => function($query2) {
-    //      $query2->orderBy('COD_COMPRA_STOCK', 'desc');
-    //     }]);
-    // }])->get();
-
-    // dd($partidas[0]->Articulos);
-
-    // TODO => Consulta para sacar solo de un articulo
-    // $articulos = Articulo::leftJoin(DB::raw('(SELECT COD_ARTICULO as CD, SUM(CANTIDAD*PRECIO_UNITARIO) as total FROM DETALLE_COMPRA_STOCK GROUP BY COD_ARTICULO) as detalle'), function ($join) {
-    //         $join->on('detalle.CD', '=', 'ARTICULO.COD_ARTICULO');
-    //         $join->where('detalle.CD','=',1) ;
-    //     })->where('COD_ARTICULO','=',1)->get();
   }
 }

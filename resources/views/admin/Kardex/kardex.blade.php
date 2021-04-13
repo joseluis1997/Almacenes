@@ -110,8 +110,11 @@
           <br>
           	Kardex de Articulo
         </h1>
+        <div class="card-body">
+            <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
+            <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+        </div>
     </header>
-        <main>
       <table  class="default">
           <tr>
             <th>Articulo:</th>
@@ -229,7 +232,6 @@
             </tr>
           @endif
         @endforeach
-
       </table>     
 </body>
 </html>

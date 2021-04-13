@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('contenido')
-  <div class="container">
+<div class="container">
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-         <div class="card mt-2">
+        <div class="card mt-2">
             <div class="card-body">
             <form  action="{{ route('create_report_ReporteDetalladoIngresosConsumoDirecto') }}"  id="formulario" class="formulario" method="POST" enctype="multipart/form-data">
                 @csrf

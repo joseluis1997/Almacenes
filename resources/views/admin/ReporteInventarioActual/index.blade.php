@@ -18,7 +18,6 @@
                     @csrf
                     
                     @include('admin.ReporteInventarioActual.form')
-                  
                 </form>
                 </div>
             </div>

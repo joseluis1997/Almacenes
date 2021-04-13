@@ -1,16 +1,28 @@
  <!-- Grupo: Partida Presupuestaria -->
-            <div class="formulario__grupo" id="grupo__partidaPresupuestaria">
-                <label for="Partida" class="formulario__label">Partida Presupuestaria</label>
-                <div class="formulario__grupo-input">
-                  <select name="partida" class="form-control" id="Partida" required>
-                    <option value="0">Todas las partidas</option>
-                    @foreach ($partidas as $partida)
-                      <option value="{{ $partida->COD_PARTIDA }}">{{$partida->NRO_PARTIDA}} | {{$partida->NOM_PARTIDA}}</option>
-                    @endforeach
-                  </select>
-                  <i class="formulario__validacion-estado far fa-times-circle"></i>
-                </div>
-            </div>
+<div class="formulario__grupo" id="grupo__partidaPresupuestaria">
+    <label for="Partida" class="formulario__label"><b class="colorAste">*</b>&nbsp;Partida Presupuestaria</label>
+    <div class="formulario__grupo-input">
+      <select name="partida" class="form-control" id="Partida" required>
+        <option value="0">Todas las partidas</option>
+        @foreach ($partidas as $partida)
+          <option value="{{ $partida->COD_PARTIDA }}">{{$partida->NRO_PARTIDA}} | {{$partida->NOM_PARTIDA}}</option>
+        @endforeach
+      </select>
+      <i class="formulario__validacion-estado far fa-times-circle"></i>
+    </div>
+</div>
+{{-- Grupo: Option --}}
+<div class="formulario__grupo" id="grupo__partidaPresupuestaria">
+    <label for="Consumo" class="formulario__label"><b class="colorAste">*</b>&nbsp;Seleccione: Imprimir o Consultar</label>
+    <div class="formulario__grupo-input">
+      <select name="option" class="form-control" id="Consumo" required>
+        <option value="0">Seleccione una Opcion</option>
+        <option value="1">Imprimir</option>
+        <option value="2">Consultar</option>
+      </select>
+      <i class="formulario__validacion-estado far fa-times-circle"></i>
+    </div>
+</div> 
 
 {{-- <!-- Grupo: fecha Final -->
             <div class="formulario__grupo" id="grupo__fechafinal">

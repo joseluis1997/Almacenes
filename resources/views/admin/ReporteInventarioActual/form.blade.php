@@ -16,8 +16,20 @@
         Solo puede contener letras por Ej:Direccion de Recursos Humanos...
     </p>
 </div>
+ <!-- Grupo: Egresos y Salidas -->
+    <div class="formulario__grupo" id="grupo__partidaPresupuestaria">
+        <label for="Consumo" class="formulario__label">Seleccione: Imprimir o Consultar</label>
+        <div class="formulario__grupo-input">
+          <select name="option" class="form-control" id="option" required>
+            <option value=" ">Seleccione una Opcion</option>
+            <option value="1">Imprimir</option>
+            <option value="2">Consultar</option>
+          </select>
+          <i class="formulario__validacion-estado far fa-times-circle"></i>
+        </div>
+    </div>   
 <!-- Grupo: Imprimir y Cancelar -->
 <div class="formulario__grupo formulario__btn-guardar text-center">
     <a href="{{route('list_reportes')}}" class="btn formulario__btn2">Cancelar</a>
-    <button type="submit" class="formulario__btn1">Imprimir</button>
+    <button type="submit" class="formulario__btn1">Aceptar</button>
 </div>

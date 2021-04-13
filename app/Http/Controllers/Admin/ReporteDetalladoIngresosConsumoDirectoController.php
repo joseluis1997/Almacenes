@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Partida;
 use App\Area;
+use Carbon\Carbon;
+
 
 class ReporteDetalladoIngresosConsumoDirectoController extends Controller
 {
@@ -25,6 +27,9 @@ class ReporteDetalladoIngresosConsumoDirectoController extends Controller
   
   public function createReport(Request $request){
     $cod_partida = $request->get('partida');
+    $option = $request->get('option');
+    $mytime = Carbon::now();
+    $mytime->toDateTimeString();
     $partida = null;
     if($cod_partida != null && $cod_partida > 0){
       $this->partida_ok = TRUE;
@@ -78,16 +83,30 @@ class ReporteDetalladoIngresosConsumoDirectoController extends Controller
     //   'fecha_inicio'=> $fecha_inicio,
     //   'fecha_fin'=> $fecha_fin,
     // ]);
-
-    $reporteInventarioActual = \PDF::loadView('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.Reporte', [
+    if($option == 1){
+      $reporteInventarioActual = \PDF::loadView('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.Reporte', [
       'partidas'=> $partidas,
       'partida_ok'=> $this->partida_ok,
       'partida'=> $partida,
       'fecha_ok'=> $this->fecha_ok,
       'fecha_inicio'=> $fecha_inicio,
       'fecha_fin'=> $fecha_fin,
-    ])
-    ->setPaper('a4', 'landscape');
-    return $reporteInventarioActual->download('ReporteDetalladoDeIngresosPorConsumoDirecto.pdf');
+      'mytime'=>$mytime,
+    ])->setPaper('a4', 'landscape');
+      return $reporteInventarioActual->download('ReporteDetalladoDeIngresosPorConsumoDirecto.pdf');
+    }else if($option == 2){
+      return view('admin.ReporteDetalladoDeIngresosPorConsumoDirecto.show', [
+      'partidas'=> $partidas,
+      'partida_ok'=> $this->partida_ok,
+      'partida'=> $partida,
+      'fecha_ok'=> $this->fecha_ok,
+      'fecha_inicio'=> $fecha_inicio,
+      'fecha_fin'=> $fecha_fin,
+      'mytime'=> $mytime,
+    ]);
+    }else{
+      return redirect()->route('list_ReporteDetalladoIngresosConsumoDirecto')->with('message', ['danger', 'Error, Debe Seleccionar una Opcion']);
+    }
+    
   }
 }

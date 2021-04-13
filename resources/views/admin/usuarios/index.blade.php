@@ -1,10 +1,10 @@
 @extends('layouts.app')
-
 @section('contenido')
   <div class="container">
     <div class="card fondoDT">
+         @include('admin.PuntodeReorden.PuntodeReorden')
         <div class="card-header">
-            <d1iv class="row">
+            <div class="row">
                 <div class="col-md-11">
                     <h3 class="card-title"><b>Gestion Usuarios</b></h3> 
                 </div>
@@ -158,6 +158,7 @@
   
 @endsection('contenido')
 
+
 @section('scripts')
     <script type="text/javascript">
 
@@ -177,6 +178,12 @@
                 },
             });
         } );
+
+        $(document).ready(function() {
+            $('#closeButton').on('click', function(e) { 
+                $('#previewBox').remove(); 
+            });
+        });
 
         function submitForm(event, estado,form) { 
             event.preventDefault();

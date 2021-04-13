@@ -150,14 +150,18 @@
             ALMACEN CENTRAL<br>
             INVENTARIO ACTUAL DETALLADO
         </h1>
+        <div class="card-body">
+            <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
+            <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+        </div>
     </header>
     <main>
       <div>
-        @if($partida_ok)
+        {{-- @if($partida_ok)
         <p>
           <b>PARTIDA: </b> {{$partida}}
         </p>
-        @endif
+        @endif --}}
         @if($fecha_ok)
         <p>
           <b>
@@ -172,7 +176,9 @@
         <table style="margin-bottom: 30px;" border="1">
           <thead>
             <tr>
-              <th colspan="6" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
+              <th colspan="6" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0; font-weight: bold;">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}
+                <p style="font-weight: normal;">Descripcion:{{$partida->DESCRIPCION}}</p>
+              </th>
             </tr>
             <tr>
               <th>NRO</th>

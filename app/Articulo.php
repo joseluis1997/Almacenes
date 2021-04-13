@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Articulo extends Model
+class Articulo extends Model implements Auditable
 {
+    use AuditingAuditable;
     protected $table = 'ARTICULO';
 
     protected $primaryKey = 'COD_ARTICULO';

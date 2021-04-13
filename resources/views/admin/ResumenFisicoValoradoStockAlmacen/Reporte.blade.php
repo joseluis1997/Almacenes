@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>RFVCD</title>
+    <title>RFVC</title>
     <style type="text/css">
       .clearfix:after {
         content: "";
@@ -139,12 +139,12 @@
   </head>
   <body>
     <header class="clearfix">
-    <div id="logo">
-        <img src="{{ public_path('images/GobernacionLogo.png') }}">
-    </div>
+      <div id="logo">
+          <img src="{{ public_path('images/GobernacionLogo.png') }}">
+      </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             ALMACEN CENTRAL<br>
-            REPORTE FISICO VALORADO STOCK ALMACEN
+            REPORTE FISICO VALORADO COMPRAS
         </h1>
 
     </header>

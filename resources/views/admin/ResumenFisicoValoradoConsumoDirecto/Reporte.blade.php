@@ -147,7 +147,10 @@
             ALMACEN CENTRAL<br>
             REPORTE FISICO VALORADO CONSUMOS DIRECTOS
         </h1>
-
+        <div class="card-body">
+          <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
+          <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+        </div>
     </header>
     <main>
       @php
@@ -184,8 +187,8 @@
                 <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
                 <td class="inf">{{$articulo->total_cantidad}}</td>
                 <td class="inf">{{$articulo->total_cantidad}}</td>
-                <td class="inf">{{$articulo->total}}</td>
-                <td class="inf">{{$articulo->total}}</td>
+                <td class="inf">Bs/ {{$articulo->total}}</td>
+                <td class="inf">Bs/ {{$articulo->total}}</td>
                 @php
                   if($articulo->total_cantidad <= 0){
                     $SubTotal = 0;

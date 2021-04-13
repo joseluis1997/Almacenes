@@ -83,47 +83,24 @@
         background: #F5F5F5;
       }
 
-      table th,
-      table td {
-        text-align: center;
-      }
-
+ 
       table th {
         padding: 5px 0px;
-        color: #5D6975;
+        color:black;
         border-bottom: 1px solid #C1CED9;
         white-space: nowrap;        
-        font-weight: normal;
+        font-weight: bold;
       }
 
-      table .inf,
-      table .desc {
-        text-align: left;
-      }
 
       table td {
-        padding: 20px 0px;
-        text-align: center;
+        padding: 5px 0px;
+        padding-left: 10px;
+        text-align: right;
       }
+      table thead{
+        background: #5DC6EF;
 
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
       }
 
       footer {
@@ -188,18 +165,18 @@
               $Total =  $Total+$TotalPartida;
             @endphp
             <tr>
-              <td>
-                {{$partida->NRO_PARTIDA}}
+              <td style="text-align:left;" width="40%">
+                <b>{{$partida->NRO_PARTIDA}}</b>|{{ $partida->NOM_PARTIDA}}
               </td>
-              <td>{{number_format($TotalIngresos, 2, '.', '')}}</td>
-              <td>{{number_format($TotalSalidas, 2, '.', '')}}</td>
-              <td>{{number_format($TotalPartida, 2, '.', '')}}</td>
+              <td width="15%">{{number_format($TotalIngresos, 2, '.', '')}} Bs.</td>
+              <td width="15%">{{number_format($TotalSalidas, 2, '.', '')}} Bs.</td>
+              <td width="15%">{{number_format($TotalPartida, 2, '.', '')}} Bs.</td>
             </tr>
           @endforeach
         </tbody>
       </table>      
       <div>
-        <div>Consolidado valorado Total: {{number_format($Total, 2, '.', '')}} Bs.</div>
+        <div><b>Consolidado valorado Total:</b> {{number_format($Total, 2, '.', '')}} Bs.</div>
       </div>
     </main>
     <footer>
