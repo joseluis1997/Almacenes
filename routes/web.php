@@ -41,7 +41,10 @@ Route::get('/index', 'Admin\AdminController@index')
 /*Rutas Usuarios*/
 Route::group(['prefix' => 'users', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 	
-  	Route::get('/index', 'UsuarioController@index')
+  Route::post('/get-all-articulos', 'AdminController@articulosJson')
+  ->name('getAllArticulosJson');
+
+  Route::get('/index', 'UsuarioController@index')
 	->middleware(sprintf("autorizacion:%s", "Listar_usuarios"))
   	->name('list_users');
 

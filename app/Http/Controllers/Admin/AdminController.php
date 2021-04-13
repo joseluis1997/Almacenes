@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Articulo;
 
 class AdminController extends Controller
 {
@@ -12,6 +13,24 @@ class AdminController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+
+  /**
+    * Get all vehicles json.
+    *
+    * @return \Illuminate\Http\Response
+    */
+  public function articulosJson()
+  {
+    $articulos = Articulo::where('ESTADO_ARTICULO','=',1)->with(['Medida' => function($query) {
+      $query->select('COD_MEDIDA', 'NOM_MEDIDA');
+    }])->get();
+    if ($articulos) {
+      return $articulos;
+    }else{
+      return null;
+    }
+  }
+
     /**
      * Display a listing of the resource.
      *

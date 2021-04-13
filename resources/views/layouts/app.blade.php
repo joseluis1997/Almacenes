@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <TITLE>Sigadet</TITLE>
     {{--     <script type="text/javascript">
             setTimeout("document.location=document.location", 1000);
@@ -48,28 +50,19 @@
                     <div class="SIDEBAR-BTN">
                         <i class="fas fa-bars"></i>
                     </div>
+                    <div class="btn-group mr-5" id="container_NT">
+                      <button type="button" class="btn btn-primary" type="button" id="dropdownNotf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge badge-light" id="result_notification_count">4</span>
+                      </button>
 
+                      <div class="dropdown-menu" aria-labelledby="dropdownNotf" id="result_notification">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here sdf sdf sdfsdfsdfsdfsd</a>
+                      </div>
+                    </div>
                     <ul>
-                    <li>
-                        <div class="dropdown-container">
-
-              <div class="dropdown-toolbar">
-                <div class="dropdown-toolbar-actions">
-                  <a href="#">Mark all as read</a>
-                </div>
-                <h3 class="dropdown-toolbar-title">Notifications (2)</h3>
-              </div><!-- /dropdown-toolbar -->
-
-              <ul class="dropdown-menu">
-                  ...
-              </ul>
-
-              <div class="dropdown-footer text-center">
-                <a href="#">View All</a>
-              </div><!-- /dropdown-footer -->
-
-            </div><!-- /dropdown-container -->
-                    </li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="fas fa-power-off">
@@ -217,13 +210,52 @@
             $(".SIDEBAR-BTN").click(function(){
                 $(".WRAPPER").toggleClass("COLLAPSE");
             });
+            getArticulosJson();
+            setInterval(function(){
+              getArticulosJson();
+            }, 10000);
          });
-    </script>
-
-    <script type="text/javascript">
-      function actualizar(){location.reload(true);}
-    //Función para actualizar cada 4 segundos(4000 milisegundos)
-      setInterval("actualizar()",5000);
+        // documentos del vehiculo
+      var jsonUrlDataArticulos = ' {{route('getAllArticulosJson')}}';
+      var dataArticulos = new Array();
+      function getArticulosJson() {
+        let data = {};
+        fetch(jsonUrlDataArticulos, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(data),
+          headers:{
+            'x-csrf-token': document.head.querySelector('meta[name=csrf-token]').content,
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(res => {
+          return res.json();
+        })
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+          dataArticulos = response;
+          console.log(dataArticulos);
+          let domHtmlN = '';
+          let n_notf = 0;
+          for (let i = 0; i < dataArticulos.length; i++) {
+            let articulo = dataArticulos[i];
+            if(articulo.CANT_ACTUAL > 1 && articulo.CANT_ACTUAL <= 10000){
+              n_notf++;
+              domHtmlN += '<a class="dropdown-item text-danger" href="#">'+articulo.NOM_ARTICULO+' solo quedan '+articulo.CANT_ACTUAL+' '+articulo.medida.NOM_MEDIDA+'</a>'
+            }else if(articulo.CANT_ACTUAL == 0){
+              n_notf++;
+              domHtmlN += '<a class="dropdown-item text-danger" href="#">'+articulo.NOM_ARTICULO+' disponible '+articulo.CANT_ACTUAL+' '+articulo.medida.NOM_MEDIDA+'</a>'
+            }
+          }
+          if(n_notf > 0){
+            $('#container_NT').show();
+            $('#result_notification_count').html(n_notf);
+            $('#result_notification').html(domHtmlN);
+          }else{
+            $('#container_NT').hide();
+          }
+        });
+      }
     </script>
 
 <!-- scripts datatable -->
