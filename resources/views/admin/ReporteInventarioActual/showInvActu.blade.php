@@ -24,16 +24,16 @@
               </div>
           </header>
 
-        <main>
+        {{-- <main> --}}
           @foreach($partidas as $partida)
             @php
               $SubTotal =  0.00;
               $Total =  0.00;
             @endphp
-          <table style="margin-bottom: 30px;" border="1">
+          <table class="table table-bordered">
               <thead>
-                <tr>
-                  <th colspan="5" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}| {{ $partida->NOM_PARTIDA }}</th>
+                <tr class="table-primary">
+                  <th colspan="5">Partida: {{$partida->NRO_PARTIDA}}| {{ $partida->NOM_PARTIDA }}</th>
                 </tr>
                 <tr>
                   <th>ITEM</th>
@@ -83,7 +83,7 @@
             $Total = 0;
           @endphp
         @endforeach
-      </main>
+      {{-- </main> --}}
          
         <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
             <a href="{{route('list_reportesInventarioActual')}}" class="btn formulario__btn2">Volver Atras</a>

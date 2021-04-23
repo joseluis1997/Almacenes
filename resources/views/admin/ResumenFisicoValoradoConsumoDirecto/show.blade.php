@@ -22,7 +22,7 @@
 		        </div>
     		</header>
 
-    		<main>
+    		{{-- <main> --}}
 		      	@php
 		        	$TotalMonto = 0.00;
 		      	@endphp
@@ -31,9 +31,9 @@
 		         		$SubTotal =  0.00;
 		          		$Total =  0.00;
 		        	@endphp
-			        <table style="margin-bottom: 30px;" border="1">
+			        <table class="table table-bordered">
 			        	<thead>
-				            <tr style="padding: 10px 0px; background-color: #e0e0e0">
+				            <tr class="table-primary">
 				            	<th colspan="3" >Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
 				            	<th colspan="2">FISICOS</th>
 				            	<th colspan="2">VALORADOS</th>
@@ -93,7 +93,7 @@
 			        </div>	
 	        {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
 	      		</div>
-    		</main>
+    		{{-- </main> --}}
 
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
 	            <a href="{{route('list_FisicoValoradoConsumoDirecto')}}" class="btn formulario__btn2">Volver Atras</a>

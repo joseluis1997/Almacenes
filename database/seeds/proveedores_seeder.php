@@ -36,11 +36,11 @@ class proveedores_seeder extends Seeder
             'DIR_PROVEEDOR' => 'Calle colon N 437 zona central',
             'TELEF_PROVEEDOR' => '66423674'
         ]);
-        proveedor::create([
-            'NIT' => 153268924,
-            'NOM_PROVEEDOR' => 'Comercial stadium',
-            'DIR_PROVEEDOR' => ' Potosi N 634 Enter junin y OConnor zona la Pampa',
-            'TELEF_PROVEEDOR' => '66-37440'
-        ]);
+        // proveedor::create([
+        //     'NIT' => 153268924,
+        //     'NOM_PROVEEDOR' => 'Comercial stadium',
+        //     'DIR_PROVEEDOR' => ' Potosi N 634 Enter junin y OConnor zona la Pampa',
+        //     'TELEF_PROVEEDOR' => '66-37440'
+        // ]);
     }
 }

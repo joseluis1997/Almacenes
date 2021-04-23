@@ -53,13 +53,11 @@
                     <div class="btn-group mr-5" id="container_NT">
                       <button type="button" class="btn btn-primary" type="button" id="dropdownNotf" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell"></i>
-                        <span class="badge badge-light" id="result_notification_count">4</span>
+                        <span class="badge badge-light" id="result_notification_count"></span>
                       </button>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownNotf" id="result_notification">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here sdf sdf sdfsdfsdfsdfsd</a>
+                       
                       </div>
                     </div>
                     <ul>
@@ -219,10 +217,10 @@
       var jsonUrlDataArticulos = ' {{route('getAllArticulosJson')}}';
       var dataArticulos = new Array();
       function getArticulosJson() {
-        let data = {};
+        // let data = {};
         fetch(jsonUrlDataArticulos, {
           method: 'POST', // or 'PUT'
-          body: JSON.stringify(data),
+          // body: JSON.stringify(data),
           headers:{
             'x-csrf-token': document.head.querySelector('meta[name=csrf-token]').content,
             'Content-Type': 'application/json'
@@ -239,9 +237,9 @@
           let n_notf = 0;
           for (let i = 0; i < dataArticulos.length; i++) {
             let articulo = dataArticulos[i];
-            if(articulo.CANT_ACTUAL > 1 && articulo.CANT_ACTUAL <= 10000){
+            if(articulo.CANT_ACTUAL >0 && articulo.CANT_ACTUAL <=10){
               n_notf++;
-              domHtmlN += '<a class="dropdown-item text-danger" href="#">'+articulo.NOM_ARTICULO+' solo quedan '+articulo.CANT_ACTUAL+' '+articulo.medida.NOM_MEDIDA+'</a>'
+              domHtmlN += '<a class="dropdown-item text-warning" href="#">'+articulo.NOM_ARTICULO+' solo quedan '+articulo.CANT_ACTUAL+' '+articulo.medida.NOM_MEDIDA+'</a>'
             }else if(articulo.CANT_ACTUAL == 0){
               n_notf++;
               domHtmlN += '<a class="dropdown-item text-danger" href="#">'+articulo.NOM_ARTICULO+' disponible '+articulo.CANT_ACTUAL+' '+articulo.medida.NOM_MEDIDA+'</a>'

@@ -1,7 +1,6 @@
 @extends("layouts.app")
 
 @section('contenido')
-     {{-- @include('admin.PuntodeReorden.PuntodeReorden') --}}
     <div class="title">
         @if (count($errors) > 0)
             <div class="alert alert-danger">

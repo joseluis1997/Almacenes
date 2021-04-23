@@ -1,6 +1,6 @@
 <!-- Grupo: Nombre de Partida Padre -->
     <div class="formulario__grupo" id="grupo__PartidaPadre">
-        <label for="PartidaPadre" class="formulario__label"><b class="colorAste">*</b>&nbsp;Selecciona Partida Padre&nbsp;&nbsp;
+        <label for="PartidaPadre" class="formulario__label">{{-- <b class="colorAste">*</b> --}}&nbsp;Selecciona Partida Padre&nbsp;&nbsp;
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Partida Padre" data-content="Debe seleccionar un partida padre a la cual va pertenecer su nueva partida">?</a>
         </label>
         <div class="formulario__grupo-input">

@@ -14,7 +14,7 @@ class PartidasTableSeeder extends Seeder
         Partida::create([
             'NOM_PARTIDA' => 'MATERIALES Y SUMINISTROS',
             'NRO_PARTIDA' => 30000,
-            'DESCRIPCION'=>'Comprende de la adquisición de articulos, materiales y bienes que se consumen o cambien de valor durante la gestión. Se incluye los materiales que se destinan a conservación y reparación de bienes de capital .'
+            'DESCRIPCION'=>'Comprende de la adquisición de articulos, materiales y bienes que se consumen o cambien de valor durante la gestión. Se incluye los materiales que se destinan a conservación y reparación de bienes de capital.'
         ]);
 
         Partida::create([

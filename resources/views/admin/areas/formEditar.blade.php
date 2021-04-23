@@ -57,9 +57,7 @@
         </label>
         <div class="formulario__grupo-input ">
             
-            <textarea class="formulario__input " name="DESC_AREA" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;" >
-                {{$area->DESC_AREA}}
-            </textarea>
+            <textarea class="formulario__input " name="DESC_AREA" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;" >{{$area->DESC_AREA}}</textarea>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">

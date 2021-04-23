@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\compra_stock;
 use App\Articulo;
+use App\Medida;
 use DB;
 use App\Http\Requests\CompraStockAlmacenRequest;
 use Illuminate\Support\Collection;
@@ -27,8 +28,11 @@ class StockAlmacenController extends Controller
 
     public function create(){
         $proveedores = DB::table('PROVEEDORES')->where('ESTADO_PROVEEDOR','=','1')->get();
+        $medidas = DB::table('MEDIDA')->where('ESTADO_MEDIDA','=','1')->get('NOM_MEDIDA');
+        // dd($medidas);
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
-        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        // $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        $Articulos = Articulo::all()->where('ESTADO_ARTICULO', '=', '1');
         return view('admin.StockAlmacen.crear',compact('proveedores','areas','Articulos'));
     }
 

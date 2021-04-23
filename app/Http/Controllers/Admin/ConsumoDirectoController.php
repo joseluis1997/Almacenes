@@ -23,7 +23,8 @@ class ConsumoDirectoController extends Controller
     public function create(){
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
         $proveedores = DB::table('PROVEEDORES')->where('ESTADO_PROVEEDOR','=','1')->get();
-        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        // $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        $Articulos = Articulo::all()->where('ESTADO_ARTICULO', '=', '1');
         return view('admin.ConsumoDirecto.crear',compact('areas','proveedores','Articulos'));
     }
 
@@ -86,7 +87,8 @@ class ConsumoDirectoController extends Controller
     public function edit($id){
         $consumo_directo = consumo_directo::findOrFail($id);
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
-        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        // $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        $Articulos = Articulo::all()->where('ESTADO_ARTICULO', '=', '1');
         $proveedores = DB::table('PROVEEDORES')->where('ESTADO_PROVEEDOR','=','1')->get();
         return view('admin.ConsumoDirecto.editar', compact('consumo_directo','areas','Articulos','proveedores'));
     }

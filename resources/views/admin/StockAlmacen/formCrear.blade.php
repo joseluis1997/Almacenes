@@ -7,6 +7,7 @@
         </label>
         <div class="form-group formulario__grupo-input">
             <select name="COD_PROVEEDOR" id="proveedor" class="form-control formulario__input selectpicker" data-live-search="true" data-size="3">
+                <option value="">Seleccione un Proveedor</option>
                 @foreach ($proveedores as $proveedor)
                     <option value="{{ $proveedor->COD_PROVEEDOR }}">{{ $proveedor->NOM_PROVEEDOR }}</option>
                 @endforeach
@@ -25,6 +26,7 @@
         </label>
         <div class="form-group formulario__grupo-input">
             <select name="COD_AREA" id="area" class="form-control formulario__input selectpicker" required data-live-search="true" data-size="3">
+                <option value="">Seleccione un Area</option>
                 @foreach ($areas as $area)
                     <option value="{{ $area->COD_AREA }}">{{ $area->NOM_AREA }}</option>
                 @endforeach
@@ -44,7 +46,7 @@
         <div class="form-group formulario__grupo-input">
             <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
                 <option value="Factura">Factura</option>
-                <option value="Resivo">Resivo</option>
+                <option value="Recibo">Recibo</option>
             </select>
         </div>
         <p class="formulario__input-error">
@@ -109,14 +111,13 @@
             Realize un breve descripcion de la compra, es opcional...
         </p>
     </div>
-    {{-- Grupo: Articulos --}}
     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
         <div class="form-group">
             <label for="pidarticulo">Articulos</label>    
-            <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
+            <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true" >
                 <option value="">Seleccione un Articulo</option>
                 @foreach($Articulos as $articulo)
-                    <option value={{ $articulo->COD_ARTICULO }}>{{ $articulo->NOM_ARTICULO }}</option>
+                    <option value={{ $articulo->COD_ARTICULO }}>{{ $articulo->NOM_ARTICULO}}[{{ $articulo->Medida->NOM_MEDIDA}}]</option>
                 @endforeach
             </select>
         </div>

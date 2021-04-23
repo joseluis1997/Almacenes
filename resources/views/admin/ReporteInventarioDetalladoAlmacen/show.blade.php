@@ -21,7 +21,7 @@
 		          <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
 		        </div>
     		</header>
-    		<main>
+    		{{-- <main> --}}
 		    <div>
 		        @if($partida_ok)
 		        <p>
@@ -39,10 +39,10 @@
 		        @endif
 		    </div>
 		    @foreach($partidas as $partida)
-		        <table style="margin-bottom: 30px;" border="1">
+		        <table class="table table-bordered">
 		          <thead>
-		            <tr>
-		              <th colspan="6" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}<br>
+		            <tr class="table-primary">
+		              <th colspan="6">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}<br>
 		              		<p style="font-weight: normal;">Descripcion:{{$partida->DESCRIPCION}}</p>
 		              </th>
 		            </tr>
@@ -56,16 +56,16 @@
 		          <tbody>
 		            @foreach($partida->Articulos as $indexA=>$articulo)
 		              <tr class="text-center">
-		                <td>{{$indexA+1}}</td>
-		                <td>{{$partida->NRO_PARTIDA}} - {{$indexA+1}}</td>
-		                <td colspan="3">{{$articulo->NOM_ARTICULO}}</td>
-		                <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
+		                <td width="10%">{{$indexA+1}}</td>
+		                <td width="10%">{{$partida->NRO_PARTIDA}} - {{$indexA+1}}</td>
+		                <td colspan="3" width="10%">{{$articulo->NOM_ARTICULO}}</td>
+		                <td width="10%">{{$articulo->Medida->NOM_MEDIDA}}</td>
 		              </tr>
 		              <tr>
 		                <td colspan="3">&#160;</td>
-		                <td style="background-color: #c1ced9;">Cantidad</td>
-		                <td style="background-color: #c1ced9;">Precio Unitario</td>
-		                <td style="background-color: #c1ced9;">Total</td>
+		                <td><b>Cantidad</b></td>
+		                <td><b>Precio Unitario</b></td>
+		                <td><b>Total</b></td>
 		              </tr>
 		              @php
 		                $SubTotal =  0.00;
@@ -96,7 +96,7 @@
 		          $Total = 0;
 		        @endphp
 		      @endforeach
-    		</main>
+    		{{-- </main> --}}
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
 	            <a href="{{route('list_InventarioDetalladoAlmacen')}}" class="btn formulario__btn2">Volver Atras</a>
 	        </div>

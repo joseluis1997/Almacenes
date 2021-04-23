@@ -24,7 +24,7 @@
             <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
                 <option value=" ">Seleccione Comprobante</option>
                 <option value="Factura">Factura</option>
-                <option value="Resivo">Resivo</option>
+                <option value="Recibo">Recibo</option>
             </select>
         </div>
         <p class="formulario__input-error">
@@ -130,8 +130,9 @@
         <div class="form-group">
             <label for="pidarticulo">Articulos</label>    
             <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
+                <option value=" ">Seleccione un Articulo</option>
                 @foreach($Articulos as $articulo)
-                    <option value="{{ $articulo->COD_ARTICULO }}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}</option>
+                    <option value="{{ $articulo->COD_ARTICULO }}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}[{{ $articulo->Medida->NOM_MEDIDA}}]</option>
                 @endforeach
             </select>
         </div>

@@ -24,7 +24,7 @@
             <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
                 <option value="">Seleccione una Opción</option>
                 <option value="Factura" @if($consumo_directo->COMPROBANTE == 'Factura') selected @endif>Factura</option>
-                <option value="Recivo"  @if($consumo_directo->COMPROBANTE == 'Recivo') selected @endif>Recivo</option>
+                <option value="Recibo"  @if($consumo_directo->COMPROBANTE == 'Recibo') selected @endif>Recivo</option>
             </select>
         </div>
         <p class="formulario__input-error">
@@ -136,8 +136,9 @@
         <div class="form-group">
             <label for="pidarticulo">Articulos</label>    
             <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true" disabled="">
+                {{-- <option value=" "> Seleccione un Ar</option> --}}
                 @foreach($Articulos as $articulo)
-                    <option value="{{ $articulo->COD_ARTICULO }}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }} </option>
+                    <option value="{{ $articulo->COD_ARTICULO }}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}[{{ $articulo->Medida->NOM_MEDIDA}}] </option>
                 @endforeach
             </select>
         </div>

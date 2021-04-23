@@ -26,7 +26,7 @@
 		        </div>
     		</header>
 
-    		<main>
+    		{{-- <main> --}}
 			    <div>
 			        {{-- @if($partida_ok)
 			        <p>
@@ -44,9 +44,9 @@
 			        @endif
 			    </div>
 		      	@foreach($partidas as $partida)
-		        <table style="margin-bottom: 30px;" class="text-left" border="1">
-		          <tr>
-		            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
+		        <table class="table table-bordered">
+		          <tr class="table-primary">
+		            <th colspan="10">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
 		          </tr>
 		          <tr>
 		            <th>FECHA</th>
@@ -102,7 +102,7 @@
         <div>Reporte Detallado Consumos Directos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
       </div> --}}
-    </main>
+    {{-- </main> --}}
     		
 
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">

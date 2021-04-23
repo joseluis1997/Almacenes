@@ -2,7 +2,7 @@
 @section('contenido')
   <div class="container">
     <div class="card fondoDT">
-         @include('admin.PuntodeReorden.PuntodeReorden')
+
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
