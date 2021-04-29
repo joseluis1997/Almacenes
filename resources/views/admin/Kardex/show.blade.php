@@ -2,7 +2,7 @@
 
 @section('contenido')
     <div class="title">
-       <h1 align="center"><b>Pre Visualizacion Reporte Consolidado Valorado Total</b></h1>
+       <h1 align="center"><b>Pre Visualizacion Kardex Articulos</b></h1>
     </div>
     <div class="card mt-2">
         <div class="card-body">

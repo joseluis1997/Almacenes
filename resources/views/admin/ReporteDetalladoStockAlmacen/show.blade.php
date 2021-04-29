@@ -5,7 +5,7 @@
 @section('contenido')
 
     <div class="title">
-       <h1 align="center"><b>Pre Visualizacion Reporte Fisico Valorado Compras</b></h1>
+       <h1 align="center"><b>Pre Visualizacion Reporte Detallado Compras</b></h1>
     </div>
 
     <div class="card mt-2">

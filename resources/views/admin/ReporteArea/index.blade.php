@@ -6,7 +6,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Reporte de Egresos y Salidas por Areas</b></h3> 
+                    <h3 class="card-title"><b>Reporte de Consumos Directos y Salidas por Areas</b></h3> 
                 </div>
             </div>
         </div>
