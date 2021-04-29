@@ -137,6 +137,11 @@
 			        </div>
 		        {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
 		      	</div>
+		      	<br><br>
+		      	<div class="card-body">
+            		<h6 ><b>Firma:_______________________</h6>
+            		<h6><b>Fecha y Hora: </b>{{ $mytime->format('d-m-Y H:i:s')}}</h6>
+    			</div>
     		{{-- </main> --}}
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
 	            <a href="{{route('list_FisicoValoradoStockAlmacen')}}" class="btn formulario__btn2">Volver Atras</a>

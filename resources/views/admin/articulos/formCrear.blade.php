@@ -18,11 +18,11 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Undidad de Medida" data-content="Seleccione la unidad de medida a la cual pertenece el Articulo">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <select class="form-control" name="FK_COD_MEDIDA"  id="MedidaArticulo"> 
+            <select class="form-control" name="FK_COD_MEDIDA"  id="MedidaArticulo">
                 @foreach ($unidadMedidas as $medida)
                 <option value="{{ $medida->COD_MEDIDA }}">{{ $medida->NOM_MEDIDA }}</option>
                 @endforeach
-               
+
             </select>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
@@ -37,7 +37,7 @@
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Partida de Articulo" data-content="Seleccione la partidad a la cual pertenece el Articulo, la partida es la forma de categorizar los Articulos">?</a>
         </label>
         <div class="formulario__grupo-input">
-            <select 
+            <select
                 class="js-example-basic-multiple form-control" name="FK_COD_PARTIDA" id="partidaArticulo">
                 @foreach ($partidas as $partida)
                     @if($partida->ESTADO_PARTIDA)
@@ -66,14 +66,14 @@
             El nombre no es Correcto.
         </p>
     </div>
- 
+
 <!-- Grupo: Descripcion -->
     <div class="formulario__grupo" id="grupo__descripcion">
         <label for="descripcion" class="formulario__label"><b class="colorAste">*</b>&nbsp;Descripcion del Articulo&nbsp;&nbsp;
             <a class="colorSigno"  data-trigger="hover" href="#" data-toggle="popover" title="Descripcion del Articulo" data-content="Solo puede contener letras..">?</a>
         </label>
         <div class="formulario__grupo-input ">
-            
+
             <textarea class="formulario__input " name="DESC_ARTICULO" id="descripcion" style="margin-top: 0px; margin-bottom: 0px; height: 93px;"></textarea>
             <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>

@@ -90,7 +90,7 @@ class AreaController extends Controller
             if ($area->COD_AREA == 1) {
               abort(403, 'Acción no autorizada.');
             }
-            
+
             $area->fill($area_request->input())->save();
             return redirect()->route('list_areas')->with('message', ['success', 'Area modificada correctamente!']);
         } catch (\Illuminate\Database\QueryException $e) {
@@ -117,7 +117,7 @@ class AreaController extends Controller
         $area->save();
 
         if ($estado) {
-          return redirect()->route('list_areas')->with('message', ['success', 'Area habilitado Correctamente!']);  
+          return redirect()->route('list_areas')->with('message', ['success', 'Area habilitado Correctamente!']);
         }else{
           return redirect()->route('list_areas')->with('message', ['success', 'Area Desabilitado Correctamente!']);
         }

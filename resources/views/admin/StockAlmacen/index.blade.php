@@ -6,20 +6,22 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-title"><b>Gestion Compras</b></h3> 
+                    <h3 class="card-title"><b>Gestion Compras</b></h3>
                 </div>
                 <div class="col-md-5">
+                    @can('Crear_compras')
                     <a href="{{route('create_almacen')}}" class="btn btn-primary rounded-pill float-right"><b>Nueva Compra</b></a>
+                    @endcan
                 </div>
             </div>
         </div>
-        <div class="card-body">    
+        <div class="card-body">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-stockAlamacen-activos-tab" data-toggle="tab" href="#nav-stockAlamacen-activos" role="tab" aria-controls="nav-stockAlamacen-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
                 <a class="nav-item nav-link" id="nav-stockAlamacen-bajas-tab" data-toggle="tab" href="#nav-stockAlamacen-bajas" role="tab" aria-controls="nav-stockAlamacen-bajas" aria-selected="false">Bajas</a>
               </div>
-            </nav> 
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table pedidos habilitados --}}
                 <div class="tab-pane fade show active" id="nav-stockAlamacen-activos" role="tabpanel" aria-labelledby=" nav-stockAlamacen-activos-tab" style="padding-top: 15px;">
@@ -41,11 +43,14 @@
                                 @if($compra->ESTADO_COMPRA == 1 )
                                     <tr>
                                         {{-- <td>{{ $compra->COD_COMPRA_STOCK }}</td> --}}
-                                        <td>{{ $compra->FECHA }}</td>
+                                        <td>{{date('d-m-Y', strtotime($compra->FECHA))}}</td>
+                                        {{-- <td>{{ $compra->FECHA }}</td> --}}
                                         <td>{{ $compra->NRO_ORD_COMPRA }}</td>
                                         <td>{{ $compra->NRO_PREVENTIVO }}</td>
                                         <td>{{ $compra->Area->NOM_AREA}}</td>
-                                        <td>{{ $compra->total }}bs</td>
+                                        {{-- <td>{{ $compra->total }}bss</td> --}}
+                                        <td>{{number_format($compra->total, 2, '.', '')}} bs</td>
+
                                         <td>
                                             @if($compra->ESTADO_COMPRA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
@@ -54,10 +59,12 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @can('Verdetalle_compras')
                                             <a href="{{route('show_almacen',$compra->COD_COMPRA_STOCK)}}" ><button class="btn btn-primary">Detalles</button></a>
+                                            @endcan
                                         </td>
-
-                                        <td> 
+                                        <td>
+                                            @can('Deshabilitar_compras')
                                             <form action="{{route('destroy_almacen', $compra->COD_COMPRA_STOCK)}}" onsubmit="submitForm(event, {{$compra->ESTADO_COMPRA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -69,15 +76,15 @@
                                                   <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                                     Habilitar
                                                   </button>
-
                                                 @endif
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endif
-                            @endforeach 
+                            @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
                 {{-- data table pedidos desabilitado --}}
                 <div class="tab-pane fade" id="nav-stockAlamacen-bajas" role="tabpanel" aria-labelledby="nav-stockAlamacen-bajas-tab" style="padding-top: 15px">
@@ -103,7 +110,7 @@
                                         <td>{{ $compra->NRO_ORD_COMPRA }}</td>
                                         <td>{{ $compra->NRO_PREVENTIVO }}</td>
                                         <td>{{ $compra->Area->NOM_AREA}}</td>
-                                        <td>{{ $compra->total }}bs</td>
+                                        <td>{{number_format($compra->total, 2, '.', '')}} bs</td>
                                         <td>
                                             @if($compra->ESTADO_COMPRA)
                                                 <button type="button" class="btn btn-success navbar-btn">Activo</button>
@@ -111,11 +118,13 @@
                                                  <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                             @endif
                                         </td>
-                                         <td>
+                                        <td>
+                                            @can('Verdetalle_compras')
                                             <a href="{{route('show_almacen',$compra->COD_COMPRA_STOCK)}}" ><button class="btn btn-primary">Detalles</button></a>
+                                            @endcan
                                         </td>
-
-                                        <td> 
+                                        <td>
+                                            @can('Habilitar_compras')
                                             <form action="{{route('destroy_almacen', $compra->COD_COMPRA_STOCK)}}" onsubmit="submitForm(event, {{$compra->ESTADO_COMPRA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -124,24 +133,22 @@
                                                     Deshabilitar
                                                   </button>
                                                 @else
-                                                  <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                    Habilitar
-                                                  </button>
-
+                                                <button type="submit" class="btn-sm btn btn-outline-primary w-60">Habilitar</button>
                                                 @endif
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endif
-                            @endforeach 
+                            @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-  
+
 @endsection('contenido')
 
 @section('scripts')
@@ -162,7 +169,7 @@
             });
         });
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form) {
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -178,7 +185,7 @@
         function eliminar(event) {
             var r = confirm("Acepta elminar el Stock Almacen Seleccionado?");
             if (r == true) {
-            } 
+            }
             else {
                  event.preventDefault();
              }

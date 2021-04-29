@@ -6,10 +6,12 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-title"><b>Gestion Areas</b></h3> 
+                    <h3 class="card-title"><b>Gestion Areas</b></h3>
                 </div>
                 <div class="col-md-5">
+                    @can('Crear_areas')
                     <a href="{{route('create_areas')}}" class="btn btn-primary rounded-pill float-right"><b>Nueva Area</b></a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -49,14 +51,17 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @can('Ver_areas')
                                     <a href="{{route('show_areas',$area->COD_AREA)}}" class="fas fa-eye fa-2x"></a>
-                                    </td>
+                                    @endcan
+                                </td>
                                 <td>
                                     @can('Modificar_areas')
                                     <a href="{{route ('edit_areas',$area->COD_AREA)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>
-                                <td> 
+                                <td>
+                                    @can('Deshabilitar_areas')
                                     <form action="{{route('destroy_areas', $area->COD_AREA)}}" onsubmit="submitForm(event, {{$area->ESTADO_AREA}}, this)" method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -68,15 +73,15 @@
                                           <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                             Habilitar
                                           </button>
-
                                         @endif
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                             @endif
                         @endforeach
                     </tbody>
-                    </table> 
+                    </table>
               </div>
               <div class="tab-pane fade" id="nav-user-bajas" role="tabpanel" aria-labelledby="nav-user-bajas-tab" style="padding-top: 15px">
                     <table id="dataBajas" class="table table-striped table-bordered">
@@ -84,7 +89,7 @@
                         <tr>
                             <th>Identificador</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
+                            <th>Padre</th>
                             <th>Estado</th>
                             <th>Ver</th>
                             <th>Modificar</th>
@@ -99,21 +104,24 @@
                                 <td>{{ $area->NOM_AREA}}</td>
                                 <td>{{ $area->DESC_AREA}}</td>
                                  <td>
-                                        @if($area->ESTADO_AREA)
-                                            <button type="button" class="btn btn-success navbar-btn">Activo</button>
-                                        @else
-                                             <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
-                                        @endif
+                                    @if($area->ESTADO_AREA)
+                                        <button type="button" class="btn btn-success navbar-btn">Activo</button>
+                                    @else
+                                         <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
+                                    @endif
                                 </td>
                                 <td>
+                                    @can('Ver_areas')
                                     <a href="{{route('show_areas',$area->COD_AREA)}}" class="fas fa-eye fa-2x"></a>
-                                    </td>
+                                    @endcan
+                                </td>
                                 <td>
                                     @can('Modificar_areas')
                                     <a href="{{route ('edit_areas',$area->COD_AREA)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>
-                                <td> 
+                                <td>
+                                    @can('Habilitar_areas')
                                     <form action="{{route('destroy_areas', $area->COD_AREA)}}" onsubmit="submitForm(event, {{$area->ESTADO_AREA}}, this)" method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -125,9 +133,9 @@
                                           <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                             Habilitar
                                           </button>
-
                                         @endif
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                             @endif
@@ -139,7 +147,7 @@
         </div>
     </div>
 </div>
-  
+
 @endsection('contenido')
 
 @section('scripts')
@@ -160,7 +168,7 @@
         } );
 
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form) {
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -174,11 +182,11 @@
         }
 
         // function eliminar(event) {
-      
+
         // var r = confirm("Acepta elminar el Area Seleccionado?");
         // if (r == true) {
 
-        // } 
+        // }
         // else {
         //      event.preventDefault();
         //  }

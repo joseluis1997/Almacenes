@@ -34,14 +34,8 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta/dist/js/bootstrap-select.min.js"></script>
-
-
-
-
     </head>
     <body>
-
-        <!--WRAPPER start-->
         <div class="WRAPPER">
             <!--HEADER MENU start-->
             <div class="HEADER">
@@ -57,7 +51,6 @@
                       </button>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownNotf" id="result_notification">
-                       
                       </div>
                     </div>
                     <ul>
@@ -89,91 +82,112 @@
                             <i class="fas fa-ellipsis-h"></i><span>Menu</span>
                         </a>
                     </li> --}}
-
                     <nav class="navv MENU-BTN ">
                         {{-- Grupo: Administracion del Sistema --}}
                         @canany(['Listar_usuarios','Listar_roles'])
                             <label for="touch" class="">
                                  <i class="fas fa-desktop spann"><span class="padre">Administracion del Sistema</span></i>
-                            </label>           
-                            <input type="checkbox" id="touch"> 
+                            </label>
+                            <input type="checkbox" id="touch">
                             <ul class="slide menusito" data-animation="center">
                                 {{-- Gestionar Usuarios --}}
-                                    @can('Listar_usuarios')
-                                        <a href="{{route ('list_users')}}" class="MENU-BTN ahrf">
-                                            <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Usuarios</span> </li>
-                                        </a>
-                                    @endcan
-                                {{-- Gestionar Roles --}}
-                                    @can('Listar_roles')
-                                    <a href="{{route ('list_roles')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-fist-raised"></i><span class="spannn menusito">Gestion Roles</span></li>
+                                @can('Listar_usuarios')
+                                    <a href="{{route ('list_users')}}" class="MENU-BTN ahrf">
+                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Usuarios</span> </li>
                                     </a>
-                                    @endcan
+                                @endcan
+                                {{-- Gestionar Roles --}}
+                                @can('Listar_roles')
+                                <a href="{{route ('list_roles')}}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-fist-raised"></i><span class="spannn menusito">Gestion Roles</span></li>
+                                </a>
+                                @endcan
                             </ul>
                         @endcan
                         {{-- Grupo:Articulos  --}}
+                        @canany(['Listar_articulos','Listar_Unidades_de_Medidas','Listar_partidas','Listar_proveedores'])
                         <label for="touch1">
                              <i class="fas fa-box-open spann"><span >Articulos</span></i>
-                        </label>           
-                        <input type="checkbox" id="touch1"> 
+                        </label>
+                        <input type="checkbox" id="touch1">
                             <ul class="slide menusito" data-animation="center">
                                 {{-- Gestionar Articulos --}}
-                                    <a href="{{route ('list_articulos')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-box-open"></i><span class="spannn menusito">Gestion Articulos</span></li>
-                                    </a>
+                                @can('Listar_articulos')
+                                <a href="{{route ('list_articulos')}}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-box-open"></i><span class="spannn menusito">Gestion Articulos</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Unidad de Medida --}}
-                                    <a href="{{route ('list_medidas')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-ruler-vertical"></i><span class="spannn menusito">Gestion Unidad de Medida</span></li>
-                                    </a>
+                                @can('Listar_Unidades_de_Medidas')
+                                <a href="{{route ('list_medidas')}}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-ruler-vertical"></i><span class="spannn menusito">Gestion Unidad de Medida</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Partidas --}}
-                                    <a href="{{route ('list_partidas')}}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-book-open"></i><span class="spannn menusito">Gestion Partidas</span></li>
-                                    </a>
+                                @can('Listar_partidas')
+                                <a href="{{route ('list_partidas')}}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-book-open"></i><span class="spannn menusito">Gestion Partidas</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Proveedores --}}
-                                    <a href="{{ route ('list_proveedores') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Proveedores</span></li>
-                                    </a>
+                                @can('Listar_proveedores')
+                                <a href="{{ route ('list_proveedores') }}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-users"></i><span class="spannn menusito">Gestion Proveedores</span></li>
+                                </a>
+                                @endcan
                             </ul>
-                             {{-- Grupo: Consumos --}}
+                        @endcan
+                        {{-- Grupo: Consumos --}}
+                        @canany(['Listar_areas','Listar_consumos_directos','Listar_pedidos','Listar_salidas','Listar_compras'])
                         <label for="touch2">
                             <i class="fas fa-copyright spann"><span >Consumos</span></i>
-                        </label>           
-                        <input type="checkbox" id="touch2"> 
+                        </label>
+                        <input type="checkbox" id="touch2">
                             <ul class="slide menusito" data-animation="center">
                                 {{-- Gestionar Areas --}}
-                                    <a href="{{ route ('list_areas') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-chart-area"></i><span class="spannn menusito">Gestion Areas</span></li>
-                                    </a>
+                                @can('Listar_areas')
+                                <a href="{{ route ('list_areas') }}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-chart-area"></i><span class="spannn menusito">Gestion Areas</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Consumo Directo --}}
-                                    <a href="{{ route('list_consumodirecto') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-copyright"></i><span class="spannn menusito">Gestion Consumo Directo</span></li>
-                                    </a>                                
+                                @can('Listar_consumos_directos')
+                                <a href="{{ route('list_consumodirecto') }}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-copyright"></i><span class="spannn menusito">Gestion Consumo Directo</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Pedidos --}}
-                                    <a href="{{ route('list_pedidos') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-biking"></i><span class="spannn menusito">Gestion Pedidos</span></li>
-                                    </a>
+                                @can('Listar_pedidos')
+                                <a href="{{ route('list_pedidos') }}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-biking"></i><span class="spannn menusito">Gestion Pedidos</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Salidas --}}
-                                    <a href="{{ route('list_salidas') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-plane-departure"></i><span class="spannn menusito">Gestion Salidas</span></li>
-                                    </a>
+                                @can('Listar_salidas')
+                                <a href="{{ route('list_salidas') }}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-plane-departure"></i><span class="spannn menusito">Gestion Salidas</span></li>
+                                </a>
+                                @endcan
                                 {{-- Gestionar Stock Alamacen --}}
-                                    <a href="{{ route('list_almacen') }}" class="MENU-BTN ahrf">
-                                        <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestion Compras</span></li>
-                                    </a>
+                                @can('Listar_compras')
+                                <a href="{{ route('list_almacen') }}" class="MENU-BTN ahrf">
+                                    <li><i class="fas fa-warehouse"></i><span class="spannn menusito">Gestion Compras</span></li>
+                                </a>
+                                @endcan
                             </ul>
+                        @endcan
                             {{-- Grupo: Administracion del Sistema --}}
                             <label for="touch3">
                                 <i class="fas fa-desktop spann"><span >Reportes</span></i>
-                            </label>           
-                            <input type="checkbox" id="touch3"> 
+                            </label>
+                            <input type="checkbox" id="touch3">
                                 <ul class="slide menusito" data-animation="center">
                                     {{-- Gestionar Reportes --}}
                                         <a href="{{ route('list_reportes') }}" class="MENU-BTN ahrf">
                                             <li><i class="fas fa-file-pdf"></i><span class="spannn menusito">Gestion Reportes</span> </li>
-                                        </a>                               
+                                        </a>
                                 </ul>
-                    </nav> 
+                    </nav>
                     {{-- Gestionar Cierre Sesion --}}
                    {{--   <li class="ITEM">
                         <a href="{{ route('list_cierregestion') }}" class="MENU-BTN">
@@ -182,17 +196,14 @@
                     </li> --}}
                 </div>
             </div>
-        
             <!--SIDEBAR end-->
             <!--main container start-->
             <div class="MAIN-CONTAINER">
                 @if(session('message'))
-                        
-
                 <div class="alert alert-success alert-{{ session('message')[0] }}" role="alert">
                  {{ session('message')[1] }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                  </button>
                 </div>
                 @endif
@@ -202,7 +213,6 @@
             <!--main container end-->
         </div>
         <!--WRAPPER end-->
-
     <script type="text/javascript">
         $(document).ready(function(){
             $(".SIDEBAR-BTN").click(function(){
@@ -289,7 +299,7 @@
                 "colvis": "Visibilidad"
             }
         }
-        
+
         $(document).ready(function() {
             // show the alert
             setTimeout(function() {

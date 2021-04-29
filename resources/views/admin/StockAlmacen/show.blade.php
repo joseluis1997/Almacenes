@@ -69,7 +69,7 @@
                             <td>{{ $detalle->PRECIO_UNITARIO }}</td>
                             <td>{{ $detalle->CANTIDAD*$detalle->PRECIO_UNITARIO }} Bs</td>
                             @php
-                                $total += $detalle->CANTIDAD*$detalle->PRECIO_UNITARIO; 
+                                $total += $detalle->CANTIDAD*$detalle->PRECIO_UNITARIO;
                             @endphp
                         </tr>
                     @endforeach
@@ -78,13 +78,13 @@
                     <th>Total</th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">{{$total}}</h4></th>
+                    <th><h4 id="total">{{$total}}Bs</h4></th>
                 </tfoot>
             </table>
         </div>
+    </div>
         <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <a href="{{route('list_almacen')}}" class="btn formulario__btn2">Volver Atras</a>
         </div>
-    </div>
 @endsection

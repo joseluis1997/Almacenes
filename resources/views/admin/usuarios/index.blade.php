@@ -2,11 +2,10 @@
 @section('contenido')
   <div class="container">
     <div class="card fondoDT">
-
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Gestion Usuarios</b></h3> 
+                    <h3 class="card-title"><b>Gestion Usuarios</b></h3>
                 </div>
                 <div class="col-md-1">
                 @can('Crear_usuarios')
@@ -48,7 +47,7 @@
                                 <td>{{ $user->APELLIDOS}}</td>
                                 <td>{{ $user->TELEFONO}}</td>
                                 <td>{{ $user->NOM_USUARIO}}</td>
-                                <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
+                                <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td>
                                 <!-- con esta nuevo sacamos los array pero con implode separamos los array -->
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
                                 <td>
@@ -64,7 +63,7 @@
                                         <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x circulo"></a>
                                     @endcan
                                 </td>
-                                <td> 
+                                <td>
                                     @can('Deshabilitar_usuarios')
                                         <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
                                             @method('DELETE')
@@ -74,7 +73,7 @@
                                                 </button>
                                         </form>
                                     @endcan
-                                </td> 
+                                </td>
                                {{--  <td>
                                     @can ('eliminar_usuarios')
                                     <a href="{{route ('destroy_user',$user->id)}}" style="color:red;"class="fas fa-trash-alt fa-2x" onclick="eliminar(event);"></a>
@@ -84,7 +83,7 @@
                             @endif
                         @endforeach
                     </tbody>
-                    </table> 
+                    </table>
               </div>
               <div class="tab-pane fade" id="nav-user-bajas" role="tabpanel" aria-labelledby="nav-user-bajas-tab" style="padding-top: 15px">
                   <table id="dataBajas" class="table table-striped table-bordered">
@@ -111,7 +110,7 @@
                                 <td>{{ $user->APELLIDOS}}</td>
                                 <td>{{ $user->TELEFONO}}</td>
                                 <td>{{ $user->NOM_USUARIO}}</td>
-                                <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td> 
+                                <td>{{implode(" ", $user->getRoleNames()->toArray())}}</td>
                                 <!-- con esta nuevo sacamos los array pero con implode separamos los array -->
                                  <!--#igual sacmos los roles {{$user->roles->implode('name', ' ,')}}-->
                                 <td>
@@ -127,7 +126,7 @@
                                     <a href="{{route ('edit_user',$user->id)}}" class="fas fa-edit fa-2x"></a>
                                     @endcan
                                 </td>
-                                <td> 
+                                <td>
                                     @can('Habilitar_usuarios')
                                         <form action="{{route('destroy_user', $user->id)}}" onsubmit="submitForm(event, {{$user->ESTADO_USUARIO}}, this)" method="POST">
                                             @method('DELETE')
@@ -155,7 +154,7 @@
         </div>
     </div>
 </div>
-  
+
 @endsection('contenido')
 
 
@@ -180,12 +179,12 @@
         } );
 
         $(document).ready(function() {
-            $('#closeButton').on('click', function(e) { 
-                $('#previewBox').remove(); 
+            $('#closeButton').on('click', function(e) {
+                $('#previewBox').remove();
             });
         });
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form) {
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -193,7 +192,7 @@
             }else{
 
               r = confirm("Acepta habilitar el Usuario Seleccionado" + USERNAME);
-         
+
             }
             if (r == true) {
               form.submit();
@@ -206,11 +205,11 @@
         }
 
         function eliminar(event) {
-          
+
             var r = confirm("Acepta elminar el Area Seleccionado?");
             if (r == true) {
 
-            } 
+            }
             else {
                  event.preventDefault();
              }

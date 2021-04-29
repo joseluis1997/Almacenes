@@ -24,7 +24,7 @@
             <select name="COMPROBANTE" class="form-control formulario__input" id="tipocomprobante" required>
                 <option value="">Seleccione una Opción</option>
                 <option value="Factura" @if($consumo_directo->COMPROBANTE == 'Factura') selected @endif>Factura</option>
-                <option value="Recibo"  @if($consumo_directo->COMPROBANTE == 'Recibo') selected @endif>Recivo</option>
+                <option value="Recibo"  @if($consumo_directo->COMPROBANTE == 'Recibo') selected @endif>Recibo</option>
             </select>
         </div>
         <p class="formulario__input-error">
@@ -40,7 +40,7 @@
         </label>
         <div class="formulario__grupo-input">
             <input type="text" class="formulario__input" name="NRO_ORD_COMPRA" id="numeroOrdenCompra" placeholder="Digite numero orden de compra" value="{{$consumo_directo->NRO_ORD_COMPRA}}">
-            <i class="formulario__validacion-estado far fa-times-circle"></i>                   
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
             El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
@@ -54,7 +54,7 @@
         </label>
         <div class="formulario__grupo-input">
             <input type="text" class="formulario__input" name="NRO_PREVENTIVO" id="preventivo" placeholder="Numero de Preventivo..." value="{{$consumo_directo->NRO_PREVENTIVO}}">
-            <i class="formulario__validacion-estado far fa-times-circle"></i>                   
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
             El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
@@ -68,7 +68,7 @@
         </label>
         <div class="formulario__grupo-input">
             <input type="text" class="formulario__input" name="NOTA_INGRESO" id="notaIngreso" placeholder="Nota de Ingreso..." value="{{$consumo_directo->NOTA_INGRESO}}">
-            <i class="formulario__validacion-estado far fa-times-circle"></i>                   
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
             El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
@@ -124,7 +124,7 @@
         </label>
         <div class="formulario__grupo-input">
             <textarea  class="formulario__input" id="detalleConsumoDirecto" name="DETALLE_CONSUMO">{{ $consumo_directo->DETALLE_CONSUMO}}</textarea>
-            <i class="formulario__validacion-estado far fa-times-circle"></i>                   
+            <i class="formulario__validacion-estado far fa-times-circle"></i>
         </div>
         <p class="formulario__input-error">
             El ci tiene que ser de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo.
@@ -134,7 +134,7 @@
 {{-- Grupo: Articulos --}}
     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
         <div class="form-group">
-            <label for="pidarticulo">Articulos</label>    
+            <label for="pidarticulo">Articulos</label>
             <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true" disabled="">
                 {{-- <option value=" "> Seleccione un Ar</option> --}}
                 @foreach($Articulos as $articulo)
@@ -147,7 +147,7 @@
 {{-- Grupo: Cantidad --}}
     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
         <div class="form-group">
-            <label for="cantidad">Cantidad</label>    
+            <label for="cantidad">Cantidad</label>
             <input type="number" name="CANTIDAD" id="cantidad" class="form-control"
             placeholder="Digite la Cantidad" disabled="">
         </div>
@@ -155,7 +155,7 @@
 {{-- Grupo:Precio Unidad --}}
     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
         <div class="form-group">
-            <label for="precio">Precio Unidad</label>    
+            <label for="precio">Precio Unidad</label>
             <input type="number" name="PRECIO_UNITARIO" id="precio" class="form-control"
             placeholder="Digite Precio por unidad" min="1" pattern="^[0-9]+" disabled="">
         </div>
@@ -198,7 +198,7 @@
                         </td>
                         <td>
                             <input type="hidden" name="precio_{{$articulo->COD_ARTICULO}}" value="{{$articulo->pivot->PRECIO_UNITARIO}}" disabled="">
-                                
+
                             </input>
                             <input type="number" value="{{$articulo->pivot->PRECIO_UNITARIO}}" disabled id="precio_{{$articulo->COD_ARTICULO}}" disabled=""></input>
                         </td>

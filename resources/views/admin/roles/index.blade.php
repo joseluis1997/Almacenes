@@ -6,20 +6,22 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-11">
-                    <h3 class="card-title"><b>Gestion Roles</b></h3> 
+                    <h3 class="card-title"><b>Gestion Roles</b></h3>
                 </div>
                 <div class="col-md-1">
-                    <a href="{{route('create_roles')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Rol</b></a>
+                    @can('Crear_roles')
+                        <a href="{{route('create_roles')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Rol</b></a>
+                    @endcan
                 </div>
             </div>
         </div>
-        <div class="card-body"> 
+        <div class="card-body">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-rol-activos-tab" data-toggle="tab" href="#nav-rol-activos" role="tab" aria-controls="nav-rol-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
                 <a class="nav-item nav-link" id="nav-rol-bajas-tab" data-toggle="tab" href="#nav-rol-bajas" role="tab" aria-controls="nav-rol-bajas" aria-selected="false">Bajas</a>
               </div>
-            </nav>   
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-rol-activos" role="tabpanel" aria-labelledby=" nav-rol-activos-tab" style="padding-top: 15px;">
                 <table id="dataAltas" class="table table-striped table-bordered ">
@@ -51,27 +53,32 @@
                                         @endif
                                     </td>
                                     <td>
+                                      @can('Ver_roles')
                                         <a href="{{route('show_role',$rol->id)}}" class="fas fa-eye fa-2x"></a>
+                                      @endcan
                                     </td>
                                     <td>
-                                        <a href="{{route('edit_roles',$rol->id)}}" class="fas fa-edit fa-2x"></a>
+                                      @can('Modificar_roles')
+                                      <a href="{{route('edit_roles',$rol->id)}}" class="fas fa-edit fa-2x"></a>
+                                      @endcan
                                     </td>
-                                    <td> 
-                                        <form action="{{route('destroy_roles', $rol->id)}}" onsubmit="submitForm(event, {{$rol->estado}}, this)" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            @if($rol->estado)
-                                              <button type="submit" class="btn-sm btn btn-outline-danger w-60">
-                                                Deshabilitar
-                                              </button>
-                                            @else
-                                              <button type="submit" class="btn-sm btn btn-outline-primary w-60">
-                                                Habilitar
-                                              </button>
-
-                                            @endif
-                                        </form>
-                                    </td> 
+                                    <td>
+                                      @can('Deshabilitar_roles')
+                                      <form action="{{route('destroy_roles', $rol->id)}}" onsubmit="submitForm(event, {{$rol->estado}}, this)" method="POST">
+                                          @method('DELETE')
+                                          @csrf
+                                          @if($rol->estado)
+                                            <button type="submit" class="btn-sm btn btn-outline-danger w-60">
+                                              Deshabilitar
+                                            </button>
+                                          @else
+                                            <button type="submit" class="btn-sm btn btn-outline-primary w-60">
+                                              Habilitar
+                                            </button>
+                                          @endif
+                                      </form>
+                                      @endcan
+                                    </td>
                                 </tr>
                             @endif
                         @endforeach
@@ -108,13 +115,18 @@
                                             @endif
                                         </td>
                                         <td>
+                                          @can('Ver_roles')
                                             <a href="{{route('show_role',$rol->id)}}" class="fas fa-eye fa-2x"></a>
+                                          @endcan
                                         </td>
                                         <td>
+                                          @can('Modificar_roles')
                                             <a href="{{route('edit_roles',$rol->id)}}" class="fas fa-edit fa-2x"></a>
+                                          @endcan
                                         </td>
-                                        <td> 
-                                            <form action="{{route('destroy_role', $rol->id)}}" onsubmit="submitForm(event, {{$rol->estado}}, this)" method="POST">
+                                        <td>
+                                          @can('Habilitar_roles')
+                                            <form action="{{route('destroy_roles', $rol->id)}}" onsubmit="submitForm(event, {{$rol->estado}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 @if($rol->estado)
@@ -128,7 +140,8 @@
 
                                                 @endif
                                             </form>
-                                        </td> 
+                                          @endcan
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -139,7 +152,7 @@
         </div>
     </div>
 </div>
-  
+
 @endsection('contenido')
 
 @section('scripts')
@@ -159,7 +172,7 @@
             });
         } );
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form) {
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -173,11 +186,11 @@
          }
 
         function eliminar(event) {
-          
+
             var r = confirm("Acepta elminar el Rol Seleccionado?");
             if (r == true) {
 
-            } 
+            }
             else {
                  event.preventDefault();
              }

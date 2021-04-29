@@ -10,8 +10,8 @@
                     <b>Estado Salida</b><br>
                     @if($salida->ESTADO_SALIDA == 1)
                         <span class="badge badge-success">Entregado</span>
-                    @else
-                        <span class="badge badge-warning">Pedido Pendiente</span>
+                    @elseif($salida->ESTADO_SALIDA == 0)
+                        <span class="badge badge-success">Pedido Atendido</span>
                     @endif
                 </div>
                 <div class="form-group">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <b>Fecha</b><br>
-                        <p class="badge badge-light">{{ $salida->FECHA}}</p>
+                        <p class="badge badge-light">{{date('d-m-Y', strtotime($salida->FECHA))}}</p>
                 </div>
                 <div class="form-group">
                     <b>Detalle Salida</b><br>

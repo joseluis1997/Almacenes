@@ -6,10 +6,12 @@
         <div class="card-header">
             <div class="row">
             <div class="col-md-9">
-                <h3 class="card-title"><b>Gestion Unidades de Medidas</b></h3> 
+                <h3 class="card-title"><b>Gestion Unidades de Medidas</b></h3>
             </div>
             <div class="col-md-2">
+                @can('Crear_Unidades_de_Medidas')
                 <a href="{{route('create_medidas')}}" class="btn btn-primary rounded-pill float-left"><b>Nuevo Unidad de Medida</b></a>
+                @endcan
             </div>
             </div>
         </div>
@@ -20,11 +22,11 @@
 
                 <a class="nav-item nav-link" id="nav-medida-bajas-tab" data-toggle="tab" href="#nav-medida-bajas" role="tab" aria-controls="nav-medida-bajas" aria-selected="false">Bajas</a>
               </div>
-            </nav> 
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table unidades de medidas habilitados --}}
                 <div class="tab-pane fade show active" id="nav-medida-activos" role="tabpanel" aria-labelledby=" nav-medida-activos-tab" style="padding-top: 15px;">
-                    <table id="dataBajas" class="table table-striped table-bordered" style="width:100%">
+                    <table id="dataAltas" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -51,12 +53,17 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @can('Ver_Unidades_de_Medidas')
                                         <a href="{{route('show_UnidadaDeMedida',$medida->COD_MEDIDA)}}" class="fas fa-eye fa-2x"></a>
+                                        @endcan
                                     </td>
                                     <td>
-                                       <a href="{{route ('edit_medidas',$medida->COD_MEDIDA)}}" class="fas fa-edit fa-2x"></a>
+                                        @can('Modificar_Unidades_de_Medidas')
+                                        <a href="{{route ('edit_medidas',$medida->COD_MEDIDA)}}" class="fas fa-edit fa-2x"></a>
+                                        @endcan
                                     </td>
-                                    <td> 
+                                    <td>
+                                        @can('Deshabilitar_Unidades_de_Medidas')
                                         <form action="{{route('destroy_medidas', $medida->COD_MEDIDA)}}" onsubmit="submitForm(event, {{$medida->ESTADO_MEDIDA}}, this)" method="POST">
                                             @method('DELETE')
                                             @csrf
@@ -68,15 +75,15 @@
                                               <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                                 Habilitar
                                               </button>
-
                                             @endif
                                         </form>
-                                    </td> 
+                                        @endcan
+                                    </td>
                                   </tr>
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
                 {{-- data table unidades de medidas desabilitado --}}
                 <div class="tab-pane fade" id="nav-medida-bajas" role="tabpanel" aria-labelledby="nav-medida-bajas-tab" style="padding-top:15px">
@@ -107,12 +114,17 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @can('Ver_Unidades_de_Medidas')
                                         <a href="{{route('show_UnidadaDeMedida',$medida->COD_MEDIDA)}}" class="fas fa-eye fa-2x"></a>
+                                        @endcan
                                     </td>
                                     <td>
+                                        @can('Modificar_Unidades_de_Medidas')
                                        <a href="{{route ('edit_medidas',$medida->COD_MEDIDA)}}" class="fas fa-edit fa-2x"></a>
+                                       @endcan
                                     </td>
-                                    <td> 
+                                    <td>
+                                        @can('Habilitar_Unidades_de_Medidas')
                                         <form action="{{route('destroy_medidas', $medida->COD_MEDIDA)}}" onsubmit="submitForm(event, {{$medida->ESTADO_MEDIDA}}, this)" method="POST">
                                             @method('DELETE')
                                             @csrf
@@ -124,21 +136,21 @@
                                               <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                                 Habilitar
                                               </button>
-
                                             @endif
                                         </form>
-                                    </td> 
+                                        @endcan
+                                    </td>
                                   </tr>
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
-  
+
 @endsection('contenido')
 
 @section('scripts')
@@ -160,7 +172,7 @@
             });
         });
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form) {
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -174,11 +186,11 @@
         }
 
         function eliminar(event) {
-          
+
             var r = confirm("Acepta elminar la Unidad de Medida Seleccionado?");
             if (r == true) {
 
-            } 
+            }
             else {
                  event.preventDefault();
              }

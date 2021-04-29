@@ -39,10 +39,9 @@ class AdminController extends Controller
     public function index()
     {
     	$user = Auth::user();//resivimos el usuario que esta logueado
-
         $roles = $user->roles->implode('name', ' ,'); //obtenemos los usuarios con roles
         // dd($roles);
-        
+
         if($roles!=null){
             return view('admin.admin.index');
         }
@@ -50,7 +49,7 @@ class AdminController extends Controller
             dd("no tienes permiso de Administrador");
         }
         // switch ($roles) {
-           
+
         //     // dd($roles);
         // 	case 'super-admin':
         // 		$saludo = 'Bienvenido Administrador';
@@ -73,5 +72,5 @@ class AdminController extends Controller
         // 		break;
         // }
     }
-    
+
 }

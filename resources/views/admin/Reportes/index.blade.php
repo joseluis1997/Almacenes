@@ -1,11 +1,9 @@
 @extends("layouts.app")
 
 @section('contenido')
-
     <div class="title">
         <h1 align="center"><b>Gestion Reportes</b></h1>
     </div>
-
     <div id="Reportes">
         @can('accesso_reporteInventarioActual')
             <a href="{{route ('list_reportesInventarioActual')}}" >
@@ -27,7 +25,7 @@
                 <b>Reporte Detallado Consumos Directos</b>
             </a><br>
         @endcan
-         @can('accesso_FisicoValoradoCompras')
+        @can('accesso_FisicoValoradoCompras')
             <a href="{{route('list_FisicoValoradoStockAlmacen')}}"><b>Reporte Fisico Valorado Compras</b>
             </a><br>
         @endcan
@@ -48,5 +46,4 @@
             </a><br>
         @endcan
     </div>
-
 @endsection

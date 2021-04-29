@@ -6,20 +6,22 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3 class="card-title"><b>Gestionar Partidas</b></h3> 
+                    <h3 class="card-title"><b>Gestionar Partidas</b></h3>
                 </div>
                 <div class="col-md-2">
-                <a href="{{route ('create_partidas')}}" class="btn btn-primary"><b>Nueva Partida</b></a>
+                    @can('Crear_partidas')
+                    <a href="{{route ('create_partidas')}}" class="btn btn-primary"><b>Nueva Partida</b></a>
+                    @endcan
                 </div>
             </div>
         </div>
-        <div class="card-body">   
+        <div class="card-body">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-partida-activos-tab" data-toggle="tab" href="#nav-partida-activos" role="tab" aria-controls="nav-partida-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
                     <a class="nav-item nav-link" id="nav-partida-bajas-tab" data-toggle="tab" href="#nav-partida-bajas" role="tab" aria-controls="nav-partida-bajas" aria-selected="false">Bajas</a>
                 </div>
-            </nav> 
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table unidades de medidas habilitados --}}
                 <div class="tab-pane fade show active" id="nav-partida-activos" role="tabpanel" aria-labelledby=" nav-partida-activos-tab" style="padding-top: 15px;">
@@ -50,12 +52,17 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @can('Ver_partidas')
                                             <a href="{{route('show_partida',$partida->COD_PARTIDA)}}" class="fas fa-eye fa-2x"></a>
+                                            @endcan
                                         </td>
                                         <td>
+                                            @can('Modificar_partidas')
                                            <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
+                                           @endcan
                                         </td>
                                         <td>
+                                            @can('Deshabilitar_partidas')
                                             <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->ESTADO_PARTIDA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -70,7 +77,8 @@
 
                                                 @endif
                                             </form>
-                                        </td> 
+                                            @endcan
+                                        </td>
                                         {{-- <td>
                                             <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
                                         </td> --}}
@@ -78,7 +86,7 @@
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
                 {{-- data table unidades de medidas desabilitado --}}
                 <div class="tab-pane fade" id="nav-partida-bajas" role="tabpanel" aria-labelledby="nav-partida-bajas-tab" style="padding-top: 15px">
@@ -109,12 +117,17 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @can('Ver_partidas')
                                             <a href="{{route('show_partida',$partida->COD_PARTIDA)}}" class="fas fa-eye fa-2x"></a>
+                                            @endcan
                                         </td>
                                         <td>
+                                            @can('Modificar_partidas')
                                            <a href="{{ route ('edit_partidas', $partida->COD_PARTIDA)}}" class="fas fa-edit fa-2x"></a>
+                                           @endcan
                                         </td>
                                         <td>
+                                            @can('Habilitar_partidas')
                                             <form action="{{route('destroy_partida', $partida->COD_PARTIDA)}}" onsubmit="submitForm(event, {{$partida->ESTADO_PARTIDA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -126,10 +139,10 @@
                                                   <button type="submit" class="btn-sm btn btn-outline-primary w-100">
                                                     Habilitar
                                                   </button>
-
                                                 @endif
                                             </form>
-                                        </td> 
+                                            @endcan
+                                        </td>
                                         {{-- <td>
                                             <a href="{{ route ('destroy_partidas', $partida->COD_PARTIDA)}}" class="fas fa-trash-alt fa-2x" style="color:red;" onclick="eliminar(event);"></a>
                                         </td> --}}
@@ -137,9 +150,9 @@
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -163,7 +176,7 @@
         });
     } );
 
-    function submitForm(event, estado,form) { 
+    function submitForm(event, estado,form) {
         event.preventDefault();
         var r = null;
         if(estado == 1){
@@ -181,7 +194,7 @@
         var r = confirm("Acepta elminar la Partida Seleccionada?");
         if (r == true) {
 
-        } 
+        }
         else{
              event.preventDefault();
         }

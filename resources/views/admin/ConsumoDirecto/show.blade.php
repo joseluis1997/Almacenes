@@ -9,33 +9,25 @@
     </div>
     <div class="card mt-2">
         <div class="card-body">
-                <div class="form-group">
-                    <b>Area Solicitante</b><br>
-                        <p class="badge badge-light">{{ $consumoD->area->NOM_AREA }}</p>
-                </div>
-                <div class="form-group">
-                    <b>Proveedor:</b><br>
-                        <p class="badge badge-light">{{ $consumoD->proveedor->NOM_PROVEEDOR }}</p>
-                </div>
-                <div class="form-group">
-                   
-                </div>
-                <div class="form-group">
-                    <b>Numero Preventivo</b><br>
-                        <p class="badge badge-light">{{ $consumoD->NRO_PREVENTIVO}}</p>
-                </div>
-                <div class="form-group">
-                    <b>Numero de Nota Ingreso</b><br>
-                        <p class="badge badge-light">{{ $consumoD->NOTA_INGRESO}}</p>
-                </div>
-                <div class="form-group">
-                    <b>Fecha Registro</b><br>
-                        <p class="badge badge-light">{{ $consumoD->FECHA}}</p>
-                </div>
-                <div class="form-group">
-                    <b>Detalle Consumo Directo</b><br>
-                        <p class="badge badge-light">{{ $consumoD->DETALLE_CONSUMO}}</p>
-                </div>
+
+                <label class="formulario__label">Area Solicitante:<span class="badge badge-info">{{ $consumoD->area->NOM_AREA }}</span></label>
+
+                <label class="formulario__label">Proveedor:<span class="badge badge-info">{{ $consumoD->proveedor->NOM_PROVEEDOR }}</span></label>
+
+                <label class="formulario__label">Numero Preventivo:<span class="badge badge-info">{{ $consumoD->NRO_PREVENTIVO}}</span></label>
+
+                <label class="formulario__label">Numero de Nota Ingreso:<span class="badge badge-info">{{ $consumoD->NOTA_INGRESO}}</span></label>
+
+                <label class="formulario__label">Fecha Registro:<span class="badge badge-info">{{date('d-m-Y', strtotime($consumoD->FECHA))}}</span></label>
+
+                @if($consumoD->ESTADO_COMPRA)
+                    <label class="formulario__label">Estado Consumo:<span class="badge badge-success">Habilitado</span></label>
+                @else
+                    <label class="formulario__label">Estado Consumo:<span class="badge badge-danger">Deshabilitado</span></label>
+                @endif
+
+                <label class="formulario__label">Detalle Consumo Directo:</label>
+                    <textarea class="form-control formulario__input" rows="2">{{ $consumoD->DETALLE_CONSUMO}}</textarea>
         </div>
          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
@@ -53,7 +45,7 @@
                             <td>{{ $detalle->PRECIO_UNITARIO }}</td>
                             <td>{{ $detalle->CANTIDAD*$detalle->PRECIO_UNITARIO }} Bs</td>
                             @php
-                                $total += $detalle->CANTIDAD*$detalle->PRECIO_UNITARIO; 
+                                $total += $detalle->CANTIDAD*$detalle->PRECIO_UNITARIO;
                             @endphp
                         </tr>
                     @endforeach
@@ -68,7 +60,7 @@
         </div>
 
         <div class="formulario__grupo formulario__btn-guardar text-center">
-                <a href="{{ route('list_consumodirecto') }}" class="btn formulario__btn2">Volver Atras</a>
+            <a href="{{ route('list_consumodirecto') }}" class="btn formulario__btn2">Volver Atras</a>
         </div>
         <br>
     </div>

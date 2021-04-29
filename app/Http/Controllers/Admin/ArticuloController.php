@@ -41,7 +41,7 @@ class ArticuloController extends Controller
      */
     public function store(ArticuloRequest $articulo_request)
     {
-        
+
         try {
 
           Articulo::create($articulo_request->input());
@@ -87,7 +87,7 @@ class ArticuloController extends Controller
     public function update(ArticuloRequest $articulo_request, Articulo $articulo)
     {
 
-        try {            
+        try {
             $articulo->fill($articulo_request->input())->save();
             return redirect()->route('list_articulos')->with('message', ['success', 'Articulo Modificado Correctamente!']);
         } catch (\Illuminate\Database\QueryException $e) {
@@ -105,7 +105,6 @@ class ArticuloController extends Controller
     public function changeStatus(Articulo $articulo)
     {
         $estado = true;
-
         if ($articulo->ESTADO_ARTICULO) {
           $estado = false;
         }
@@ -114,7 +113,7 @@ class ArticuloController extends Controller
         $articulo->save();
 
         if ($estado) {
-          return redirect()->route('list_articulos')->with('message', ['success', 'Articulo habilitado Correctamente!']);  
+          return redirect()->route('list_articulos')->with('message', ['success', 'Articulo habilitado Correctamente!']);
         }else{
           return redirect()->route('list_articulos')->with('message', ['success', 'Articulo Desabilitado Correctamente!']);
         }

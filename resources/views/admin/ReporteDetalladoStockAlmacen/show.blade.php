@@ -33,10 +33,10 @@
 		        @if($fecha_ok)
 		        <p>
 		          <b>
-		            PERIODO DEL REPORTE: 
+		            PERIODO DEL REPORTE:
 		          </b>
-		          {{date('d-m-Y',strtotime($fecha_inicio))}} al 
-		          {{date('d-m-Y',strtotime($fecha_fin))}} 
+		          {{date('d-m-Y',strtotime($fecha_inicio))}} al
+		          {{date('d-m-Y',strtotime($fecha_fin))}}
 		        </p>
 		        @endif
 		    </div>
@@ -106,7 +106,11 @@
 		          $Total = 0;
 		        @endphp --}}
 		    @endforeach
-      
+		    <br><br>
+      		<div class="card-body">
+            	<h6 ><b>Firma:_______________________</h6>
+            	<h6><b>Fecha y Hora: </b>{{ $mytime->format('d-m-Y H:i:s')}}</h6>
+    		</div>
  {{--      <div>
         <div>Articulos:</div>
         <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>

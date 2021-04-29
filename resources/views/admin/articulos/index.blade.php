@@ -6,22 +6,24 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3 class="card-title"><b>Gestion Articulos</b></h3> 
+                    <h3 class="card-title"><b>Gestion Articulos</b></h3>
                 </div>
                 @can('Crear_articulos')
                   <div class="col-md-2">
+                      @can('Crear_articulos')
                       <a href="{{route('create_articulos')}}" class="btn btn-primary">Nuevo Articulo</a>
+                      @endcan
                   </div>
                 @endcan
             </div>
         </div>
-        <div class="card-body">   
+        <div class="card-body">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-articulo-activos-tab" data-toggle="tab" href="#nav-articulo-activos" role="tab" aria-controls="nav-articulo-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
                     <a class="nav-item nav-link" id="nav-articulo-bajas-tab" data-toggle="tab" href="#nav-articulo-bajas" role="tab" aria-controls="nav-articulo-bajas" aria-selected="false">Bajas</a>
                 </div>
-            </nav> 
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table unidades de medidas habilitados --}}
                 <div class="tab-pane fade show active" id="nav-articulo-activos" role="tabpanel" aria-labelledby=" nav-articulo-activos-tab" style="padding-top: 15px;">
@@ -33,15 +35,9 @@
                               <th>Cantidad Actual</th>
                               <th>Unidad de Medidas</th>
                               <th>Estado</th>
-                              @can('Ver_articulos')
-                                 <th>Ver</th>
-                              @endcan
-                              @can('Modificar_articulos')
-                                 <th>Modificar</th>
-                              @endcan
-                              @can('Deshabilitar_articulos')
-                                 <th>Deshabilitar</th>
-                              @endcan
+                              <th>Ver</th>
+                              <th>Modificar</th>
+                              <th>Deshabilitar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,19 +54,19 @@
                                           @else
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                           @endif
-                                       </td>
-                                       @can('Ver_articulos')
-                                          <td>
-                                             <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
-                                          </td>
-                                       @endcan
-                                       @can('Modificar_articulos')
-                                          <td>
-                                               <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
-                                          </td>
-                                       @endcan
-                                       @can('Deshabilitar_articulos')
-                                       <td> 
+                                      </td>
+                                      <td>
+                                        @can('Ver_articulos')
+                                          <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
+                                        @endcan
+                                      </td>
+                                      <td>
+                                        @can('Modificar_articulos')
+                                          <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
+                                        @endcan
+                                      </td>
+                                      <td>
+                                        @can('Deshabilitar_articulos')
                                           <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
                                               @method('DELETE')
                                               @csrf
@@ -78,13 +74,13 @@
                                                   Deshabilitar
                                                 </button>
                                           </form>
-                                       </td>
-                                       @endcan
+                                        @endcan
+                                      </td>
                                     </tr>
                                 @endif
-                           @endforeach     
+                           @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
                 {{-- data table unidades de medidas desabilitado --}}
                 <div class="tab-pane fade" id="nav-articulo-bajas" role="tabpanel" aria-labelledby="nav-articulo-bajas-tab" style="padding-top: 15px">
@@ -122,18 +118,18 @@
                                              <button type="button" class="btn btn-danger navbar-btn">Inactivo</button>
                                           @endif
                                        </td>
-                                       @can('Ver_articulos')
-                                          <td>
-                                             <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
-                                          </td>
-                                       @endcan
-                                       @can('Modificar_articulos')
-                                          <td>
-                                               <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
-                                          </td>
-                                       @endcan
-                                       @can('Habilitar_articulos')
-                                          <td> 
+                                        <td>
+                                        @can('Ver_articulos')
+                                          <a href="{{route('show_articulo',$articulo->COD_ARTICULO)}}" class="fas fa-eye fa-2x"></a>
+                                        @endcan
+                                        </td>
+                                        <td>
+                                          @can('Modificar_articulos')
+                                            <a href="{{route ('edit_articulos',$articulo->COD_ARTICULO)}}" class="fas fa-edit fa-2x"></a>
+                                          @endcan
+                                        </td>
+                                        <td>
+                                          @can('Habilitar_articulos')
                                              <form action="{{route('destroy_articulos', $articulo->COD_ARTICULO)}}" onsubmit="submitForm(event, {{$articulo->ESTADO_ARTICULO}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -141,19 +137,18 @@
                                                    Habilitar
                                                    </button>
                                              </form>
-                                          </td>
-                                       @endcan
+                                          @endcan
+                                        </td>
                                     </tr>
                                 @endif
-                           @endforeach     
+                           @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('scripts')
@@ -173,7 +168,7 @@
         });
     } );
 
-    function submitForm(event, estado,form) { 
+    function submitForm(event, estado,form) {
         event.preventDefault();
         var r = null;
         if(estado == 1){
@@ -191,7 +186,7 @@
    //      var r = confirm("Acepta elminar el Articulo Seleccionado?");
    //      if (r == true) {
 
-   //      } 
+   //      }
    //      else{
    //           event.preventDefault();
    //      }

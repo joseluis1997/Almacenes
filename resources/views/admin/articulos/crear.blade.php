@@ -8,7 +8,6 @@
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
-
                     @endforeach
                 </ul>
             </div>
@@ -20,9 +19,9 @@
         <div class="card-body">
             <form  action="{{ route('store_articulos')}}" class="formulario" method="POST" enctype="multipart/form-data" id="formulario">
                 @csrf
-                
+
                 @include('admin.articulos.formCrear')
-              
+
             </form>
         </div>
     </div>
@@ -33,7 +32,7 @@
     <script type="text/javascript">
         $(function () {
           $('[data-toggle="popover"]').popover()
-        }) 
-        
+        })
+
     </script>
 @endsection

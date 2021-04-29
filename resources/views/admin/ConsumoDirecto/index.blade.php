@@ -6,10 +6,12 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-7">
-                    <h3 class="card-title"><b>Gestion Consumo Directos</b></h3> 
+                    <h3 class="card-title"><b>Gestion Consumo Directos</b></h3>
                 </div>
                 <div class="col-md-5">
+                    @can('Crear_consumos_directos')
                     <a href="{{route('create_consumodirecto')}}" class="btn btn-primary rounded-pill float-right"><b>Nuevo Consumo Directo</b></a><br/><br/>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -19,7 +21,7 @@
                 <a class="nav-item nav-link active" id="nav-consumoD-activos-tab" data-toggle="tab" href="#nav-consumoD-activos" role="tab" aria-controls="nav-consumoD-activos" aria-selected="true" style="margin-left: 42%">Activos</a>
                 <a class="nav-item nav-link" id="nav-consumoD-bajas-tab" data-toggle="tab" href="#nav-consumoD-bajas" role="tab" aria-controls="nav-consumoD-bajas" aria-selected="false">Bajas</a>
               </div>
-            </nav> 
+            </nav>
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table unidades de medidas habilitados --}}
                 <div class="tab-pane fade show active" id="nav-consumoD-activos" role="tabpanel" aria-labelledby=" nav-consumoD-activos-tab" style="padding-top: 15px;">
@@ -41,21 +43,23 @@
                                 @if($Consumo->ESTADO_COMPRA == 1)
                                     <tr>
                                         <td>{{ $Consumo->COD_CONSUMO_DIRECTO }}</td>
-                                        <td>{{ $Consumo->FECHA }}</td>
+                                        {{-- <td>{{ $Consumo->FECHA }}</td> --}}
+                                        <td>{{date('d-m-Y', strtotime($Consumo->FECHA))}}</td>
                                         <td>{{ $Consumo->NRO_PREVENTIVO }}</td>
                                         <td>{{ $Consumo->NRO_ORD_COMPRA }}</td>
                                         <td>{{ $Consumo->Area->NOM_AREA }}</td>
-                                        @can('Modificar_consumos_directos')
-                                            <td>
-                                                <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
-                                            </td>
-                                        @endcan
-                                        @can('VerDetalles_consumos_directos')
-                                            <td>
-                                                <a href="{{ route('show_consumoD',$Consumo->COD_CONSUMO_DIRECTO) }}" ><button class="btn btn-primary">Ver Detalles</button></a>
-                                            </td>
-                                        @endcan
-                                        <td> 
+                                        <td>
+                                            @can('Modificar_consumos_directos')
+                                            <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
+                                            @endcan
+                                        </td>
+                                        <td>
+                                            @can('VerDetalles_consumos_directos')
+                                            <a href="{{ route('show_consumoD',$Consumo->COD_CONSUMO_DIRECTO) }}" ><button class="btn btn-primary">Ver Detalles</button></a>
+                                            @endcan
+                                        </td>
+                                        <td>
+                                            @can('Deshabilitar_consumos_directos')
                                             <form action="{{route('destroy_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" onsubmit="submitForm(event, {{$Consumo->ESTADO_COMPRA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -63,12 +67,13 @@
                                                         Deshabilitar
                                                     </button>
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                     </div>
                     {{-- data table unidades de medidas desabilitado --}}
                 <div class="tab-pane fade" id="nav-consumoD-bajas" role="tabpanel" aria-labelledby="nav-consumoD-bajas-tab" style="padding-top: 15px">
@@ -95,35 +100,37 @@
                                         <td>{{ $Consumo->NRO_ORD_COMPRA }}</td>
                                         <td>{{ $Consumo->Area->NOM_AREA }}</td>
                                         <td>
-                                            <a href="#" class="fas fa-print fa-2x"></a>
-                                        </td>
-                                        <td>
-                                            @can('modificar_usuarios')
+                                            @can('Modificar_consumos_directos')
                                             <a href="{{ route ('edit_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" class="fas fa-edit fa-2x"></a>
                                             @endcan
                                         </td>
-                                        <td> 
+                                        <td>
+                                            @can('VerDetalles_consumos_directos')
+                                            <a href="{{ route('show_consumoD',$Consumo->COD_CONSUMO_DIRECTO) }}" ><button class="btn btn-primary">Ver Detalles</button></a>
+                                            @endcan
+                                        </td>
+                                        <td>
+                                            @can('Habilitar_consumos_directos')
                                             <form action="{{route('destroy_consumodirecto', $Consumo->COD_CONSUMO_DIRECTO)}}" onsubmit="submitForm(event, {{$Consumo->ESTADO_COMPRA}}, this)" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                            
                                                     <button type="submit" class="btn-sm btn btn-outline-primary w-60">
                                                         Habilitar
                                                     </button>
-
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
-            </div>    
+            </div>
         </div>
     </div>
 </div>
-  
+
 @endsection('contenido')
 
 @section('scripts')
@@ -143,7 +150,7 @@
             });
         });
 
-        function submitForm(event, estado,form) { 
+        function submitForm(event, estado,form) {
             event.preventDefault();
             var r = null;
             if(estado == 1){
@@ -157,11 +164,11 @@
         }
 
         function eliminar(event) {
-          
+
            var r = confirm("Acepta elminar el Consumo Directo Seleccionado?");
            if (r == true) {
-           } 
-           
+           }
+
            else {
                  event.preventDefault();
            }

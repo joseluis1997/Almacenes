@@ -34,13 +34,13 @@
               <tbody>
                 @php
                   $Total =  0.00;
-                @endphp 
+                @endphp
                 @foreach($partidas as $partida)
                   @php
                     $TotalIngresos =  0.00;
                     $TotalSalidas =  0.00;
                     $TotalPartida =  0.00;
-                  @endphp 
+                  @endphp
                   @foreach($partida->Articulos as $index=>$articulo)
                     @php
                       if($articulo->total_prec_DCS > 0){
@@ -69,9 +69,14 @@
                   </tr>
                 @endforeach
               </tbody>
-            </table>      
+            </table>
             <div>
               <div><b>Consolidado valorado Total:{{number_format($Total, 2, '.', '')}} Bs.</b></div>
+            </div>
+            <br><br>
+            <div class="card-body">
+                <h6 ><b>Firma:_______________________</h6>
+                <h6><b>Fecha y Hora: </b>{{ $mytime->format('d-m-Y H:i:s')}}</h6>
             </div>
 {{--           </main> --}}
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">

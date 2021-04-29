@@ -11,16 +11,15 @@
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
-
                                 @endforeach
                             </ul>
                         </div>
                     @endif
-                    <h3 class="card-le"><b>Pedidos Pendiente</b></h3> 
+                    <h3 class="card-le"><b>Pedidos Pendiente</b></h3>
                 </div>
             </div>
         </div>
-        <div class="card-body"> 
+        <div class="card-body">
             <div class="tab-content" id="nav-tabContent">
                 {{-- data table pedidos habilitados --}}
                 <div class="tab-pane fade show active" id="nav-salidas-activos" role="tabpanel" aria-labelledby="nav-salidas-activos-tab" style="padding-top: 15px;">
@@ -32,9 +31,7 @@
                                 <th>Fecha Registro</th>
                                 <th>Condicion</th>
                                 <th>Validar Pedido</th>
-                                @can('VerDetalle_pedidos_Pendientes')
-                                    <th>Ver Detalles</th>
-                                @endcan
+                                <th>Ver Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,26 +44,25 @@
                                         <td>{{ $pedido->FECHA }}</td>
                                         {{-- @if($pedido->VALIDADO == 1) --}}
                                             {{-- <td><span class="badge badge-success">Entregado</span></td> --}}
-                                        
                                         {{-- @else --}}
                                             <td><span class="badge badge-info">Pendiente</span></td>
                                         {{-- @endif --}}
+                                        <td>
                                         @can('Validar_Salida_Pedido')
-                                            <td>
-                                                <a href="{{ route('Validar_Pedido',$pedido->COD_PEDIDO) }}" ><button class="btn btn-success">Validar Pedido</button></a>
-                                            </td>
+                                            <a href="{{ route('Validar_Pedido',$pedido->COD_PEDIDO) }}" ><button class="btn btn-success">Validar Pedido</button></a>
                                         @endcan
+                                        </td>
+                                        <td>
                                         @can('VerDetalle_pedidos_Pendientes')
-                                            <td>
-                                                <a href="{{route('mostrar_pedidosPendientes',$pedido->COD_PEDIDO)}}" ><button class="btn btn-primary">Ver Detalles</button></a>
-                                            </td>
+                                            <a href="{{route('mostrar_pedidosPendientes',$pedido->COD_PEDIDO)}}" ><button class="btn btn-primary">Ver Detalles</button></a>
                                         @endcan
+                                        </td>
                                     </tr>
                                     @endif
                                 @endif
                             @endforeach
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>
@@ -76,7 +72,7 @@
     <div class="formulario__grupo formulario__btn-guardar text-center">
         <a href="{{route('list_salidas')}}" class="btn formulario__btn2">Volver Atras</a>
     </div>
-  
+
 @endsection('contenido')
 
 @section('scripts')
@@ -92,6 +88,5 @@
             });
 
         });
-
     </script>
 @endsection

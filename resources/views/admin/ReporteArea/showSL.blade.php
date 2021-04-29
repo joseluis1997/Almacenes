@@ -32,10 +32,10 @@
 			        @if($fecha_ok)
 			        <p>
 			          <b>
-			            PERIODO DEL REPORTE: 
+			            PERIODO DEL REPORTE:
 			          </b>
-			          {{date('d-m-Y',strtotime($fecha_inicio))}} al 
-			          {{date('d-m-Y',strtotime($fecha_fin))}} 
+			          {{date('d-m-Y',strtotime($fecha_inicio))}} al
+			          {{date('d-m-Y',strtotime($fecha_fin))}}
 			        </p>
 			        @endif
 			      </div>
@@ -47,7 +47,7 @@
 			          	</tr>
 			          </thead>
 			          <tbody>
-			            
+
 			            @foreach($Area->Salidas as $indexA=>$salida)
 			              <tr class="tr-consumos">
 			                <td class="table-secondary" rowspan="2"><b>Salida:</b></td>
@@ -80,6 +80,11 @@
 			          </tbody>
 			        </table>
 			      @endforeach
+			      <br><br>
+			    <div class="card-body">
+            		<h6 ><b>Firma:_______________________</h6>
+            		<h6><b>Fecha y Hora: </b>{{ $mytime->format('d-m-Y H:i:s')}}</h6>
+    			</div>
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
 	            <a href="{{route('list_area_egresos_salidas')}}" class="btn formulario__btn2">Volver Atras</a>
 	        </div>

@@ -34,7 +34,7 @@
          <div class=" col-lg-3 col-sm-3 col-md-3 col-xs-12">
             <div class="form-group">
                 <label for="preveedor"><b>Fecha Registro</b></label>
-                <p>{{ $pedido->FECHA}}</p>
+                <p>{{date('d-m-Y', strtotime($pedido->FECHA))}}</p>
             </div>
         </div>
         <div class=" col-lg-3 col-sm-3 col-md-3 col-xs-12">

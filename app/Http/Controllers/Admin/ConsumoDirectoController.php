@@ -29,7 +29,7 @@ class ConsumoDirectoController extends Controller
     }
 
     public function store(ConsumoDirectoRequest $Consumo_Directo){
-        
+
        try{
             DB::beginTransaction();
 
@@ -52,7 +52,7 @@ class ConsumoDirectoController extends Controller
             if($articulos == null){
               $articulos = array();
             }
-            
+
             foreach ($articulos as $key => $value) {
             // error_log($value);
               $articulos_sync[$value] = array(
@@ -60,7 +60,7 @@ class ConsumoDirectoController extends Controller
                             ,'PRECIO_UNITARIO' => ($Consumo_Directo->input('precio_'.$value))
                         );
             }
-       
+
             $consumo_directo->Articulos()->sync($articulos_sync);
             DB::commit();
 
@@ -73,7 +73,7 @@ class ConsumoDirectoController extends Controller
     }
 
     public function show($id){
-        
+
         $consumoD = consumo_directo::findOrFail($id);
         $detalleConsumoD = DB::table('DETALLE_CONSUMO_DIRECTO as d')
         ->join('ARTICULO as a', 'd.COD_ARTICULO', '=','a.COD_ARTICULO')
@@ -94,7 +94,7 @@ class ConsumoDirectoController extends Controller
     }
 
     public function update(ConsumoDirectoRequest $request_consumo, consumo_directo $consumo_directo){
-        
+
        try{
                 DB::beginTransaction();
                 $consumo_directo->FECHA = $request_consumo->get('FECHA');
@@ -122,7 +122,7 @@ class ConsumoDirectoController extends Controller
     }
 
     public function destroy( consumo_directo $consumoDirecto){
-        
+
         $estado = true;
 
         if ($consumoDirecto->ESTADO_COMPRA) {
@@ -133,7 +133,7 @@ class ConsumoDirectoController extends Controller
         $consumoDirecto->save();
 
         if ($estado) {
-          return redirect()->route('list_consumodirecto')->with('message', ['success', 'Consumo Directo habilitado Correctamente!']);  
+          return redirect()->route('list_consumodirecto')->with('message', ['success', 'Consumo Directo habilitado Correctamente!']);
         }else{
           return redirect()->route('list_consumodirecto')->with('message', ['success', 'Consumo Directo Desabilitado Correctamente!']);
         }
