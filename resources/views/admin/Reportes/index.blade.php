@@ -26,7 +26,7 @@
             </a><br>
         @endcan
         @can('accesso_FisicoValoradoCompras')
-            <a href="{{route('list_FisicoValoradoStockAlmacen')}}"><b>Reporte Fisico Valorado Compras</b>
+            <a href="{{route('list_FisicoValoradoStockAlmacen')}}"><b>Reporte Fisico Valorado Stock Almacen</b>
             </a><br>
         @endcan
         @can('accesso_FisicoValoradoCompras')

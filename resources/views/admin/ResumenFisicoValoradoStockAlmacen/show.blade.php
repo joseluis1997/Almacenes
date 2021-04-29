@@ -14,7 +14,7 @@
 					    </div>
 		        <h5 style=" text-align: center;"><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
 		            Almacen Central<br>
-		            Reporte Fisico Valorado Compras
+		            Reporte Fisico Stock Almacen
 		        </h5>
 		        <div class="card-body">
 		          <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>

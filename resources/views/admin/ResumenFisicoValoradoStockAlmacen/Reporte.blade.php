@@ -144,8 +144,7 @@
       </div>
         <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             ALMACEN CENTRAL<br>
-            REPORTE FISICO VALORADO COMPRAS
-        </h1>
+            REPORTE FISICO VALORADO STOCK ALMACEN
 
     </header>
     <main>
