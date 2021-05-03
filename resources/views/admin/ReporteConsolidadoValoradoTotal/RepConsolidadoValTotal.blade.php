@@ -3,19 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>RCVT</title>
-    <link rel="stylesheet" href="style.css" media="all" />
-    <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
-
+     <style type="text/css">
       body {
         font-family: Arial, sans-serif; 
         font-size: 12px; 
@@ -37,11 +25,11 @@
         width: 90px;
       }
 
-      h1 {
+      h4 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.0em;
+        font-size: 1.5em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -49,58 +37,35 @@
         background: url(dimension.png);
       }
 
-      #project {
-        float: left;
-      }
-
-      #project span {
-        color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
-
-      #company {
-        float: right;
-        text-align: right;
-      }
-
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
-
       table {
         width: 100%;
+        border: none !important;
         border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
-      table tr:nth-child(2n-1) td {
+      table tr{
+        border-spacing: 0px;
         background: #F5F5F5;
       }
 
- 
-      table th {
-        padding: 5px 0px;
-        color:black;
-        border-bottom: 1px solid #C1CED9;
-        white-space: nowrap;        
-        font-weight: bold;
+      table th{
+        text-align:center;
       }
 
+      table th {
+        padding: 10px 0px;
+        color:  #708090;
+        white-space: nowrap;        
+      }
 
       table td {
-        padding: 5px 0px;
-        padding-left: 10px;
-        text-align: right;
+        padding: 12px 0px;
+        text-align: center;
       }
-      table thead{
-        background: #5DC6EF;
-
+      .text{
+        text-align: left;
+        font-size: 12px;
       }
 
       footer {
@@ -115,25 +80,28 @@
       }
     </style>
   </head>
+
   <body>
     <header class="clearfix">
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
+        <h4><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             ALMACEN CENTRAL<br>
             REPORTE CONSOLIDADO VALORADO TOTAL
-        </h1>
-
+        </h4>
+         <div class="card-body">
+            <p><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+            <p><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
+        </div>
     </header>
-    <main>
-      <table style="margin-bottom: 30px;" border="1">
+      <table>
         <thead>
           <tr>
-            <th>PARTIDA PRESUPUESTARIA</th>
-            <th>INGRESOS VALORADOS</th>
-            <th>EGRESOS VALORADOS</th>
-            <th>SALDO ACTUAL</th>
+            <th style="background-color: #e0e0e0">PARTIDA PRESUPUESTARIA</th>
+            <th style="background-color: #e0e0e0">INGRESOS <br>VALORADOS</th>
+            <th style="background-color: #e0e0e0">EGRESOS <br>VALORADOS</th>
+            <th style="background-color: #e0e0e0">SALDO <br>ACTUAL</th>
           </tr>
         </thead>
         <tbody>
@@ -165,7 +133,7 @@
               $Total =  $Total+$TotalPartida;
             @endphp
             <tr>
-              <td style="text-align:left;" width="40%">
+              <td style="background-color: #e0e0e0;text-align:left;" width="40%">
                 <b>{{$partida->NRO_PARTIDA}}</b>|{{ $partida->NOM_PARTIDA}}
               </td>
               <td width="15%">{{number_format($TotalIngresos, 2, '.', '')}} Bs.</td>
@@ -178,7 +146,11 @@
       <div>
         <div><b>Consolidado valorado Total:</b> {{number_format($Total, 2, '.', '')}} Bs.</div>
       </div>
-    </main>
+      <br><br>
+      <div class="card-body">
+        <p><strong>Firma:</strong>___________________________</p>
+        <p><strong>Fecha y Hora: </strong>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div> 
     <footer>
       Gobierno Autonomo Departamental de Tarija.
     </footer>

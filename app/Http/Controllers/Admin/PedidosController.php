@@ -23,7 +23,8 @@ class PedidosController extends Controller
     public function create()
     {
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
-        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        // $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        $Articulos = Articulo::all()->where('ESTADO_ARTICULO', '=', '1');
         return view('admin.Pedidos.crear',compact('areas','Articulos'));
     }
 
@@ -85,7 +86,8 @@ class PedidosController extends Controller
     {
         $pedidos = pedido::findOrFail($id);
         $areas = DB::table('AREAS')->where('ESTADO_AREA','=','1')->get();
-        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        // $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        $Articulos = Articulo::all()->where('ESTADO_ARTICULO', '=', '1');
         return view('admin.Pedidos.editar', compact('pedidos','areas','Articulos'));
     }
 

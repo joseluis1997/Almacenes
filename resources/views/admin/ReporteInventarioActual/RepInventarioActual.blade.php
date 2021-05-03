@@ -4,16 +4,6 @@
     <meta charset="utf-8">
     <title>RepInvAct</title>
     <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
 
       body {
         font-family: Arial, sans-serif; 
@@ -36,11 +26,11 @@
         width: 90px;
       }
 
-      h1 {
+      h4 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2em;
+        font-size: 1.5em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -48,37 +38,15 @@
         background: url(dimension.png);
       }
 
-      #project {
-        float: left;
-      }
-
-      #project span {
-        color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
-
-      #company {
-        float: right;
-        text-align: right;
-      }
-
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
-
       table {
         width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
+        border: none !important;
+        border-collapse:0;
+        margin-bottom: 15px;
       }
 
-      table tr:nth-child(2n-1) td {
+      table tr{
+        border-spacing: 0px;
         background: #F5F5F5;
       }
 
@@ -88,41 +56,14 @@
       }
 
       table th {
-        padding: 5px 0px;
-        color: #5D6975;
-        border-bottom: 1px solid #C1CED9;
+        padding: 10px 0px;
+        color:  #708090;
         white-space: nowrap;        
-        font-weight: normal;
-      }
-
-      table .inf,
-      table .desc {
-        text-align: center;
       }
 
       table td {
-        padding: 20px 0px;
+        padding: 10px 0px;
         text-align: center;
-      }
-
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
       }
 
       footer {
@@ -135,10 +76,6 @@
         padding: 8px 0;
         text-align: center;
       }
-      h5{
-          font-size: 12px;
-          
-      }
     </style>
   </head>
   <body>
@@ -146,26 +83,24 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
+        <h4><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             ALMACEN CENTRAL<br>
             INVENTARIO ACTUAL
-        </h1>
+        </h4>
         <div class="card-body">
-          <h5>Reporte Generado por el Usuario: {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
-          {{-- <h5>CI: {{auth()->user()->CI}}</h5> --}}
-          <h5>Fecha y Hora: {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+          <p><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+          <p><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
         </div>
     </header>
-    <main>
       @foreach($partidas as $partida)
         @php
           $SubTotal =  0.00;
           $Total =  0.00;
         @endphp
-        <table style="margin-bottom: 30px;" border="1">
+        <table>
           <thead>
             <tr>
-              <th colspan="5" style="text-align: center; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}| {{ $partida->NOM_PARTIDA }}</th>
+              <th colspan="5" style="text-align: center; padding: 5px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}| {{ $partida->NOM_PARTIDA }}</th>
             </tr>
             <tr>
               <th>ITEM</th>
@@ -195,19 +130,19 @@
                 $Total += $PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL);
               @endphp
               <tr>
-                <td class="inf">{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
-                <td class="inf">{{$articulo->NOM_ARTICULO}}</td>
-                <td class="inf">{{$Total_cant_DCS - $Total_cant_SAL}}</td>
-                <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
-                <td class="inf">bs/ {{number_format($PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL), 2, '.', '')}}</td>
+                <td>{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
+                <td>{{$articulo->NOM_ARTICULO}}</td>
+                <td>{{$Total_cant_DCS - $Total_cant_SAL}}</td>
+                <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
+                <td>bs/ {{number_format($PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL), 2, '.', '')}}</td>
               </tr>
             @endforeach
           </tbody>
           <tfoot>
             <tr>
               <td colspan="3"></td>
-              <td class="inf">Total: </td>
-              <td class="inf">Bs/ {{number_format($Total, 2, '.', '')}}</td>
+              <td>Total: </td>
+              <td>Bs/ {{number_format($Total, 2, '.', '')}}</td>
             </tr>
           </tfoot>
         </table>
@@ -215,12 +150,11 @@
           $Total = 0;
         @endphp
       @endforeach
-      
-     {{--  <div>
-        <div>Articulos:</div>
-        <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
-      </div> --}}
-    </main>
+      <br><br>
+      <div class="card-body">
+        <p><b>Firma:_______________________</p>
+        <p><b>Fecha y Hora: </b>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div>
     <footer>
       Gobierno Autonomo Departamental de Tarija
     </footer>

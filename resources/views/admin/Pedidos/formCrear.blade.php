@@ -54,7 +54,7 @@
                 <option value="">Seleccione un Articulo</option>
                 @foreach($Articulos as $articulo)
                 
-                    <option value={{ $articulo->COD_ARTICULO }}_{{ $articulo->CANT_ACTUAL}} id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}</option>
+                    <option value={{ $articulo->COD_ARTICULO }}_{{ $articulo->CANT_ACTUAL}} id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}[{{ $articulo->Medida->NOM_MEDIDA}}]</option>
                 @endforeach
             </select>
         </div>

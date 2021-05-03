@@ -221,7 +221,7 @@
             getArticulosJson();
             setInterval(function(){
               getArticulosJson();
-            }, 10000);
+            }, 30000);
          });
         // documentos del vehiculo
       var jsonUrlDataArticulos = ' {{route('getAllArticulosJson')}}';
@@ -242,7 +242,6 @@
         .catch(error => console.error('Error:', error))
         .then(response => {
           dataArticulos = response;
-          console.log(dataArticulos);
           let domHtmlN = '';
           let n_notf = 0;
           for (let i = 0; i < dataArticulos.length; i++) {

@@ -23,6 +23,8 @@ class ReporteAreaController extends Controller
 
   public $area_ok = FALSE;
   public $fecha_ok = FALSE;
+  public $fecha_inicio = " ";
+  public $fecha_fin = " ";
   
   public function createReport(Request $request){
     $cod_area = $request->get('area');
@@ -38,12 +40,12 @@ class ReporteAreaController extends Controller
       $area = $area->NOM_AREA;
     }
     
-    $fecha_inicio = $request->get('fecha_inicio');
-    $fecha_fin = $request->get('fecha_fin');
-    if ($fecha_inicio != null && $fecha_fin != null) {
-      $date_inicio = \DateTime::createFromFormat('Y-m-d', $fecha_inicio);
-      $date_fin = \DateTime::createFromFormat('Y-m-d', $fecha_fin);
-      if ($date_fin > $date_fin) {
+    $this->fecha_inicio = $request->get('fecha_inicio');
+    $this->fecha_fin = $request->get('fecha_fin');
+    if ($this->fecha_inicio != null && $this->fecha_fin != null) {
+      $date_inicio = \DateTime::createFromFormat('Y-m-d', $this->fecha_inicio);
+      $date_fin = \DateTime::createFromFormat('Y-m-d', $this->fecha_fin);
+      if ($date_inicio <= $date_fin) {
         $this->fecha_ok = TRUE;
       }
     }
@@ -97,8 +99,6 @@ class ReporteAreaController extends Controller
 	    }])->get();
     }
 
-    
-
     //dd($areas[0]);
     if($option == 1){
       if($consumo == 1){
@@ -107,8 +107,8 @@ class ReporteAreaController extends Controller
         'area_ok'=> $this->area_ok,
         'area'=> $area,
         'fecha_ok'=> $this->fecha_ok,
-        'fecha_inicio'=> $fecha_inicio,
-        'fecha_fin'=> $fecha_fin,
+        'fecha_inicio'=> $this->fecha_inicio,
+        'fecha_fin'=> $this->fecha_fin,
         'mytime'=> $mytime,
     ])
     ->setPaper('a4', 'landscape');
@@ -119,8 +119,8 @@ class ReporteAreaController extends Controller
         'area_ok'=> $this->area_ok,
         'area'=> $area,
         'fecha_ok'=> $this->fecha_ok,
-        'fecha_inicio'=> $fecha_inicio,
-        'fecha_fin'=> $fecha_fin,
+        'fecha_inicio'=> $this->fecha_inicio,
+        'fecha_fin'=> $this->fecha_fin,
         'mytime'=> $mytime,
       ])
     ->setPaper('a4', 'landscape');
@@ -133,8 +133,8 @@ class ReporteAreaController extends Controller
           'area_ok'=> $this->area_ok,
           'area'=> $area,
           'fecha_ok'=> $this->fecha_ok,
-          'fecha_inicio'=> $fecha_inicio,
-          'fecha_fin'=> $fecha_fin,
+          'fecha_inicio'=> $this->fecha_inicio,
+          'fecha_fin'=> $this->fecha_fin,
           'mytime'=> $mytime,
         ]);
       }else{
@@ -143,8 +143,8 @@ class ReporteAreaController extends Controller
           'area_ok'=> $this->area_ok,
           'area'=> $area,
           'fecha_ok'=> $this->fecha_ok,
-          'fecha_inicio'=> $fecha_inicio,
-          'fecha_fin'=> $fecha_fin,
+          'fecha_inicio'=> $this->fecha_inicio,
+          'fecha_fin'=> $this->fecha_fin,
           'mytime'=> $mytime,
         ]);
       }

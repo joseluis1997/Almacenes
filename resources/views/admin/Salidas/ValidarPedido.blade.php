@@ -50,7 +50,7 @@
             <label for="pidarticulo">Articulos</label>    
             <select name="pidarticulo" class="form-group selectpicker" id="pidarticulo" data-live-search="true">
                 @foreach($Articulos as $articulo)
-                  <option value="{{ $articulo->COD_ARTICULO }}_{{ $articulo->CANT_ACTUAL}}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}</option>
+                  <option value="{{ $articulo->COD_ARTICULO }}_{{ $articulo->CANT_ACTUAL}}" id="articulo_{{ $articulo->COD_ARTICULO }}">{{ $articulo->NOM_ARTICULO }}[{{ $articulo->Medida->NOM_MEDIDA}}]</option>
                 @endforeach
             </select>
         </div>

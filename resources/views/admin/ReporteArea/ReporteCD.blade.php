@@ -4,17 +4,7 @@
     <meta charset="utf-8">
     <title>RepArCons</title>
     <link rel="stylesheet" href="style.css" media="all" />
-    <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
+      <style type="text/css">
 
       body {
         font-family: Arial, sans-serif; 
@@ -37,11 +27,11 @@
         width: 90px;
       }
 
-      h1 {
+      h4 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.0em;
+        font-size: 1.5em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -49,84 +39,35 @@
         background: url(dimension.png);
       }
 
-      #project {
-        float: left;
-      }
-
-      #project span {
-        color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
-
-      #company {
-        float: right;
-        text-align: right;
-      }
-
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
-
       table {
         width: 100%;
+        border: none !important;
         border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
-      table tr:nth-child(2n-1) td {
+      table tr{
+        border-spacing: 0px;
         background: #F5F5F5;
       }
 
-      table th,
-      table td {
-        text-align: center;
+      table th{
+        text-align:center;
       }
 
       table th {
-        padding: 5px 0px;
-        color: #5D6975;
-        border-bottom: 1px solid #C1CED9;
+        padding: 10px 0px;
+        color:  #708090;
         white-space: nowrap;        
-        font-weight: normal;
-      }
-
-      table .inf,
-      table .desc {
-        text-align: left;
       }
 
       table td {
-        padding: 20px 0px;
+        padding: 12px 0px;
+        text-align: center;
       }
-
-      .text-center td {
-        text-align: center !important;
-      }
-
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
+      .text{
+        text-align: left;
+        font-size: 12px;
       }
 
       footer {
@@ -139,12 +80,6 @@
         padding: 8px 0;
         text-align: center;
       }
-      tr.tr-articulos > td{
-        background-color: #cbd7e2 !important;
-      }
-      tr.tr-consumos > td{
-        background-color: #F5F5F5 !important;
-      }
     </style>
   </head>
   <body>
@@ -152,20 +87,19 @@
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1>
+        <h4>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
           </b><br>
           ALMACEN CENTRAL
           <br>
           REPORTE POR AREAS DE LOS CONSUMOS DIRECTOS
-        </h1>
+        </h4>
         <div class="card-body">
-              <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
-              <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+          <p><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+          <p><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
         </div>
     </header>
-    <main>
       <div>
         @if($area_ok)
         <p>
@@ -194,13 +128,13 @@
             
             @foreach($Area->ConsumoDirectos as $indexA=>$consumo)
               <tr class="tr-consumos">
-                <td style="vertical-align: top;" rowspan="2" colspan="2">COSUMO DIRECTO: </td>
-                <td>FECHA</td>
-                <td>CODIGO</td>
-                <td>NRO COMPRA</td>
-                <td>NRO PREVENTIVO</td>
+                <td style="background-color: #e0e0e0;vertical-align: top;" rowspan="2" colspan="2">COSUMO DIRECTO: </td>
+                <td style="background-color: #e0e0e0">FECHA</td>
+                <td style="background-color: #e0e0e0">CODIGO</td>
+                <td style="background-color: #e0e0e0">NRO COMPRA</td>
+                <td style="background-color: #e0e0e0">NRO PREVENTIVO</td>
               </tr>
-              <tr class="tr-consumos">
+              <tr>
                 <td>{{$consumo->FECHA}}</td>
                 <td>{{$consumo->COD_CONSUMO_DIRECTO}}</td>
                 <td>{{$consumo->NRO_ORD_COMPRA}}</td>
@@ -210,16 +144,16 @@
                 $SubTotal =  0.00;
                 $Total =  0.00;
               @endphp
-              <tr class="tr-articulos">
-                <td style="vertical-align: top; text-align: right;" rowspan="{{count($consumo->Articulos)+1}}">Articulos del consumo directo: </td>
-                <td>Nombre</td>
-                <td>Medida</td>
-                <td>Cantidad</td>
-                <td>Precio U.</td>
-                <td>Total</td>
+              <tr>
+                <td style="background-color: #e0e0e0; vertical-align: top; text-align: right;" rowspan="{{count($consumo->Articulos)+1}}">Articulos del consumo directo: </td>
+                <td style="background-color: #e0e0e0">Nombre</td>
+                <td style="background-color: #e0e0e0">Medida</td>
+                <td style="background-color: #e0e0e0">Cantidad</td>
+                <td style="background-color: #e0e0e0">Precio U.</td>
+                <td style="background-color: #e0e0e0">Total</td>
               </tr>
               @foreach($consumo->Articulos as $articulo)
-                <tr class="tr-articulos">
+                <tr>
                   <td>{{$articulo->NOM_ARTICULO}}</td>
                   <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
                   <td>{{number_format($articulo->pivot->CANTIDAD, 2, '.', '')}}</td>
@@ -246,10 +180,13 @@
       @endforeach
       
       <div>
-        <div>Monto Total: {{ number_format($TotalMonto, 2, '.', '') }}</div>
+        <div>Monto Total:Bs/ {{ number_format($TotalMonto, 2, '.', '') }}</div>
         {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
-      </div>
-    </main>
+      </div><br><br>
+      <div class="card-body">
+        <p><strong>Firma:</strong>___________________________</p>
+        <p><strong>Fecha y Hora: </strong>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div> 
     <footer>
       Gobierno Autonomo Departamental de Tarija
     </footer>

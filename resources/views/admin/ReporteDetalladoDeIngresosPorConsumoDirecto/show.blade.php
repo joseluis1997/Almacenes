@@ -110,7 +110,7 @@
 
 
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
-	            <a href="{{route('list_FisicoValoradoConsumoDirecto')}}" class="btn formulario__btn2">Volver Atras</a>
+	            <a href="{{route('list_ReporteDetalladoIngresosConsumoDirecto')}}" class="btn formulario__btn2">Volver Atras</a>
 	        </div>
       </div>
     </div>

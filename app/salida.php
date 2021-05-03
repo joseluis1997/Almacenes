@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class salida extends Model
+class salida extends Model implements Auditable
 {
-
+    use AuditingAuditable;
+    
     protected $table = 'SALIDAS';
 
     protected $primaryKey = 'COD_SALIDA';

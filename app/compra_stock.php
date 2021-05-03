@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class compra_stock extends Model
+class compra_stock extends Model implements Auditable
 {
     //
+    use AuditingAuditable;
     protected $table = 'COMPRA_STOCKS';
 
     protected $primaryKey = 'COD_COMPRA_STOCK';

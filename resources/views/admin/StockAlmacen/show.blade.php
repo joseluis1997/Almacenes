@@ -78,7 +78,7 @@
                     <th>Total</th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">{{$total}}Bs</h4></th>
+                    <th><h4 id="total">{{number_format($total, 2, '.', '')}}Bs</h4></th>
                 </tfoot>
             </table>
         </div>

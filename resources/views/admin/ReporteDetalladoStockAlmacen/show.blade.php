@@ -43,7 +43,9 @@
 		    @foreach($partidas as $partida)
 		        <table class="table table-bordered">
 			        <tr class="table-primary">
-			            <th colspan="10">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
+			            <th colspan="10">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}<br>
+			            	<strong>Descripcion:</strong>{{$partida->DESCRIPCION}}
+			            </th>
 			        </tr>
 		          	<tr>
 			            <th>FECHA</th>
@@ -79,7 +81,9 @@
 				                	<td>{{number_format($compra->pivot->PRECIO_UNITARIO, 2, '.', '')}}</td>
 				                  	@php
 				                    	$SubTotal =  $compra->pivot->CANTIDAD * $compra->pivot->PRECIO_UNITARIO;
+				                    	$SubTotal = round($SubTotal);
 				                    	$Total =  $Total+$SubTotal;
+				                    	$Total = round($Total);
 				                  	@endphp
 				                	<td>{{number_format($SubTotal, 2, '.', '')}}</td>
 				                </tr>
@@ -118,7 +122,7 @@
     	{{-- </main> --}}
 
 	        <div class="formulario__grupo formulario__btn-guardar text-center" id="Guardar">
-	            <a href="{{route('list_FisicoValoradoStockAlmacen')}}" class="btn formulario__btn2">Volver Atras</a>
+	            <a href="{{route('list_ReporteDetalladoStockAlmacen')}}" class="btn formulario__btn2">Volver Atras</a>
 	        </div>
       	</div>
     </div>

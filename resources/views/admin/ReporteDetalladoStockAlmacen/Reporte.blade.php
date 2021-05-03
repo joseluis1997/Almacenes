@@ -5,157 +5,103 @@
     <title>RepDeCom</title>
     <link rel="stylesheet" href="style.css" media="all" />
     <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
 
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
+          body {
+            font-family: Arial, sans-serif; 
+            font-size: 12px; 
+            font-family: Arial;
+            text-transform: uppercase !important;
+          }
 
-      body {
-        font-family: Arial, sans-serif; 
-        font-size: 12px; 
-        font-family: Arial;
-        text-transform: uppercase !important;
-      }
+          header {
+            padding: 10px 0;
+            margin-bottom: 30px;
+          }
 
-      header {
-        padding: 10px 0;
-        margin-bottom: 30px;
-      }
+          #logo {
+            text-align: center;
+            margin-bottom: 10px;
+          }
 
-      #logo {
-        text-align: center;
-        margin-bottom: 10px;
-      }
+          #logo img {
+            width: 90px;
+          }
 
-      #logo img {
-        width: 90px;
-      }
+          h4 {
+            border-top: 1px solid  #5D6975;
+            border-bottom: 1px solid  #5D6975;
+            color: #5D6975;
+            font-size: 1.5em;
+            line-height: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            margin: 0 0 20px 0;
+            background: url(dimension.png);
+          }
 
-      h1 {
-        border-top: 1px solid  #5D6975;
-        border-bottom: 1px solid  #5D6975;
-        color: #5D6975;
-        font-size: 2.4em;
-        line-height: 1.4em;
-        font-weight: normal;
-        text-align: center;
-        margin: 0 0 20px 0;
-        background: url(dimension.png);
-      }
+          table {
+            width: 100%;
+            border: none !important;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+          }
 
-      #project {
-        float: left;
-      }
+          table tr{
+            border-spacing: 0px;
+            background: #F5F5F5;
+          }
 
-      #project span {
-        color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
+          table th{
+            text-align:center;
+          }
 
-      #company {
-        float: right;
-        text-align: right;
-      }
+          table th {
+            padding: 10px 0px;
+            color:  #708090;
+            white-space: nowrap;        
+          }
 
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
+          table td {
+            padding: 12px 0px;
+            text-align: center;
+          }
+          .text{
+            text-align: left;
+            font-size: 12px;
+          }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
-      }
-
-      table tr:nth-child(2n-1) td {
-        background: #F5F5F5;
-      }
-
-      table th,
-      table td {
-        text-align: center;
-      }
-
-      table th {
-        padding: 5px 0px;
-        color: #5D6975;
-        border-bottom: 1px solid #C1CED9;
-        white-space: nowrap;        
-        font-weight: normal;
-      }
-
-      table .inf,
-      table .desc {
-        text-align: left;
-      }
-
-      table td {
-        padding: 20px 0px;
-      }
-
-      .text-center td {
-        text-align: center !important;
-      }
-
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
-      }
-
-      footer {
-        color: #5D6975;
-        width: 100%;
-        height: 30px;
-        position: absolute;
-        bottom: 0;
-        border-top: 1px solid #C1CED9;
-        padding: 8px 0;
-        text-align: center;
-      }
-    </style>
+          footer {
+            color: #5D6975;
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            bottom: 0;
+            border-top: 1px solid #C1CED9;
+            padding: 8px 0;
+            text-align: center;
+          }
+        </style>
   </head>
   <body>
     <header class="clearfix">
     <div id="logo">
         <img src="{{ public_path('images/GobernacionLogo.png') }}">
     </div>
-        <h1>
+        <h4>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
           </b>
           ALMACEN CENTRAL
           <br>
           REPORTE DETALLADO DE COMPRAS
-        </h1>
+        </h4>
+         <div class="card-body">
+          <p>
+            <b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+          <p>
+            <b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
+        </div>
     </header>
-    <main>
       <div>
         @if($partida_ok)
         <p>
@@ -173,9 +119,9 @@
         @endif
       </div>
       @foreach($partidas as $partida)
-        <table style="margin-bottom: 30px;" class="text-left">
+        <table>
           <tr>
-            <th colspan="10" style="text-align: left; padding: 10px 0px; background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
+            <th colspan="10" style="background-color: #e0e0e0">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
           </tr>
           <tr>
             <th>FECHA</th>
@@ -227,11 +173,11 @@
         @endphp
       @endforeach
       
- {{--      <div>
-        <div>Articulos:</div>
-        <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
-      </div> --}}
-    </main>
+      <br><br>
+      <div class="card-body">
+        <p><strong>Firma:</strong>___________________________</p>
+        <p><strong>Fecha y Hora: </strong>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div>
     <footer>
       Gobierno Autonomo Departamental de Tarija
     </footer>

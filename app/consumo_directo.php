@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class consumo_directo extends Model
+class consumo_directo extends Model implements Auditable
 {
+    use AuditingAuditable;
+    
 	protected $table = 'CONSUMO_DIRECTOS';
 	protected $primaryKey = 'COD_CONSUMO_DIRECTO';
 

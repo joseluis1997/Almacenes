@@ -4,16 +4,6 @@
     <meta charset="utf-8">
     <title>RFVC</title>
     <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
 
       body {
         font-family: Arial, sans-serif; 
@@ -36,11 +26,11 @@
         width: 90px;
       }
 
-      h1 {
+      h4 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.0em;
+        font-size: 1.5em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -48,81 +38,35 @@
         background: url(dimension.png);
       }
 
-      #project {
-        float: center;
-      }
-
-      #project span {
-        color: #5D6975;
-        text-align: center;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
-
-      #company {
-        float: right;
-        text-align: center;
-      }
-
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
-
       table {
         width: 100%;
+        border: none !important;
         border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
-      table tr:nth-child(2n-1) td {
+      table tr{
+        border-spacing: 0px;
         background: #F5F5F5;
       }
 
-      table th,
-      table td {
-        text-align: center;
+      table th{
+        text-align:center;
       }
 
       table th {
-        padding: 5px 0px;
-        color: #5D6975;
-        border-bottom: 1px solid #C1CED9;
+        padding: 10px 0px;
+        color:  #708090;
         white-space: nowrap;        
-        font-weight: normal;
-      }
-
-      table .inf,
-      table .desc {
-        text-align: center;
       }
 
       table td {
-        padding: 20px 0px;
+        padding: 12px 0px;
         text-align: center;
       }
-
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
+      .text{
+        text-align: left;
+        font-size: 12px;
       }
 
       footer {
@@ -142,12 +86,17 @@
       <div id="logo">
           <img src="{{ public_path('images/GobernacionLogo.png') }}">
       </div>
-        <h1><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
+        <h4><b>GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA</b><br>
             ALMACEN CENTRAL<br>
             REPORTE FISICO VALORADO STOCK ALMACEN
-
+        </h4>
+         <div class="card-body">
+          <p>
+            <b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+          <p>
+            <b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
+        </div>
     </header>
-    <main>
       @php
         $TotalMonto = 0.00;
         $TotalIngresos =  0.00;
@@ -159,10 +108,13 @@
           $SubTotalEgresos =  0.00;
           $SubTotal =  0.00;
         @endphp
-        <table style="margin-bottom: 40px;" border="1">
+        <table>
           <thead>
+            <tr>
+              <th colspan="9" width="50%">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
+            </tr>
             <tr style="background-color: #e0e0e0">
-              <th colspan="3" width="50%">Partida: {{$partida->NRO_PARTIDA}}|{{$partida->NOM_PARTIDA}}</th>
+              <th colspan="3"></th>
               <th colspan="3">FISICOS</th>
               <th colspan="3">VALORADOS</th>
             </tr>
@@ -188,6 +140,7 @@
                 if ($articulo->total_cant_DCS > 0){
                   $Total_cant_DCS = $articulo->total_cant_DCS;
                   $PrecioPonderado = $articulo->total_prec_DCS/$articulo->total_cant_DCS;
+                   $PrecioPonderado = round($PrecioPonderado,2);
                 }
                 if ($articulo->total_cant_SAL > 0) {
                   $Total_cant_SAL = $articulo->total_cant_SAL;
@@ -197,25 +150,25 @@
                 }
               @endphp
               <tr>
-                <td class="inf">{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
-                <td class="inf">{{$articulo->NOM_ARTICULO}}</td>
-                <td class="inf">{{$articulo->Medida->NOM_MEDIDA}}</td>
-                <td class="inf">
+                <td>{{$partida->NRO_PARTIDA}} - {{$index+1}}</td>
+                <td>{{$articulo->NOM_ARTICULO}}</td>
+                <td>{{$articulo->Medida->NOM_MEDIDA}}</td>
+                <td>
                   {{number_format($Total_cant_DCS, 2, '.', '')}}
                 </td>
-                <td class="inf">
+                <td>
                   {{number_format($Total_cant_SAL, 2, '.', '')}}
                 </td>
-                <td class="inf">
+                <td>
                   {{number_format($Total_cant_DCS - $Total_cant_SAL, 2, '.', '')}}
                 </td>
-                <td class="inf">
+                <td>
                   {{number_format($Total_cant_DCS*$PrecioPonderado, 2, '.', '')}}
                 </td>
-                <td class="inf">
+                <td>
                   {{number_format($Total_cant_SAL*$PrecioPonderado, 2, '.', '')}}
                 </td>
-                <td class="inf">
+                <td>
                   {{number_format($PrecioPonderado*($Total_cant_DCS - $Total_cant_SAL), 2, '.', '')}}
                 </td>
               </tr>
@@ -234,14 +187,14 @@
           <tfoot>
             <tr>
               <td colspan="5"></td>
-              <td class="inf">Total: </td>
-              <td class="inf">
+              <td>Total: </td>
+              <td>
                 {{number_format($SubTotalIngresos, 2, '.', '')}}
               </td>
-              <td class="inf">
+              <td>
                 {{number_format($SubTotalEgresos, 2, '.', '')}}
               </td>
-              <td class="inf">
+              <td>
                 {{number_format($SubTotal, 2, '.', '')}}
               </td>
             </tr>
@@ -252,18 +205,21 @@
         <div>
           <b>Stock Almacen:</b>
           <p>
-            Total Ingresos: <b>{{$TotalIngresos}}</b>
+            Total Ingresos: <b>Bs/ {{number_format($TotalIngresos, 2, '.', '')}}</b>
           </p>
           <p>
-            Total Egresos: <b>{{$TotalEgresos}}</b>
+            Total Egresos: <b>Bs/ {{number_format($TotalEgresos, 2, '.', '')}}</b>
           </p>
           <p>
-            Total Monto: <b>{{$TotalMonto}}</b>
+            Total Monto: <b>Bs/ {{number_format($TotalMonto, 2, '.', '')}}</b>
           </p>
         </div>
-        {{-- <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div> --}}
       </div>
-    </main>
+      <br><br>
+      <div class="card-body">
+        <p><strong>Firma:</strong>___________________________</p>
+        <p><strong>Fecha y Hora: </strong>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div>
     <footer>
       Gobierno Autonomo Departamental de Tarija
     </footer>

@@ -71,7 +71,7 @@
               </tbody>
             </table>
             <div>
-              <div><b>Consolidado valorado Total:{{number_format($Total, 2, '.', '')}} Bs.</b></div>
+              <div><strong>Consolidado valorado Total:</strong>{{number_format($Total, 2, '.', '')}} Bs.</div>
             </div>
             <br><br>
             <div class="card-body">

@@ -3,17 +3,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Kardex</title>
-      <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
+   <style type="text/css">
 
       body {
         font-family: Arial, sans-serif; 
@@ -36,53 +26,47 @@
         width: 90px;
       }
 
-      h1 {
+      h4 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.4em;
+        font-size: 1.5em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
         margin: 0 0 20px 0;
         background: url(dimension.png);
       }
+
       table {
         width: 100%;
+        border: none !important;
         border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
-      table tr:nth-child(2n-1) td {
+      table tr{
+        border-spacing: 0px;
         background: #F5F5F5;
       }
 
-      table th,
-      table td {
-        text-align: center;
+      table th{
+        text-align:center;
       }
 
       table th {
-        padding: 5px 0px;
-        color: #5D6975;
-        border-bottom: 1px solid #C1CED9;
+        padding: 10px 0px;
+        color:  #708090;
         white-space: nowrap;        
-        font-weight: normal;
-        font-weight: bold;
-      }
-
-      table .inf,
-      table .desc {
-        text-align: left;
       }
 
       table td {
-        padding: 20px 0px;
+        padding: 12px 0px;
+        text-align: center;
       }
-
-      .text-center td {
-        text-align: center !important;
+      .text{
+        text-align: left;
+        font-size: 12px;
       }
 
       footer {
@@ -102,25 +86,25 @@
     	<div id="logo">
         	<img src="{{ public_path('images/GobernacionLogo.png') }}">
     	</div>
-        <h1>
+        <h4>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA<br>
           </b>
           	UNIDAD DE ALMACENES CENTRAL
           <br>
           	Kardex de Articulo
-        </h1>
+        </h4>
         <div class="card-body">
-            <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
-            <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+            <p><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+            <p><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
         </div>
     </header>
       <table  class="default">
           <tr>
-            <th>Articulo:</th>
-            <th>U. Medida</th>
-            <th>Partida:</th>
-            <th>Ubicacion:</th>
+            <th style="background-color: #e0e0e0">Articulo:</th>
+            <th style="background-color: #e0e0e0">U. Medida</th>
+            <th style="background-color: #e0e0e0">Partida:</th>
+            <th style="background-color: #e0e0e0">Ubicacion:</th>
           </tr>
 
           <tr>
@@ -130,23 +114,23 @@
             <td>Almacen Central</td>
           </tr>
       </table><br>
-      <table border="1">
+      <table>
         <tr>
-          <th rowspan="2">Fecha</th>
-          <th width="15%" rowspan="2">Unidad Sol.</th>
-          <th rowspan="2">Precio U.</th>
-          <th colspan="2">Entradas</th>
-          <th colspan="2">Salidas</th>
-          <th colspan="2">Saldos</th>
+          <th style="background-color: #e0e0e0" rowspan="2">Fecha</th>
+          <th style="background-color: #e0e0e0" width="15%" rowspan="2">Unidad Sol.</th>
+          <th style="background-color: #e0e0e0" rowspan="2">Precio U.</th>
+          <th style="background-color: #e0e0e0" colspan="2">Entradas</th>
+          <th style="background-color: #e0e0e0" colspan="2">Salidas</th>
+          <th style="background-color: #e0e0e0" colspan="2">Saldos</th>
         </tr>
 
         <tr>
-          <th>Cant.</th>
-          <th>Val.</th>
-          <th>Cant.</th>
-          <th>Val.</th>
-          <th>Cant.</th>
-          <th>Val.</th>
+          <th  style="background-color: #e0e0e0">Cant.</th>
+          <th  style="background-color: #e0e0e0">Val.</th>
+          <th  style="background-color: #e0e0e0">Cant.</th>
+          <th  style="background-color: #e0e0e0">Val.</th>
+          <th  style="background-color: #e0e0e0">Cant.</th>
+          <th  style="background-color: #e0e0e0">Val.</th>
         </tr>
         @php
           $valor_ant = 0;
@@ -232,6 +216,11 @@
             </tr>
           @endif
         @endforeach
-      </table>     
+      </table>    
+      <br><br>
+      <div class="card-body">
+        <p><strong>Firma:</strong>___________________________</p>
+        <p><strong>Fecha y Hora: </strong>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div> 
 </body>
 </html>

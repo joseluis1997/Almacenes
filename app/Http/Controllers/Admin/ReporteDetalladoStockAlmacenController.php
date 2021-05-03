@@ -24,6 +24,9 @@ class ReporteDetalladoStockAlmacenController extends Controller
 
   public $partida_ok = FALSE;
   public $fecha_ok = FALSE;
+  public $fecha_inicio = " ";
+  public $fecha_fin = " ";
+
   public function createReport(Request $request){
     $cod_partida = $request->get('partida');
     $option = $request->get('option');
@@ -35,12 +38,14 @@ class ReporteDetalladoStockAlmacenController extends Controller
       $partida = Partida::find($cod_partida);
       $partida = $partida->NRO_PARTIDA;
     }
-    $fecha_inicio = $request->get('fecha_inicio');
-    $fecha_fin = $request->get('fecha_fin');
-    if ($fecha_inicio != null && $fecha_fin != null) {
-        $date_inicio = \DateTime::createFromFormat('Y-m-d', $fecha_inicio);
-        $date_fin = \DateTime::createFromFormat('Y-m-d', $fecha_fin);
-        if ($date_fin > $date_fin) {
+
+    
+    $this->fecha_inicio = $request->get('fecha_inicio');
+    $this->fecha_fin = $request->get('fecha_fin');
+    if ($this->fecha_inicio != null && $this->fecha_fin != null) {
+        $date_inicio = \DateTime::createFromFormat('Y-m-d', $this->fecha_inicio);
+        $date_fin = \DateTime::createFromFormat('Y-m-d', $this->fecha_fin);
+        if ($date_inicio <= $date_fin) {
           $this->fecha_ok = TRUE;
       }
     }
@@ -89,8 +94,8 @@ class ReporteDetalladoStockAlmacenController extends Controller
       'partida_ok'=> $this->partida_ok,
       'partida'=> $partida,
       'fecha_ok'=> $this->fecha_ok,
-      'fecha_inicio'=> $fecha_inicio,
-      'fecha_fin'=> $fecha_fin,
+      'fecha_inicio'=> $this->fecha_inicio,
+      'fecha_fin'=> $this->fecha_fin,
       'mytime'=> $mytime,
     ])
     ->setPaper('a4', 'landscape');
@@ -101,8 +106,8 @@ class ReporteDetalladoStockAlmacenController extends Controller
       'partida_ok'=> $this->partida_ok,
       'partida'=> $partida,
       'fecha_ok'=> $this->fecha_ok,
-      'fecha_inicio'=> $fecha_inicio,
-      'fecha_fin'=> $fecha_fin,
+      'fecha_inicio'=> $this->fecha_inicio,
+      'fecha_fin'=> $this->fecha_fin,
       'mytime'=> $mytime,
     ]);
     }else{

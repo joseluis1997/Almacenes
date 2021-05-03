@@ -4,17 +4,7 @@
     <meta charset="utf-8">
     <title>RepArSal</title>
     <link rel="stylesheet" href="style.css" media="all" />
-    <style type="text/css">
-      .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
+     <style type="text/css">
 
       body {
         font-family: Arial, sans-serif; 
@@ -37,11 +27,11 @@
         width: 90px;
       }
 
-      h1 {
+      h4 {
         border-top: 1px solid  #5D6975;
         border-bottom: 1px solid  #5D6975;
         color: #5D6975;
-        font-size: 2.0em;
+        font-size: 1.5em;
         line-height: 1.4em;
         font-weight: normal;
         text-align: center;
@@ -49,84 +39,35 @@
         background: url(dimension.png);
       }
 
-      #project {
-        float: left;
-      }
-
-      #project span {
-        color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
-        display: inline-block;
-        font-size: 0.8em;
-      }
-
-      #company {
-        float: right;
-        text-align: right;
-      }
-
-      #project div,
-      #company div {
-        white-space: nowrap;        
-      }
-
       table {
         width: 100%;
+        border: none !important;
         border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
-      table tr:nth-child(2n-1) td {
+      table tr{
+        border-spacing: 0px;
         background: #F5F5F5;
       }
 
-      table th,
-      table td {
-        text-align: center;
+      table th{
+        text-align:center;
       }
 
       table th {
-        padding: 5px 0px;
-        color: #5D6975;
-        border-bottom: 1px solid #C1CED9;
+        padding: 10px 0px;
+        color:  #708090;
         white-space: nowrap;        
-        font-weight: normal;
-      }
-
-      table .inf,
-      table .desc {
-        text-align: left;
       }
 
       table td {
-        padding: 20px 0px;
+        padding: 12px 0px;
+        text-align: center;
       }
-
-      .text-center td {
-        text-align: center !important;
-      }
-
-      table td.service,
-      table td.desc {
-        vertical-align: top;
-      }
-
-      table td.unit,
-      table td.qty,
-      table td.total {
-        font-size: 1.2em;
-      }
-
-      table td.grand {
-        border-top: 1px solid #5D6975;;
-      }
-
-      #notices .notice {
-        color: #5D6975;
-        font-size: 1.2em;
+      .text{
+        text-align: left;
+        font-size: 12px;
       }
 
       footer {
@@ -139,12 +80,6 @@
         padding: 8px 0;
         text-align: center;
       }
-      tr.tr-articulos > td{
-        background-color: #cbd7e2 !important;
-      }
-      tr.tr-consumos > td{
-        background-color: #F5F5F5 !important;
-      }
     </style>
   </head>
   <body>
@@ -152,20 +87,19 @@
         <div id="logo">
             <img src="{{ public_path('images/GobernacionLogo.png') }}">
         </div>
-        <h1>
+        <h4>
           <b>
             GOBIERNO AUTONOMO DEPARTAMENTAL DE TARIJA
           </b><br>
           ALMACEN CENTRAL
           <br>
           REPORTE POR AREAS DE LAS SALIDAS
-        </h1>
+        </h4>
         <div class="card-body">
-            <h5><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</h5>
-            <h5><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</h5>
+            <p><b>Reporte Generado por el Usuario:</b> {{auth()->user()->NOMBRES}} {{auth()->user()->APELLIDOS}}</p>
+            <p><b>Fecha y Hora:</b> {{ $mytime->format('d-m-Y H:i:s')}}</p>
         </div>
     </header>
-    <main>
       <div>
         @if($area_ok)
         <p>
@@ -191,10 +125,10 @@
             
             @foreach($Area->Salidas as $indexA=>$salida)
               <tr class="tr-consumos">
-                <td style="vertical-align: top;" rowspan="2">Salida: </td>
-                <td>FECHA</td>
-                <td>CODIGO SALIDA</td>
-                <td>CODIDO PEDIDO</td>
+                <td style="background-color: #e0e0e0;vertical-align: top;" rowspan="2">Salida: </td>
+                <td style="background-color: #e0e0e0">FECHA</td>
+                <td style="background-color: #e0e0e0">CODIGO SALIDA</td>
+                <td style="background-color: #e0e0e0">CODIDO PEDIDO</td>
               </tr>
               <tr class="tr-consumos">
                 <td>{{$salida->FECHA}}</td>
@@ -202,10 +136,10 @@
                 <td>{{$salida->COD_PEDIDO}}</td>
               </tr>
               <tr class="tr-articulos">
-                <td style="vertical-align: top; text-align: right;" rowspan="{{count($salida->Articulos)+1}}">Articulos de la salida: </td>
-                <td>Nombre</td>
-                <td>Medida</td>
-                <td>Cantidad</td>
+                <td style="background-color: #e0e0e0;vertical-align: top; text-align: right;" rowspan="{{count($salida->Articulos)+1}}">Articulos de la salida: </td>
+                <td style="background-color: #e0e0e0">Nombre</td>
+                <td style="background-color: #e0e0e0">Medida</td>
+                <td style="background-color: #e0e0e0">Cantidad</td>
               </tr>
               @foreach($salida->Articulos as $articulo)
                 <tr class="tr-articulos">
@@ -221,11 +155,11 @@
           </tbody>
         </table>
       @endforeach
-      
-{{--       <div>
-        <div >Invenatario Actual de todos los Articulos Disponibles en el Almacen de la Gobernacion</div>
-      </div> --}}
-    </main>
+      <br><br>
+       <div class="card-body">
+        <p><strong>Firma:</strong>___________________________</p>
+        <p><strong>Fecha y Hora: </strong>{{ $mytime->format('d-m-Y H:i:s')}}</p>
+      </div> 
     <footer>
       Gobierno Autonomo Departamental de Tarija
     </footer>

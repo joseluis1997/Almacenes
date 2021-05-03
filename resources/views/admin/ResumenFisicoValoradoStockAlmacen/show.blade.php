@@ -55,13 +55,14 @@
 			          	<tbody>
 			            	@foreach($partida->Articulos as $index=>$articulo)
 			              	@php
-				                $PrecioPonderado =  0.00;
+				                $PrecioPonderado = 0.00;
 				                $Total_cant_DCS =  0.00;
 				                $Total_cant_SAL =  0.00;
 				                $Total_prec_DCS =  0.00;
 				                if ($articulo->total_cant_DCS > 0){
 				                  $Total_cant_DCS = $articulo->total_cant_DCS;
 				                  $PrecioPonderado = $articulo->total_prec_DCS/$articulo->total_cant_DCS;
+				                  $PrecioPonderado = round($PrecioPonderado,2);
 				                }
 				                if ($articulo->total_cant_SAL > 0) {
 				                  $Total_cant_SAL = $articulo->total_cant_SAL;

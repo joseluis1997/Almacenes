@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\salida;
 use App\pedido;
 use App\Area;
+use App\Articulo;
 use App\Http\Requests\SalidaRequest;
 use DB;
 use Illuminate\Support\Collection;
@@ -26,7 +27,8 @@ class SalidasController extends Controller
     public function ValidarPedido($id){
 
         $pedido = pedido::findOrFail($id);
-        $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        // $Articulos = DB::table('ARTICULO')->where('ESTADO_ARTICULO','=','1')->get();
+        $Articulos = Articulo::all()->where('ESTADO_ARTICULO', '=', '1');
 
         return view('admin.Salidas.validar', compact('pedido','Articulos'));
     }
